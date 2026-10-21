@@ -1,0 +1,54 @@
+{
+  "tournament": "Jordan Cup 2026 Final",
+  "director": "Raad Otoom",
+  "teams": [
+    {
+      "team": "AL Nashama",
+      "vp": 90.9,
+      "imp": 79,
+      "rank": 1
+    },
+    {
+      "team": "Lions",
+      "vp": 89.69,
+      "imp": 86,
+      "rank": 2
+    },
+    {
+      "team": "Jordan Teams",
+      "vp": 89.41,
+      "imp": 83,
+      "rank": 3
+    },
+    {
+      "team": "Jordan Mix",
+      "vp": 77.6,
+      "imp": 37,
+      "rank": 4
+    },
+    {
+      "team": "Alfa",
+      "vp": 66.11,
+      "imp": -11,
+      "rank": 5
+    },
+    {
+      "team": "Eagles",
+      "vp": 63.68,
+      "imp": -29,
+      "rank": 6
+    },
+    {
+      "team": "Ortho Group",
+      "vp": 53.14,
+      "imp": -67,
+      "rank": 7
+    },
+    {
+      "team": "Palestine",
+      "vp": 27.47,
+      "imp": -178,
+      "rank": 8
+    }
+  ]
+}

@@ -1,0 +1,1611 @@
+{
+  "tournament": "Jordan Bridge Festival 2026 - Open Teams",
+  "date": "2026-09-27 / 2026-09-28",
+  "organizer": "Jordan Bridge Federation & Egyptian Bridge Federation",
+  "director": "Waleed El Menyawi",
+  "totalTeams": 24,
+  "standings": [
+    {
+      "rank": 1,
+      "teamId": 12,
+      "score": 109.94,
+      "name": "AKIEL"
+    },
+    {
+      "rank": 2,
+      "teamId": 24,
+      "score": 102.54,
+      "name": "VU"
+    },
+    {
+      "rank": 3,
+      "teamId": 14,
+      "score": 102.17,
+      "name": "RADE"
+    },
+    {
+      "rank": 4,
+      "teamId": 4,
+      "score": 100.38,
+      "name": "MIQDDADI"
+    },
+    {
+      "rank": 5,
+      "teamId": 19,
+      "score": 97.47,
+      "name": "YAMENN"
+    },
+    {
+      "rank": 6,
+      "teamId": 20,
+      "score": 97.19,
+      "name": "AL AHLY"
+    },
+    {
+      "rank": 7,
+      "teamId": 17,
+      "score": 91.02,
+      "name": "JOE"
+    },
+    {
+      "rank": 8,
+      "teamId": 7,
+      "score": 86.34,
+      "name": "DARK WAVE"
+    },
+    {
+      "rank": 9,
+      "teamId": 21,
+      "score": 85.13,
+      "name": "AMMAN"
+    },
+    {
+      "rank": 9,
+      "teamId": 23,
+      "score": 85.13,
+      "name": "ARAB UNITED"
+    },
+    {
+      "rank": 11,
+      "teamId": 5,
+      "score": 84.04,
+      "name": "SWISS ARABIAN"
+    },
+    {
+      "rank": 12,
+      "teamId": 9,
+      "score": 82.33,
+      "name": "SHEKA BEKA"
+    },
+    {
+      "rank": 13,
+      "teamId": 10,
+      "score": 82.29,
+      "name": "RED SEA"
+    },
+    {
+      "rank": 14,
+      "teamId": 18,
+      "score": 82.27,
+      "name": "AL MAMOUN"
+    },
+    {
+      "rank": 15,
+      "teamId": 1,
+      "score": 78.57,
+      "name": "SHARJAH"
+    },
+    {
+      "rank": 16,
+      "teamId": 8,
+      "score": 78.42,
+      "name": "RFAA"
+    },
+    {
+      "rank": 17,
+      "teamId": 15,
+      "score": 74.91,
+      "name": "TURK-JOR"
+    },
+    {
+      "rank": 18,
+      "teamId": 16,
+      "score": 70.03,
+      "name": "LIONS"
+    },
+    {
+      "rank": 19,
+      "teamId": 22,
+      "score": 66.07,
+      "name": "ZAK"
+    },
+    {
+      "rank": 20,
+      "teamId": 2,
+      "score": 65.88,
+      "name": "S.R"
+    },
+    {
+      "rank": 21,
+      "teamId": 13,
+      "score": 61.6,
+      "name": "TRICKS"
+    },
+    {
+      "rank": 22,
+      "teamId": 3,
+      "score": 53.8,
+      "name": "MOROCCO"
+    },
+    {
+      "rank": 23,
+      "teamId": 11,
+      "score": 42.77,
+      "name": "SHAHRO"
+    },
+    {
+      "rank": 24,
+      "teamId": 6,
+      "score": 39.71,
+      "name": "WADI RUM"
+    }
+  ],
+  "rounds": {
+    "8": [
+      {
+        "table": 1,
+        "homeTeam": {
+          "id": 12,
+          "name": "AKIEL",
+          "imp": 22,
+          "vp": 12.77
+        },
+        "awayTeam": {
+          "id": 24,
+          "name": "VU",
+          "imp": 15,
+          "vp": 7.23
+        }
+      },
+      {
+        "table": 2,
+        "homeTeam": {
+          "id": 20,
+          "name": "AL AHLY",
+          "imp": 21,
+          "vp": 4.0
+        },
+        "awayTeam": {
+          "id": 14,
+          "name": "RADE",
+          "imp": 39,
+          "vp": 16.0
+        }
+      },
+      {
+        "table": 3,
+        "homeTeam": {
+          "id": 17,
+          "name": "JOE",
+          "imp": 16,
+          "vp": 5.91
+        },
+        "awayTeam": {
+          "id": 19,
+          "name": "YAMENN",
+          "imp": 27,
+          "vp": 14.09
+        }
+      },
+      {
+        "table": 4,
+        "homeTeam": {
+          "id": 4,
+          "name": "MIQDDADI",
+          "imp": 27,
+          "vp": 17.87
+        },
+        "awayTeam": {
+          "id": 1,
+          "name": "SHARJAH",
+          "imp": 0,
+          "vp": 2.13
+        }
+      },
+      {
+        "table": 5,
+        "homeTeam": {
+          "id": 5,
+          "name": "SWISS ARABIAN",
+          "imp": 13,
+          "vp": 8.73
+        },
+        "awayTeam": {
+          "id": 7,
+          "name": "DARK WAVE",
+          "imp": 16,
+          "vp": 11.27
+        }
+      },
+      {
+        "table": 6,
+        "homeTeam": {
+          "id": 21,
+          "name": "AMMAN",
+          "imp": 23,
+          "vp": 10.44
+        },
+        "awayTeam": {
+          "id": 10,
+          "name": "RED SEA",
+          "imp": 22,
+          "vp": 9.56
+        }
+      },
+      {
+        "table": 7,
+        "homeTeam": {
+          "id": 8,
+          "name": "RFAA",
+          "imp": 17,
+          "vp": 6.22
+        },
+        "awayTeam": {
+          "id": 23,
+          "name": "ARAB UNITED",
+          "imp": 27,
+          "vp": 13.78
+        }
+      },
+      {
+        "table": 8,
+        "homeTeam": {
+          "id": 9,
+          "name": "SHEKA BEKA",
+          "imp": 17,
+          "vp": 12.42
+        },
+        "awayTeam": {
+          "id": 15,
+          "name": "TURK-JOR",
+          "imp": 11,
+          "vp": 7.58
+        }
+      },
+      {
+        "table": 9,
+        "homeTeam": {
+          "id": 18,
+          "name": "AL MAMOUN",
+          "imp": 31,
+          "vp": 17.11
+        },
+        "awayTeam": {
+          "id": 22,
+          "name": "ZAK",
+          "imp": 8,
+          "vp": 2.89
+        }
+      },
+      {
+        "table": 10,
+        "homeTeam": {
+          "id": 16,
+          "name": "LIONS",
+          "imp": 17,
+          "vp": 10.0
+        },
+        "awayTeam": {
+          "id": 2,
+          "name": "S.R",
+          "imp": 17,
+          "vp": 10.0
+        }
+      },
+      {
+        "table": 11,
+        "homeTeam": {
+          "id": 3,
+          "name": "MOROCCO",
+          "imp": 9,
+          "vp": 1.96
+        },
+        "awayTeam": {
+          "id": 13,
+          "name": "TRICKS",
+          "imp": 37,
+          "vp": 18.04
+        }
+      },
+      {
+        "table": 12,
+        "homeTeam": {
+          "id": 11,
+          "name": "SHAHRO",
+          "imp": 32,
+          "vp": 7.58
+        },
+        "awayTeam": {
+          "id": 6,
+          "name": "WADI RUM",
+          "imp": 38,
+          "vp": 12.42
+        }
+      }
+    ],
+    "7": [
+      {
+        "table": 1,
+        "homeTeam": {
+          "id": 14,
+          "name": "RADE",
+          "imp": 14,
+          "vp": 4.25
+        },
+        "awayTeam": {
+          "id": 12,
+          "name": "AKIEL",
+          "imp": 31,
+          "vp": 15.75
+        }
+      },
+      {
+        "table": 2,
+        "homeTeam": {
+          "id": 24,
+          "name": "VU",
+          "imp": 21,
+          "vp": 15.5
+        },
+        "awayTeam": {
+          "id": 19,
+          "name": "YAMENN",
+          "imp": 5,
+          "vp": 4.5
+        }
+      },
+      {
+        "table": 3,
+        "homeTeam": {
+          "id": 20,
+          "name": "AL AHLY",
+          "imp": 21,
+          "vp": 16.46
+        },
+        "awayTeam": {
+          "id": 7,
+          "name": "DARK WAVE",
+          "imp": 1,
+          "vp": 3.54
+        }
+      },
+      {
+        "table": 4,
+        "homeTeam": {
+          "id": 10,
+          "name": "RED SEA",
+          "imp": 11,
+          "vp": 4.77
+        },
+        "awayTeam": {
+          "id": 17,
+          "name": "JOE",
+          "imp": 26,
+          "vp": 15.23
+        }
+      },
+      {
+        "table": 5,
+        "homeTeam": {
+          "id": 21,
+          "name": "AMMAN",
+          "imp": 1,
+          "vp": 7.58
+        },
+        "awayTeam": {
+          "id": 5,
+          "name": "SWISS ARABIAN",
+          "imp": 7,
+          "vp": 12.42
+        }
+      },
+      {
+        "table": 6,
+        "homeTeam": {
+          "id": 18,
+          "name": "AL MAMOUN",
+          "imp": 13,
+          "vp": 2.5
+        },
+        "awayTeam": {
+          "id": 4,
+          "name": "MIQDDADI",
+          "imp": 38,
+          "vp": 17.5
+        }
+      },
+      {
+        "table": 7,
+        "homeTeam": {
+          "id": 16,
+          "name": "LIONS",
+          "imp": 1,
+          "vp": 2.5
+        },
+        "awayTeam": {
+          "id": 1,
+          "name": "SHARJAH",
+          "imp": 26,
+          "vp": 17.5
+        }
+      },
+      {
+        "table": 8,
+        "homeTeam": {
+          "id": 8,
+          "name": "RFAA",
+          "imp": 46,
+          "vp": 20.0
+        },
+        "awayTeam": {
+          "id": 2,
+          "name": "S.R",
+          "imp": 1,
+          "vp": 0.0
+        }
+      },
+      {
+        "table": 9,
+        "homeTeam": {
+          "id": 23,
+          "name": "ARAB UNITED",
+          "imp": 39,
+          "vp": 19.37
+        },
+        "awayTeam": {
+          "id": 3,
+          "name": "MOROCCO",
+          "imp": 2,
+          "vp": 0.63
+        }
+      },
+      {
+        "table": 10,
+        "homeTeam": {
+          "id": 22,
+          "name": "ZAK",
+          "imp": 12,
+          "vp": 13.12
+        },
+        "awayTeam": {
+          "id": 13,
+          "name": "TRICKS",
+          "imp": 4,
+          "vp": 6.88
+        }
+      },
+      {
+        "table": 11,
+        "homeTeam": {
+          "id": 9,
+          "name": "SHEKA BEKA",
+          "imp": 49,
+          "vp": 20.0
+        },
+        "awayTeam": {
+          "id": 6,
+          "name": "WADI RUM",
+          "imp": 1,
+          "vp": 0.0
+        }
+      },
+      {
+        "table": 12,
+        "homeTeam": {
+          "id": 11,
+          "name": "SHAHRO",
+          "imp": 0,
+          "vp": 2.31
+        },
+        "awayTeam": {
+          "id": 15,
+          "name": "TURK-JOR",
+          "imp": 26,
+          "vp": 17.69
+        }
+      }
+    ],
+    "6": [
+      {
+        "table": 1,
+        "homeTeam": {
+          "id": 20,
+          "name": "AL AHLY",
+          "imp": 11,
+          "vp": 10.0
+        },
+        "awayTeam": {
+          "id": 12,
+          "name": "AKIEL",
+          "imp": 11,
+          "vp": 10.0
+        }
+      },
+      {
+        "table": 2,
+        "homeTeam": {
+          "id": 17,
+          "name": "JOE",
+          "imp": 7,
+          "vp": 3.32
+        },
+        "awayTeam": {
+          "id": 14,
+          "name": "RADE",
+          "imp": 28,
+          "vp": 16.68
+        }
+      },
+      {
+        "table": 3,
+        "homeTeam": {
+          "id": 5,
+          "name": "SWISS ARABIAN",
+          "imp": 2,
+          "vp": 0.38
+        },
+        "awayTeam": {
+          "id": 24,
+          "name": "VU",
+          "imp": 41,
+          "vp": 19.62
+        }
+      },
+      {
+        "table": 4,
+        "homeTeam": {
+          "id": 4,
+          "name": "MIQDDADI",
+          "imp": 6,
+          "vp": 5.91
+        },
+        "awayTeam": {
+          "id": 21,
+          "name": "AMMAN",
+          "imp": 17,
+          "vp": 14.09
+        }
+      },
+      {
+        "table": 5,
+        "homeTeam": {
+          "id": 9,
+          "name": "SHEKA BEKA",
+          "imp": 1,
+          "vp": 0.0
+        },
+        "awayTeam": {
+          "id": 19,
+          "name": "YAMENN",
+          "imp": 52,
+          "vp": 20.0
+        }
+      },
+      {
+        "table": 6,
+        "homeTeam": {
+          "id": 7,
+          "name": "DARK WAVE",
+          "imp": 34,
+          "vp": 17.69
+        },
+        "awayTeam": {
+          "id": 23,
+          "name": "ARAB UNITED",
+          "imp": 8,
+          "vp": 2.31
+        }
+      },
+      {
+        "table": 7,
+        "homeTeam": {
+          "id": 8,
+          "name": "RFAA",
+          "imp": 4,
+          "vp": 1.32
+        },
+        "awayTeam": {
+          "id": 10,
+          "name": "RED SEA",
+          "imp": 36,
+          "vp": 18.68
+        }
+      },
+      {
+        "table": 8,
+        "homeTeam": {
+          "id": 22,
+          "name": "ZAK",
+          "imp": 7,
+          "vp": 3.32
+        },
+        "awayTeam": {
+          "id": 18,
+          "name": "AL MAMOUN",
+          "imp": 28,
+          "vp": 16.68
+        }
+      },
+      {
+        "table": 9,
+        "homeTeam": {
+          "id": 16,
+          "name": "LIONS",
+          "imp": 27,
+          "vp": 11.67
+        },
+        "awayTeam": {
+          "id": 3,
+          "name": "MOROCCO",
+          "imp": 23,
+          "vp": 8.33
+        }
+      },
+      {
+        "table": 10,
+        "homeTeam": {
+          "id": 15,
+          "name": "TURK-JOR",
+          "imp": 2,
+          "vp": 5.91
+        },
+        "awayTeam": {
+          "id": 2,
+          "name": "S.R",
+          "imp": 13,
+          "vp": 14.09
+        }
+      },
+      {
+        "table": 11,
+        "homeTeam": {
+          "id": 1,
+          "name": "SHARJAH",
+          "imp": 24,
+          "vp": 17.31
+        },
+        "awayTeam": {
+          "id": 13,
+          "name": "TRICKS",
+          "imp": 0,
+          "vp": 2.69
+        }
+      },
+      {
+        "table": 12,
+        "homeTeam": {
+          "id": 6,
+          "name": "WADI RUM",
+          "imp": 1,
+          "vp": 1.63
+        },
+        "awayTeam": {
+          "id": 11,
+          "name": "SHAHRO",
+          "imp": 31,
+          "vp": 18.37
+        }
+      }
+    ],
+    "5": [
+      {
+        "table": 1,
+        "homeTeam": {
+          "id": 12,
+          "name": "AKIEL",
+          "imp": 16,
+          "vp": 9.14
+        },
+        "awayTeam": {
+          "id": 5,
+          "name": "SWISS ARABIAN",
+          "imp": 18,
+          "vp": 10.86
+        }
+      },
+      {
+        "table": 2,
+        "homeTeam": {
+          "id": 21,
+          "name": "AMMAN",
+          "imp": 6,
+          "vp": 2.5
+        },
+        "awayTeam": {
+          "id": 20,
+          "name": "AL AHLY",
+          "imp": 31,
+          "vp": 17.5
+        }
+      },
+      {
+        "table": 3,
+        "homeTeam": {
+          "id": 17,
+          "name": "JOE",
+          "imp": 30,
+          "vp": 17.69
+        },
+        "awayTeam": {
+          "id": 23,
+          "name": "ARAB UNITED",
+          "imp": 4,
+          "vp": 2.31
+        }
+      },
+      {
+        "table": 4,
+        "homeTeam": {
+          "id": 19,
+          "name": "YAMENN",
+          "imp": 8,
+          "vp": 12.42
+        },
+        "awayTeam": {
+          "id": 7,
+          "name": "DARK WAVE",
+          "imp": 2,
+          "vp": 7.58
+        }
+      },
+      {
+        "table": 5,
+        "homeTeam": {
+          "id": 14,
+          "name": "RADE",
+          "imp": 44,
+          "vp": 19.85
+        },
+        "awayTeam": {
+          "id": 15,
+          "name": "TURK-JOR",
+          "imp": 3,
+          "vp": 0.15
+        }
+      },
+      {
+        "table": 6,
+        "homeTeam": {
+          "id": 24,
+          "name": "VU",
+          "imp": 35,
+          "vp": 18.37
+        },
+        "awayTeam": {
+          "id": 3,
+          "name": "MOROCCO",
+          "imp": 5,
+          "vp": 1.63
+        }
+      },
+      {
+        "table": 7,
+        "homeTeam": {
+          "id": 1,
+          "name": "SHARJAH",
+          "imp": 4,
+          "vp": 1.47
+        },
+        "awayTeam": {
+          "id": 4,
+          "name": "MIQDDADI",
+          "imp": 35,
+          "vp": 18.53
+        }
+      },
+      {
+        "table": 8,
+        "homeTeam": {
+          "id": 16,
+          "name": "LIONS",
+          "imp": 17,
+          "vp": 7.23
+        },
+        "awayTeam": {
+          "id": 8,
+          "name": "RFAA",
+          "imp": 24,
+          "vp": 12.77
+        }
+      },
+      {
+        "table": 9,
+        "homeTeam": {
+          "id": 10,
+          "name": "RED SEA",
+          "imp": 16,
+          "vp": 11.27
+        },
+        "awayTeam": {
+          "id": 22,
+          "name": "ZAK",
+          "imp": 13,
+          "vp": 8.73
+        }
+      },
+      {
+        "table": 10,
+        "homeTeam": {
+          "id": 13,
+          "name": "TRICKS",
+          "imp": 16,
+          "vp": 1.63
+        },
+        "awayTeam": {
+          "id": 9,
+          "name": "SHEKA BEKA",
+          "imp": 46,
+          "vp": 18.37
+        }
+      },
+      {
+        "table": 11,
+        "homeTeam": {
+          "id": 18,
+          "name": "AL MAMOUN",
+          "imp": 34,
+          "vp": 17.69
+        },
+        "awayTeam": {
+          "id": 6,
+          "name": "WADI RUM",
+          "imp": 8,
+          "vp": 2.31
+        }
+      },
+      {
+        "table": 12,
+        "homeTeam": {
+          "id": 2,
+          "name": "S.R",
+          "imp": 34,
+          "vp": 18.53
+        },
+        "awayTeam": {
+          "id": 11,
+          "name": "SHAHRO",
+          "imp": 3,
+          "vp": 1.47
+        }
+      }
+    ],
+    "4": [
+      {
+        "table": 1,
+        "homeTeam": {
+          "id": 21,
+          "name": "AMMAN",
+          "imp": 3,
+          "vp": 8.73
+        },
+        "awayTeam": {
+          "id": 12,
+          "name": "AKIEL",
+          "imp": 6,
+          "vp": 11.27
+        }
+      },
+      {
+        "table": 2,
+        "homeTeam": {
+          "id": 5,
+          "name": "SWISS ARABIAN",
+          "imp": 11,
+          "vp": 12.05
+        },
+        "awayTeam": {
+          "id": 17,
+          "name": "JOE",
+          "imp": 6,
+          "vp": 7.95
+        }
+      },
+      {
+        "table": 3,
+        "homeTeam": {
+          "id": 23,
+          "name": "ARAB UNITED",
+          "imp": 15,
+          "vp": 10.44
+        },
+        "awayTeam": {
+          "id": 14,
+          "name": "RADE",
+          "imp": 14,
+          "vp": 9.56
+        }
+      },
+      {
+        "table": 4,
+        "homeTeam": {
+          "id": 24,
+          "name": "VU",
+          "imp": 12,
+          "vp": 7.23
+        },
+        "awayTeam": {
+          "id": 20,
+          "name": "AL AHLY",
+          "imp": 19,
+          "vp": 12.77
+        }
+      },
+      {
+        "table": 5,
+        "homeTeam": {
+          "id": 4,
+          "name": "MIQDDADI",
+          "imp": 1,
+          "vp": 5.32
+        },
+        "awayTeam": {
+          "id": 7,
+          "name": "DARK WAVE",
+          "imp": 14,
+          "vp": 14.68
+        }
+      },
+      {
+        "table": 6,
+        "homeTeam": {
+          "id": 19,
+          "name": "YAMENN",
+          "imp": 10,
+          "vp": 13.45
+        },
+        "awayTeam": {
+          "id": 8,
+          "name": "RFAA",
+          "imp": 1,
+          "vp": 6.55
+        }
+      },
+      {
+        "table": 7,
+        "homeTeam": {
+          "id": 10,
+          "name": "RED SEA",
+          "imp": 0,
+          "vp": 9.14
+        },
+        "awayTeam": {
+          "id": 1,
+          "name": "SHARJAH",
+          "imp": 2,
+          "vp": 10.86
+        }
+      },
+      {
+        "table": 8,
+        "homeTeam": {
+          "id": 15,
+          "name": "TURK-JOR",
+          "imp": 24,
+          "vp": 15.5
+        },
+        "awayTeam": {
+          "id": 13,
+          "name": "TRICKS",
+          "imp": 8,
+          "vp": 4.5
+        }
+      },
+      {
+        "table": 9,
+        "homeTeam": {
+          "id": 18,
+          "name": "AL MAMOUN",
+          "imp": 12,
+          "vp": 4.77
+        },
+        "awayTeam": {
+          "id": 3,
+          "name": "MOROCCO",
+          "imp": 27,
+          "vp": 15.23
+        }
+      },
+      {
+        "table": 10,
+        "homeTeam": {
+          "id": 6,
+          "name": "WADI RUM",
+          "imp": 1,
+          "vp": 0.5
+        },
+        "awayTeam": {
+          "id": 16,
+          "name": "LIONS",
+          "imp": 39,
+          "vp": 19.5
+        }
+      },
+      {
+        "table": 11,
+        "homeTeam": {
+          "id": 2,
+          "name": "S.R",
+          "imp": 10,
+          "vp": 4.77
+        },
+        "awayTeam": {
+          "id": 22,
+          "name": "ZAK",
+          "imp": 25,
+          "vp": 15.23
+        }
+      },
+      {
+        "table": 12,
+        "homeTeam": {
+          "id": 9,
+          "name": "SHEKA BEKA",
+          "imp": 21,
+          "vp": 14.39
+        },
+        "awayTeam": {
+          "id": 11,
+          "name": "SHAHRO",
+          "imp": 9,
+          "vp": 5.61
+        }
+      }
+    ],
+    "3": [
+      {
+        "table": 1,
+        "homeTeam": {
+          "id": 12,
+          "name": "AKIEL",
+          "imp": 47,
+          "vp": 20.0
+        },
+        "awayTeam": {
+          "id": 10,
+          "name": "RED SEA",
+          "imp": 1,
+          "vp": 0.0
+        }
+      },
+      {
+        "table": 2,
+        "homeTeam": {
+          "id": 20,
+          "name": "AL AHLY",
+          "imp": 20,
+          "vp": 8.33
+        },
+        "awayTeam": {
+          "id": 23,
+          "name": "ARAB UNITED",
+          "imp": 24,
+          "vp": 11.67
+        }
+      },
+      {
+        "table": 3,
+        "homeTeam": {
+          "id": 15,
+          "name": "TURK-JOR",
+          "imp": 2,
+          "vp": 2.89
+        },
+        "awayTeam": {
+          "id": 21,
+          "name": "AMMAN",
+          "imp": 25,
+          "vp": 17.11
+        }
+      },
+      {
+        "table": 4,
+        "homeTeam": {
+          "id": 14,
+          "name": "RADE",
+          "imp": 34,
+          "vp": 12.05
+        },
+        "awayTeam": {
+          "id": 7,
+          "name": "DARK WAVE",
+          "imp": 29,
+          "vp": 7.95
+        }
+      },
+      {
+        "table": 5,
+        "homeTeam": {
+          "id": 8,
+          "name": "RFAA",
+          "imp": 20,
+          "vp": 8.33
+        },
+        "awayTeam": {
+          "id": 24,
+          "name": "VU",
+          "imp": 24,
+          "vp": 11.67
+        }
+      },
+      {
+        "table": 6,
+        "homeTeam": {
+          "id": 18,
+          "name": "AL MAMOUN",
+          "imp": 11,
+          "vp": 1.96
+        },
+        "awayTeam": {
+          "id": 5,
+          "name": "SWISS ARABIAN",
+          "imp": 39,
+          "vp": 18.04
+        }
+      },
+      {
+        "table": 7,
+        "homeTeam": {
+          "id": 17,
+          "name": "JOE",
+          "imp": 42,
+          "vp": 19.37
+        },
+        "awayTeam": {
+          "id": 16,
+          "name": "LIONS",
+          "imp": 5,
+          "vp": 0.63
+        }
+      },
+      {
+        "table": 8,
+        "homeTeam": {
+          "id": 3,
+          "name": "MOROCCO",
+          "imp": 25,
+          "vp": 7.58
+        },
+        "awayTeam": {
+          "id": 1,
+          "name": "SHARJAH",
+          "imp": 31,
+          "vp": 12.42
+        }
+      },
+      {
+        "table": 9,
+        "homeTeam": {
+          "id": 4,
+          "name": "MIQDDADI",
+          "imp": 49,
+          "vp": 18.37
+        },
+        "awayTeam": {
+          "id": 9,
+          "name": "SHEKA BEKA",
+          "imp": 19,
+          "vp": 1.63
+        }
+      },
+      {
+        "table": 10,
+        "homeTeam": {
+          "id": 2,
+          "name": "S.R",
+          "imp": 14,
+          "vp": 3.54
+        },
+        "awayTeam": {
+          "id": 19,
+          "name": "YAMENN",
+          "imp": 34,
+          "vp": 16.46
+        }
+      },
+      {
+        "table": 11,
+        "homeTeam": {
+          "id": 22,
+          "name": "ZAK",
+          "imp": 9,
+          "vp": 8.73
+        },
+        "awayTeam": {
+          "id": 6,
+          "name": "WADI RUM",
+          "imp": 12,
+          "vp": 11.27
+        }
+      },
+      {
+        "table": 12,
+        "homeTeam": {
+          "id": 11,
+          "name": "SHAHRO",
+          "imp": 8,
+          "vp": 2.13
+        },
+        "awayTeam": {
+          "id": 13,
+          "name": "TRICKS",
+          "imp": 35,
+          "vp": 17.87
+        }
+      }
+    ],
+    "2": [
+      {
+        "table": 1,
+        "homeTeam": {
+          "id": 12,
+          "name": "AKIEL",
+          "imp": 15,
+          "vp": 11.27
+        },
+        "awayTeam": {
+          "id": 15,
+          "name": "TURK-JOR",
+          "imp": 12,
+          "vp": 8.73
+        }
+      },
+      {
+        "table": 2,
+        "homeTeam": {
+          "id": 10,
+          "name": "RED SEA",
+          "imp": 20,
+          "vp": 13.12
+        },
+        "awayTeam": {
+          "id": 18,
+          "name": "AL MAMOUN",
+          "imp": 12,
+          "vp": 6.88
+        }
+      },
+      {
+        "table": 3,
+        "homeTeam": {
+          "id": 14,
+          "name": "RADE",
+          "imp": 10,
+          "vp": 10.0
+        },
+        "awayTeam": {
+          "id": 21,
+          "name": "AMMAN",
+          "imp": 10,
+          "vp": 10.0
+        }
+      },
+      {
+        "table": 4,
+        "homeTeam": {
+          "id": 20,
+          "name": "AL AHLY",
+          "imp": 23,
+          "vp": 14.68
+        },
+        "awayTeam": {
+          "id": 3,
+          "name": "MOROCCO",
+          "imp": 10,
+          "vp": 5.32
+        }
+      },
+      {
+        "table": 5,
+        "homeTeam": {
+          "id": 7,
+          "name": "DARK WAVE",
+          "imp": 17,
+          "vp": 10.86
+        },
+        "awayTeam": {
+          "id": 5,
+          "name": "SWISS ARABIAN",
+          "imp": 15,
+          "vp": 9.14
+        }
+      },
+      {
+        "table": 6,
+        "homeTeam": {
+          "id": 1,
+          "name": "SHARJAH",
+          "imp": 21,
+          "vp": 5.61
+        },
+        "awayTeam": {
+          "id": 23,
+          "name": "ARAB UNITED",
+          "imp": 33,
+          "vp": 14.39
+        }
+      },
+      {
+        "table": 7,
+        "homeTeam": {
+          "id": 24,
+          "name": "VU",
+          "imp": 12,
+          "vp": 13.78
+        },
+        "awayTeam": {
+          "id": 2,
+          "name": "S.R",
+          "imp": 2,
+          "vp": 6.22
+        }
+      },
+      {
+        "table": 8,
+        "homeTeam": {
+          "id": 6,
+          "name": "WADI RUM",
+          "imp": 5,
+          "vp": 4.0
+        },
+        "awayTeam": {
+          "id": 8,
+          "name": "RFAA",
+          "imp": 23,
+          "vp": 16.0
+        }
+      },
+      {
+        "table": 9,
+        "homeTeam": {
+          "id": 4,
+          "name": "MIQDDADI",
+          "imp": 12,
+          "vp": 10.0
+        },
+        "awayTeam": {
+          "id": 19,
+          "name": "YAMENN",
+          "imp": 12,
+          "vp": 10.0
+        }
+      },
+      {
+        "table": 10,
+        "homeTeam": {
+          "id": 13,
+          "name": "TRICKS",
+          "imp": 8,
+          "vp": 3.77
+        },
+        "awayTeam": {
+          "id": 17,
+          "name": "JOE",
+          "imp": 27,
+          "vp": 16.23
+        }
+      },
+      {
+        "table": 11,
+        "homeTeam": {
+          "id": 22,
+          "name": "ZAK",
+          "imp": 15,
+          "vp": 8.73
+        },
+        "awayTeam": {
+          "id": 9,
+          "name": "SHEKA BEKA",
+          "imp": 18,
+          "vp": 11.27
+        }
+      },
+      {
+        "table": 12,
+        "homeTeam": {
+          "id": 16,
+          "name": "LIONS",
+          "imp": 15,
+          "vp": 14.96
+        },
+        "awayTeam": {
+          "id": 11,
+          "name": "SHAHRO",
+          "imp": 1,
+          "vp": 5.04
+        }
+      }
+    ],
+    "1": [
+      {
+        "table": 1,
+        "homeTeam": {
+          "id": 1,
+          "name": "SHARJAH",
+          "imp": 10,
+          "vp": 11.27
+        },
+        "awayTeam": {
+          "id": 2,
+          "name": "S.R",
+          "imp": 7,
+          "vp": 8.73
+        }
+      },
+      {
+        "table": 2,
+        "homeTeam": {
+          "id": 3,
+          "name": "MOROCCO",
+          "imp": 20,
+          "vp": 13.12
+        },
+        "awayTeam": {
+          "id": 4,
+          "name": "MIQDDADI",
+          "imp": 12,
+          "vp": 6.88
+        }
+      },
+      {
+        "table": 3,
+        "homeTeam": {
+          "id": 5,
+          "name": "SWISS ARABIAN",
+          "imp": 28,
+          "vp": 12.42
+        },
+        "awayTeam": {
+          "id": 6,
+          "name": "WADI RUM",
+          "imp": 22,
+          "vp": 7.58
+        }
+      },
+      {
+        "table": 4,
+        "homeTeam": {
+          "id": 7,
+          "name": "DARK WAVE",
+          "imp": 16,
+          "vp": 12.77
+        },
+        "awayTeam": {
+          "id": 8,
+          "name": "RFAA",
+          "imp": 9,
+          "vp": 7.23
+        }
+      },
+      {
+        "table": 5,
+        "homeTeam": {
+          "id": 9,
+          "name": "SHEKA BEKA",
+          "imp": 5,
+          "vp": 4.25
+        },
+        "awayTeam": {
+          "id": 10,
+          "name": "RED SEA",
+          "imp": 22,
+          "vp": 15.75
+        }
+      },
+      {
+        "table": 6,
+        "homeTeam": {
+          "id": 11,
+          "name": "SHAHRO",
+          "imp": 9,
+          "vp": 0.26
+        },
+        "awayTeam": {
+          "id": 12,
+          "name": "AKIEL",
+          "imp": 49,
+          "vp": 19.74
+        }
+      },
+      {
+        "table": 7,
+        "homeTeam": {
+          "id": 13,
+          "name": "TRICKS",
+          "imp": 10,
+          "vp": 6.22
+        },
+        "awayTeam": {
+          "id": 14,
+          "name": "RADE",
+          "imp": 20,
+          "vp": 13.78
+        }
+      },
+      {
+        "table": 8,
+        "homeTeam": {
+          "id": 15,
+          "name": "TURK-JOR",
+          "imp": 25,
+          "vp": 16.46
+        },
+        "awayTeam": {
+          "id": 16,
+          "name": "LIONS",
+          "imp": 5,
+          "vp": 3.54
+        }
+      },
+      {
+        "table": 9,
+        "homeTeam": {
+          "id": 17,
+          "name": "JOE",
+          "imp": 17,
+          "vp": 5.32
+        },
+        "awayTeam": {
+          "id": 18,
+          "name": "AL MAMOUN",
+          "imp": 30,
+          "vp": 14.68
+        }
+      },
+      {
+        "table": 10,
+        "homeTeam": {
+          "id": 19,
+          "name": "YAMENN",
+          "imp": 12,
+          "vp": 6.55
+        },
+        "awayTeam": {
+          "id": 20,
+          "name": "AL AHLY",
+          "imp": 21,
+          "vp": 13.45
+        }
+      },
+      {
+        "table": 11,
+        "homeTeam": {
+          "id": 21,
+          "name": "AMMAN",
+          "imp": 23,
+          "vp": 14.68
+        },
+        "awayTeam": {
+          "id": 22,
+          "name": "ZAK",
+          "imp": 10,
+          "vp": 5.32
+        }
+      },
+      {
+        "table": 12,
+        "homeTeam": {
+          "id": 23,
+          "name": "ARAB UNITED",
+          "imp": 19,
+          "vp": 10.86
+        },
+        "awayTeam": {
+          "id": 24,
+          "name": "VU",
+          "imp": 17,
+          "vp": 9.14
+        }
+      }
+    ]
+  }
+}
