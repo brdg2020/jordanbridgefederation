@@ -367,6 +367,74 @@ html_content = f'''<!DOCTYPE html>
     </div>
   </section>
 
+
+  <!-- HISTORICAL PHOTO GALLERY & TOURNAMENT ALBUM (Preserving Pictures Album from BridgeWebs) -->
+  <section id="gallery" class="py-16 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-3 py-1 rounded-full inline-block mb-2" data-en="Historical Archives & Memories" data-ar="أرشيف الصور والذكريات">Historical Archives & Memories</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Jordan Bridge Photo Album & Championships" data-ar="ألبوم صور بطولات ومهرجانات الأردن للبريدج">Jordan Bridge Photo Album & Championships</h2>
+        <p class="text-sm text-slate-600 mt-2" data-en="Preserving moments of triumph, international BFAME championships, and Jordan Festival award ceremonies." data-ar="توثيق لحظات التتويج، والمشاركات الدولية لمنتخب الأردن في بطولات آسيا والشرق الأوسط (BFAME).">
+          Preserving moments of triumph, international BFAME championships, and Jordan Festival award ceremonies.
+        </p>
+      </div>
+
+      <!-- Photo Grid -->
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
+          <img src="public/gallery/imgl9575.jpg" alt="Festival Awards Ceremony" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
+            <span class="text-xs text-white font-bold">Festival Awards Ceremony</span>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
+          <img src="public/gallery/dsc_2534.jpg" alt="Tournament Play at Tables" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
+            <span class="text-xs text-white font-bold">Jordan Festival Open Teams</span>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
+          <img src="public/gallery/dsc_2582.jpg" alt="Pairs Championship Session" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
+            <span class="text-xs text-white font-bold">Duplicate Session Action</span>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
+          <img src="public/gallery/dsc_3563.jpg" alt="Trophy Presentation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
+            <span class="text-xs text-white font-bold">Trophy & Medal Ceremony</span>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
+          <img src="public/gallery/bfame_16th_chennai_120.jpg" alt="Jordan National Team at BFAME" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
+            <span class="text-xs text-white font-bold">Jordan National Team (BFAME)</span>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
+          <img src="public/gallery/bfame_16th_chennai_122.jpg" alt="Zone 4 Championship Match" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
+            <span class="text-xs text-white font-bold">BFAME Zone 4 Championship</span>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
+          <img src="public/gallery/ghassan.jpg" alt="Eng. Ghassan Majali" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
+            <span class="text-xs text-white font-bold">Eng. Ghassan Majali • JBF Legend</span>
+          </div>
+        </div>
+        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
+          <img src="public/gallery/bahjat_almjali_1.jpg" alt="Bahjat Al-Majali" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
+            <span class="text-xs text-white font-bold">Bahjat Al-Majali Memorial</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- EXECUTIVE COMMITTEE & GENERAL AUTHORITY (With Official Photo Portraits) -->
   <section id="committee" class="py-16 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
