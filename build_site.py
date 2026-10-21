@@ -1,13 +1,13 @@
 import json
 import os
 
-with open('/Users/erdem/.gemini/antigravity/scratch/jbf-website/public/data/festival2026.json', 'r', encoding='utf-8') as f:
+with open('public/data/festival2026.json', 'r', encoding='utf-8') as f:
     fest_data = json.load(f)
 
-with open('/Users/erdem/.gemini/antigravity/scratch/jbf-website/public/data/jordancup2026.json', 'r', encoding='utf-8') as f:
+with open('public/data/jordancup2026.json', 'r', encoding='utf-8') as f:
     cup_data = json.load(f)
 
-with open('/Users/erdem/.gemini/antigravity/scratch/jbf-website/public/data/committee.json', 'r', encoding='utf-8') as f:
+with open('public/data/committee.json', 'r', encoding='utf-8') as f:
     comm_data = json.load(f)
 
 fest_json_str = json.dumps(fest_data, ensure_ascii=False)
@@ -891,7 +891,7 @@ html_content = f'''<!DOCTYPE html>
 </body>
 </html>'''
 
-with open('/Users/erdem/.gemini/antigravity/scratch/jbf-website/index.html', 'w', encoding='utf-8') as f:
+with open('index.html', 'w', encoding='utf-8') as f:
     f.write(html_content)
 
 print(f"Upgraded index.html written successfully ({len(html_content)} bytes)")
