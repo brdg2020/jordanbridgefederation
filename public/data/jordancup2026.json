@@ -6,49 +6,108 @@
       "team": "AL Nashama",
       "vp": 90.9,
       "imp": 79,
-      "rank": 1
+      "rank": 1,
+      "roster": [
+        "Abdlah Ajlouni",
+        "Zaid Bitar",
+        "Samer Haddad",
+        "Luai Al Hussari",
+        "Mamoun Al Kotob",
+        "Omran Abu Dhaim"
+      ]
     },
     {
       "team": "Lions",
       "vp": 89.69,
       "imp": 86,
-      "rank": 2
+      "rank": 2,
+      "roster": [
+        "Samer Rwashdeh",
+        "Farah Ahmed",
+        "Yena Sabagh",
+        "Mohd Al Taji"
+      ]
     },
     {
       "team": "Jordan Teams",
       "vp": 89.41,
       "imp": 83,
-      "rank": 3
+      "rank": 3,
+      "roster": [
+        "Ghassan Ghaneem",
+        "Yasmin Abu Jaber",
+        "Marwan Ghaneem",
+        "Clement Mamar Bash",
+        "Rana Abdelhadi",
+        "Jamal Abdeljalil"
+      ]
     },
     {
       "team": "Jordan Mix",
       "vp": 77.6,
       "imp": 37,
-      "rank": 4
+      "rank": 4,
+      "roster": [
+        "Sakher Malkawi",
+        "Aaida Abu Jaber",
+        "Dima Al Taher",
+        "Ahmed Al Samhouri",
+        "Huda Rabaeh",
+        "Akiel Madi"
+      ]
     },
     {
       "team": "Alfa",
       "vp": 66.11,
       "imp": -11,
-      "rank": 5
+      "rank": 5,
+      "roster": [
+        "Randa Al Saket",
+        "Azza Qudah",
+        "Hala Sawaf",
+        "Amal Fakhouri"
+      ]
     },
     {
       "team": "Eagles",
       "vp": 63.68,
       "imp": -29,
-      "rank": 6
+      "rank": 6,
+      "roster": [
+        "Mona Al Omari",
+        "Mais Al Bitar",
+        "Bana Al Taher",
+        "Hanan Juman",
+        "Nowel Trawneh",
+        "Omar Al Masri"
+      ]
     },
     {
       "team": "Ortho Group",
       "vp": 53.14,
       "imp": -67,
-      "rank": 7
+      "rank": 7,
+      "roster": [
+        "Yousef Batshon",
+        "Jack Qarouta",
+        "Ramzi Qusous",
+        "Rageed Sabagh",
+        "Maya Khalaf",
+        "Laith Tashman"
+      ]
     },
     {
       "team": "Palestine",
       "vp": 27.47,
       "imp": -178,
-      "rank": 8
+      "rank": 8,
+      "roster": [
+        "Laila Zruqat",
+        "Hanan Al Masri",
+        "Nawar Hashem",
+        "Fiuroz Badwan",
+        "Alia Shredh"
+      ]
     }
   ]
 }

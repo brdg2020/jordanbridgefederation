@@ -1,15 +1,15 @@
 import json
 import os
 
-with open('public/data/festival2026.json', 'r', encoding='utf-8') as f:
+base_dir = os.path.dirname(os.path.abspath(__file__))
+with open(os.path.join(base_dir, 'public/data/festival2026.json'), 'r', encoding='utf-8') as f:
     fest_data = json.load(f)
 
-with open('public/data/jordancup2026.json', 'r', encoding='utf-8') as f:
+with open(os.path.join(base_dir, 'public/data/jordancup2026.json'), 'r', encoding='utf-8') as f:
     cup_data = json.load(f)
 
-with open('public/data/committee.json', 'r', encoding='utf-8') as f:
+with open(os.path.join(base_dir, 'public/data/committee.json'), 'r', encoding='utf-8') as f:
     comm_data = json.load(f)
-
 fest_json_str = json.dumps(fest_data, ensure_ascii=False)
 cup_json_str = json.dumps(cup_data, ensure_ascii=False)
 comm_json_str = json.dumps(comm_data, ensure_ascii=False)
@@ -819,19 +819,28 @@ html_content = f'''<!DOCTYPE html>
       }});
     }}
 
-    // Render Jordan Cup Cards
+    // Render Jordan Cup Cards (With Full Player Rosters)
     function renderJordanCup() {{
       const container = document.getElementById('jordanCupCards');
       container.innerHTML = '';
 
       jordanCupData.teams.forEach(t => {{
         const card = document.createElement('div');
-        card.className = 'bg-white p-5 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-xs transition-all flex flex-col justify-between';
+        card.className = 'bg-white p-5 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-md transition-all flex flex-col justify-between';
         
         let rankColor = 'bg-slate-200 text-slate-800';
-        if (t.rank === 1) rankColor = 'bg-amber-400 text-slate-950 font-black';
-        else if (t.rank === 2) rankColor = 'bg-slate-300 text-slate-900 font-black';
-        else if (t.rank === 3) rankColor = 'bg-orange-300 text-orange-950 font-black';
+        if (t.rank === 1) rankColor = 'badge-rank-1 font-black';
+        else if (t.rank === 2) rankColor = 'badge-rank-2 font-black';
+        else if (t.rank === 3) rankColor = 'badge-rank-3 font-black';
+
+        const rosterHtml = (t.roster && t.roster.length > 0) ? `
+          <div class="mt-3 pt-3 border-t border-slate-100">
+            <span class="block text-[11px] font-bold text-slate-400 uppercase tracking-wider mb-1.5">${{currentLang === 'ar' ? 'تشكيلة الفريق (اللاعبون):' : 'Team Roster / Players:'}}</span>
+            <div class="flex flex-wrap gap-1">
+              ${{t.roster.map(p => `<span class="text-[11px] font-medium px-2 py-0.5 rounded-md bg-slate-100 hover:bg-emerald-50 hover:text-emerald-800 text-slate-700 transition-colors">${{p}}</span>`).join('')}}
+            </div>
+          </div>
+        ` : '';
 
         card.innerHTML = `
           <div>
@@ -841,6 +850,7 @@ html_content = f'''<!DOCTYPE html>
             </div>
             <h4 class="font-black text-slate-900 text-lg mb-1">${{t.team}}</h4>
             <span class="text-xs text-slate-500">${{currentLang === 'ar' ? 'الدوري الرسمي لكأس الأردن' : 'Official Jordan Cup League'}}</span>
+            ${{rosterHtml}}
           </div>
 
           <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
@@ -891,7 +901,7 @@ html_content = f'''<!DOCTYPE html>
 </body>
 </html>'''
 
-with open('index.html', 'w', encoding='utf-8') as f:
+with open(os.path.join(base_dir, 'index.html'), 'w', encoding='utf-8') as f:
     f.write(html_content)
 
 print(f"Upgraded index.html written successfully ({len(html_content)} bytes)")
