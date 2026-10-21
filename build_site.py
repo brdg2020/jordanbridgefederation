@@ -20,7 +20,7 @@ html_content = f'''<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jordan Bridge Federation | الاتحاد الأردني للبريدج</title>
-  <meta name="description" content="Official Portal of the Jordan Bridge Federation (JBF). Tournaments, live Vugraph scores, Jordan Bridge Festival, Jordan Cup, bylaws, and community news.">
+  <meta name="description" content="Official Portal of the Jordan Bridge Federation (JBF). Tournaments, live Vugraph scores, Jordan Bridge Festival, Jordan Cup, bylaws, committee, and news.">
   <link rel="canonical" href="https://jordanbridgefederation.com/">
   
   <!-- Favicon & Fonts -->
@@ -68,26 +68,10 @@ html_content = f'''<!DOCTYPE html>
     [dir="rtl"] {{
       font-family: 'Cairo', sans-serif;
     }}
-    .jordan-stripe {{
-      height: 4px;
-      background: linear-gradient(90deg, #000000 0%, #000000 33%, #ffffff 33%, #ffffff 66%, #007a3d 66%, #007a3d 100%);
-      position: relative;
-    }}
-    .jordan-stripe::after {{
-      content: '';
-      position: absolute;
-      left: 0;
-      top: -2px;
-      width: 0;
-      height: 0;
-      border-top: 4px solid transparent;
-      border-bottom: 4px solid transparent;
-      border-left: 12px solid #ce1126;
-    }}
     .glass-card {{
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.94);
       backdrop-filter: blur(12px);
-      border: 1px solid rgba(226, 232, 240, 0.8);
+      border: 1px solid rgba(226, 232, 240, 0.85);
     }}
     .badge-rank-1 {{ background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92400e; border: 1px solid #f59e0b; }}
     .badge-rank-2 {{ background: linear-gradient(135deg, #f1f5f9, #e2e8f0); color: #334155; border: 1px solid #94a3b8; }}
@@ -96,7 +80,7 @@ html_content = f'''<!DOCTYPE html>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen" id="bodyRoot">
 
-  <!-- TOP STRIPE (Jordan Colors) -->
+  <!-- TOP STRIPE (Jordan National Flag Colors) -->
   <div class="h-1.5 w-full flex">
     <div class="flex-1 bg-black"></div>
     <div class="flex-1 bg-white"></div>
@@ -105,30 +89,38 @@ html_content = f'''<!DOCTYPE html>
   </div>
 
   <!-- HEADER -->
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-sm border-b border-slate-200">
+  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-xs border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
       <!-- Brand Logo & Title -->
       <a href="#" class="flex items-center gap-3.5 group">
-        <img src="public/jbf_logo.jpg" alt="Jordan Bridge Federation Logo" class="h-14 w-auto object-contain rounded-lg shadow-sm border border-slate-200 group-hover:scale-105 transition-transform duration-200">
+        <img src="public/jbf_logo.jpg" alt="Jordan Bridge Federation Logo" class="h-14 w-auto object-contain rounded-lg shadow-xs border border-slate-200 group-hover:scale-105 transition-transform duration-200">
         <div>
-          <span class="block text-lg sm:text-xl font-bold tracking-tight text-slate-900 group-hover:text-sky-700 transition-colors" data-en="Jordan Bridge Federation" data-ar="الاتحاد الأردني للبريدج">Jordan Bridge Federation</span>
-          <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500" data-en="Hashemite Kingdom of Jordan • JOC Affiliate" data-ar="المملكة الأردنية الهاشمية • تحت مظلة اللجنة الأولمبية">Hashemite Kingdom of Jordan • JOC Affiliate</span>
+          <span class="block text-lg sm:text-xl font-black tracking-tight text-slate-900 group-hover:text-sky-700 transition-colors" data-en="Jordan Bridge Federation" data-ar="الاتحاد الأردني للبريدج">Jordan Bridge Federation</span>
+          <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500" data-en="Hashemite Kingdom of Jordan • JOC & WBF Affiliate" data-ar="المملكة الأردنية الهاشمية • تحت مظلة اللجنة الأولمبية">Hashemite Kingdom of Jordan • JOC & WBF Affiliate</span>
         </div>
       </a>
 
       <!-- Navigation & Language Switcher -->
       <div class="flex items-center gap-4 sm:gap-6">
-        <nav class="hidden md:flex items-center gap-6 text-sm font-semibold text-slate-600">
-          <a href="#scores" class="hover:text-sky-700 transition-colors" data-en="Live Scores & Results" data-ar="النتائج والسكور">Live Scores & Results</a>
+        <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-600">
+          <a href="#scores" class="hover:text-sky-700 transition-colors" data-en="Scores & Vugraph" data-ar="النتائج والسكور">Scores & Vugraph</a>
           <a href="#jordancup" class="hover:text-sky-700 transition-colors" data-en="Jordan Cup" data-ar="كأس الأردن">Jordan Cup</a>
-          <a href="#documents" class="hover:text-sky-700 transition-colors" data-en="Documents & Bylaws" data-ar="اللوائح والأنظمة">Documents & Bylaws</a>
+          <a href="#patronage" class="hover:text-sky-700 transition-colors" data-en="Olympic Patronage" data-ar="الرعاية الأولمبية">Olympic Patronage</a>
+          <a href="#memorial" class="hover:text-sky-700 transition-colors" data-en="Announcements" data-ar="الإعلانات والتعازي">Announcements</a>
           <a href="#committee" class="hover:text-sky-700 transition-colors" data-en="Committee" data-ar="مجلس الإدارة">Committee</a>
-          <a href="#venue" class="hover:text-sky-700 transition-colors" data-en="Venue & Contact" data-ar="المقر والتواصل">Venue & Contact</a>
+          <a href="#documents" class="hover:text-sky-700 transition-colors" data-en="Documents & Bylaws" data-ar="اللوائح والأنظمة">Documents</a>
+          <a href="#venue" class="hover:text-sky-700 transition-colors" data-en="Contact & Club" data-ar="المقر والتواصل">Contact</a>
         </nav>
 
+        <!-- Official Facebook Link -->
+        <a href="https://www.facebook.com/jordanbridgefederation/" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-sky-700 bg-sky-50 hover:bg-sky-100 border border-sky-200 transition-all">
+          <i data-lucide="facebook" class="w-3.5 h-3.5"></i>
+          <span>Facebook</span>
+        </a>
+
         <!-- Language Switcher Button -->
-        <button id="langToggleBtn" onclick="toggleLanguage()" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold border border-slate-300 bg-slate-100 hover:bg-slate-200 text-slate-800 transition-all shadow-xs">
+        <button id="langToggleBtn" onclick="toggleLanguage()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold border border-slate-300 bg-slate-100 hover:bg-slate-200 text-slate-800 transition-all shadow-xs">
           <i data-lucide="globe" class="w-3.5 h-3.5"></i>
           <span id="langLabel">العربية</span>
         </button>
@@ -137,27 +129,43 @@ html_content = f'''<!DOCTYPE html>
     </div>
   </header>
 
-  <!-- HERO SECTION -->
-  <section class="relative bg-gradient-to-b from-sky-900 via-sky-800 to-slate-900 text-white py-16 sm:py-24 overflow-hidden">
-    <!-- Subtle Background Shapes -->
-    <div class="absolute inset-0 opacity-10 pointer-events-none">
-      <div class="absolute -top-24 -left-24 w-96 h-96 rounded-full bg-sky-400 blur-3xl"></div>
-      <div class="absolute -bottom-24 -right-24 w-96 h-96 rounded-full bg-emerald-400 blur-3xl"></div>
+  <!-- CONDOLENCE / MEMORIAL BANNER (Preserving Issam Salfiti Obituary from original site) -->
+  <section id="memorial" class="bg-amber-50/70 border-b border-amber-200 py-6">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center gap-5 p-4 rounded-2xl bg-white border border-amber-200 shadow-xs">
+        <img src="public/images/issam_01.jpg" alt="Late Mr. Issam Halim Salfiti" class="w-20 h-24 sm:w-24 sm:h-28 object-cover rounded-xl border border-slate-200 shadow-sm shrink-0">
+        <div class="text-xs sm:text-sm text-slate-700 leading-relaxed">
+          <div class="flex items-center gap-2 mb-1">
+            <span class="text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full" data-en="In Memoriam • Official Obituary" data-ar="نعي صديق عزيز • تعزية رسمية">In Memoriam • Official Obituary</span>
+            <span class="text-xs text-slate-400 font-semibold" data-en="Jordan Bridge Federation Tribute" data-ar="أسرة الاتحاد الأردني للبريدج">Jordan Bridge Federation Tribute</span>
+          </div>
+          <p class="font-bold text-slate-900 text-sm sm:text-base mb-1" data-en="Tribute to Late Mr. Issam Halim Salfiti (رحمه الله)" data-ar="نعي الصديق العزيز والداعم الكبير، السيد عصام حليم السلفيتي (رحمه الله)">
+            Tribute to Late Mr. Issam Halim Salfiti (رحمه الله)
+          </p>
+          <p class="text-slate-600 line-clamp-3 sm:line-clamp-none text-xs sm:text-sm" data-en="With deep sorrow and grief, the Jordan Bridge Federation mourns the loss of our dear friend, Mr. Issam Halim Salfiti. The deceased was among the finest sons of Jordan, a rare individual of noble character, generosity, and boundless support for clubs and community societies. May Almighty God grant him His immense mercy and eternal peace." data-ar="ببالغ الحزن والأسى، ينعى الاتحاد الأردني للبريدج الصديق العزيز، السيد عصام حليم السلفيتي. لقد كان الفقيد من خيرة أبناء الأردن، إنساناً نادراً في أخلاقه وكرمه وعطائه وداعماً للجميع دون انتظار مقابل. تغمد الله الفقيد بواسع رحمته وألهم أسرته ومحبيه الصبر والسلوان.">
+            With deep sorrow and grief, the Jordan Bridge Federation mourns the loss of our dear friend, Mr. Issam Halim Salfiti. The deceased was among the finest sons of Jordan, a rare individual of noble character, generosity, and boundless support for clubs and community societies. May Almighty God grant him His immense mercy and eternal peace.
+          </p>
+        </div>
+      </div>
     </div>
+  </section>
 
+  <!-- HERO SECTION -->
+  <section class="relative bg-gradient-to-b from-sky-950 via-sky-900 to-slate-900 text-white py-16 sm:py-24 overflow-hidden">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      <!-- Federation Pill -->
+      
+      <!-- Pill -->
       <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/20 text-xs sm:text-sm font-semibold tracking-wide text-sky-200 mb-6">
         <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span data-en="Official National Federation • Founded 1980s • Amman, Jordan" data-ar="الاتحاد الوطني الرسمي للبريدج • عمان، المملكة الأردنية الهاشمية">Official National Federation • Founded 1980s • Amman, Jordan</span>
+        <span data-en="National Federation of the Hashemite Kingdom of Jordan • JOC Affiliate" data-ar="الاتحاد الوطني للمملكة الأردنية الهاشمية • تحت مظلة اللجنة الأولمبية">National Federation of the Hashemite Kingdom of Jordan • JOC Affiliate</span>
       </div>
 
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight max-w-4xl mx-auto leading-tight mb-6">
-        <span data-en="The Home of Contract Bridge in Jordan" data-ar="المقر الرسمي لرياضة البريدج في الأردن">The Home of Contract Bridge in Jordan</span>
+      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight max-w-4xl mx-auto leading-tight mb-6">
+        <span data-en="Official Portal of the Jordan Bridge Federation" data-ar="المقر والمنصة الرسمية للاتحاد الأردني للبريدج">Official Portal of the Jordan Bridge Federation</span>
       </h1>
 
-      <p class="text-base sm:text-lg text-sky-100/90 max-w-2xl mx-auto mb-10 leading-relaxed" data-en="Empowering minds, fostering international sportsmanship, and hosting premier tournaments under the Jordan Olympic Committee (JOC) and World Bridge Federation (WBF)." data-ar="تطوير رياضة الفكر والذكاء، ورعاية البطولات الدولية والمحلية تحت مظلة اللجنة الأولمبية الأردنية والاتحاد العالمي للبريدج (WBF).">
-        Empowering minds, fostering international sportsmanship, and hosting premier tournaments under the Jordan Olympic Committee (JOC) and World Bridge Federation (WBF).
+      <p class="text-base sm:text-lg text-sky-100/90 max-w-2xl mx-auto mb-10 leading-relaxed" data-en="Advancing minds, uniting bridge athletes, and hosting premier international championships under the Jordan Olympic Committee (JOC) and World Bridge Federation (WBF)." data-ar="تطوير رياضة الفكر والذكاء، ورعاية البطولات الدولية والمحلية تحت مظلة اللجنة الأولمبية الأردنية والاتحاد العالمي للبريدج (WBF).">
+        Advancing minds, uniting bridge athletes, and hosting premier international championships under the Jordan Olympic Committee (JOC) and World Bridge Federation (WBF).
       </p>
 
       <div class="flex flex-wrap items-center justify-center gap-4">
@@ -169,28 +177,58 @@ html_content = f'''<!DOCTYPE html>
           <i data-lucide="award" class="w-5 h-5"></i>
           <span data-en="Jordan Cup 2026 Final" data-ar="نهائي كأس الأردن 2026">Jordan Cup 2026 Final</span>
         </a>
+        <a href="#documents" class="px-6 py-3.5 rounded-xl font-bold bg-slate-800/80 hover:bg-slate-800 text-slate-200 border border-slate-700 backdrop-blur transition-all inline-flex items-center gap-2">
+          <i data-lucide="scroll-text" class="w-5 h-5"></i>
+          <span data-en="Official Bylaws (PDF)" data-ar="الأنظمة الأساسية (PDF)">Official Bylaws (PDF)</span>
+        </a>
       </div>
 
       <!-- Quick Metrics Strip -->
       <div class="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto pt-8 border-t border-white/15">
         <div class="text-center">
-          <span class="block text-2xl sm:text-3xl font-extrabold text-white">42+</span>
+          <span class="block text-2xl sm:text-3xl font-black text-white">42+</span>
           <span class="text-xs text-sky-200/80 font-medium" data-en="Festival Editions" data-ar="دورات المهرجان الدولي">Festival Editions</span>
         </div>
         <div class="text-center">
-          <span class="block text-2xl sm:text-3xl font-extrabold text-white">24</span>
+          <span class="block text-2xl sm:text-3xl font-black text-white">24</span>
           <span class="text-xs text-sky-200/80 font-medium" data-en="Teams in 2026 Open" data-ar="فريقاً في بطولة 2026">Teams in 2026 Open</span>
         </div>
         <div class="text-center">
-          <span class="block text-2xl sm:text-3xl font-extrabold text-white">WBF</span>
+          <span class="block text-2xl sm:text-3xl font-black text-white">WBF</span>
           <span class="text-xs text-sky-200/80 font-medium" data-en="Zone 4 (BFAME) Member" data-ar="عضو الاتحاد الدولي والآسيوي">Zone 4 (BFAME) Member</span>
         </div>
         <div class="text-center">
-          <span class="block text-2xl sm:text-3xl font-extrabold text-white">100%</span>
+          <span class="block text-2xl sm:text-3xl font-black text-white">100%</span>
           <span class="text-xs text-sky-200/80 font-medium" data-en="Mobile Optimized Vugraph" data-ar="سكور وعرض مباشر للموبايل">Mobile Optimized Vugraph</span>
         </div>
       </div>
 
+    </div>
+  </section>
+
+  <!-- OLYMPIC COMMITTEE PATRONAGE & SPECIAL MESSAGE (Preserving HRH Prince Feisal message) -->
+  <section id="patronage" class="py-14 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-slate-900 to-sky-950 text-white shadow-xl border border-slate-800 flex flex-col md:flex-row items-center gap-8">
+        <div class="relative shrink-0">
+          <img src="public/images/feisal.jpg" alt="HRH Prince Feisal bin Al Hussein" class="w-32 h-40 sm:w-40 sm:h-48 object-cover rounded-2xl border-2 border-amber-400/40 shadow-lg">
+          <span class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-[10px] font-black uppercase tracking-wider px-3 py-0.5 rounded-full whitespace-nowrap shadow-xs">JOC President</span>
+        </div>
+        
+        <div class="flex-1 text-center md:text-left">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-amber-300 text-xs font-bold uppercase tracking-wider mb-3">
+            <i data-lucide="shield" class="w-3.5 h-3.5"></i>
+            <span data-en="Under the Patronage of the Jordan Olympic Committee (JOC)" data-ar="تحت مظلة ورعاية اللجنة الأولمبية الأردنية">Under the Patronage of the Jordan Olympic Committee (JOC)</span>
+          </div>
+          <h3 class="text-xl sm:text-2xl font-bold text-white mb-3" data-en="Message on Sportsmanship & Achievement" data-ar="رسالة الرعاية الرياضية والإنجاز الوطني">
+            Message on Sportsmanship & Achievement
+          </h3>
+          <blockquote class="italic text-slate-300 text-sm sm:text-base leading-relaxed border-l-2 border-amber-400 pl-4 my-3" data-en="&ldquo;Out of scratch sports achievements do not exist. Achievements are the products of big efforts, generous giving, sacrifices, and high determination towards making successes. Successes cannot be achieved without clear, scientific plans and continuous support.&rdquo;" data-ar="&ldquo;الإنجازات الرياضية لا تأتي من فراغ، بل هي نتاج جهود كبيرة وتضحيات وعطاء سخي وعزيمة صادقة نحو صناعة النجاح. والنجاح لا يتحقق إلا بالخطط العلمية الواضحة والرعاية المستمرة.&rdquo;">
+            &ldquo;Out of scratch sports achievements do not exist. Achievements are the products of big efforts, generous giving, sacrifices, and high determination towards making successes. Successes cannot be achieved without clear, scientific plans and continuous support.&rdquo;
+          </blockquote>
+          <span class="block text-xs font-semibold text-slate-400 mt-2" data-en="Hashemite Kingdom of Jordan • Official Sports Federation Charter" data-ar="المملكة الأردنية الهاشمية • الميثاق الرياضي الوطني">Hashemite Kingdom of Jordan • Official Sports Federation Charter</span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -273,8 +311,29 @@ html_content = f'''<!DOCTYPE html>
     </div>
   </section>
 
+  <!-- FESTIVAL 2026 FLYERS & VISUAL GALLERY -->
+  <section class="py-14 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-xs font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-3 py-1 rounded-full inline-block mb-2" data-en="Tournament Gallery" data-ar="ملصقات وبرامج البطولة">Tournament Gallery</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Jordan Bridge Festival 2026 Posters & Bulletins" data-ar="بوسترات وبرامج مهرجان الأردن 2026">Jordan Bridge Festival 2026 Posters & Bulletins</h2>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all">
+          <img src="public/images/JOR261.jpg" alt="Jordan Festival 2026 Bulletin" class="w-full h-auto object-contain rounded-xl shadow-xs">
+          <span class="block text-center text-xs font-bold text-slate-600 mt-3" data-en="Festival Schedule & Announcement Part 1" data-ar="جدول مباريات المهرجان - الجزء الأول">Festival Schedule & Announcement Part 1</span>
+        </div>
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all">
+          <img src="public/images/JOR_262.jpg" alt="Jordan Festival 2026 Programme" class="w-full h-auto object-contain rounded-xl shadow-xs">
+          <span class="block text-center text-xs font-bold text-slate-600 mt-3" data-en="Festival Schedule & Announcement Part 2" data-ar="جدول مباريات المهرجان - الجزء الثاني">Festival Schedule & Announcement Part 2</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- JORDAN CUP SECTION (From Official Excel) -->
-  <section id="jordancup" class="py-16 bg-white border-b border-slate-200">
+  <section id="jordancup" class="py-16 bg-slate-50 border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-slate-200 gap-4">
@@ -284,15 +343,44 @@ html_content = f'''<!DOCTYPE html>
           <p class="text-sm text-slate-600 mt-1" data-en="Tournament Director: Raad Otoom • Verified Federation Excel Record" data-ar="مدير البطولة: رعد العتوم • السجل المعتمد من الاتحاد">Tournament Director: Raad Otoom • Verified Federation Excel Record</p>
         </div>
 
-        <a href="public/archive/Jordan Cups 26 Final.xlsx" download class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-600 shadow-sm transition-all self-start md:self-end">
-          <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
-          <span data-en="Download Official Excel" data-ar="تحميل ملف الإكسل الرسمي">Download Official Excel</span>
-        </a>
+        <div class="flex flex-wrap items-center gap-2 self-start md:self-end">
+          <a href="public/archive/Jordan Cups 26 schedule.xlsx" download class="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-300 hover:bg-slate-100 shadow-xs transition-all">
+            <i data-lucide="calendar" class="w-4 h-4 text-emerald-700"></i>
+            <span data-en="2026 Schedule (XLSX)" data-ar="جدول مباريات 2026">2026 Schedule</span>
+          </a>
+          <a href="public/archive/Jordan Cups 26 Final.xlsx" download class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-600 shadow-xs transition-all">
+            <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
+            <span data-en="2026 Final (XLSX)" data-ar="النتائج النهائية 2026">2026 Final (XLSX)</span>
+          </a>
+          <a href="public/archive/Jordan Cups 2025 Final.xlsx" download class="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-300 hover:bg-slate-100 shadow-xs transition-all">
+            <i data-lucide="archive" class="w-4 h-4 text-slate-500"></i>
+            <span data-en="2025 Archive" data-ar="أرشيف 2025">2025 Archive</span>
+          </a>
+        </div>
       </div>
 
       <!-- Cup Standings Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="jordanCupCards">
         <!-- Populated by JS -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EXECUTIVE COMMITTEE & GENERAL AUTHORITY (With Official Photo Portraits) -->
+  <section id="committee" class="py-16 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-3 py-1 rounded-full inline-block mb-2" data-en="Leadership & Governance" data-ar="الإدارة والقيادة">Leadership & Governance</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="General Authority & Executive Board" data-ar="الهيئة العامة ومجلس إدارة الاتحاد">General Authority & Executive Board</h2>
+        <p class="text-sm text-slate-600 mt-2" data-en="Distinguished bridge leaders, patrons, and tournament officials dedicated to the development of mind sports in Jordan." data-ar="نخبة من رواد ومؤسسي رياضة البريدج والقائمين على تنظيم البطولات في المملكة الأردنية الهاشمية.">
+          Distinguished bridge leaders, patrons, and tournament officials dedicated to the development of mind sports in Jordan.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="committeeGrid">
+        <!-- Populated by JS with portraits -->
       </div>
 
     </div>
@@ -304,7 +392,7 @@ html_content = f'''<!DOCTYPE html>
       
       <div class="text-center max-w-2xl mx-auto mb-12">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-600 bg-slate-200 px-3 py-1 rounded-full inline-block mb-2" data-en="Governance & Regulations" data-ar="الأنظمة واللوائح والقرارات">Governance & Regulations</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Official Federation Documents" data-ar="الوثائق واللوائح الرسمية للاتحاد">Official Federation Documents</h2>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Official Federation Documents & Arşiv" data-ar="الوثائق واللوائح الرسمية وأرشيف الاتحاد">Official Federation Documents & Archive</h2>
         <p class="text-sm text-slate-600 mt-2" data-en="Every constitution, tournament bulletin, and international alerting policy is archived and accessible for all members." data-ar="جميع الأنظمة الأساسية، نشرات المهرجان، وسياسات التنبيه المعتمدة متاحة لجميع الأعضاء واللاعبين.">
           Every constitution, tournament bulletin, and international alerting policy is archived and accessible for all members.
         </p>
@@ -357,32 +445,58 @@ html_content = f'''<!DOCTYPE html>
           </a>
         </div>
 
-      </div>
+        <!-- Doc 4: General Authority Roster -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-sky-400 hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center mb-4">
+              <i data-lucide="users" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base mb-1" data-en="General Authority Member List" data-ar="سجل وأعضاء الهيئة العامة الرسمية">General Authority Member List</h3>
+            <p class="text-xs text-slate-500 mb-4" data-en="Official registrar of the General Assembly submitted to the Jordan Olympic Committee." data-ar="الكشف الرسمي المعتمد لأسماء أعضاء الهيئة العامة المرفوع للجنة الأولمبية.">Official registrar of the General Assembly submitted to the Jordan Olympic Committee.</p>
+          </div>
+          <a href="public/archive/name of public commite.docx" download class="inline-flex items-center justify-between text-xs font-bold text-purple-700 hover:text-purple-800 bg-purple-50 hover:bg-purple-100 px-4 py-2.5 rounded-xl transition-all">
+            <span data-en="Download Roster (DOCX)" data-ar="تحميل الكشف (DOCX)">Download Roster (DOCX)</span>
+            <i data-lucide="download" class="w-4 h-4"></i>
+          </a>
+        </div>
 
-    </div>
-  </section>
+        <!-- Doc 5: WBF Women in Bridge -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-sky-400 hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-pink-100 text-pink-700 flex items-center justify-center mb-4">
+              <i data-lucide="heart" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base mb-1" data-en="WBF Women in Bridge Programme" data-ar="برنامج المرأة في رياضة البريدج">WBF Women in Bridge Programme</h3>
+            <p class="text-xs text-slate-500 mb-4" data-en="Initiatives for female bridge athletes, junior development, and international participation." data-ar="مبادرات دعم وتطوير اللاعبات السيدات والناشئات في البطولات الدولية.">Initiatives for female bridge athletes, junior development, and international participation.</p>
+          </div>
+          <a href="public/archive/WBF Women.pdf" target="_blank" class="inline-flex items-center justify-between text-xs font-bold text-pink-700 hover:text-pink-800 bg-pink-50 hover:bg-pink-100 px-4 py-2.5 rounded-xl transition-all">
+            <span data-en="View Guide (PDF)" data-ar="عرض الدليل (PDF)">View Guide (PDF)</span>
+            <i data-lucide="arrow-right" class="w-4 h-4"></i>
+          </a>
+        </div>
 
-  <!-- EXECUTIVE COMMITTEE & GENERAL AUTHORITY -->
-  <section id="committee" class="py-16 bg-white border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="text-xs font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-3 py-1 rounded-full inline-block mb-2" data-en="Leadership & Governance" data-ar="الإدارة والقيادة">Leadership & Governance</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="General Authority & Executive Board" data-ar="الهيئة العامة ومجلس إدارة الاتحاد">General Authority & Executive Board</h2>
-        <p class="text-sm text-slate-600 mt-2" data-en="Distinguished bridge leaders, patrons, and tournament officials dedicated to the development of mind sports in Jordan." data-ar="نخبة من رواد ومؤسسي رياضة البريدج والقائمين على تنظيم البطولات في المملكة الأردنية الهاشمية.">
-          Distinguished bridge leaders, patrons, and tournament officials dedicated to the development of mind sports in Jordan.
-        </p>
-      </div>
+        <!-- Doc 6: Mix Selection Final Excel -->
+        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-sky-400 hover:shadow-md transition-all flex flex-col justify-between">
+          <div>
+            <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center mb-4">
+              <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
+            </div>
+            <h3 class="font-bold text-slate-900 text-base mb-1" data-en="Mix Selection League Results" data-ar="نتائج دوري الزوجي المختلط">Mix Selection League Results</h3>
+            <p class="text-xs text-slate-500 mb-4" data-en="Official scoring records and VP leaderboards for the national Mixed pairs selection." data-ar="سجلات النتائج وترتيب نقاط الفيكتوري بوينت لبطولة تصفيات الزوجي المختلط.">Official scoring records and VP leaderboards for the national Mixed pairs selection.</p>
+          </div>
+          <a href="public/archive/MIX SELECTION FINAL.xlsx" download class="inline-flex items-center justify-between text-xs font-bold text-indigo-700 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100 px-4 py-2.5 rounded-xl transition-all">
+            <span data-en="Download Excel (XLSX)" data-ar="تحميل الإكسل (XLSX)">Download Excel (XLSX)</span>
+            <i data-lucide="download" class="w-4 h-4"></i>
+          </a>
+        </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4" id="committeeGrid">
-        <!-- Populated by JS -->
       </div>
 
     </div>
   </section>
 
   <!-- SPONSORS & AFFILIATES -->
-  <section class="py-12 bg-slate-50 border-b border-slate-200">
+  <section class="py-12 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-6" data-en="Official Federation Sponsors & Partners" data-ar="الرعاة الرسميون وشركاء الاتحاد">Official Federation Sponsors & Partners</span>
       
@@ -396,7 +510,7 @@ html_content = f'''<!DOCTYPE html>
   </section>
 
   <!-- VENUE & CONTACT SECTION -->
-  <section id="venue" class="py-16 bg-white">
+  <section id="venue" class="py-16 bg-slate-50">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
         
@@ -430,6 +544,14 @@ html_content = f'''<!DOCTYPE html>
               <div>
                 <strong class="block text-slate-900" data-en="Official Email:" data-ar="البريد الإلكتروني:">Official Email:</strong>
                 <a href="mailto:jo_bridge@yahoo.com" class="text-sky-700 font-semibold hover:underline">jo_bridge@yahoo.com</a>
+              </div>
+            </div>
+
+            <div class="flex items-start gap-3">
+              <i data-lucide="facebook" class="w-5 h-5 text-blue-600 shrink-0 mt-0.5"></i>
+              <div>
+                <strong class="block text-slate-900" data-en="Official Facebook Community:" data-ar="الصفحة الرسمية على فيسبوك:">Official Facebook Community:</strong>
+                <a href="https://www.facebook.com/jordanbridgefederation/" target="_blank" rel="noopener noreferrer" class="text-sky-700 font-semibold hover:underline">facebook.com/jordanbridgefederation</a>
               </div>
             </div>
           </div>
@@ -469,7 +591,7 @@ html_content = f'''<!DOCTYPE html>
         <img src="public/jbf_logo.jpg" alt="JBF" class="h-10 w-auto rounded border border-slate-700">
         <div>
           <span class="block text-slate-200 font-bold text-sm">Jordan Bridge Federation (JBF)</span>
-          <span class="text-slate-500">© 2026 Hashemite Kingdom of Jordan. All Rights Reserved.</span>
+          <span class="text-slate-500">© 2026 Hashemite Kingdom of Jordan • JOC Affiliate. All Rights Reserved.</span>
         </div>
       </div>
 
@@ -589,7 +711,6 @@ html_content = f'''<!DOCTYPE html>
     function renderRoundMatches(roundNum) {{
       currentRound = roundNum;
       
-      // Update active button state
       document.querySelectorAll('.round-pill-btn').forEach(btn => {{
         if (parseInt(btn.getAttribute('data-round')) === roundNum) {{
           btn.className = 'round-pill-btn active px-4 py-2 rounded-xl text-xs font-bold bg-sky-700 text-white shadow-xs';
@@ -637,7 +758,7 @@ html_content = f'''<!DOCTYPE html>
 
       jordanCupData.teams.forEach(t => {{
         const card = document.createElement('div');
-        card.className = 'bg-slate-50 p-5 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-sm transition-all flex flex-col justify-between';
+        card.className = 'bg-white p-5 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-xs transition-all flex flex-col justify-between';
         
         let rankColor = 'bg-slate-200 text-slate-800';
         if (t.rank === 1) rankColor = 'bg-amber-400 text-slate-950 font-black';
@@ -654,7 +775,7 @@ html_content = f'''<!DOCTYPE html>
             <span class="text-xs text-slate-500">${{currentLang === 'ar' ? 'الدوري الرسمي لكأس الأردن' : 'Official Jordan Cup League'}}</span>
           </div>
 
-          <div class="mt-4 pt-3 border-t border-slate-200 flex items-center justify-between">
+          <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
             <span class="text-xs font-semibold text-slate-600">${{currentLang === 'ar' ? 'مجموع النقاط:' : 'Total V.P:'}}</span>
             <span class="text-lg font-black font-mono text-emerald-700">${{t.vp.toFixed(2)}}</span>
           </div>
@@ -663,25 +784,27 @@ html_content = f'''<!DOCTYPE html>
       }});
     }}
 
-    // Render Committee
+    // Render Committee With Photos
     function renderCommittee() {{
       const container = document.getElementById('committeeGrid');
       container.innerHTML = '';
 
       committeeData.members.forEach(m => {{
         const card = document.createElement('div');
-        card.className = 'bg-slate-50 p-4 rounded-xl border border-slate-200 text-sm hover:border-slate-300 transition-all';
+        card.className = 'bg-slate-50 p-4 rounded-2xl border border-slate-200 text-sm hover:border-sky-300 hover:shadow-xs transition-all flex items-center gap-3.5';
         
+        const avatarHtml = m.photo ? 
+          `<img src="${{m.photo}}" alt="${{m.name}}" class="w-12 h-14 object-cover rounded-xl border border-slate-300 shadow-xs shrink-0">` :
+          `<div class="w-12 h-14 rounded-xl bg-sky-100 text-sky-800 font-bold flex items-center justify-center text-xs shrink-0 border border-sky-200">
+             <i data-lucide="user" class="w-5 h-5"></i>
+           </div>`;
+
         card.innerHTML = `
-          <div class="flex items-start gap-3">
-            <div class="w-9 h-9 rounded-full bg-sky-100 text-sky-800 font-bold flex items-center justify-center text-xs shrink-0">
-              <i data-lucide="user" class="w-4 h-4"></i>
-            </div>
-            <div class="min-w-0 flex-1">
-              <strong class="block text-slate-900 font-bold truncate text-sm">${{m.name}}</strong>
-              <span class="block text-xs text-slate-500 truncate mt-0.5">${{m.email ? m.email : 'General Assembly'}}</span>
-              ${{m.phone ? `<span class="block text-xs font-mono text-slate-400 mt-1" dir="ltr">${{m.phone}}</span>` : ''}}
-            </div>
+          ${{avatarHtml}}
+          <div class="min-w-0 flex-1">
+            <strong class="block text-slate-900 font-bold truncate text-sm">${{m.name}}</strong>
+            <span class="block text-xs text-slate-500 truncate mt-0.5">${{m.email ? m.email : 'General Assembly'}}</span>
+            ${{m.phone ? `<span class="block text-xs font-mono text-slate-400 mt-1" dir="ltr">${{m.phone}}</span>` : ''}}
           </div>
         `;
         container.appendChild(card);
@@ -703,4 +826,4 @@ html_content = f'''<!DOCTYPE html>
 with open('/Users/erdem/.gemini/antigravity/scratch/jbf-website/index.html', 'w', encoding='utf-8') as f:
     f.write(html_content)
 
-print(f"Generated index.html successfully ({len(html_content)} bytes)")
+print(f"Upgraded index.html written successfully ({len(html_content)} bytes)")
