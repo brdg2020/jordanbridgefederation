@@ -952,7 +952,6 @@ html_content = f'''<!DOCTYPE html>
     let currentLang = 'en';
     let currentFestYear = '2026';
     let currentRoundNum = 8;
-    let activeDocCategory = 'all';
 
     // LANGUAGE TOGGLE
     function toggleLanguage() {{
