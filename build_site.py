@@ -39,6 +39,11 @@ with open(os.path.join(base_dir, 'public/data/results/index.json'), 'r', encodin
     results_index = json.load(f)
 results_index_json_str = json.dumps(results_index, ensure_ascii=False, separators=(',', ':'))
 
+# Photo albums as published on bridgewebs.com/jbf (Pictures Album page)
+with open(os.path.join(base_dir, 'public/data/gallery_albums.json'), 'r', encoding='utf-8') as f:
+    gallery_albums = json.load(f)
+gallery_albums_json_str = json.dumps(gallery_albums, ensure_ascii=False)
+
 html_content = f'''<!DOCTYPE html>
 <html lang="en" class="scroll-smooth">
 <head>
@@ -200,6 +205,7 @@ html_content = f'''<!DOCTYPE html>
         <a href="#gallery" class="hover:text-sky-700 transition-colors" data-en="Gallery" data-ar="الصور">Gallery</a>
         <a href="#documents" class="hover:text-sky-700 transition-colors" data-en="Archive" data-ar="الوثائق">Archive</a>
         <a href="#committee" class="hover:text-sky-700 transition-colors" data-en="Committee" data-ar="الإدارة">Committee</a>
+        <a href="#contact" class="hover:text-sky-700 transition-colors" data-en="Contact" data-ar="اتصل بنا">Contact</a>
       </nav>
 
       <!-- Language & Admin Action -->
@@ -226,6 +232,7 @@ html_content = f'''<!DOCTYPE html>
       <a href="#gallery" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Photo Gallery" data-ar="معرض الصور">Photo Gallery</a>
       <a href="#documents" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Bylaws & Archive" data-ar="الأنظمة والأرشيف">Bylaws & Archive</a>
       <a href="#committee" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Executive Committee" data-ar="الهيئة الإدارية">Executive Committee</a>
+      <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Contact Details" data-ar="معلومات الاتصال">Contact Details</a>
       <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
         <button onclick="openAdminModal(); toggleMobileMenu();" class="text-xs font-bold text-amber-700 flex items-center gap-1.5 py-1">
           <i data-lucide="shield-check" class="w-4 h-4"></i>
@@ -339,6 +346,7 @@ html_content = f'''<!DOCTYPE html>
             <i data-lucide="zoom-in" class="w-4 h-4"></i>
           </div>
         </div>
+        <img src="public/images/joc_logo.png" alt="Jordan Olympic Committee" class="w-16 sm:w-20 h-auto shrink-0 rounded-lg">
         <div class="flex-1">
           <span class="text-xs font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-3 py-1 rounded-full inline-block mb-1.5" data-en="Jordan Olympic Committee (JOC)" data-ar="اللجنة الأولمبية الأردنية">Jordan Olympic Committee (JOC)</span>
           <h3 class="text-base sm:text-lg font-black text-slate-900" data-en="Royal Highness Prince Feisal Ibn Al-Hussein" data-ar="صاحب السمو الملكي الأمير فيصل بن الحسين المعظم">Royal Highness Prince Feisal Ibn Al-Hussein</h3>
@@ -697,8 +705,8 @@ html_content = f'''<!DOCTYPE html>
         </p>
       </div>
 
-      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="galleryGrid">
-        <!-- Dynamically populated from 21 gallery images with lightbox click -->
+      <div class="space-y-10" id="galleryGrid">
+        <!-- Dynamically populated from public/data/gallery_albums.json (albums as on bridgewebs.com/jbf) -->
       </div>
 
     </div>
@@ -720,6 +728,33 @@ html_content = f'''<!DOCTYPE html>
         <!-- Dynamically populated from committee.json -->
       </div>
 
+    </div>
+  </section>
+
+  <!-- CONTACT DETAILS (as published on the federation's Bridgewebs home page) -->
+  <section id="contact" class="py-16 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-xs font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-3 py-1 rounded-full inline-block mb-2" data-en="Get in Touch" data-ar="تواصل معنا">Get in Touch</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Contact Details" data-ar="معلومات الاتصال">Contact Details</h2>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
+        <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 text-sm text-slate-700 space-y-3">
+          <p class="font-black text-slate-900 text-base"><span data-en="Mr. Raed Darwesh — J.B.F Manager" data-ar="السيد رعد درويش — مدير الاتحاد">Mr. Raed Darwesh — J.B.F Manager</span></p>
+          <p class="flex items-center gap-2"><i data-lucide="smartphone" class="w-4 h-4 text-sky-700"></i><span data-en="Mobile" data-ar="الجوال">Mobile</span>: <a href="tel:+962796665565" class="font-semibold text-sky-800 hover:underline" dir="ltr">00962796665565</a></p>
+          <p class="flex items-center gap-2"><i data-lucide="phone" class="w-4 h-4 text-sky-700"></i><span data-en="Tel" data-ar="هاتف">Tel</span>: <span class="font-semibold" dir="ltr">5691075</span></p>
+          <p class="flex items-center gap-2"><i data-lucide="printer" class="w-4 h-4 text-sky-700"></i><span data-en="Fax" data-ar="فاكس">Fax</span>: <span class="font-semibold" dir="ltr">06/5691057</span></p>
+          <p class="flex items-center gap-2"><i data-lucide="mailbox" class="w-4 h-4 text-sky-700"></i><span data-en="P.O. Box" data-ar="صندوق البريد">P.O. Box</span>: <span class="font-semibold" dir="ltr">140600</span></p>
+          <p class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-sky-700"></i><span data-en="Email" data-ar="البريد الإلكتروني">Email</span>: <a href="mailto:jor_bridge@yahoo.com" class="font-semibold text-sky-800 hover:underline">jor_bridge@yahoo.com</a></p>
+          <p class="flex items-center gap-2"><i data-lucide="facebook" class="w-4 h-4 text-sky-700"></i><a href="https://web.facebook.com/jordanbridgefederation/" target="_blank" rel="noopener" class="font-semibold text-sky-800 hover:underline">facebook.com/jordanbridgefederation</a></p>
+          <p class="flex items-center gap-2"><i data-lucide="globe" class="w-4 h-4 text-sky-700"></i><span data-en="Previous website" data-ar="الموقع السابق">Previous website</span>: <a href="https://www.bridgewebs.com/jbf" target="_blank" rel="noopener" class="font-semibold text-sky-800 hover:underline">www.bridgewebs.com/jbf</a></p>
+        </div>
+        <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 text-sm text-slate-700 space-y-3">
+          <p class="font-black text-slate-900 text-base" data-en="Links to tourist sites in Jordan" data-ar="روابط المواقع السياحية في الأردن">Links to tourist sites in Jordan</p>
+          <p class="flex items-center gap-2"><i data-lucide="mountain" class="w-4 h-4 text-amber-700"></i><a href="http://ar.visitjordan.com/Wheretogo/WadiRum.aspx" target="_blank" rel="noopener" class="font-semibold text-sky-800 hover:underline break-all">ar.visitjordan.com/Wheretogo/WadiRum.aspx</a></p>
+          <p class="flex items-center gap-2"><i data-lucide="image" class="w-4 h-4 text-amber-700"></i><a href="http://media.visitjordan.com/Gallery.aspx" target="_blank" rel="noopener" class="font-semibold text-sky-800 hover:underline break-all">media.visitjordan.com/Gallery.aspx</a></p>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -961,6 +996,7 @@ html_content = f'''<!DOCTYPE html>
     const committeeData = {comm_json_str};
     const galleryList = {gallery_json_str};
     const resultsIndex = {results_index_json_str};
+    const galleryAlbums = {gallery_albums_json_str};
 
     let currentLang = 'en';
     let currentFestYear = '2026';
@@ -994,6 +1030,7 @@ html_content = f'''<!DOCTYPE html>
       renderCommittee();
       renderDocuments();
       renderResultsList();
+      renderGallery();
       if (RES.ev) resRenderEvent();
     }}
 
@@ -1544,7 +1581,15 @@ html_content = f'''<!DOCTYPE html>
       const container = document.getElementById('galleryGrid');
       container.innerHTML = '';
 
-      galleryList.forEach(imgName => {{
+      galleryAlbums.albums.forEach(album => {{
+        const block = document.createElement('div');
+        const title = currentLang === 'ar' ? album.title_ar : album.title_en;
+        block.innerHTML = `<div class="flex items-baseline justify-between gap-3 mb-4 border-b border-slate-200 pb-2"><h3 class="text-lg font-black text-slate-900">${{title}}</h3><span class="text-xs text-slate-500">${{album.images.length}} ${{currentLang === 'ar' ? 'صورة' : 'photos'}}</span></div>`;
+        const grid = document.createElement('div');
+        grid.className = 'grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4';
+        block.appendChild(grid);
+        container.appendChild(block);
+      album.images.forEach(imgName => {{
         const card = document.createElement('div');
         card.className = 'group relative rounded-xl overflow-hidden border border-slate-200 shadow-xs hover:shadow-md transition-all cursor-pointer bg-slate-900 aspect-4/3';
         const imgPath = 'public/gallery/' + imgName;
@@ -1557,7 +1602,8 @@ html_content = f'''<!DOCTYPE html>
             <i data-lucide="zoom-in" class="w-6 h-6"></i>
           </div>
         `;
-        container.appendChild(card);
+        grid.appendChild(card);
+      }});
       }});
       lucide.createIcons();
     }}
