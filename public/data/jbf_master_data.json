@@ -869,7 +869,7 @@
         "totalImp": -11,
         "roster": [
           "Randa Al Saket",
-          "Azza Qudah",
+          "Azza Qauah",
           "Hala Sawaf",
           "Amal Fakhouri"
         ],
@@ -1678,77 +1678,53 @@
             "round": 5,
             "imp": 22,
             "vp": 14.6
+          },
+          {
+            "round": 6,
+            "imp": 10,
+            "vp": 12.33
+          },
+          {
+            "round": 7,
+            "imp": 3,
+            "vp": 10.75
+          },
+          {
+            "round": 8,
+            "imp": 4,
+            "vp": 10.99
+          },
+          {
+            "round": 9,
+            "imp": 16,
+            "vp": 13.53
+          },
+          {
+            "round": 10,
+            "imp": -19,
+            "vp": 5.92
+          },
+          {
+            "round": 11,
+            "imp": -39,
+            "vp": 2.99
           }
         ],
-        "totalImp": 83,
-        "totalVp": 65.6,
+        "totalImp": 58,
+        "totalVp": 122.11,
+        "top9": [
+          17.58,
+          15.24,
+          14.6,
+          13.53,
+          12.33,
+          11.9,
+          10.99,
+          10.75,
+          6.28
+        ],
+        "top9Total": 113.2,
         "rank": 1
-      },
-      {
-        "pair": "Huda Rabiai- Zaid AL Bitar",
-        "rounds": [
-          {
-            "round": 1,
-            "imp": 0,
-            "vp": 10.0
-          },
-          {
-            "round": 2,
-            "imp": 14,
-            "vp": 13.15
-          },
-          {
-            "round": 3,
-            "imp": 11,
-            "vp": 12.54
-          },
-          {
-            "round": 4,
-            "imp": -3,
-            "vp": 9.25
-          },
-          {
-            "round": 5,
-            "imp": 12,
-            "vp": 12.75
-          }
-        ],
-        "totalImp": 34,
-        "totalVp": 57.69,
-        "rank": 2
-      },
-      {
-        "pair": "Farah Ahmed- Samer Al Rwashdeh",
-        "rounds": [
-          {
-            "round": 1,
-            "imp": 15,
-            "vp": 13.34
-          },
-          {
-            "round": 2,
-            "imp": 15,
-            "vp": 13.34
-          },
-          {
-            "round": 3,
-            "imp": -2,
-            "vp": 9.5
-          },
-          {
-            "round": 4,
-            "imp": -13,
-            "vp": 7.05
-          },
-          {
-            "round": 5,
-            "imp": -6,
-            "vp": 8.54
-          }
-        ],
-        "totalImp": 9,
-        "totalVp": 51.77,
-        "rank": 3
       },
       {
         "pair": "Rana Abdelhadi-Jamal Abdeljalil",
@@ -1766,7 +1742,7 @@
           {
             "round": 3,
             "imp": -22,
-            "vp": 4.92
+            "vp": 5.4
           },
           {
             "round": 4,
@@ -1777,77 +1753,53 @@
             "round": 5,
             "imp": -1,
             "vp": 9.75
-          }
-        ],
-        "totalImp": -19,
-        "totalVp": 45.31,
-        "rank": 4
-      },
-      {
-        "pair": "Nowel Tarawneh-Aziz Amer",
-        "rounds": [
-          {
-            "round": 1,
-            "imp": -18,
-            "vp": 6.1
           },
           {
-            "round": 2,
-            "imp": -25,
-            "vp": 4.92
+            "round": 6,
+            "imp": -10,
+            "vp": 7.67
           },
           {
-            "round": 3,
+            "round": 7,
             "imp": 7,
             "vp": 11.68
           },
           {
-            "round": 4,
-            "imp": 4,
-            "vp": 10.99
+            "round": 8,
+            "imp": 23,
+            "vp": 14.76
           },
           {
-            "round": 5,
-            "imp": 3,
-            "vp": 10.75
+            "round": 9,
+            "imp": -11,
+            "vp": 7.46
+          },
+          {
+            "round": 10,
+            "imp": 12,
+            "vp": 12.75
+          },
+          {
+            "round": 11,
+            "imp": 74,
+            "vp": 20.0
           }
         ],
-        "totalImp": -29,
-        "totalVp": 44.44,
-        "rank": 5
-      },
-      {
-        "pair": "Maya Khalaf- Rageed Sabegh",
-        "rounds": [
-          {
-            "round": 1,
-            "imp": -6,
-            "vp": 8.54
-          },
-          {
-            "round": 2,
-            "imp": -32,
-            "vp": 3.98
-          },
-          {
-            "round": 3,
-            "imp": 31,
-            "vp": 15.97
-          },
-          {
-            "round": 4,
-            "imp": 8,
-            "vp": 11.9
-          },
-          {
-            "round": 5,
-            "imp": -34,
-            "vp": 3.62
-          }
+        "totalImp": 76,
+        "totalVp": 120.11,
+        "top9": [
+          20.0,
+          16.77,
+          14.76,
+          12.75,
+          11.68,
+          10.25,
+          9.75,
+          7.67,
+          7.46
         ],
-        "totalImp": -33,
-        "totalVp": 44.01,
-        "rank": 6
+        "top9Total": 111.09,
+        "rank": 2
       },
       {
         "pair": "Dima AL Taher- Ahmed AL Samhouri",
@@ -1876,10 +1828,352 @@
             "round": 5,
             "imp": 4,
             "vp": 10.99
+          },
+          {
+            "round": 6,
+            "imp": 0,
+            "vp": 10.0
+          },
+          {
+            "round": 7,
+            "imp": 26,
+            "vp": 15.24
+          },
+          {
+            "round": 8,
+            "imp": 7,
+            "vp": 11.68
+          },
+          {
+            "round": 9,
+            "imp": 40,
+            "vp": 17.13
+          },
+          {
+            "round": 10,
+            "imp": -19,
+            "vp": 5.92
+          },
+          {
+            "round": 11,
+            "imp": 8,
+            "vp": 11.9
           }
         ],
-        "totalImp": -45,
-        "totalVp": 41.84,
+        "totalImp": 17,
+        "totalVp": 113.71,
+        "top9": [
+          17.13,
+          15.24,
+          13.72,
+          11.9,
+          11.68,
+          10.99,
+          10.0,
+          8.1,
+          6.28
+        ],
+        "top9Total": 105.04,
+        "rank": 3
+      },
+      {
+        "pair": "Huda Rabiai- Zaid AL Bitar",
+        "rounds": [
+          {
+            "round": 1,
+            "imp": 0,
+            "vp": 10.0
+          },
+          {
+            "round": 2,
+            "imp": 14,
+            "vp": 13.15
+          },
+          {
+            "round": 3,
+            "imp": 11,
+            "vp": 12.54
+          },
+          {
+            "round": 4,
+            "imp": -3,
+            "vp": 9.25
+          },
+          {
+            "round": 5,
+            "imp": 12,
+            "vp": 12.75
+          },
+          {
+            "round": 6,
+            "imp": -9,
+            "vp": 7.88
+          },
+          {
+            "round": 7,
+            "imp": -29,
+            "vp": 4.31
+          },
+          {
+            "round": 8,
+            "imp": -25,
+            "vp": 4.92
+          },
+          {
+            "round": 9,
+            "imp": -9,
+            "vp": 7.88
+          },
+          {
+            "round": 10,
+            "imp": 29,
+            "vp": 15.69
+          },
+          {
+            "round": 11,
+            "imp": 29,
+            "vp": 15.69
+          }
+        ],
+        "totalImp": 20,
+        "totalVp": 114.06,
+        "top9": [
+          15.69,
+          15.69,
+          13.15,
+          12.75,
+          12.54,
+          10.0,
+          9.25,
+          7.88,
+          7.88
+        ],
+        "top9Total": 104.83,
+        "rank": 4
+      },
+      {
+        "pair": "Maya Khalaf- Rageed Sabegh",
+        "rounds": [
+          {
+            "round": 1,
+            "imp": -6,
+            "vp": 8.54
+          },
+          {
+            "round": 2,
+            "imp": -32,
+            "vp": 3.89
+          },
+          {
+            "round": 3,
+            "imp": 31,
+            "vp": 15.97
+          },
+          {
+            "round": 4,
+            "imp": 8,
+            "vp": 11.9
+          },
+          {
+            "round": 5,
+            "imp": -34,
+            "vp": 3.62
+          },
+          {
+            "round": 6,
+            "imp": -4,
+            "vp": 9.01
+          },
+          {
+            "round": 7,
+            "imp": 25,
+            "vp": 15.08
+          },
+          {
+            "round": 8,
+            "imp": -15,
+            "vp": 6.66
+          },
+          {
+            "round": 9,
+            "imp": 4,
+            "vp": 10.99
+          },
+          {
+            "round": 10,
+            "imp": 16,
+            "vp": 13.53
+          },
+          {
+            "round": 11,
+            "imp": -5,
+            "vp": 8.77
+          }
+        ],
+        "totalImp": -12,
+        "totalVp": 107.96,
+        "top9": [
+          15.97,
+          15.08,
+          13.53,
+          11.9,
+          10.99,
+          9.01,
+          8.77,
+          8.54,
+          6.66
+        ],
+        "top9Total": 100.45,
+        "rank": 5
+      },
+      {
+        "pair": "Farah Ahmed- Samer Al Rwashdeh",
+        "rounds": [
+          {
+            "round": 1,
+            "imp": 15,
+            "vp": 13.34
+          },
+          {
+            "round": 2,
+            "imp": 15,
+            "vp": 13.34
+          },
+          {
+            "round": 3,
+            "imp": -2,
+            "vp": 9.5
+          },
+          {
+            "round": 4,
+            "imp": -13,
+            "vp": 7.05
+          },
+          {
+            "round": 5,
+            "imp": -6,
+            "vp": 8.54
+          },
+          {
+            "round": 6,
+            "imp": -9,
+            "vp": 7.88
+          },
+          {
+            "round": 7,
+            "imp": 23,
+            "vp": 14.76
+          },
+          {
+            "round": 8,
+            "imp": 11,
+            "vp": 12.54
+          },
+          {
+            "round": 9,
+            "imp": 0,
+            "vp": 10.0
+          },
+          {
+            "round": 10,
+            "imp": -3,
+            "vp": 9.25
+          },
+          {
+            "round": 11,
+            "imp": -7,
+            "vp": 8.32
+          }
+        ],
+        "totalImp": 24,
+        "totalVp": 114.52,
+        "top9": [
+          14.76,
+          13.34,
+          13.34,
+          12.54,
+          10.0,
+          9.5,
+          9.25,
+          8.54,
+          8.32
+        ],
+        "top9Total": 99.59,
+        "rank": 6
+      },
+      {
+        "pair": "Nowel Tarawneh-Aziz Amer",
+        "rounds": [
+          {
+            "round": 1,
+            "imp": -18,
+            "vp": 6.1
+          },
+          {
+            "round": 2,
+            "imp": -25,
+            "vp": 4.92
+          },
+          {
+            "round": 3,
+            "imp": 7,
+            "vp": 11.68
+          },
+          {
+            "round": 4,
+            "imp": 4,
+            "vp": 10.99
+          },
+          {
+            "round": 5,
+            "imp": 3,
+            "vp": 10.75
+          },
+          {
+            "round": 6,
+            "imp": 26,
+            "vp": 15.24
+          },
+          {
+            "round": 7,
+            "imp": -55,
+            "vp": 1.35
+          },
+          {
+            "round": 8,
+            "imp": -5,
+            "vp": 8.77
+          },
+          {
+            "round": 9,
+            "imp": -40,
+            "vp": 2.87
+          },
+          {
+            "round": 10,
+            "imp": -16,
+            "vp": 6.47
+          },
+          {
+            "round": 11,
+            "imp": -60,
+            "vp": 0.94
+          }
+        ],
+        "totalImp": -179,
+        "totalVp": 80.08,
+        "top9": [
+          15.24,
+          11.68,
+          10.99,
+          10.75,
+          8.77,
+          6.47,
+          6.1,
+          4.92,
+          2.87
+        ],
+        "top9Total": 77.79,
         "rank": 7
       }
     ]

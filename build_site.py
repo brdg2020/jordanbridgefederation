@@ -657,7 +657,7 @@ html_content = f'''<!DOCTYPE html>
         <div class="bg-slate-50 p-4 rounded-t-2xl border border-b-0 border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
           <div class="flex items-center gap-2">
             <span class="font-bold text-slate-900">National Mixed Pairs Selection 2025:</span>
-            <span class="text-slate-600">Official IMPs & Victory Points</span>
+            <span class="text-slate-600" data-en="11 rounds · final ranking on the best 9 rounds (Top 9 VP)" data-ar="11 جولة · الترتيب النهائي حسب أفضل 9 جولات">11 rounds · final ranking on the best 9 rounds (Top 9 VP)</span>
           </div>
           <a href="public/archive/MIX SELECTION FINAL.xlsx" download class="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs">
             <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i>
@@ -669,17 +669,7 @@ html_content = f'''<!DOCTYPE html>
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse text-xs sm:text-sm">
               <thead>
-                <tr class="bg-slate-900 text-white font-bold uppercase tracking-wider text-[11px]">
-                  <th class="py-3 px-3 text-center">#</th>
-                  <th class="py-3 px-4">Pairs Name</th>
-                  <th class="py-3 px-3 text-center bg-slate-800">R1 (IMP / VP)</th>
-                  <th class="py-3 px-3 text-center">R2 (IMP / VP)</th>
-                  <th class="py-3 px-3 text-center bg-slate-800">R3 (IMP / VP)</th>
-                  <th class="py-3 px-3 text-center">R4 (IMP / VP)</th>
-                  <th class="py-3 px-3 text-center bg-slate-800">R5 (IMP / VP)</th>
-                  <th class="py-3 px-3 text-right">Total IMP</th>
-                  <th class="py-3 px-4 text-right bg-emerald-900 text-amber-300 font-black">Total V.P</th>
-                </tr>
+<tr class="bg-slate-900 text-white font-bold uppercase tracking-wider text-[11px]" id="mix25HeadRow"></tr>
               </thead>
               <tbody id="mix25TableBody" class="divide-y divide-slate-200 bg-white">
                 <!-- Dynamically populated -->
@@ -1031,6 +1021,7 @@ html_content = f'''<!DOCTYPE html>
       renderDocuments();
       renderResultsList();
       renderGallery();
+      renderMix25();
       if (RES.ev) resRenderEvent();
     }}
 
@@ -1491,37 +1482,39 @@ html_content = f'''<!DOCTYPE html>
       const tbody = document.getElementById('mix25TableBody');
       tbody.innerHTML = '';
       const pairs = masterData.mixSelection2025.pairs;
+      const nR = Math.max(...pairs.map(p => p.rounds.length));
+      const ar = currentLang === 'ar';
+      let head = `<th class="py-3 px-3 text-center">#</th><th class="py-3 px-4">${{ar ? 'الزوج' : 'Pairs Name'}}</th>`;
+      for (let i = 1; i <= nR; i++) head += `<th class="py-3 px-2 text-center ${{i % 2 ? 'bg-slate-800' : ''}}">R${{i}}</th>`;
+      head += `<th class="py-3 px-3 text-right">${{ar ? 'مجموع IMP' : 'Total IMP'}}</th><th class="py-3 px-3 text-right">${{ar ? 'مجموع V.P' : 'Total V.P'}}</th><th class="py-3 px-4 text-right bg-emerald-900 text-amber-300 font-black">Top 9 V.P</th>`;
+      document.getElementById('mix25HeadRow').innerHTML = head;
 
       pairs.forEach(p => {{
         let rankBadge = 'bg-slate-100 text-slate-700';
         if (p.rank === 1) rankBadge = 'badge-rank-1 font-black';
         else if (p.rank === 2) rankBadge = 'badge-rank-2 font-black';
         else if (p.rank === 3) rankBadge = 'badge-rank-3 font-black';
-
+        // mark the rounds whose VPs make up the Top 9 list from the spreadsheet
+        const pool = (p.top9 || []).slice();
+        const counted = p.rounds.map(r => {{ const k = pool.indexOf(r.vp); if (k >= 0) {{ pool.splice(k, 1); return true; }} return false; }});
         const tr = document.createElement('tr');
         tr.className = 'hover:bg-indigo-50/40 transition-colors border-b border-slate-100';
-
         let rndHtml = '';
-        p.rounds.forEach(r => {{
+        p.rounds.forEach((r, i) => {{
+          const has = r.vp !== null && r.vp !== undefined;
           rndHtml += `
-            <td class="py-2 px-3 text-center font-mono text-xs">
-              <span class="font-bold text-indigo-950">${{r.vp.toFixed(2)}}</span>
-              <span class="text-[10px] text-slate-400 block">${{r.imp > 0 ? '+' : ''}}${{r.imp}} IMP</span>
-            </td>
-          `;
+            <td class="py-2 px-2 text-center font-mono text-xs ${{has && !counted[i] ? 'opacity-50' : ''}}" title="${{has && !counted[i] ? (ar ? 'غير محتسبة في أفضل 9' : 'Not in Top 9') : ''}}">
+              <span class="font-bold text-indigo-950">${{has ? r.vp.toFixed(2) : '–'}}</span>
+              <span class="text-[10px] text-slate-400 block">${{r.imp === null || r.imp === undefined ? '' : (r.imp > 0 ? '+' : '') + r.imp + ' IMP'}}</span>
+            </td>`;
         }});
-
         tr.innerHTML = `
-          <td class="py-2.5 px-3 text-center">
-            <span class="inline-flex items-center justify-center w-6 h-6 rounded-full text-xs ${{rankBadge}}">
-              ${{p.rank}}
-            </span>
-          </td>
-          <td class="py-2.5 px-4 font-bold text-slate-900">${{p.pair}}</td>
+          <td class="py-2.5 px-3 text-center"><span class="inline-flex items-center justify-center w-6 h-6 rounded-full text-xs ${{rankBadge}}">${{p.rank}}</span></td>
+          <td class="py-2.5 px-4 font-bold text-slate-900 whitespace-nowrap">${{p.pair}}</td>
           ${{rndHtml}}
           <td class="py-2.5 px-3 text-right font-mono font-bold text-slate-600">${{p.totalImp > 0 ? '+' : ''}}${{p.totalImp}}</td>
-          <td class="py-2.5 px-4 text-right font-mono font-extrabold text-indigo-900 text-sm bg-indigo-50">${{p.totalVp.toFixed(2)}}</td>
-        `;
+          <td class="py-2.5 px-3 text-right font-mono font-bold text-slate-700">${{p.totalVp.toFixed(2)}}</td>
+          <td class="py-2.5 px-4 text-right font-mono font-extrabold text-indigo-900 text-sm bg-indigo-50">${{p.top9Total !== undefined ? p.top9Total.toFixed(2) : ''}}</td>`;
         tbody.appendChild(tr);
       }});
     }}

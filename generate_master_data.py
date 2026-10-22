@@ -59,7 +59,7 @@ rosters_2026 = {
     'Lions': ['Samer Rwashdeh', 'Farah Ahmed', 'Yena Sabagh', 'Mohd Al Taji'],
     'Jordan Teams': ['Ghassan Ghaneem', 'Yasmin Abu Jaber', 'Marwan Ghaneem', 'Clement Mamar Bash', 'Rana Abdelhadi', 'Jamal Abdeljalil'],
     'Jordan Mix': ['Sakher Malkawi', 'Aaida Abu Jaber', 'Dima Al Taher', 'Ahmed Al Samhouri', 'Huda Rabaeh', 'Akiel Madi'],
-    'Alfa': ['Randa Al Saket', 'Azza Qudah', 'Hala Sawaf', 'Amal Fakhouri'],
+    'Alfa': ['Randa Al Saket', 'Azza Qauah', 'Hala Sawaf', 'Amal Fakhouri'],
     'Eagles': ['Mona Al Omari', 'Mais Al Bitar', 'Bana Al Taher', 'Hanan Juman', 'Nowel Trawneh', 'Omar Al Masri'],
     'Ortho Group': ['Yousef Batshon', 'Jack Qarouta', 'Ramzi Qusous', 'Rageed Sabagh', 'Maya Khalaf', 'Laith Tashman'],
     'Palestine': ['Laila Zruqat', 'Hanan Al Masri', 'Nawar Hashem', 'Fiuroz Badwan', 'Alia Shredh']
@@ -218,41 +218,48 @@ for idx, item in enumerate(matrix_2025):
     item['rank'] = idx + 1
 
 # 4. Parse Mixed Selection 2025 (MIX SELECTION FINAL.xlsx)
+# The final standings are on the "BYE" sheet: 11 rounds (IMPs + VPs), totals,
+# the best-9-rounds table ("Top 9 VP") and the official final ranking.
+# The other sheets (Sheet1 = after 5 rounds, Sheet2/Sheet3 = after 8 rounds)
+# are interim working copies of the same figures.
 mix_file = os.path.join(archive_dir, 'MIX SELECTION FINAL.xlsx')
 wb_mix = openpyxl.load_workbook(mix_file, data_only=True)
-ws_mix = wb_mix['Sheet1'] if 'Sheet1' in wb_mix.sheetnames else wb_mix.active
+ws_mix = wb_mix['BYE']
 
-mix_pairs = []
-for r in range(3, 10):
-    pname = ws_mix.cell(r, 1).value
+def _num(v):
+    return None if v is None or v == '' else float(v)
+
+mix_by_name = {}
+for r in range(14, 21):
+    pname = ws_mix.cell(r, 2).value
     if not pname:
         continue
     pname = str(pname).strip()
     r_scores = []
-    # 5 rounds
-    for rnd in range(1, 6):
-        c_imp = 2 + (rnd - 1) * 2
-        c_vp = c_imp + 1
-        imp_v = ws_mix.cell(r, c_imp).value
-        vp_v = ws_mix.cell(r, c_vp).value
-        r_scores.append({
-            'round': rnd,
-            'imp': int(float(imp_v)) if imp_v is not None else 0,
-            'vp': round(float(vp_v), 2) if vp_v is not None else 0.0
-        })
-    tot_imp = ws_mix.cell(r, 12).value
-    tot_vp = ws_mix.cell(r, 13).value
-    
-    mix_pairs.append({
+    for rnd in range(1, 12):
+        c_imp = 3 + (rnd - 1) * 2
+        imp_v = _num(ws_mix.cell(r, c_imp).value)
+        vp_v = _num(ws_mix.cell(r, c_imp + 1).value)
+        r_scores.append({'round': rnd,
+                         'imp': int(imp_v) if imp_v is not None else None,
+                         'vp': round(vp_v, 2) if vp_v is not None else None})
+    mix_by_name[pname] = {
         'pair': pname,
         'rounds': r_scores,
-        'totalImp': int(float(tot_imp)) if tot_imp is not None else 0,
-        'totalVp': round(float(tot_vp), 2) if tot_vp is not None else 0.0
-    })
-
-mix_pairs.sort(key=lambda x: x['totalVp'], reverse=True)
-for idx, p in enumerate(mix_pairs):
-    p['rank'] = idx + 1
+        'totalImp': int(_num(ws_mix.cell(r, 25).value)),
+        'totalVp': round(_num(ws_mix.cell(r, 26).value), 2),
+    }
+# Top 9 VP table (rows 26-32: name in B, 9 best VPs in C..K, total in L)
+for r in range(26, 33):
+    pname = str(ws_mix.cell(r, 2).value).strip()
+    mix_by_name[pname]['top9'] = [round(_num(ws_mix.cell(r, c).value), 2) for c in range(3, 12)]
+    mix_by_name[pname]['top9Total'] = round(_num(ws_mix.cell(r, 12).value), 2)
+# Final ranking (rows 38-44: name in B, Top 9 total in C, rank in D)
+for r in range(38, 45):
+    pname = str(ws_mix.cell(r, 2).value).strip()
+    mix_by_name[pname]['rank'] = int(_num(ws_mix.cell(r, 4).value))
+    assert round(_num(ws_mix.cell(r, 3).value), 2) == mix_by_name[pname]['top9Total']
+mix_pairs = sorted(mix_by_name.values(), key=lambda x: x['rank'])
 
 # 5. Documents Inventory
 docs_inventory = [
