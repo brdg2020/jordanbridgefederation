@@ -152,6 +152,16 @@ html_content = f'''<!DOCTYPE html>
       transform: scale(0.96);
     }}
 {RESULTS_CSS}
+    /* top menu: active section + click feedback */
+    section[id] {{ scroll-margin-top: 88px; }}
+    .nav-link {{ position: relative; transition: color .15s, background-color .15s, transform .1s; }}
+    .nav-link:hover {{ color: #0369a1; background: #f0f9ff; }}
+    .nav-link:active, .nav-link-m:active {{ transform: scale(.96); }}
+    .nav-link.active {{ color: #fff; background: #0369a1; box-shadow: 0 2px 8px rgba(3,105,161,.35); }}
+    .nav-link-m {{ transition: background-color .15s, color .15s; }}
+    .nav-link-m:hover {{ background: #f0f9ff; color: #0369a1; }}
+    .nav-link-m.active {{ background: #0369a1; color: #fff; font-weight: 800; }}
+
     .lightbox-enter-active {{
       opacity: 1;
       transform: scale(1);
@@ -194,18 +204,15 @@ html_content = f'''<!DOCTYPE html>
       </a>
 
       <!-- Desktop Nav Links -->
-      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-700">
-        <a href="#scores" class="hover:text-sky-700 transition-colors" data-en="Festival Scores" data-ar="نتائج المهرجان">Festival Scores</a>
-        <a href="#league" class="hover:text-sky-700 transition-colors text-emerald-700 flex items-center gap-1">
-          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span data-en="National Leagues & Cup" data-ar="الدوري الوطني وكأس الأردن">National Leagues & Cup</span>
-        </a>
-        <a href="#results" class="hover:text-sky-700 transition-colors" data-en="Results" data-ar="النتائج">Results</a>
-        <a href="#posters" class="hover:text-sky-700 transition-colors" data-en="Posters" data-ar="الملصقات">Posters</a>
-        <a href="#gallery" class="hover:text-sky-700 transition-colors" data-en="Gallery" data-ar="الصور">Gallery</a>
-        <a href="#documents" class="hover:text-sky-700 transition-colors" data-en="Archive" data-ar="الوثائق">Archive</a>
-        <a href="#committee" class="hover:text-sky-700 transition-colors" data-en="Committee" data-ar="الإدارة">Committee</a>
-        <a href="#contact" class="hover:text-sky-700 transition-colors" data-en="Contact" data-ar="اتصل بنا">Contact</a>
+      <nav class="hidden xl:flex items-center gap-1 text-sm font-semibold text-slate-700" id="mainNav">
+        <a href="#posters" data-sec="posters" class="nav-link px-3 py-2 rounded-full" data-en="Posters" data-ar="الملصقات">Posters</a>
+        <a href="#scores" data-sec="scores" class="nav-link px-3 py-2 rounded-full" data-en="Festival Scores" data-ar="نتائج المهرجان">Festival Scores</a>
+        <a href="#league" data-sec="league" class="nav-link px-3 py-2 rounded-full" data-en="National Leagues & Cup" data-ar="الدوري الوطني وكأس الأردن">National Leagues & Cup</a>
+        <a href="#results" data-sec="results" class="nav-link px-3 py-2 rounded-full" data-en="Results" data-ar="النتائج">Results</a>
+        <a href="#gallery" data-sec="gallery" class="nav-link px-3 py-2 rounded-full" data-en="Gallery" data-ar="الصور">Gallery</a>
+        <a href="#committee" data-sec="committee" class="nav-link px-3 py-2 rounded-full" data-en="Committee" data-ar="الإدارة">Committee</a>
+        <a href="#contact" data-sec="contact" class="nav-link px-3 py-2 rounded-full" data-en="Contact" data-ar="اتصل بنا">Contact</a>
+        <a href="#documents" data-sec="documents" class="nav-link px-3 py-2 rounded-full" data-en="Archive" data-ar="الوثائق">Archive</a>
       </nav>
 
       <!-- Language & Admin Action -->
@@ -216,7 +223,7 @@ html_content = f'''<!DOCTYPE html>
         </button>
 
         <!-- Mobile Menu Toggle Button -->
-        <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
+        <button onclick="toggleMobileMenu()" class="xl:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
           <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
@@ -224,15 +231,15 @@ html_content = f'''<!DOCTYPE html>
     </div>
 
     <!-- Mobile Navigation Drawer -->
-    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-5 space-y-2 text-sm font-semibold shadow-lg">
-      <a href="#scores" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Festival Scores" data-ar="نتائج المهرجان">Festival Scores</a>
-      <a href="#league" onclick="toggleMobileMenu()" class="block py-2 text-emerald-700 font-bold" data-en="National Leagues & Cup" data-ar="الدوري الوطني وكأس الأردن">National Leagues & Cup</a>
-      <a href="#results" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Results Archive" data-ar="أرشيف النتائج">Results Archive</a>
-      <a href="#posters" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Official Posters" data-ar="الملصقات الرسمية">Official Posters</a>
-      <a href="#gallery" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Photo Gallery" data-ar="معرض الصور">Photo Gallery</a>
-      <a href="#documents" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Bylaws & Archive" data-ar="الأنظمة والأرشيف">Bylaws & Archive</a>
-      <a href="#committee" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Executive Committee" data-ar="الهيئة الإدارية">Executive Committee</a>
-      <a href="#contact" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Contact Details" data-ar="معلومات الاتصال">Contact Details</a>
+    <div id="mobileMenu" class="hidden xl:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-5 space-y-1 text-sm font-semibold shadow-lg">
+<a href="#posters" onclick="toggleMobileMenu()" data-sec="posters" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Official Posters" data-ar="الملصقات الرسمية">Official Posters</a>
+      <a href="#scores" onclick="toggleMobileMenu()" data-sec="scores" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Festival Scores" data-ar="نتائج المهرجان">Festival Scores</a>
+      <a href="#league" onclick="toggleMobileMenu()" data-sec="league" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="National Leagues & Cup" data-ar="الدوري الوطني وكأس الأردن">National Leagues & Cup</a>
+      <a href="#results" onclick="toggleMobileMenu()" data-sec="results" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Results Archive" data-ar="أرشيف النتائج">Results Archive</a>
+      <a href="#gallery" onclick="toggleMobileMenu()" data-sec="gallery" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Photo Gallery" data-ar="معرض الصور">Photo Gallery</a>
+      <a href="#committee" onclick="toggleMobileMenu()" data-sec="committee" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Executive Committee" data-ar="الهيئة الإدارية">Executive Committee</a>
+      <a href="#contact" onclick="toggleMobileMenu()" data-sec="contact" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Contact Details" data-ar="معلومات الاتصال">Contact Details</a>
+      <a href="#documents" onclick="toggleMobileMenu()" data-sec="documents" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Bylaws & Archive" data-ar="الأنظمة والأرشيف">Bylaws & Archive</a>
       <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
         <button onclick="openAdminModal(); toggleMobileMenu();" class="text-xs font-bold text-amber-700 flex items-center gap-1.5 py-1">
           <i data-lucide="shield-check" class="w-4 h-4"></i>
@@ -1953,6 +1960,28 @@ html_content = f'''<!DOCTYPE html>
     }}
 
 {RESULTS_JS}
+
+    // TOP MENU: highlight the section on screen and the item just clicked
+    function setActiveNav(id) {{
+      document.querySelectorAll('.nav-link, .nav-link-m').forEach(a => a.classList.toggle('active', a.dataset.sec === id));
+    }}
+    function initNavSpy() {{
+      const ids = [...document.querySelectorAll('#mainNav .nav-link')].map(a => a.dataset.sec);
+      const secs = ids.map(id => document.getElementById(id)).filter(Boolean);
+      document.querySelectorAll('.nav-link, .nav-link-m').forEach(a => a.addEventListener('click', () => {{ setActiveNav(a.dataset.sec); navLock = Date.now(); }}));
+      let navLock = 0;
+      const pick = () => {{
+        if (Date.now() - navLock < 900) return;            // let the smooth scroll finish first
+        const y = window.innerHeight * 0.35;
+        let cur = '';
+        secs.forEach(sec => {{ const r = sec.getBoundingClientRect(); if (r.top <= y && r.bottom > y) cur = sec.id; }});
+        setActiveNav(cur);
+      }};
+      window.addEventListener('scroll', () => {{ clearTimeout(window._navT); window._navT = setTimeout(pick, 60); }}, {{ passive: true }});
+      const h = (location.hash || '').slice(1).split('/')[0];
+      if (ids.includes(h)) setActiveNav(h); else pick();
+    }}
+
     // INITIALIZATION
     window.addEventListener('DOMContentLoaded', () => {{
       lucide.createIcons();
@@ -1967,6 +1996,7 @@ html_content = f'''<!DOCTYPE html>
       renderDocuments();
       renderResultsList();
       resInitFromHash();
+      initNavSpy();
     }});
   </script>
 </body>
