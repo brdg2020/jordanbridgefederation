@@ -827,7 +827,7 @@ html_content = f'''<!DOCTYPE html>
       <div id="adminPinSection" class="space-y-4">
         <p class="text-xs text-slate-600" data-en="Please enter the Federation Admin PIN to access data entry:" data-ar="يرجى إدخال رمز التحقق الخاص بمشرفي الاتحاد:">Please enter the Federation Admin PIN to access data entry:</p>
         <div class="flex gap-2">
-          <input type="password" id="adminPinInput" placeholder="Default: jbf2026" class="px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none flex-1 font-mono">
+          <input type="password" id="adminPinInput" placeholder="••••••••" onkeydown="if(event.key==='Enter') verifyAdminPin()" class="px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none flex-1 font-mono">
           <button onclick="verifyAdminPin()" class="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition-all">
             <span data-en="Unlock" data-ar="دخول">Unlock</span>
           </button>
@@ -1613,8 +1613,13 @@ html_content = f'''<!DOCTYPE html>
     // ADMIN DATA ENTRY MODAL
     function openAdminModal() {{
       const modal = document.getElementById('adminModal');
+      const pinInput = document.getElementById('adminPinInput');
+      if (pinInput) pinInput.value = '';
+      const err = document.getElementById('adminPinError');
+      if (err) err.classList.add('hidden');
       modal.classList.remove('hidden');
       modal.classList.add('flex');
+      if (pinInput) setTimeout(() => pinInput.focus(), 100);
     }}
 
     function closeAdminModal() {{
@@ -1623,10 +1628,13 @@ html_content = f'''<!DOCTYPE html>
       modal.classList.remove('flex');
     }}
 
-    function verifyAdminPin() {{
+    async function verifyAdminPin() {{
       const pin = document.getElementById('adminPinInput').value;
       const err = document.getElementById('adminPinError');
-      if (pin === 'jbf2026' || pin === 'admin') {{
+      // Secure SHA-256 cryptographic verification — password is never exposed in plain text
+      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pin));
+      const hash = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
+      if (hash === 'f54dfd493397bd939a0f3a00d0a8a47b5e72022cc7d55851dac58e1a8b1de00f') {{
         document.getElementById('adminPinSection').classList.add('hidden');
         document.getElementById('adminFormSection').classList.remove('hidden');
         err.classList.add('hidden');

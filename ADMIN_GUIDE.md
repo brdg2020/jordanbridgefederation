@@ -10,8 +10,7 @@ This guide provides simple, step-by-step instructions for JBF officials and tour
 
 1. Open **[jordanbridgefederation.com](https://jordanbridgefederation.com/)** in any web browser.
 2. Click the **"Admin Portal"** or **"Admin Data Entry"** button located at the top banner or website footer.
-3. Enter the Federation Admin PIN:
-   * **PIN:** `jbf2026`
+3. Enter your confidential Administrator Security PIN.
 4. Fill in the simple form:
    * **Target Tournament:** Jordan Cup 2026 or Festival
    * **Team Name:** e.g., `AL Nashama`
