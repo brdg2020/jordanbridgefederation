@@ -115,11 +115,19 @@ def main():
                     no = r[1]['t'] if len(r) > 1 else ''
                     names = split_names(r[pc]['t'])
                     score = ''
-                    for c in r[pc + 1:]:
-                        if re.match(r'^[+-]?\d+(\.\d+)?$', c['t'] or ''):
-                            score = c['t']
-                            break
                     label = head[pc + 1] if len(head) > pc + 1 else ''
+                    tot = [h for h in head if h.startswith('Total')]
+                    if tot:
+                        # team events: the total is counted from the end of the row, past e.g. Wins/Draws, Master Points
+                        k = len(head) - 1 - head.index(tot[0])
+                        if len(r) - 1 - k > pc:
+                            score = r[len(r) - 1 - k]['t']
+                        label = tot[0]
+                    else:
+                        for c in r[pc + 1:]:
+                            if re.match(r'^[+-]?\d+(\.\d+)?$', c['t'] or ''):
+                                score = c['t']
+                                break
                     team = r[2]['t'] if teams and len(r) > 3 else ''
                     if teams:
                         pair_key = 'NS:' + no

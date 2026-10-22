@@ -261,6 +261,7 @@ RESULTS_JS = r'''
       if (!p) return;
       RES.mode = 'player'; RES.profile = p; RES.hl = key; RES.ev = null;
       resShowModal();
+      document.getElementById('resNavBar').classList.add('hidden');
       history.replaceState(null, '', '#results/player/' + encodeURIComponent(key));
       document.getElementById('resModalMeta').textContent = rt('profile');
       document.getElementById('resModalTitle').textContent = p.n;
@@ -350,6 +351,7 @@ RESULTS_JS = r'''
         }
       }
       RES.ev = RES.cache[id];
+      document.getElementById('resNavBar').classList.remove('hidden');
       document.getElementById('resModalSource').innerHTML = `${rt('source')}: <a class="underline hover:text-sky-700" href="${RES.ev.source}" target="_blank" rel="noopener">${resEsc(RES.ev.source)}</a>`;
       resRenderEvent();
       document.getElementById('resModal').scrollTop = 0;
