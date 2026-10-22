@@ -626,7 +626,7 @@ RESULTS_JS = r'''
     }
     function resSolverUrl(b) {
       const h = p => b.hands[p].join('.');
-      const dn = { N: 'North', E: 'East', S: 'South', W: 'West' }[b.dealer] || 'North';
+      const dn = (b.dealer || 'N').toLowerCase();
       const vn = { None: 'None', NS: 'NS', EW: 'EW', All: 'All' }[b.vul] || 'None';
       return `https://dds.bridgewebs.com/bsol2/ddummy.htm?club=jbf&board=${encodeURIComponent(b.bd)}&dealer=${dn}&vul=${vn}&north=${h('N')}&east=${h('E')}&south=${h('S')}&west=${h('W')}`;
     }
