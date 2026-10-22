@@ -40,8 +40,23 @@ html_content = f'''<!DOCTYPE html>
   <meta name="description" content="Official Portal of the Jordan Bridge Federation (JBF). Tournaments, live Vugraph scores, Jordan Bridge Festival, Jordan Cup, Excel spreadsheets, bylaws, committee, and archive.">
   <link rel="canonical" href="https://jordanbridgefederation.com/">
   
-  <!-- Favicon & Fonts -->
-  <link rel="icon" type="image/jpeg" href="public/jbf_logo.jpg">
+  <!-- Favicons & App Icons -->
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <link rel="shortcut icon" href="favicon.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="public/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="public/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="public/apple-touch-icon.png">
+
+  <!-- Open Graph / Social Sharing Meta -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://jordanbridgefederation.com/">
+  <meta property="og:title" content="Jordan Bridge Federation | الاتحاد الأردني للبريدج">
+  <meta property="og:description" content="Official Portal of the Jordan Bridge Federation. Tournaments, live results, Jordan Cup, and federation documents.">
+  <meta property="og:image" content="https://jordanbridgefederation.com/public/jbf_logo.jpg">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:image" content="https://jordanbridgefederation.com/public/jbf_logo.jpg">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800;900&family=Outfit:wght@300;400;500;600;700;800&family=Cinzel:wght@600;700;800&display=swap" rel="stylesheet">
