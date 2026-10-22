@@ -2696,7 +2696,7 @@
       };
       window.addEventListener('scroll', () => { clearTimeout(window._navT); window._navT = setTimeout(pick, 60); }, { passive: true });
       const h = (location.hash || '').slice(1).split('/')[0];
-      if (ids.includes(h)) setActiveNav(h); else pick();
+      if (ids.includes(h) && location.hash.indexOf('/') < 0) { setActiveNav(h); navLock = Date.now(); document.getElementById(h).scrollIntoView(); } else pick();
     }
 
     // INITIALIZATION
