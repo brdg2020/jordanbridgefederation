@@ -105,6 +105,28 @@
       opacity: 0;
       transform: scale(0.96);
     }
+
+    .res-pill { transition: all .15s; }
+    .res-pill.on { background:#0369a1; color:#fff; border-color:#0369a1; box-shadow:0 1px 2px rgba(0,0,0,.08); }
+    .res-tbl { border-collapse: collapse; width: 100%; font-size: 13px; }
+    .res-tbl th, .res-tbl td.h { background:#0f172a; color:#fff; font-weight:700; font-size:11px; text-transform:uppercase; letter-spacing:.03em; padding:8px 10px; text-align:center; white-space:nowrap; border:1px solid #1e293b; }
+    .res-tbl td { padding:6px 10px; border-bottom:1px solid #e2e8f0; text-align:center; white-space:nowrap; }
+    .res-tbl td.l { text-align:left; white-space:normal; min-width:160px; }
+    .res-tbl tbody tr:nth-child(even) td:not(.h) { background:#f8fafc; }
+    .res-tbl tbody tr:hover td:not(.h) { background:#e0f2fe; }
+    .res-tbl tr.sel td { background:#fef3c7 !important; }
+    .suit-s, .suit-c { color:#0f172a; } .suit-h, .suit-d { color:#dc2626; }
+    .res-hand { display:grid; grid-template-columns: 1fr 1fr 1fr; grid-template-rows:auto auto auto; gap:6px; font-size:13px; line-height:1.35; }
+    .res-hand .seat { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; white-space:nowrap; }
+    .res-hand .ctr { display:flex; align-items:center; justify-content:center; }
+    .res-compass { width:86px; height:86px; border-radius:14px; background:#0f172a; color:#fff; position:relative; font-weight:800; font-size:11px; }
+    .res-compass span { position:absolute; padding:1px 5px; border-radius:6px; }
+    .res-compass .vul { background:#dc2626; } .res-compass .nv { background:#16a34a; }
+    .res-compass .n { top:4px; left:50%; transform:translateX(-50%); } .res-compass .s { bottom:4px; left:50%; transform:translateX(-50%); }
+    .res-compass .w { left:4px; top:50%; transform:translateY(-50%); } .res-compass .e { right:4px; top:50%; transform:translateY(-50%); }
+    .res-compass .bd { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:20px; }
+    .res-compass .dl { text-decoration: underline; text-underline-offset: 2px; }
+
     .lightbox-enter-active {
       opacity: 1;
       transform: scale(1);
@@ -153,6 +175,7 @@
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
           <span data-en="National Leagues & Cup" data-ar="الدوري الوطني وكأس الأردن">National Leagues & Cup</span>
         </a>
+        <a href="#results" class="hover:text-sky-700 transition-colors" data-en="Results" data-ar="النتائج">Results</a>
         <a href="#posters" class="hover:text-sky-700 transition-colors" data-en="Posters" data-ar="الملصقات">Posters</a>
         <a href="#gallery" class="hover:text-sky-700 transition-colors" data-en="Gallery" data-ar="الصور">Gallery</a>
         <a href="#documents" class="hover:text-sky-700 transition-colors" data-en="Archive" data-ar="الوثائق">Archive</a>
@@ -178,6 +201,7 @@
     <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-5 space-y-2 text-sm font-semibold shadow-lg">
       <a href="#scores" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Festival Scores" data-ar="نتائج المهرجان">Festival Scores</a>
       <a href="#league" onclick="toggleMobileMenu()" class="block py-2 text-emerald-700 font-bold" data-en="National Leagues & Cup" data-ar="الدوري الوطني وكأس الأردن">National Leagues & Cup</a>
+      <a href="#results" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Results Archive" data-ar="أرشيف النتائج">Results Archive</a>
       <a href="#posters" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Official Posters" data-ar="الملصقات الرسمية">Official Posters</a>
       <a href="#gallery" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Photo Gallery" data-ar="معرض الصور">Photo Gallery</a>
       <a href="#documents" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Bylaws & Archive" data-ar="الأنظمة والأرشيف">Bylaws & Archive</a>
@@ -640,6 +664,54 @@
     </div>
   </section>
 
+
+  <!-- SECTION: RESULTS ARCHIVE (migrated from bridgewebs.com/jbf) -->
+  <section id="results" class="py-16 bg-slate-100 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
+        <div>
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-sky-600"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-800" data-en="Results Archive" data-ar="أرشيف النتائج">Results Archive</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1" data-en="Tournament Results 2019 – 2026" data-ar="نتائج البطولات 2019 – 2026">Tournament Results 2019 – 2026</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1 max-w-2xl" data-en="Every event published on the federation's Bridgewebs results calendar: rankings, match results, scorecards, travellers and hand records. Click an event to open it." data-ar="جميع البطولات المنشورة في تقويم نتائج الاتحاد على Bridgewebs: الترتيب ونتائج المباريات وبطاقات النتائج وجداول اللوحات وتوزيعات الأوراق. اضغط على أي بطولة لعرض التفاصيل.">Every event published on the federation's Bridgewebs results calendar: rankings, match results, scorecards, travellers and hand records. Click an event to open it.</p>
+        </div>
+        <div class="relative w-full md:w-72">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-3"></i>
+          <input type="text" id="resSearchInput" oninput="resSetSearch(this.value)" placeholder="Search events..." class="w-full pl-10 pr-4 py-2 text-sm bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-xs">
+        </div>
+      </div>
+
+      <div class="flex flex-col gap-3 mb-6">
+        <div class="flex flex-wrap items-center gap-2 bg-white p-1.5 rounded-2xl border border-slate-300 shadow-xs w-fit max-w-full" id="resYearBar"></div>
+        <div class="flex flex-wrap items-center gap-2" id="resCatBar"></div>
+      </div>
+
+      <p class="text-xs text-slate-500 mb-4" id="resCountLine"></p>
+      <div id="resListContainer" class="space-y-10"></div>
+    </div>
+  </section>
+
+  <!-- RESULTS EVENT DETAIL MODAL -->
+  <div id="resModal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden items-start justify-center p-2 sm:p-6 overflow-y-auto" onclick="if(event.target===this) resCloseEvent()">
+    <div class="bg-white w-full max-w-6xl rounded-3xl shadow-2xl border border-slate-200 my-4 overflow-hidden">
+      <div class="bg-gradient-to-r from-sky-950 via-sky-900 to-slate-900 text-white px-5 sm:px-8 py-6 relative">
+        <button onclick="resCloseEvent()" class="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20" aria-label="Close"><i data-lucide="x" class="w-5 h-5"></i></button>
+        <p class="text-xs font-bold uppercase tracking-wider text-amber-300" id="resModalMeta"></p>
+        <h3 class="text-xl sm:text-2xl font-black mt-1 pr-10" id="resModalTitle"></h3>
+        <p class="text-xs text-sky-100/80 mt-2" id="resModalStaff"></p>
+      </div>
+      <div class="px-4 sm:px-8 pt-5">
+        <div class="flex flex-wrap gap-2 mb-3" id="resSectionBar"></div>
+        <div class="inline-flex flex-wrap p-1 bg-slate-100 border border-slate-200 rounded-2xl gap-1" id="resTabBar"></div>
+      </div>
+      <div class="px-4 sm:px-8 py-6" id="resModalBody"></div>
+      <div class="px-4 sm:px-8 pb-6 text-[11px] text-slate-400" id="resModalSource"></div>
+    </div>
+  </div>
+
   <!-- SECTION 4: HISTORICAL TOURNAMENT PHOTO GALLERY (WITH LIGHTBOX ZOOM) -->
   <section id="gallery" class="py-16 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -915,6 +987,7 @@
     const fest2026Rounds = {"tournament": "Jordan Bridge Festival 2026 - Open Teams", "date": "2026-09-27 / 2026-09-28", "organizer": "Jordan Bridge Federation & Egyptian Bridge Federation", "director": "Waleed El Menyawi", "totalTeams": 24, "standings": [{"rank": 1, "teamId": 12, "score": 109.94, "name": "AKIEL"}, {"rank": 2, "teamId": 24, "score": 102.54, "name": "VU"}, {"rank": 3, "teamId": 14, "score": 102.17, "name": "RADE"}, {"rank": 4, "teamId": 4, "score": 100.38, "name": "MIQDDADI"}, {"rank": 5, "teamId": 19, "score": 97.47, "name": "YAMENN"}, {"rank": 6, "teamId": 20, "score": 97.19, "name": "AL AHLY"}, {"rank": 7, "teamId": 17, "score": 91.02, "name": "JOE"}, {"rank": 8, "teamId": 7, "score": 86.34, "name": "DARK WAVE"}, {"rank": 9, "teamId": 21, "score": 85.13, "name": "AMMAN"}, {"rank": 9, "teamId": 23, "score": 85.13, "name": "ARAB UNITED"}, {"rank": 11, "teamId": 5, "score": 84.04, "name": "SWISS ARABIAN"}, {"rank": 12, "teamId": 9, "score": 82.33, "name": "SHEKA BEKA"}, {"rank": 13, "teamId": 10, "score": 82.29, "name": "RED SEA"}, {"rank": 14, "teamId": 18, "score": 82.27, "name": "AL MAMOUN"}, {"rank": 15, "teamId": 1, "score": 78.57, "name": "SHARJAH"}, {"rank": 16, "teamId": 8, "score": 78.42, "name": "RFAA"}, {"rank": 17, "teamId": 15, "score": 74.91, "name": "TURK-JOR"}, {"rank": 18, "teamId": 16, "score": 70.03, "name": "LIONS"}, {"rank": 19, "teamId": 22, "score": 66.07, "name": "ZAK"}, {"rank": 20, "teamId": 2, "score": 65.88, "name": "S.R"}, {"rank": 21, "teamId": 13, "score": 61.6, "name": "TRICKS"}, {"rank": 22, "teamId": 3, "score": 53.8, "name": "MOROCCO"}, {"rank": 23, "teamId": 11, "score": 42.77, "name": "SHAHRO"}, {"rank": 24, "teamId": 6, "score": 39.71, "name": "WADI RUM"}], "rounds": {"8": [{"table": 1, "homeTeam": {"id": 12, "name": "AKIEL", "imp": 22, "vp": 12.77}, "awayTeam": {"id": 24, "name": "VU", "imp": 15, "vp": 7.23}}, {"table": 2, "homeTeam": {"id": 20, "name": "AL AHLY", "imp": 21, "vp": 4.0}, "awayTeam": {"id": 14, "name": "RADE", "imp": 39, "vp": 16.0}}, {"table": 3, "homeTeam": {"id": 17, "name": "JOE", "imp": 16, "vp": 5.91}, "awayTeam": {"id": 19, "name": "YAMENN", "imp": 27, "vp": 14.09}}, {"table": 4, "homeTeam": {"id": 4, "name": "MIQDDADI", "imp": 27, "vp": 17.87}, "awayTeam": {"id": 1, "name": "SHARJAH", "imp": 0, "vp": 2.13}}, {"table": 5, "homeTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 13, "vp": 8.73}, "awayTeam": {"id": 7, "name": "DARK WAVE", "imp": 16, "vp": 11.27}}, {"table": 6, "homeTeam": {"id": 21, "name": "AMMAN", "imp": 23, "vp": 10.44}, "awayTeam": {"id": 10, "name": "RED SEA", "imp": 22, "vp": 9.56}}, {"table": 7, "homeTeam": {"id": 8, "name": "RFAA", "imp": 17, "vp": 6.22}, "awayTeam": {"id": 23, "name": "ARAB UNITED", "imp": 27, "vp": 13.78}}, {"table": 8, "homeTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 17, "vp": 12.42}, "awayTeam": {"id": 15, "name": "TURK-JOR", "imp": 11, "vp": 7.58}}, {"table": 9, "homeTeam": {"id": 18, "name": "AL MAMOUN", "imp": 31, "vp": 17.11}, "awayTeam": {"id": 22, "name": "ZAK", "imp": 8, "vp": 2.89}}, {"table": 10, "homeTeam": {"id": 16, "name": "LIONS", "imp": 17, "vp": 10.0}, "awayTeam": {"id": 2, "name": "S.R", "imp": 17, "vp": 10.0}}, {"table": 11, "homeTeam": {"id": 3, "name": "MOROCCO", "imp": 9, "vp": 1.96}, "awayTeam": {"id": 13, "name": "TRICKS", "imp": 37, "vp": 18.04}}, {"table": 12, "homeTeam": {"id": 11, "name": "SHAHRO", "imp": 32, "vp": 7.58}, "awayTeam": {"id": 6, "name": "WADI RUM", "imp": 38, "vp": 12.42}}], "7": [{"table": 1, "homeTeam": {"id": 14, "name": "RADE", "imp": 14, "vp": 4.25}, "awayTeam": {"id": 12, "name": "AKIEL", "imp": 31, "vp": 15.75}}, {"table": 2, "homeTeam": {"id": 24, "name": "VU", "imp": 21, "vp": 15.5}, "awayTeam": {"id": 19, "name": "YAMENN", "imp": 5, "vp": 4.5}}, {"table": 3, "homeTeam": {"id": 20, "name": "AL AHLY", "imp": 21, "vp": 16.46}, "awayTeam": {"id": 7, "name": "DARK WAVE", "imp": 1, "vp": 3.54}}, {"table": 4, "homeTeam": {"id": 10, "name": "RED SEA", "imp": 11, "vp": 4.77}, "awayTeam": {"id": 17, "name": "JOE", "imp": 26, "vp": 15.23}}, {"table": 5, "homeTeam": {"id": 21, "name": "AMMAN", "imp": 1, "vp": 7.58}, "awayTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 7, "vp": 12.42}}, {"table": 6, "homeTeam": {"id": 18, "name": "AL MAMOUN", "imp": 13, "vp": 2.5}, "awayTeam": {"id": 4, "name": "MIQDDADI", "imp": 38, "vp": 17.5}}, {"table": 7, "homeTeam": {"id": 16, "name": "LIONS", "imp": 1, "vp": 2.5}, "awayTeam": {"id": 1, "name": "SHARJAH", "imp": 26, "vp": 17.5}}, {"table": 8, "homeTeam": {"id": 8, "name": "RFAA", "imp": 46, "vp": 20.0}, "awayTeam": {"id": 2, "name": "S.R", "imp": 1, "vp": 0.0}}, {"table": 9, "homeTeam": {"id": 23, "name": "ARAB UNITED", "imp": 39, "vp": 19.37}, "awayTeam": {"id": 3, "name": "MOROCCO", "imp": 2, "vp": 0.63}}, {"table": 10, "homeTeam": {"id": 22, "name": "ZAK", "imp": 12, "vp": 13.12}, "awayTeam": {"id": 13, "name": "TRICKS", "imp": 4, "vp": 6.88}}, {"table": 11, "homeTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 49, "vp": 20.0}, "awayTeam": {"id": 6, "name": "WADI RUM", "imp": 1, "vp": 0.0}}, {"table": 12, "homeTeam": {"id": 11, "name": "SHAHRO", "imp": 0, "vp": 2.31}, "awayTeam": {"id": 15, "name": "TURK-JOR", "imp": 26, "vp": 17.69}}], "6": [{"table": 1, "homeTeam": {"id": 20, "name": "AL AHLY", "imp": 11, "vp": 10.0}, "awayTeam": {"id": 12, "name": "AKIEL", "imp": 11, "vp": 10.0}}, {"table": 2, "homeTeam": {"id": 17, "name": "JOE", "imp": 7, "vp": 3.32}, "awayTeam": {"id": 14, "name": "RADE", "imp": 28, "vp": 16.68}}, {"table": 3, "homeTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 2, "vp": 0.38}, "awayTeam": {"id": 24, "name": "VU", "imp": 41, "vp": 19.62}}, {"table": 4, "homeTeam": {"id": 4, "name": "MIQDDADI", "imp": 6, "vp": 5.91}, "awayTeam": {"id": 21, "name": "AMMAN", "imp": 17, "vp": 14.09}}, {"table": 5, "homeTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 1, "vp": 0.0}, "awayTeam": {"id": 19, "name": "YAMENN", "imp": 52, "vp": 20.0}}, {"table": 6, "homeTeam": {"id": 7, "name": "DARK WAVE", "imp": 34, "vp": 17.69}, "awayTeam": {"id": 23, "name": "ARAB UNITED", "imp": 8, "vp": 2.31}}, {"table": 7, "homeTeam": {"id": 8, "name": "RFAA", "imp": 4, "vp": 1.32}, "awayTeam": {"id": 10, "name": "RED SEA", "imp": 36, "vp": 18.68}}, {"table": 8, "homeTeam": {"id": 22, "name": "ZAK", "imp": 7, "vp": 3.32}, "awayTeam": {"id": 18, "name": "AL MAMOUN", "imp": 28, "vp": 16.68}}, {"table": 9, "homeTeam": {"id": 16, "name": "LIONS", "imp": 27, "vp": 11.67}, "awayTeam": {"id": 3, "name": "MOROCCO", "imp": 23, "vp": 8.33}}, {"table": 10, "homeTeam": {"id": 15, "name": "TURK-JOR", "imp": 2, "vp": 5.91}, "awayTeam": {"id": 2, "name": "S.R", "imp": 13, "vp": 14.09}}, {"table": 11, "homeTeam": {"id": 1, "name": "SHARJAH", "imp": 24, "vp": 17.31}, "awayTeam": {"id": 13, "name": "TRICKS", "imp": 0, "vp": 2.69}}, {"table": 12, "homeTeam": {"id": 6, "name": "WADI RUM", "imp": 1, "vp": 1.63}, "awayTeam": {"id": 11, "name": "SHAHRO", "imp": 31, "vp": 18.37}}], "5": [{"table": 1, "homeTeam": {"id": 12, "name": "AKIEL", "imp": 16, "vp": 9.14}, "awayTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 18, "vp": 10.86}}, {"table": 2, "homeTeam": {"id": 21, "name": "AMMAN", "imp": 6, "vp": 2.5}, "awayTeam": {"id": 20, "name": "AL AHLY", "imp": 31, "vp": 17.5}}, {"table": 3, "homeTeam": {"id": 17, "name": "JOE", "imp": 30, "vp": 17.69}, "awayTeam": {"id": 23, "name": "ARAB UNITED", "imp": 4, "vp": 2.31}}, {"table": 4, "homeTeam": {"id": 19, "name": "YAMENN", "imp": 8, "vp": 12.42}, "awayTeam": {"id": 7, "name": "DARK WAVE", "imp": 2, "vp": 7.58}}, {"table": 5, "homeTeam": {"id": 14, "name": "RADE", "imp": 44, "vp": 19.85}, "awayTeam": {"id": 15, "name": "TURK-JOR", "imp": 3, "vp": 0.15}}, {"table": 6, "homeTeam": {"id": 24, "name": "VU", "imp": 35, "vp": 18.37}, "awayTeam": {"id": 3, "name": "MOROCCO", "imp": 5, "vp": 1.63}}, {"table": 7, "homeTeam": {"id": 1, "name": "SHARJAH", "imp": 4, "vp": 1.47}, "awayTeam": {"id": 4, "name": "MIQDDADI", "imp": 35, "vp": 18.53}}, {"table": 8, "homeTeam": {"id": 16, "name": "LIONS", "imp": 17, "vp": 7.23}, "awayTeam": {"id": 8, "name": "RFAA", "imp": 24, "vp": 12.77}}, {"table": 9, "homeTeam": {"id": 10, "name": "RED SEA", "imp": 16, "vp": 11.27}, "awayTeam": {"id": 22, "name": "ZAK", "imp": 13, "vp": 8.73}}, {"table": 10, "homeTeam": {"id": 13, "name": "TRICKS", "imp": 16, "vp": 1.63}, "awayTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 46, "vp": 18.37}}, {"table": 11, "homeTeam": {"id": 18, "name": "AL MAMOUN", "imp": 34, "vp": 17.69}, "awayTeam": {"id": 6, "name": "WADI RUM", "imp": 8, "vp": 2.31}}, {"table": 12, "homeTeam": {"id": 2, "name": "S.R", "imp": 34, "vp": 18.53}, "awayTeam": {"id": 11, "name": "SHAHRO", "imp": 3, "vp": 1.47}}], "4": [{"table": 1, "homeTeam": {"id": 21, "name": "AMMAN", "imp": 3, "vp": 8.73}, "awayTeam": {"id": 12, "name": "AKIEL", "imp": 6, "vp": 11.27}}, {"table": 2, "homeTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 11, "vp": 12.05}, "awayTeam": {"id": 17, "name": "JOE", "imp": 6, "vp": 7.95}}, {"table": 3, "homeTeam": {"id": 23, "name": "ARAB UNITED", "imp": 15, "vp": 10.44}, "awayTeam": {"id": 14, "name": "RADE", "imp": 14, "vp": 9.56}}, {"table": 4, "homeTeam": {"id": 24, "name": "VU", "imp": 12, "vp": 7.23}, "awayTeam": {"id": 20, "name": "AL AHLY", "imp": 19, "vp": 12.77}}, {"table": 5, "homeTeam": {"id": 4, "name": "MIQDDADI", "imp": 1, "vp": 5.32}, "awayTeam": {"id": 7, "name": "DARK WAVE", "imp": 14, "vp": 14.68}}, {"table": 6, "homeTeam": {"id": 19, "name": "YAMENN", "imp": 10, "vp": 13.45}, "awayTeam": {"id": 8, "name": "RFAA", "imp": 1, "vp": 6.55}}, {"table": 7, "homeTeam": {"id": 10, "name": "RED SEA", "imp": 0, "vp": 9.14}, "awayTeam": {"id": 1, "name": "SHARJAH", "imp": 2, "vp": 10.86}}, {"table": 8, "homeTeam": {"id": 15, "name": "TURK-JOR", "imp": 24, "vp": 15.5}, "awayTeam": {"id": 13, "name": "TRICKS", "imp": 8, "vp": 4.5}}, {"table": 9, "homeTeam": {"id": 18, "name": "AL MAMOUN", "imp": 12, "vp": 4.77}, "awayTeam": {"id": 3, "name": "MOROCCO", "imp": 27, "vp": 15.23}}, {"table": 10, "homeTeam": {"id": 6, "name": "WADI RUM", "imp": 1, "vp": 0.5}, "awayTeam": {"id": 16, "name": "LIONS", "imp": 39, "vp": 19.5}}, {"table": 11, "homeTeam": {"id": 2, "name": "S.R", "imp": 10, "vp": 4.77}, "awayTeam": {"id": 22, "name": "ZAK", "imp": 25, "vp": 15.23}}, {"table": 12, "homeTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 21, "vp": 14.39}, "awayTeam": {"id": 11, "name": "SHAHRO", "imp": 9, "vp": 5.61}}], "3": [{"table": 1, "homeTeam": {"id": 12, "name": "AKIEL", "imp": 47, "vp": 20.0}, "awayTeam": {"id": 10, "name": "RED SEA", "imp": 1, "vp": 0.0}}, {"table": 2, "homeTeam": {"id": 20, "name": "AL AHLY", "imp": 20, "vp": 8.33}, "awayTeam": {"id": 23, "name": "ARAB UNITED", "imp": 24, "vp": 11.67}}, {"table": 3, "homeTeam": {"id": 15, "name": "TURK-JOR", "imp": 2, "vp": 2.89}, "awayTeam": {"id": 21, "name": "AMMAN", "imp": 25, "vp": 17.11}}, {"table": 4, "homeTeam": {"id": 14, "name": "RADE", "imp": 34, "vp": 12.05}, "awayTeam": {"id": 7, "name": "DARK WAVE", "imp": 29, "vp": 7.95}}, {"table": 5, "homeTeam": {"id": 8, "name": "RFAA", "imp": 20, "vp": 8.33}, "awayTeam": {"id": 24, "name": "VU", "imp": 24, "vp": 11.67}}, {"table": 6, "homeTeam": {"id": 18, "name": "AL MAMOUN", "imp": 11, "vp": 1.96}, "awayTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 39, "vp": 18.04}}, {"table": 7, "homeTeam": {"id": 17, "name": "JOE", "imp": 42, "vp": 19.37}, "awayTeam": {"id": 16, "name": "LIONS", "imp": 5, "vp": 0.63}}, {"table": 8, "homeTeam": {"id": 3, "name": "MOROCCO", "imp": 25, "vp": 7.58}, "awayTeam": {"id": 1, "name": "SHARJAH", "imp": 31, "vp": 12.42}}, {"table": 9, "homeTeam": {"id": 4, "name": "MIQDDADI", "imp": 49, "vp": 18.37}, "awayTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 19, "vp": 1.63}}, {"table": 10, "homeTeam": {"id": 2, "name": "S.R", "imp": 14, "vp": 3.54}, "awayTeam": {"id": 19, "name": "YAMENN", "imp": 34, "vp": 16.46}}, {"table": 11, "homeTeam": {"id": 22, "name": "ZAK", "imp": 9, "vp": 8.73}, "awayTeam": {"id": 6, "name": "WADI RUM", "imp": 12, "vp": 11.27}}, {"table": 12, "homeTeam": {"id": 11, "name": "SHAHRO", "imp": 8, "vp": 2.13}, "awayTeam": {"id": 13, "name": "TRICKS", "imp": 35, "vp": 17.87}}], "2": [{"table": 1, "homeTeam": {"id": 12, "name": "AKIEL", "imp": 15, "vp": 11.27}, "awayTeam": {"id": 15, "name": "TURK-JOR", "imp": 12, "vp": 8.73}}, {"table": 2, "homeTeam": {"id": 10, "name": "RED SEA", "imp": 20, "vp": 13.12}, "awayTeam": {"id": 18, "name": "AL MAMOUN", "imp": 12, "vp": 6.88}}, {"table": 3, "homeTeam": {"id": 14, "name": "RADE", "imp": 10, "vp": 10.0}, "awayTeam": {"id": 21, "name": "AMMAN", "imp": 10, "vp": 10.0}}, {"table": 4, "homeTeam": {"id": 20, "name": "AL AHLY", "imp": 23, "vp": 14.68}, "awayTeam": {"id": 3, "name": "MOROCCO", "imp": 10, "vp": 5.32}}, {"table": 5, "homeTeam": {"id": 7, "name": "DARK WAVE", "imp": 17, "vp": 10.86}, "awayTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 15, "vp": 9.14}}, {"table": 6, "homeTeam": {"id": 1, "name": "SHARJAH", "imp": 21, "vp": 5.61}, "awayTeam": {"id": 23, "name": "ARAB UNITED", "imp": 33, "vp": 14.39}}, {"table": 7, "homeTeam": {"id": 24, "name": "VU", "imp": 12, "vp": 13.78}, "awayTeam": {"id": 2, "name": "S.R", "imp": 2, "vp": 6.22}}, {"table": 8, "homeTeam": {"id": 6, "name": "WADI RUM", "imp": 5, "vp": 4.0}, "awayTeam": {"id": 8, "name": "RFAA", "imp": 23, "vp": 16.0}}, {"table": 9, "homeTeam": {"id": 4, "name": "MIQDDADI", "imp": 12, "vp": 10.0}, "awayTeam": {"id": 19, "name": "YAMENN", "imp": 12, "vp": 10.0}}, {"table": 10, "homeTeam": {"id": 13, "name": "TRICKS", "imp": 8, "vp": 3.77}, "awayTeam": {"id": 17, "name": "JOE", "imp": 27, "vp": 16.23}}, {"table": 11, "homeTeam": {"id": 22, "name": "ZAK", "imp": 15, "vp": 8.73}, "awayTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 18, "vp": 11.27}}, {"table": 12, "homeTeam": {"id": 16, "name": "LIONS", "imp": 15, "vp": 14.96}, "awayTeam": {"id": 11, "name": "SHAHRO", "imp": 1, "vp": 5.04}}], "1": [{"table": 1, "homeTeam": {"id": 1, "name": "SHARJAH", "imp": 10, "vp": 11.27}, "awayTeam": {"id": 2, "name": "S.R", "imp": 7, "vp": 8.73}}, {"table": 2, "homeTeam": {"id": 3, "name": "MOROCCO", "imp": 20, "vp": 13.12}, "awayTeam": {"id": 4, "name": "MIQDDADI", "imp": 12, "vp": 6.88}}, {"table": 3, "homeTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 28, "vp": 12.42}, "awayTeam": {"id": 6, "name": "WADI RUM", "imp": 22, "vp": 7.58}}, {"table": 4, "homeTeam": {"id": 7, "name": "DARK WAVE", "imp": 16, "vp": 12.77}, "awayTeam": {"id": 8, "name": "RFAA", "imp": 9, "vp": 7.23}}, {"table": 5, "homeTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 5, "vp": 4.25}, "awayTeam": {"id": 10, "name": "RED SEA", "imp": 22, "vp": 15.75}}, {"table": 6, "homeTeam": {"id": 11, "name": "SHAHRO", "imp": 9, "vp": 0.26}, "awayTeam": {"id": 12, "name": "AKIEL", "imp": 49, "vp": 19.74}}, {"table": 7, "homeTeam": {"id": 13, "name": "TRICKS", "imp": 10, "vp": 6.22}, "awayTeam": {"id": 14, "name": "RADE", "imp": 20, "vp": 13.78}}, {"table": 8, "homeTeam": {"id": 15, "name": "TURK-JOR", "imp": 25, "vp": 16.46}, "awayTeam": {"id": 16, "name": "LIONS", "imp": 5, "vp": 3.54}}, {"table": 9, "homeTeam": {"id": 17, "name": "JOE", "imp": 17, "vp": 5.32}, "awayTeam": {"id": 18, "name": "AL MAMOUN", "imp": 30, "vp": 14.68}}, {"table": 10, "homeTeam": {"id": 19, "name": "YAMENN", "imp": 12, "vp": 6.55}, "awayTeam": {"id": 20, "name": "AL AHLY", "imp": 21, "vp": 13.45}}, {"table": 11, "homeTeam": {"id": 21, "name": "AMMAN", "imp": 23, "vp": 14.68}, "awayTeam": {"id": 22, "name": "ZAK", "imp": 10, "vp": 5.32}}, {"table": 12, "homeTeam": {"id": 23, "name": "ARAB UNITED", "imp": 19, "vp": 10.86}, "awayTeam": {"id": 24, "name": "VU", "imp": 17, "vp": 9.14}}]}}.rounds;
     const committeeData = {"title": "Jordan Bridge Federation Executive Board", "title_ar": "مجلس إدارة الاتحاد الأردني للبريدج", "members": [{"name": "Mr. Ma'moun Kotob", "name_ar": "السيد مأمون القطب", "role": "J.B.F President", "role_ar": "رئيس الاتحاد الأردني للبريدج", "phone": "", "email": "jor_bridge@yahoo.com", "photo": "public/images/mamoun.jpg"}, {"name": "Mrs. Rana Abdelhadi", "name_ar": "السيدة رنا عبد الهادي", "role": "Vice President", "role_ar": "نائب رئيس الاتحاد", "phone": "0795534561", "email": "", "photo": "public/images/RANA.jpg"}, {"name": "Mrs. Huda Rabaie", "name_ar": "السيدة هدى ربيعي", "role": "Secretary General", "role_ar": "أمين السر", "phone": "", "email": "", "photo": "public/images/H11111.jpg"}, {"name": "Mr. Abdulah Ajloni", "name_ar": "السيد عبد الله العجلوني", "role": "Treasurer", "role_ar": "أمين الصندوق", "phone": "0795251199", "email": "", "photo": "public/images/abdlah.jpg"}, {"name": "Mrs. Dima AL Taher", "name_ar": "السيدة ديما الطاهر", "role": "Board Member", "role_ar": "عضو مجلس الإدارة", "phone": "0777889941", "email": "", "photo": "public/images/dima.jpg"}, {"name": "Mrs. Silvie Saklejian", "name_ar": "السيدة سلفي سكلجيان", "role": "Board Member", "role_ar": "عضو مجلس الإدارة", "phone": "0795555373", "email": "", "photo": "public/images/syelve.jpg"}, {"name": "Mr. Jwan Halasah", "name_ar": "السيد جوان هلسا", "role": "Board Member", "role_ar": "عضو مجلس الإدارة", "phone": "0796926341", "email": "", "photo": "public/images/jwan.jpg"}, {"name": "Mr. Raed Darwesh", "name_ar": "السيد رعد درويش", "role": "J.B.F Manager", "role_ar": "مدير عام الاتحاد", "phone": "00962796665565", "email": "jor_bridge@yahoo.com", "photo": "public/images/raad_drw.jpg"}]};
     const galleryList = ["45d0f389_7789_4b8f_9ce8_90baa9dd16fe.jpg", "5227a79b_6a7f_40a1_b72e_00ff0ff8de52.jpg", "8163fb2c_f533_49c9_a412_1bf8475d7287.jpg", "8p8a0632_1_.jpg", "8p8a0681_1.jpg", "a525d373_adcb_47a3_b0ae_22f57abc929f.jpg", "bahjat_almjali_1.jpg", "bfame_1.jpg", "bfame_16th_chennai_120.jpg", "bfame_16th_chennai_122.jpg", "bfame_16th_chennai_245.jpg", "dsc_2534.jpg", "dsc_2582.jpg", "dsc_2587_1.jpg", "dsc_2634_2.jpg", "dsc_3563.jpg", "gallery_101.jpg", "gallery_327.jpg", "ghassan.jpg", "img_20170403_192014.jpg", "imgl9575.jpg"];
+    const resultsIndex = {"source":"https://www.bridgewebs.com/cgi-bin/bwor/bw.cgi?club=jbf&pid=display_past","events":[{"id":"20260926_2","date":"2026-09-26","year":2026,"title":"Jordan Bridge Festival 2026 - Mixed Pairs - Session 2","category":"Jordan Bridge Festival","type":"Pairs","tables":"34½","staff":[],"sections":[],"boards":24,"hands":true,"travellers":true,"matches":false},{"id":"20260926_1","date":"2026-09-26","year":2026,"title":"Jordan Bridge Festival 2026 - Mixed Pairs - Session 1","category":"Jordan Bridge Festival","type":"Pairs","tables":"34½","staff":[],"sections":[],"boards":24,"hands":true,"travellers":true,"matches":false},{"id":"20260923_3","date":"2026-09-23","year":2026,"title":"Jordan Bridge Festival 2026 - Open Pairs - Session 3","category":"Jordan Bridge Festival","type":"Pairs","tables":"47","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20260923_2","date":"2026-09-23","year":2026,"title":"Jordan Bridge Festival 2026 - Open Pairs - Session 2","category":"Jordan Bridge Festival","type":"Pairs","tables":"47","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20260923_1","date":"2026-09-23","year":2026,"title":"Jordan Bridge Festival 2026 - Open Pairs - Session 1","category":"Jordan Bridge Festival","type":"Pairs","tables":"47","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20260723_1","date":"2026-07-23","year":2026,"title":"Jordan Cup's Final Overall","category":"Jordan Cup","type":"Teams","tables":"4","staff":["Director: Raad Otoom"],"sections":[],"boards":28,"hands":true,"travellers":true,"matches":true},{"id":"20260720_1","date":"2026-07-20","year":2026,"title":"Jordan Cup's S.F Overall","category":"Jordan Cup","type":"Teams","tables":"4","staff":["Director: Raad Otoom"],"sections":[],"boards":28,"hands":true,"travellers":true,"matches":true},{"id":"20260718_1","date":"2026-07-18","year":2026,"title":"Jordan Cup's 2026 S.03 Overall","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad Otoom"],"sections":["Session All","Session 1","Session 2","Session 3"],"boards":120,"hands":true,"travellers":false,"matches":true},{"id":"20260716_1","date":"2026-07-16","year":2026,"title":"Jordan Cup's 2026 3/4/07 Overall","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad Otoom"],"sections":["Session All","Session 1","Session 2","Session 3"],"boards":96,"hands":true,"travellers":false,"matches":true},{"id":"20260713_1","date":"2026-07-13","year":2026,"title":"Jordan Cup's 2026 02/07 Overall","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad Otoom"],"sections":["Session All","Session 1","Session 2","Session 3"],"boards":96,"hands":true,"travellers":false,"matches":true},{"id":"20250927_2","date":"2025-09-27","year":2025,"title":"Jordan Bridge Festival Mixed Pairs - Session 2","category":"Jordan Bridge Festival","type":"Pairs","tables":"41","staff":[],"sections":[],"boards":24,"hands":true,"travellers":true,"matches":false},{"id":"20250927_1","date":"2025-09-27","year":2025,"title":"Jordan Bridge Festival Mixed Pairs - Session 1","category":"Jordan Bridge Festival","type":"Pairs","tables":"41","staff":[],"sections":[],"boards":24,"hands":true,"travellers":true,"matches":false},{"id":"20250924_3","date":"2025-09-24","year":2025,"title":"Jordan Bridge Festival 2025 - Session 3","category":"Jordan Bridge Festival","type":"Pairs","tables":"59","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20250924_2","date":"2025-09-24","year":2025,"title":"Jordan Bridge Festival 2025 - Session 2","category":"Jordan Bridge Festival","type":"Pairs","tables":"59","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20250924_1","date":"2025-09-24","year":2025,"title":"Jordan Bridge Festival 2025 - Session 1","category":"Jordan Bridge Festival","type":"Pairs","tables":"59","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20250726_3","date":"2025-07-26","year":2025,"title":"Jordan Cup's 2025 14/14","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad Otoom"],"sections":[],"boards":60,"hands":true,"travellers":true,"matches":false},{"id":"20250726_2","date":"2025-07-26","year":2025,"title":"Jordan Cup's 2025 13/14","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad Otoom"],"sections":[],"boards":48,"hands":true,"travellers":true,"matches":false},{"id":"20250726_1","date":"2025-07-26","year":2025,"title":"Jordan Cup's 2025 12/14","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad Otoom"],"sections":[],"boards":48,"hands":true,"travellers":true,"matches":false},{"id":"20250723_2","date":"2025-07-23","year":2025,"title":"Jordan Cup's 2025 11/14","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad Otoom"],"sections":[],"boards":36,"hands":true,"travellers":true,"matches":false},{"id":"20250723_1","date":"2025-07-23","year":2025,"title":"Jordan Cup's 2025 10/14","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad Otoom"],"sections":[],"boards":36,"hands":true,"travellers":true,"matches":false},{"id":"20250721_2","date":"2025-07-21","year":2025,"title":"Jordan Cup's 2025","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad Otoom"],"sections":[],"boards":24,"hands":true,"travellers":true,"matches":false},{"id":"20250721_1","date":"2025-07-21","year":2025,"title":"Jordan Cup's 2025","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad Otoom"],"sections":[],"boards":12,"hands":true,"travellers":true,"matches":false},{"id":"20250719_3","date":"2025-07-19","year":2025,"title":"Jordan Cup's 25","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad Otoom"],"sections":[],"boards":72,"hands":true,"travellers":true,"matches":false},{"id":"20250719_2","date":"2025-07-19","year":2025,"title":"Jordan Cup's 25","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad Otoom"],"sections":[],"boards":60,"hands":true,"travellers":true,"matches":false},{"id":"20250719_1","date":"2025-07-19","year":2025,"title":"Jordan Cup's 25","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad Otoom"],"sections":[],"boards":60,"hands":true,"travellers":true,"matches":false},{"id":"20250716_2","date":"2025-07-16","year":2025,"title":"Jordan Cup's 25","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad Otoom"],"sections":[],"boards":48,"hands":true,"travellers":true,"matches":false},{"id":"20250716_1","date":"2025-07-16","year":2025,"title":"Jordan Cup's 25","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad","Scorer: Otoom"],"sections":[],"boards":38,"hands":true,"travellers":true,"matches":false},{"id":"20250714_2","date":"2025-07-14","year":2025,"title":"Jordan Cup's 25","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad","Scorer: Otoom"],"sections":[],"boards":24,"hands":true,"travellers":true,"matches":false},{"id":"20250714_1","date":"2025-07-14","year":2025,"title":"Jordan Cup's 25","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad","Scorer: Otoom"],"sections":[],"boards":12,"hands":true,"travellers":true,"matches":false},{"id":"20250210_1","date":"2025-02-10","year":2025,"title":"Mix Selection 11/11","category":"Selection & Qualification","type":"Butler Pairs","tables":"3½","staff":["Director: Raad Otoom","Scorer: butler"],"sections":[],"boards":28,"hands":true,"travellers":true,"matches":false},{"id":"20250207_1","date":"2025-02-07","year":2025,"title":"Mix Selection 9/11","category":"Selection & Qualification","type":"Butler Pairs","tables":"3½","staff":["Director: Raad Otoom","Scorer: butler"],"sections":[],"boards":28,"hands":true,"travellers":true,"matches":false},{"id":"20250206_1","date":"2025-02-06","year":2025,"title":"Mix Selection 10/11","category":"Selection & Qualification","type":"Butler Pairs","tables":"3½","staff":["Director: Raad Otoom","Scorer: butler"],"sections":[],"boards":28,"hands":true,"travellers":true,"matches":false},{"id":"20250205_1","date":"2025-02-05","year":2025,"title":"Mix Selection 8/11","category":"Selection & Qualification","type":"Butler Pairs","tables":"3½","staff":["Director: Raad Otoom","Scorer: butler"],"sections":[],"boards":28,"hands":true,"travellers":true,"matches":false},{"id":"20250203_1","date":"2025-02-03","year":2025,"title":"Mix Selection 7/11","category":"Selection & Qualification","type":"Butler Pairs","tables":"3½","staff":["Director: Raad Otoom","Scorer: butler"],"sections":[],"boards":28,"hands":true,"travellers":true,"matches":false},{"id":"20250131_1","date":"2025-01-31","year":2025,"title":"Mix Selection 6/11","category":"Selection & Qualification","type":"Butler Pairs","tables":"3½","staff":["Director: Raad Otoom","Scorer: butler"],"sections":[],"boards":28,"hands":true,"travellers":true,"matches":false},{"id":"20250129_1","date":"2025-01-29","year":2025,"title":"Mix Selection 5/11","category":"Selection & Qualification","type":"Butler Pairs","tables":"3½","staff":["Director: Raad Otoom","Scorer: butler"],"sections":[],"boards":28,"hands":true,"travellers":true,"matches":false},{"id":"20250127_1","date":"2025-01-27","year":2025,"title":"Mix Selection 4/11","category":"Selection & Qualification","type":"Butler Pairs","tables":"3½","staff":["Director: Raad Otoom","Scorer: butler"],"sections":[],"boards":28,"hands":true,"travellers":true,"matches":false},{"id":"20250124_1","date":"2025-01-24","year":2025,"title":"Mix Selection 3/11","category":"Selection & Qualification","type":"Butler Pairs","tables":"3½","staff":["Director: Raad Otoom","Scorer: butler"],"sections":[],"boards":28,"hands":true,"travellers":true,"matches":false},{"id":"20250122_1","date":"2025-01-22","year":2025,"title":"Mix Selection 2/11","category":"Selection & Qualification","type":"Butler Pairs","tables":"3½","staff":["Director: Raad Otoom","Scorer: butler"],"sections":[],"boards":28,"hands":true,"travellers":true,"matches":false},{"id":"20250120_1","date":"2025-01-20","year":2025,"title":"Mix Selection 1/11","category":"Selection & Qualification","type":"Butler Pairs","tables":"3½","staff":["Director: Raad Otoom","Scorer: butler"],"sections":[],"boards":28,"hands":true,"travellers":true,"matches":false},{"id":"20240929_1","date":"2024-09-29","year":2024,"title":"41st Jordan Bridge Festival - Open Teams","category":"Jordan Bridge Festival","type":"Teams","tables":"11","staff":[],"sections":[],"boards":0,"hands":false,"travellers":false,"matches":false},{"id":"20240928_2","date":"2024-09-28","year":2024,"title":"41st Jordan Bridge Festival - Mixed Pairs - Session 2","category":"Jordan Bridge Festival","type":"Pairs","tables":"33","staff":[],"sections":[],"boards":24,"hands":true,"travellers":true,"matches":false},{"id":"20240928_1","date":"2024-09-28","year":2024,"title":"41st Jordan Bridge Festival - Mixed Pairs - Session 1","category":"Jordan Bridge Festival","type":"Pairs","tables":"33","staff":[],"sections":[],"boards":24,"hands":true,"travellers":true,"matches":false},{"id":"20240925_3","date":"2024-09-25","year":2024,"title":"41st Jordan Bridge Festival - Open Pairs - Session 3","category":"Jordan Bridge Festival","type":"Pairs","tables":"42","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20240925_2","date":"2024-09-25","year":2024,"title":"41st Jordan Bridge Festival - Open Pairs - Session 2","category":"Jordan Bridge Festival","type":"Pairs","tables":"42","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20240925_1","date":"2024-09-25","year":2024,"title":"41st Jordan Bridge Festival - Open Pairs - Session 1","category":"Jordan Bridge Festival","type":"Pairs","tables":"42","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20240812_1","date":"2024-08-12","year":2024,"title":"Qulification Arab League 2024","category":"Selection & Qualification","type":"Teams","tables":"4","staff":["Director: Raad Etoom"],"sections":[],"boards":80,"hands":true,"travellers":true,"matches":false},{"id":"20240720_1","date":"2024-07-20","year":2024,"title":"JBF Silver Jubilee","category":"Other Events","type":"Pairs","tables":"15½","staff":["Director: Raad Otoom"],"sections":[],"boards":32,"hands":true,"travellers":true,"matches":false},{"id":"20240610_1","date":"2024-06-10","year":2024,"title":"3rd Jordan Cup's Final","category":"Jordan Cup","type":"Teams","tables":"4","staff":["Director: Raad Etoom"],"sections":[],"boards":36,"hands":true,"travellers":true,"matches":false},{"id":"20240605_1","date":"2024-06-05","year":2024,"title":"3rd Jordan Cup's S.F","category":"Jordan Cup","type":"Teams","tables":"4","staff":["Director: Raad Etoom"],"sections":[],"boards":32,"hands":true,"travellers":true,"matches":false},{"id":"20240527_1","date":"2024-05-27","year":2024,"title":"3rd Jordan Cup's 2024","category":"Jordan Cup","type":"Teams","tables":"8","staff":["Director: Raad Etoom"],"sections":[],"boards":84,"hands":true,"travellers":true,"matches":false},{"id":"20230930_2","date":"2023-09-30","year":2023,"title":"Jordan Bridge Festival 2023 - Mixed Pairs - Session 2","category":"Jordan Bridge Festival","type":"Pairs","tables":"32","staff":[],"sections":[],"boards":24,"hands":true,"travellers":true,"matches":false},{"id":"20230930_1","date":"2023-09-30","year":2023,"title":"Jordan Bridge Festival 2023 - Mixed Pairs - Session 1","category":"Jordan Bridge Festival","type":"Pairs","tables":"32","staff":[],"sections":[],"boards":24,"hands":true,"travellers":true,"matches":false},{"id":"20230929_1","date":"2023-09-29","year":2023,"title":"Jordan Bridge Festival 2023 - Open Pairs - Session 1","category":"Jordan Bridge Festival","type":"Pairs","tables":"47½","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20230927_3","date":"2023-09-27","year":2023,"title":"Jordan Bridge Festival 2023 - Open Pairs - Session 3","category":"Jordan Bridge Festival","type":"Pairs","tables":"47½","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20230927_2","date":"2023-09-27","year":2023,"title":"Jordan Bridge Festival 2023 - Open Pairs - Session 2","category":"Jordan Bridge Festival","type":"Pairs","tables":"47½","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20230927_1","date":"2023-09-27","year":2023,"title":"Jordan Bridge Festival 2023 - Open Pairs - Session 1","category":"Jordan Bridge Festival","type":"Pairs","tables":"47½","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20230809_1","date":"2023-08-09","year":2023,"title":"Jordan Cup's Final","category":"Jordan Cup","type":"Teams","tables":"4","staff":["Director: Raad Etoom"],"sections":[],"boards":32,"hands":true,"travellers":true,"matches":false},{"id":"20230802_3","date":"2023-08-02","year":2023,"title":"Jordan Cup's S.F","category":"Jordan Cup","type":"Teams","tables":"4","staff":["Director: Raad Etoom"],"sections":[],"boards":20,"hands":true,"travellers":true,"matches":false},{"id":"20230724_1","date":"2023-07-24","year":2023,"title":"Jordan Cup's 2023","category":"Jordan Cup","type":"Teams","tables":"10","staff":["Director: Raad Etoom"],"sections":[],"boards":90,"hands":true,"travellers":true,"matches":false},{"id":"20230220_2","date":"2023-02-20","year":2023,"title":"Jordan Open Teams Selection 10","category":"Selection & Qualification","type":"Teams","tables":"2","staff":["Director: Raad Etoom"],"sections":[],"boards":16,"hands":true,"travellers":true,"matches":false},{"id":"20230220_1","date":"2023-02-20","year":2023,"title":"Jordan Open Teams Selection 9","category":"Selection & Qualification","type":"Teams","tables":"2","staff":["Director: Raad Etoom"],"sections":[],"boards":16,"hands":true,"travellers":true,"matches":false},{"id":"20230213_2","date":"2023-02-13","year":2023,"title":"Jordan Open Teams Selection 8","category":"Selection & Qualification","type":"Teams","tables":"2","staff":["Director: Raad Etoom"],"sections":[],"boards":16,"hands":true,"travellers":true,"matches":false},{"id":"20230213_1","date":"2023-02-13","year":2023,"title":"Jordan Open Teams Selection 7","category":"Selection & Qualification","type":"Teams","tables":"2","staff":["Director: Raad Etoom"],"sections":[],"boards":16,"hands":true,"travellers":true,"matches":false},{"id":"20230208_2","date":"2023-02-08","year":2023,"title":"Jordan Open Teams Selection 6","category":"Selection & Qualification","type":"Teams","tables":"2","staff":["Director: Raad Etoom"],"sections":[],"boards":16,"hands":true,"travellers":true,"matches":false},{"id":"20230208_1","date":"2023-02-08","year":2023,"title":"Jordan Open Teams Selection 5","category":"Selection & Qualification","type":"Teams","tables":"2","staff":["Director: Raad Etoom"],"sections":[],"boards":16,"hands":true,"travellers":true,"matches":false},{"id":"20230201_2","date":"2023-02-01","year":2023,"title":"Jordan Open Teams Selection 4","category":"Selection & Qualification","type":"Teams","tables":"2","staff":["Director: Raad Etoom"],"sections":[],"boards":16,"hands":true,"travellers":true,"matches":false},{"id":"20230201_1","date":"2023-02-01","year":2023,"title":"Jordan Open Teams Selection 3","category":"Selection & Qualification","type":"Teams","tables":"2","staff":["Director: Raad Etoom"],"sections":[],"boards":16,"hands":true,"travellers":true,"matches":false},{"id":"20230130_3","date":"2023-01-30","year":2023,"title":"Jordan Open Team Selection 2","category":"Selection & Qualification","type":"Teams","tables":"2","staff":["Director: Raad Etoom"],"sections":[],"boards":16,"hands":true,"travellers":true,"matches":false},{"id":"20230130_2","date":"2023-01-30","year":2023,"title":"Jordan Open Team Selection 1","category":"Selection & Qualification","type":"Teams","tables":"2","staff":["Director: Raad Etoom"],"sections":[],"boards":16,"hands":true,"travellers":true,"matches":false},{"id":"20221001_3","date":"2022-10-01","year":2022,"title":"39th Jordan Bridge Festival - Mixed Pairs - Session 1","category":"Jordan Bridge Festival","type":"Pairs","tables":"29½","staff":[],"sections":[],"boards":24,"hands":true,"travellers":true,"matches":false},{"id":"20221001_2","date":"2022-10-01","year":2022,"title":"39th Jordan Bridge Festival - Mixed Pairs - Session 2","category":"Jordan Bridge Festival","type":"Pairs","tables":"29½","staff":[],"sections":[],"boards":24,"hands":true,"travellers":true,"matches":false},{"id":"20220928_3","date":"2022-09-28","year":2022,"title":"Jordan Bridge Festival 2022 - Session 3","category":"Jordan Bridge Festival","type":"Pairs","tables":"44","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20220928_2","date":"2022-09-28","year":2022,"title":"Jordan Bridge Festival 2022 - Session 2","category":"Jordan Bridge Festival","type":"Pairs","tables":"44","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20220928_1","date":"2022-09-28","year":2022,"title":"Jordan Bridge Festival 2022 - Session 1","category":"Jordan Bridge Festival","type":"Pairs","tables":"44","staff":[],"sections":[],"boards":26,"hands":true,"travellers":true,"matches":false},{"id":"20220618_1","date":"2022-06-18","year":2022,"title":"Jordan Cup's 2022 session 7","category":"Jordan Cup","type":"Teams","tables":"6","staff":["Director: Raad Otoom"],"sections":[],"boards":12,"hands":true,"travellers":true,"matches":false},{"id":"20220617_1","date":"2022-06-17","year":2022,"title":"Jordan Cup's 2022","category":"Jordan Cup","type":"Teams","tables":"6","staff":["Director: Raad Otoom"],"sections":[],"boards":12,"hands":true,"travellers":true,"matches":false},{"id":"20191020_1","date":"2019-10-20","year":2019,"title":"38th Jordan Bridge Festival - Mixed Pairs - Session 2","category":"Jordan Bridge Festival","type":"Pairs","tables":"22½","staff":[],"sections":[],"boards":36,"hands":true,"travellers":true,"matches":false},{"id":"20191019_1","date":"2019-10-19","year":2019,"title":"38th Jordan Bridge Festival - Mixed Pairs - Session 1","category":"Jordan Bridge Festival","type":"Pairs","tables":"22½","staff":[],"sections":[],"boards":36,"hands":true,"travellers":true,"matches":false},{"id":"20191018_2","date":"2019-10-18","year":2019,"title":"11th Pan Arab InterClub","category":"Other Events","type":"Teams","tables":"4","staff":[],"sections":[],"boards":0,"hands":false,"travellers":false,"matches":false},{"id":"20191018_1","date":"2019-10-18","year":2019,"title":"38th Jordan Bridge Festival - Open Pairs - Session 3","category":"Jordan Bridge Festival","type":"Pairs","tables":"32","staff":[],"sections":[],"boards":33,"hands":true,"travellers":true,"matches":false},{"id":"20191017_1","date":"2019-10-17","year":2019,"title":"38th Jordan Bridge Festival - Open Pairs - Session 2","category":"Jordan Bridge Festival","type":"Pairs","tables":"32","staff":[],"sections":[],"boards":33,"hands":true,"travellers":true,"matches":false},{"id":"20191016_1","date":"2019-10-16","year":2019,"title":"38th Jordan Bridge Festival - Open Pairs - Session 1","category":"Jordan Bridge Festival","type":"Pairs","tables":"32½","staff":[],"sections":[],"boards":33,"hands":true,"travellers":true,"matches":false}]};
 
     let currentLang = 'en';
     let currentFestYear = '2026';
@@ -947,6 +1020,8 @@
       renderJordanCupCards();
       renderCommittee();
       renderDocuments();
+      renderResultsList();
+      if (RES.ev) resRenderEvent();
     }
 
     // MOBILE MENU
@@ -1881,6 +1956,373 @@
       alert('JSON copied to clipboard!');
     }
 
+
+    // ===================== RESULTS ARCHIVE (Bridgewebs migration) =====================
+    const RES = { index: resultsIndex, year: 'all', cat: 'all', q: '', cache: {}, ev: null, sec: 0, tab: 'ranking', board: 0, pair: '', team: 0 };
+    const RES_CATS = ['Jordan Bridge Festival', "Jordan Cup", 'Selection & Qualification', 'Other Events'];
+    const RES_T = {
+      all: ['All', 'الكل'], allYears: ['All years', 'كل السنوات'], events: ['events', 'بطولة'],
+      ranking: ['Ranking', 'الترتيب'], matches: ['Matches', 'المباريات'], scorecards: ['Scorecards', 'بطاقات النتائج'],
+      travellers: ['Travellers', 'جداول اللوحات'], hands: ['Hands', 'توزيع الأوراق'], ximps: ['X-Imps', 'X-Imps'],
+      information: ['Information', 'معلومات'], board: ['Board', 'لوحة'], pair: ['Pair / Team', 'الزوج / الفريق'],
+      loading: ['Loading…', 'جارٍ التحميل…'], noData: ['Bridgewebs has no data of this kind for this event.', 'لا تتوفر بيانات من هذا النوع لهذه البطولة على Bridgewebs.'],
+      source: ['Source: Bridgewebs results page', 'المصدر: صفحة النتائج على Bridgewebs'], tables: ['tables', 'طاولات'],
+      dealer: ['Dealer', 'الموزع'], vul: ['Vul', 'الخطورة'], hcp: ['HCP', 'النقاط'], dd: ['Makeable contracts (double dummy)', 'العقود الممكنة (Double Dummy)'],
+      session: ['Session', 'الجلسة'], selectPair: ['Select a pair or team', 'اختر زوجًا أو فريقًا'], vs: ['Opponents', 'الخصوم'],
+      dir: ['Dir', 'الاتجاه'], contract: ['Contract', 'العقد'], by: ['By', 'المنفذ'], lead: ['Lead', 'الافتتاح'], tricks: ['Tricks', 'اللمّات'],
+      score: ['Score', 'النتيجة'], points: ['Points', 'النقاط'], names: ['Show names', 'إظهار الأسماء'], loadErr: ['Could not load this event. Please try again.', 'تعذر تحميل البطولة. حاول مرة أخرى.'],
+      type_Pairs: ['Pairs', 'أزواج'], 'type_Butler Pairs': ['Butler Pairs', 'أزواج (Butler)'], type_Teams: ['Teams', 'فرق'],
+      'cat_Jordan Bridge Festival': ['Jordan Bridge Festival', 'مهرجان الأردن للبريدج'], 'cat_Jordan Cup': ["Jordan Cup", 'كأس الأردن'],
+      'cat_Selection & Qualification': ['Selection & Qualification', 'التصفيات والاختيار'], 'cat_Other Events': ['Other Events', 'بطولات أخرى']
+    };
+    function rt(k) { const v = RES_T[k]; return v ? v[currentLang === 'ar' ? 1 : 0] : k; }
+    function resEsc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    function resDate(iso) {
+      const d = new Date(iso + 'T12:00:00');
+      return d.toLocaleDateString(currentLang === 'ar' ? 'ar-JO' : 'en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
+    }
+    const RES_SUIT = { S: '<span class="suit-s">♠</span>', H: '<span class="suit-h">♥</span>', D: '<span class="suit-d">♦</span>', C: '<span class="suit-c">♣</span>' };
+    function resSuitText(s) {
+      // turns suit symbols already in text into coloured spans
+      return resEsc(s).replace(/♠/g, RES_SUIT.S).replace(/♥/g, RES_SUIT.H).replace(/♦/g, RES_SUIT.D).replace(/♣/g, RES_SUIT.C);
+    }
+    function resContract(c) {
+      if (!c) return '';
+      const m = String(c).match(/^([1-7])(NT|N|S|H|D|C)(\*{0,2})(.*)$/);
+      if (!m) return resEsc(c);
+      const st = m[2] === 'NT' || m[2] === 'N' ? 'NT' : RES_SUIT[m[2]];
+      const dbl = m[3] === '**' ? 'XX' : (m[3] === '*' ? 'X' : '');
+      return m[1] + st + dbl + resEsc(m[4]);
+    }
+    function resCard(c) {
+      if (!c) return '';
+      const m = String(c).match(/^([SHDC])(.+)$/);
+      return m ? RES_SUIT[m[1]] + resEsc(m[2] === 'T' ? '10' : m[2]) : resEsc(c);
+    }
+
+    // ---------- list ----------
+    function resSetSearch(v) { RES.q = v.trim().toLowerCase(); renderResultsList(); }
+    function resSetYear(y) { RES.year = y; renderResultsList(); }
+    function resSetCat(c) { RES.cat = c; renderResultsList(); }
+
+    function renderResultsList() {
+      const evs = RES.index.events;
+      const years = [...new Set(evs.map(e => e.year))].sort((a, b) => b - a);
+      const pill = (on, label, fn) => `<button onclick="${fn}" class="res-pill ${on ? 'on' : ''} px-3.5 py-1.5 rounded-xl text-xs font-bold border border-transparent text-slate-700 hover:bg-slate-100">${label}</button>`;
+      document.getElementById('resYearBar').innerHTML = pill(RES.year === 'all', rt('allYears'), "resSetYear('all')") +
+        years.map(y => pill(RES.year == y, y, `resSetYear(${y})`)).join('');
+      const chip = (on, label, n, fn) => `<button onclick="${fn}" class="res-pill ${on ? 'on' : ''} px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-slate-300 text-slate-700 hover:bg-slate-50">${label} <span class="opacity-60">${n}</span></button>`;
+      const inYear = evs.filter(e => RES.year === 'all' || e.year == RES.year);
+      document.getElementById('resCatBar').innerHTML = chip(RES.cat === 'all', rt('all'), inYear.length, "resSetCat('all')") +
+        RES_CATS.filter(c => inYear.some(e => e.category === c)).map(c => chip(RES.cat === c, rt('cat_' + c), inYear.filter(e => e.category === c).length, `resSetCat('${c.replace(/'/g, "\\'")}')`)).join('');
+
+      const list = inYear.filter(e => (RES.cat === 'all' || e.category === RES.cat) &&
+        (!RES.q || (e.title + ' ' + e.date + ' ' + e.type + ' ' + e.category + ' ' + (e.staff || []).join(' ')).toLowerCase().includes(RES.q)));
+      document.getElementById('resCountLine').textContent = list.length + ' ' + rt('events');
+      const out = [];
+      years.forEach(y => {
+        const ye = list.filter(e => e.year === y);
+        if (!ye.length) return;
+        out.push(`<div><div class="flex items-center gap-3 mb-4"><h3 class="text-2xl font-black text-slate-900">${y}</h3><span class="h-px flex-1 bg-slate-300"></span><span class="text-xs font-bold text-slate-500">${ye.length} ${rt('events')}</span></div>`);
+        RES_CATS.forEach(c => {
+          const ce = ye.filter(e => e.category === c);
+          if (!ce.length) return;
+          out.push(`<p class="text-xs font-bold uppercase tracking-wider text-sky-800 mb-2 mt-4">${rt('cat_' + c)}</p><div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">`);
+          ce.forEach(e => {
+            const tags = [];
+            if (e.travellers) tags.push(rt('travellers'));
+            if (e.hands) tags.push(rt('hands'));
+            if (e.matches) tags.push(rt('matches'));
+            out.push(`<button onclick="resOpenEvent('${e.id}')" class="text-left bg-white rounded-2xl border border-slate-200 hover:border-sky-400 hover:shadow-md transition-all p-4 flex flex-col gap-2 group">
+              <div class="flex items-center justify-between gap-2">
+                <span class="text-[11px] font-bold text-slate-500">${resDate(e.date)}</span>
+                <span class="text-[10px] font-bold uppercase tracking-wide px-2 py-0.5 rounded-full ${e.type === 'Teams' ? 'bg-emerald-100 text-emerald-800' : (e.type === 'Butler Pairs' ? 'bg-amber-100 text-amber-800' : 'bg-sky-100 text-sky-800')}">${rt('type_' + e.type)}</span>
+              </div>
+              <span class="font-extrabold text-slate-900 leading-snug group-hover:text-sky-800">${resEsc(e.title)}</span>
+              <span class="text-[11px] text-slate-500">${e.tables ? resEsc(e.tables) + ' ' + rt('tables') : ''}${e.tables && e.staff.length ? ' · ' : ''}${resEsc((e.staff || []).join(' · '))}</span>
+              <span class="flex flex-wrap gap-1 mt-1">${[rt('ranking')].concat(tags).map(t => `<span class="text-[10px] font-semibold px-1.5 py-0.5 rounded-md bg-slate-100 text-slate-600">${t}</span>`).join('')}</span>
+            </button>`);
+          });
+          out.push('</div>');
+        });
+        out.push('</div>');
+      });
+      document.getElementById('resListContainer').innerHTML = out.join('') || `<p class="text-sm text-slate-500">–</p>`;
+    }
+
+    // ---------- detail ----------
+    async function resOpenEvent(id, keepState) {
+      const meta = RES.index.events.find(e => e.id === id);
+      if (!meta) return;
+      const modal = document.getElementById('resModal');
+      modal.classList.remove('hidden'); modal.classList.add('flex');
+      document.body.style.overflow = 'hidden';
+      document.getElementById('resModalMeta').textContent = resDate(meta.date) + ' · ' + rt('cat_' + meta.category) + ' · ' + rt('type_' + meta.type);
+      document.getElementById('resModalTitle').textContent = meta.title;
+      document.getElementById('resModalStaff').textContent = [meta.tables ? meta.tables + ' ' + rt('tables') : ''].concat(meta.staff || []).filter(Boolean).join(' · ');
+      if (!keepState) { RES.sec = 0; RES.tab = 'ranking'; RES.board = 0; RES.pair = ''; RES.team = 0; }
+      if (location.hash !== '#results/' + id) history.replaceState(null, '', '#results/' + id);
+      if (!RES.cache[id]) {
+        document.getElementById('resSectionBar').innerHTML = '';
+        document.getElementById('resTabBar').innerHTML = '';
+        document.getElementById('resModalBody').innerHTML = `<p class="text-sm text-slate-500">${rt('loading')}</p>`;
+        try {
+          const r = await fetch('public/data/results/events/' + id + '.json');
+          if (!r.ok) throw new Error(r.status);
+          RES.cache[id] = await r.json();
+        } catch (err) {
+          document.getElementById('resModalBody').innerHTML = `<p class="text-sm text-red-600">${rt('loadErr')}</p>`;
+          return;
+        }
+      }
+      RES.ev = RES.cache[id];
+      document.getElementById('resModalSource').innerHTML = `${rt('source')}: <a class="underline hover:text-sky-700" href="${RES.ev.source}" target="_blank" rel="noopener">${resEsc(RES.ev.source)}</a>`;
+      resRenderEvent();
+      lucide.createIcons();
+    }
+    function resCloseEvent() {
+      const modal = document.getElementById('resModal');
+      modal.classList.add('hidden'); modal.classList.remove('flex');
+      document.body.style.overflow = '';
+      RES.ev = null;
+      if (location.hash.startsWith('#results/')) history.replaceState(null, '', '#results');
+    }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape' && RES.ev) resCloseEvent(); });
+
+    function resSection() { return RES.ev.sections[RES.sec] || RES.ev.sections[0]; }
+    function resTabsFor(s) {
+      const t = ['ranking'];
+      if (s.matches && s.matches.length) t.push('matches');
+      const trav = (s.boards || []).some(b => b.rows && b.rows.length);
+      if (trav && s.pairs && s.pairs.length) t.push('scorecards');
+      if (trav) t.push('travellers');
+      if ((s.boards || []).some(b => b.hands)) t.push('hands');
+      if (s.ximps && s.ximps.length) t.push('ximps');
+      if (s.information) t.push('information');
+      return t;
+    }
+    function resSetSec(i) { RES.sec = i; RES.board = 0; RES.pair = ''; RES.team = 0; const t = resTabsFor(resSection()); if (!t.includes(RES.tab)) RES.tab = 'ranking'; resRenderEvent(); }
+    function resSetTab(t) { RES.tab = t; resRenderEvent(); }
+
+    function resRenderEvent() {
+      const ev = RES.ev, s = resSection();
+      document.getElementById('resSectionBar').innerHTML = ev.sections.length > 1 ? ev.sections.map((x, i) =>
+        `<button onclick="resSetSec(${i})" class="res-pill ${i === RES.sec ? 'on' : ''} px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-slate-300 text-slate-700">${resEsc(x.label || (rt('session') + ' ' + (i + 1)))}</button>`).join('') : '';
+      const tabs = resTabsFor(s);
+      if (!tabs.includes(RES.tab)) RES.tab = 'ranking';
+      document.getElementById('resTabBar').innerHTML = tabs.map(t =>
+        `<button onclick="resSetTab('${t}')" class="res-pill ${t === RES.tab ? 'on' : ''} px-4 py-2 rounded-xl text-xs sm:text-sm font-bold text-slate-700 hover:bg-white">${rt(t)}</button>`).join('');
+      const body = document.getElementById('resModalBody');
+      const fn = { ranking: resRenderRanking, matches: resRenderMatches, scorecards: resRenderScorecards, travellers: resRenderTravellers, hands: resRenderHands, ximps: resRenderXimps, information: resRenderInfo }[RES.tab];
+      body.innerHTML = fn(s);
+    }
+
+    // generic Bridgewebs table (cells: {t, cs, rs, h})
+    function resGenericTable(rows, opts) {
+      opts = opts || {};
+      const html = ['<div class="overflow-x-auto rounded-2xl border border-slate-200"><table class="res-tbl"><tbody>'];
+      rows.forEach(r => {
+        html.push('<tr>');
+        r.forEach((c, ci) => {
+          const attrs = (c.cs ? ` colspan="${c.cs}"` : '') + (c.rs ? ` rowspan="${c.rs}"` : '');
+          let txt = c.t || '';
+          let inner = resSuitText(txt).replace(/\n/g, '<br>');
+          if (!c.h && opts.rankCol === ci && /^[123]=?$/.test(txt)) {
+            inner = `<span class="badge-rank-${txt[0]} inline-flex items-center justify-center min-w-7 h-7 px-1.5 rounded-full text-xs font-black">${resEsc(txt)}</span>`;
+          }
+          const cls = c.h ? 'h' : (txt.length > 18 || txt.includes('\n') ? 'l' : '');
+          html.push(`<td class="${cls}"${attrs}>${inner}</td>`);
+        });
+        html.push('</tr>');
+      });
+      html.push('</tbody></table></div>');
+      return html.join('');
+    }
+    function resNoData() { return `<p class="text-sm text-slate-500">${rt('noData')}</p>`; }
+
+    function resRenderRanking(s) {
+      const rk = s.ranking || {};
+      const parts = (rk.tables || []).map(t => resGenericTable(t, { rankCol: 0 }));
+      if (rk.info && rk.info.length) {
+        parts.push('<dl class="mt-5 grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-1 text-xs text-slate-600">' +
+          rk.info.map(kv => `<div class="flex gap-2"><dt class="font-bold text-slate-500 min-w-36">${resEsc(kv[0])}</dt><dd>${resEsc(kv[1])}</dd></div>`).join('') + '</dl>');
+      }
+      return parts.join('') || resNoData();
+    }
+
+    function resRenderMatches(s) {
+      const m = s.matches || [];
+      if (!m.length) return resNoData();
+      const i = Math.min(RES.team, m.length - 1);
+      const bar = '<div class="flex flex-wrap gap-2 mb-4">' + m.map((x, k) =>
+        `<button onclick="RES.team=${k};resRenderEvent()" class="res-pill ${k === i ? 'on' : ''} px-3 py-1.5 rounded-full text-xs font-bold bg-white border border-slate-300 text-slate-700">${resEsc(x.team || ('#' + (k + 1)))}</button>`).join('') + '</div>';
+      return bar + m[i].tables.map(t => resGenericTable(t)).join('<div class="h-4"></div>');
+    }
+    function resRenderXimps(s) { return (s.ximps || []).map(t => resGenericTable(t, { rankCol: 0 })).join('<div class="h-4"></div>') || resNoData(); }
+    function resRenderInfo(s) {
+      const inf = s.information || {};
+      const t = (inf.tables || []).map(x => resGenericTable(x)).join('<div class="h-4"></div>');
+      return t || (inf.text ? `<div class="text-sm text-slate-700 whitespace-pre-line">${resEsc(inf.text)}</div>` : resNoData());
+    }
+
+    // ---- pair names ----
+    function resPairMaps(s) {
+      if (s._pm) return s._pm;
+      const mitchell = (s.pairs || []).some(p => p.way === '2');
+      const ns = {}, ew = {};
+      (s.pairs || []).forEach(p => {
+        const nm = p.names.filter(Boolean).join(' & ');
+        if (mitchell) { (p.way === '2' ? ew : ns)[p.pair] = nm; } else { ns[p.pair] = nm; ew[p.pair] = nm; }
+      });
+      s._pm = { mitchell, ns, ew };
+      return s._pm;
+    }
+
+    // ---- hand diagram ----
+    function resSuitLine(suit, cards) {
+      const c = cards ? cards.replace(/T/g, '10') : '—';
+      return `<div>${RES_SUIT[suit]} ${resEsc(c)}</div>`;
+    }
+    function resSeat(b, seat) {
+      const h = b.hands[seat];
+      return `<div class="seat"><div class="text-[10px] font-bold text-slate-400 uppercase">${seat}${b.hcp && b.hcp[seat] ? ' · ' + resEsc(b.hcp[seat]) : ''}</div>` +
+        ['S', 'H', 'D', 'C'].map((st, i) => resSuitLine(st, h[i])).join('') + '</div>';
+    }
+    function resCompass(b) {
+      const nsV = b.vul === 'NS' || b.vul === 'All', ewV = b.vul === 'EW' || b.vul === 'All';
+      const sp = (k, v) => `<span class="${k} ${v ? 'vul' : 'nv'} ${b.dealer === k.toUpperCase() ? 'dl' : ''}">${k.toUpperCase()}</span>`;
+      return `<div class="res-compass">${sp('n', nsV)}${sp('s', nsV)}${sp('w', ewV)}${sp('e', ewV)}<div class="bd">${resEsc(b.bd)}</div></div>`;
+    }
+    function resDDTable(b) {
+      let lv = null;
+      if (b.dd) {
+        lv = {};
+        Object.keys(b.dd).forEach(p => { lv[p] = {}; Object.keys(b.dd[p]).forEach(st => { const t = parseInt(b.dd[p][st], 10); lv[p][st] = isNaN(t) ? '' : (t > 6 ? String(t - 6) : '-'); }); });
+      } else if (b.ddl) lv = b.ddl;
+      if (!lv) return '';
+      const cols = ['C', 'D', 'H', 'S', 'NT'];
+      return `<div class="mt-3"><p class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">${rt('dd')}</p><table class="text-xs border-collapse"><tr><td></td>${cols.map(c => `<td class="px-2 text-center font-bold">${c === 'NT' ? 'NT' : RES_SUIT[c]}</td>`).join('')}</tr>` +
+        ['N', 'S', 'E', 'W'].filter(p => lv[p]).map(p => `<tr><td class="pr-2 font-bold text-slate-500">${p}</td>${cols.map(c => `<td class="px-2 text-center border border-slate-200">${resEsc(lv[p][c] || '')}</td>`).join('')}</tr>`).join('') + '</table></div>';
+    }
+    function resHandDiagram(b, compact) {
+      if (!b.hands) return '';
+      return `<div class="bg-white rounded-2xl border border-slate-200 p-3 ${compact ? '' : 'sm:p-4'}">
+        <div class="flex items-center justify-between mb-2"><span class="font-black text-slate-900">${rt('board')} ${resEsc(b.bd)}</span><span class="text-[11px] text-slate-500">${rt('dealer')}: ${resEsc(b.dealer)} · ${rt('vul')}: ${resEsc(b.vul)}</span></div>
+        <div class="res-hand"><div></div>${resSeat(b, 'N')}<div></div>${resSeat(b, 'W')}<div class="ctr">${resCompass(b)}</div>${resSeat(b, 'E')}<div></div>${resSeat(b, 'S')}<div></div></div>
+        ${resDDTable(b)}${b.commentary ? `<p class="mt-2 text-xs text-slate-600">${resEsc(b.commentary)}</p>` : ''}</div>`;
+    }
+
+    // ---- board navigation (grouped by session) ----
+    function resBoardPicker(boards, onclickFn) {
+      const bySess = {};
+      boards.forEach((b, i) => { const k = b.sess || ''; (bySess[k] = bySess[k] || []).push(i); });
+      const keys = Object.keys(bySess);
+      return '<div class="space-y-2 mb-5">' + keys.map(k =>
+        `<div class="flex flex-wrap items-center gap-1.5">${keys.length > 1 ? `<span class="text-[10px] font-bold uppercase text-slate-400 mr-1 w-16">${rt('session')} ${resEsc(k)}</span>` : ''}` +
+        bySess[k].map(i => `<button onclick="${onclickFn}(${i})" class="res-pill ${i === RES.board ? 'on' : ''} w-9 h-8 rounded-lg text-xs font-bold bg-white border border-slate-300 text-slate-700">${resEsc(boards[i].bd)}</button>`).join('') + '</div>').join('') + '</div>';
+    }
+    function resGoBoard(i) { RES.board = i; resRenderEvent(); }
+
+    const RES_COL = { NS: 'N/S', EW: 'E/W', Bid: 'contract', By: 'by', Ld: 'lead', Tks: 'tricks', '+Sc': '+', '-Sc': '−' };
+    function resTravTable(s, b, hiPair) {
+      const pm = resPairMaps(s);
+      const cols = b.cols || [];
+      const iNS = cols.indexOf('NS'), iEW = cols.indexOf('EW');
+      const head = cols.map((c, i) => {
+        let l = RES_COL[c] ? (RES_T[RES_COL[c]] ? rt(RES_COL[c]) : RES_COL[c]) : c;
+        if (c === '+Sc' || c === '-Sc') l = rt('score') + ' ' + (c === '+Sc' ? '+' : '−');
+        if (i === cols.length - 2 && (c === '+' || c === 'NS X')) l = 'N/S ' + rt('points');
+        if (i === cols.length - 1 && (c === '-' || c === 'EW X')) l = 'E/W ' + rt('points');
+        return `<th>${resEsc(l)}</th>`;
+      }).join('');
+      const rows = b.rows.map(r => {
+        const sel = hiPair && ((hiPair.dir !== 'EW' && r[iNS] === hiPair.no) || (hiPair.dir !== 'NS' && r[iEW] === hiPair.no));
+        return `<tr class="${sel ? 'sel' : ''}">` + r.slice(0, cols.length).map((v, i) => {
+          if (i === iNS || i === iEW) {
+            const nm = (i === iNS ? pm.ns : pm.ew)[v];
+            return `<td class="l"><span class="font-bold">${resEsc(v)}</span>${nm ? ' <span class="text-slate-500 text-xs">' + resEsc(nm) + '</span>' : ''}</td>`;
+          }
+          if (cols[i] === 'Bid') return `<td>${resContract(v)}</td>`;
+          if (cols[i] === 'Ld') return `<td>${resCard(v)}</td>`;
+          return `<td>${resEsc(v)}</td>`;
+        }).join('') + '</tr>';
+      }).join('');
+      return `<div class="overflow-x-auto rounded-2xl border border-slate-200"><table class="res-tbl"><thead><tr>${head}</tr></thead><tbody>${rows}</tbody></table></div>`;
+    }
+
+    function resRenderTravellers(s) {
+      const boards = s.boards || [];
+      if (!boards.length) return resNoData();
+      const i = Math.min(RES.board, boards.length - 1), b = boards[i];
+      return resBoardPicker(boards, 'resGoBoard') +
+        `<div class="grid grid-cols-1 lg:grid-cols-3 gap-5"><div>${resHandDiagram(b) || `<p class="text-xs text-slate-500">${rt('board')} ${resEsc(b.bd)}</p>`}</div>
+         <div class="lg:col-span-2">${b.rows && b.rows.length ? resTravTable(s, b) : resNoData()}</div></div>`;
+    }
+    function resRenderHands(s) {
+      const hb = (s.boards || []).filter(b => b.hands);
+      if (!hb.length) return resNoData();
+      const bySess = {};
+      hb.forEach(b => { const k = b.sess || ''; (bySess[k] = bySess[k] || []).push(b); });
+      const keys = Object.keys(bySess);
+      return keys.map(k => (keys.length > 1 ? `<p class="text-xs font-bold uppercase tracking-wider text-sky-800 mb-2 mt-2">${rt('session')} ${resEsc(k)}</p>` : '') +
+        `<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 mb-6">${bySess[k].map(b => resHandDiagram(b, true)).join('')}</div>`).join('');
+    }
+
+    // ---- scorecards: each pair's line taken from the travellers ----
+    function resScorecardOptions(s) {
+      const pm = resPairMaps(s);
+      const opts = [];
+      // only pairs/teams that appear on at least one traveller (skips byes / non-playing entries)
+      const seenNS = new Set(), seenEW = new Set();
+      (s.boards || []).forEach(b => { const c = b.cols || [], i = c.indexOf('NS'), j = c.indexOf('EW'); (b.rows || []).forEach(r => { seenNS.add(r[i]); seenEW.add(r[j]); }); });
+      (s.pairs || []).forEach(p => {
+        const dir = pm.mitchell ? (p.way === '2' ? 'EW' : 'NS') : '';
+        if (dir === 'NS' ? !seenNS.has(p.pair) : dir === 'EW' ? !seenEW.has(p.pair) : !(seenNS.has(p.pair) || seenEW.has(p.pair))) return;
+        opts.push({ key: dir + ':' + p.pair, no: p.pair, dir, label: (dir ? dir + ' ' : '') + p.pair + ' — ' + p.names.filter(Boolean).join(' & ') });
+      });
+      return opts;
+    }
+    function resRenderScorecards(s) {
+      const opts = resScorecardOptions(s);
+      if (!opts.length) return resNoData();
+      if (!RES.pair) RES.pair = opts[0].key;
+      const cur = opts.find(o => o.key === RES.pair) || opts[0];
+      const pm = resPairMaps(s);
+      const sel = `<div class="mb-4 flex flex-wrap items-center gap-3"><label class="text-xs font-bold text-slate-500">${rt('pair')}</label>
+        <select onchange="RES.pair=this.value;resRenderEvent()" class="text-sm p-2 border border-slate-300 rounded-xl bg-white max-w-full">${opts.map(o => `<option value="${resEsc(o.key)}" ${o.key === cur.key ? 'selected' : ''}>${resEsc(o.label)}</option>`).join('')}</select></div>`;
+      const lines = [];
+      (s.boards || []).forEach((b, bi) => {
+        const cols = b.cols || []; const iNS = cols.indexOf('NS'), iEW = cols.indexOf('EW');
+        (b.rows || []).forEach(r => {
+          let dir = null;
+          if (cur.dir !== 'EW' && r[iNS] === cur.no) dir = 'NS';
+          else if (cur.dir !== 'NS' && r[iEW] === cur.no) dir = 'EW';
+          if (!dir) return;
+          const g = k => { const i = cols.indexOf(k); return i >= 0 ? r[i] : ''; };
+          const opp = dir === 'NS' ? r[iEW] : r[iNS];
+          const oppName = (dir === 'NS' ? pm.ew : pm.ns)[opp] || '';
+          const plus = g('+Sc'), minus = g('-Sc');
+          // score shown from this pair's side: Bridgewebs lists N/S + and N/S − columns
+          let sc = '';
+          if (dir === 'NS') sc = plus && plus !== '-' ? plus : (minus && minus !== '-' ? '−' + minus : (plus || minus));
+          else sc = minus && minus !== '-' ? minus : (plus && plus !== '-' ? '−' + plus : (plus || minus));
+          const pts = dir === 'NS' ? r[cols.length - 2] : r[cols.length - 1];
+          lines.push(`<tr><td><button class="font-bold text-sky-700 underline" onclick="RES.board=${bi};RES.tab='travellers';resRenderEvent()">${resEsc(b.bd)}</button></td>${b.sess && s.boards.some(x => x.sess !== b.sess) ? `<td>${resEsc(b.sess)}</td>` : ''}<td>${dir === 'NS' ? 'N/S' : 'E/W'}</td>
+            <td class="l"><span class="font-bold">${resEsc(opp)}</span> <span class="text-xs text-slate-500">${resEsc(oppName)}</span></td>
+            <td>${resContract(g('Bid'))}</td><td>${resEsc(g('By'))}</td>${cols.includes('Ld') ? `<td>${resCard(g('Ld'))}</td>` : ''}<td>${resEsc(g('Tks'))}</td><td>${resEsc(sc)}</td><td class="font-bold">${resEsc(pts)}</td></tr>`);
+        });
+      });
+      const multiSess = (s.boards || []).some(x => x.sess !== (s.boards[0] || {}).sess);
+      const hasLd = (s.boards || []).some(b => (b.cols || []).includes('Ld'));
+      const head = `<tr><th>${rt('board')}</th>${multiSess ? `<th>${rt('session')}</th>` : ''}<th>${rt('dir')}</th><th>${rt('vs')}</th><th>${rt('contract')}</th><th>${rt('by')}</th>${hasLd ? `<th>${rt('lead')}</th>` : ''}<th>${rt('tricks')}</th><th>${rt('score')}</th><th>${rt('points')}</th></tr>`;
+      return sel + (lines.length ? `<div class="overflow-x-auto rounded-2xl border border-slate-200"><table class="res-tbl"><thead>${head}</thead><tbody>${lines.join('')}</tbody></table></div>` : resNoData());
+    }
+
+    function resInitFromHash() {
+      const m = location.hash.match(/^#results\/(\d{8}_\d+)$/);
+      if (m) { document.getElementById('results').scrollIntoView(); resOpenEvent(m[1]); }
+    }
+
     // INITIALIZATION
     window.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
@@ -1893,6 +2335,8 @@
       renderGallery();
       renderCommittee();
       renderDocuments();
+      renderResultsList();
+      resInitFromHash();
     });
   </script>
 </body>
