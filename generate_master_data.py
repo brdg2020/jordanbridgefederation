@@ -100,46 +100,67 @@ matrix_2026.sort(key=lambda x: x['totalVp'], reverse=True)
 for idx, item in enumerate(matrix_2026):
     item['rank'] = idx + 1
 
-# Schedule 2026
+# Schedule 2026 with Match Scores & IMPs
 sched_file = os.path.join(archive_dir, 'Jordan Cups 26 schedule.xlsx')
 wb_sched = openpyxl.load_workbook(sched_file, data_only=True)
 ws_sched = wb_sched.active
+
+team_aliases = {
+    'lions': 'Lions',
+    'eagles': 'Eagles',
+    'jordan teams': 'Jordan Teams',
+    'jor teams': 'Jordan Teams',
+    'palestine': 'Palestine',
+    'ortho group': 'Ortho Group',
+    'al nashama': 'AL Nashama',
+    'jordan mix': 'Jordan Mix',
+    'jor mix': 'Jordan Mix',
+    'alfa': 'Alfa'
+}
+
+def norm_team(name):
+    clean = str(name).strip().lower()
+    return team_aliases.get(clean, str(name).strip())
+
+team_stats_map = {}
+for entry in matrix_2026:
+    t_name = norm_team(entry['team'])
+    team_stats_map[t_name] = {}
+    for r_stat in entry['rounds']:
+        team_stats_map[t_name][r_stat['round']] = r_stat
+
+raw_pairings = {
+    1: [(ws_sched.cell(r, 1).value, ws_sched.cell(r, 2).value) for r in range(24, 28)],
+    2: [(ws_sched.cell(r, 3).value, ws_sched.cell(r, 4).value) for r in range(24, 28)],
+    3: [(ws_sched.cell(r, 1).value, ws_sched.cell(r, 2).value) for r in range(30, 34)],
+    4: [(ws_sched.cell(r, 3).value, ws_sched.cell(r, 4).value) for r in range(30, 34)],
+    5: [(ws_sched.cell(r, 1).value, ws_sched.cell(r, 2).value) for r in range(36, 40)],
+    6: [(ws_sched.cell(r, 3).value, ws_sched.cell(r, 4).value) for r in range(36, 40)],
+    7: [(ws_sched.cell(r, 1).value, ws_sched.cell(r, 2).value) for r in range(42, 46)]
+}
+
 schedule_2026 = []
-# Matches are in rows 18-24, columns
-current_round = None
-round_matches = []
-for r in range(16, 45):
-    val_a = ws_sched.cell(r, 1).value
-    val_b = ws_sched.cell(r, 2).value
-    val_c = ws_sched.cell(r, 3).value
-    val_d = ws_sched.cell(r, 4).value
-    text = " ".join([str(x) for x in [val_a, val_b, val_c, val_d] if x])
-    if 'Round' in text:
-        if current_round is not None and round_matches:
-            schedule_2026.append({'round': current_round, 'matches': round_matches})
-            round_matches = []
-        m = re.search(r'Round\s*#?\s*0?(\d+)', text, re.IGNORECASE)
-        current_round = int(m.group(1)) if m else len(schedule_2026) + 1
-    elif val_a and val_d and ('-' in str(val_b) or '-' in str(val_c) or val_a != 'Home'):
-        h = str(val_a).strip()
-        a = str(val_d).strip()
-        if h and a and h != 'Teams' and a != 'Teams':
-            round_matches.append({'home': h, 'away': a})
-
-if current_round is not None and round_matches:
-    schedule_2026.append({'round': current_round, 'matches': round_matches})
-
-# Fallback schedule if empty
-if not schedule_2026:
-    schedule_2026 = [
-        {'round': 1, 'matches': [{'home': 'Lions', 'away': 'Eagles'}, {'home': 'Jordan Teams', 'away': 'Palestine'}, {'home': 'Ortho Group', 'away': 'AL Nashama'}, {'home': 'Jordan Mix', 'away': 'Alfa'}]},
-        {'round': 2, 'matches': [{'home': 'Eagles', 'away': 'AL Nashama'}, {'home': 'Alfa', 'away': 'Ortho Group'}, {'home': 'Jordan Teams', 'away': 'Jordan Mix'}, {'home': 'Palestine', 'away': 'Lions'}]},
-        {'round': 3, 'matches': [{'home': 'Jordan Mix', 'away': 'Palestine'}, {'round': 3, 'home': 'AL Nashama', 'away': 'Alfa'}, {'home': 'Lions', 'away': 'Jordan Teams'}, {'home': 'Ortho Group', 'away': 'Eagles'}]},
-        {'round': 4, 'matches': [{'home': 'Palestine', 'away': 'Ortho Group'}, {'home': 'Jordan Teams', 'away': 'AL Nashama'}, {'home': 'Alfa', 'away': 'Eagles'}, {'home': 'Jordan Mix', 'away': 'Lions'}]},
-        {'round': 5, 'matches': [{'home': 'Eagles', 'away': 'Jordan Teams'}, {'home': 'Lions', 'away': 'Alfa'}, {'home': 'Ortho Group', 'away': 'Jordan Mix'}, {'home': 'AL Nashama', 'away': 'Palestine'}]},
-        {'round': 6, 'matches': [{'home': 'Palestine', 'away': 'Alfa'}, {'home': 'Jordan Mix', 'away': 'Eagles'}, {'home': 'Lions', 'away': 'AL Nashama'}, {'home': 'Jordan Teams', 'away': 'Ortho Group'}]},
-        {'round': 7, 'matches': [{'home': 'AL Nashama', 'away': 'Jordan Mix'}, {'home': 'Eagles', 'away': 'Palestine'}, {'home': 'Alfa', 'away': 'Jordan Teams'}, {'home': 'Ortho Group', 'away': 'Lions'}]}
-    ]
+for rnd in range(1, 8):
+    round_matches = []
+    for h_raw, a_raw in raw_pairings[rnd]:
+        h = norm_team(h_raw)
+        a = norm_team(a_raw)
+        h_s = team_stats_map.get(h, {}).get(rnd, {'vp': 0.0, 'imp': 0})
+        a_s = team_stats_map.get(a, {}).get(rnd, {'vp': 0.0, 'imp': 0})
+        winner = h if h_s['vp'] > a_s['vp'] else (a if a_s['vp'] > h_s['vp'] else 'Tie')
+        round_matches.append({
+            'home': h,
+            'away': a,
+            'homeVp': h_s['vp'],
+            'awayVp': a_s['vp'],
+            'homeImp': h_s['imp'],
+            'awayImp': a_s['imp'],
+            'winner': winner
+        })
+    schedule_2026.append({
+        'round': rnd,
+        'matches': round_matches
+    })
 
 # 3. Parse Jordan Cup 2025 (Jordan Cups 2025 Final.xlsx)
 cup2025_file = os.path.join(archive_dir, 'Jordan Cups 2025 Final.xlsx')

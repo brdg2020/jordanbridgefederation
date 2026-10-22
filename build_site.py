@@ -493,7 +493,7 @@ html_content = f'''<!DOCTYPE html>
         </button>
         <button onclick="switchSpreadsheet('cup26_sched')" id="tabBtn_cup26_sched" class="sheet-tab-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all flex items-center gap-2">
           <i data-lucide="calendar" class="w-4 h-4"></i>
-          <span>Cup 2026 Match Schedule</span>
+          <span>Cup 2026 Schedule & Results</span>
         </button>
         <button onclick="switchSpreadsheet('cup25_matrix')" id="tabBtn_cup25_matrix" class="sheet-tab-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all flex items-center gap-2">
           <i data-lucide="trophy" class="w-4 h-4"></i>
@@ -548,17 +548,23 @@ html_content = f'''<!DOCTYPE html>
         </div>
       </div>
 
-      <!-- TAB 2: Jordan Cup 2026 Match Schedule -->
+      <!-- TAB 2: Jordan Cup 2026 Match Schedule & Results -->
       <div id="view_cup26_sched" class="sheet-view hidden">
-        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 mb-6 flex items-center justify-between">
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
           <div>
-            <h4 class="font-bold text-slate-900 text-sm">Official Schedule & Pairings: Jordan Cup 2026</h4>
-            <p class="text-xs text-slate-500">Official tournament pairings arranged by Tournament Director Raad Otoom.</p>
+            <h4 class="font-bold text-slate-900 text-sm">Official Schedule, Pairings & Results: Jordan Cup 2026</h4>
+            <p class="text-xs text-slate-500">Official tournament pairings, head-to-head VP scores & IMP differentials arranged by Tournament Director Raad Otoom.</p>
           </div>
-          <a href="public/archive/Jordan Cups 26 schedule.xlsx" download class="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs text-xs">
-            <i data-lucide="download" class="w-3.5 h-3.5"></i>
-            <span>Download Schedule (.xlsx)</span>
-          </a>
+          <div class="flex items-center gap-2">
+            <a href="public/archive/Jordan Cups 26 Final.xlsx" download class="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs text-xs">
+              <i data-lucide="download" class="w-3.5 h-3.5"></i>
+              <span>Final Results (.xlsx)</span>
+            </a>
+            <a href="public/archive/Jordan Cups 26 schedule.xlsx" download class="inline-flex items-center gap-1.5 font-bold text-slate-600 hover:text-slate-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs text-xs">
+              <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i>
+              <span>Schedule (.xlsx)</span>
+            </a>
+          </div>
         </div>
 
         <div id="cup26ScheduleContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
@@ -1282,20 +1288,67 @@ html_content = f'''<!DOCTYPE html>
 
       sched.forEach(rnd => {{
         const card = document.createElement('div');
-        card.className = 'bg-white p-4 rounded-xl border border-slate-200 shadow-xs';
-        card.innerHTML = `
-          <div class="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
-            <span class="text-xs font-bold text-emerald-800 uppercase tracking-wider">Round #${{rnd.round}}</span>
-            <span class="text-[11px] text-slate-400">Jordan Cup League</span>
-          </div>
-          <div class="space-y-2.5 text-xs">
-            ${{rnd.matches.map(m => `
-              <div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-100">
-                <span class="font-bold text-slate-900 cursor-pointer hover:text-emerald-700 flex items-center gap-1" data-team="${{m.home}}"><span>${{m.home}}</span><span class="text-[10px] text-slate-400">👥</span></span>
-                <span class="text-[10px] uppercase font-bold text-slate-400 px-1.5 py-0.5 rounded bg-white border border-slate-200">VS</span>
-                <span class="font-bold text-slate-700 text-right cursor-pointer hover:text-emerald-700 flex items-center gap-1 justify-end" data-team="${{m.away}}"><span class="text-[10px] text-slate-400">👥</span><span>${{m.away}}</span></span>
+        card.className = 'bg-white p-4 sm:p-5 rounded-2xl border border-slate-200/90 shadow-xs flex flex-col justify-between';
+        
+        const matchesHtml = rnd.matches.map(m => {{
+          const homeWon = m.homeVp > m.awayVp;
+          const awayWon = m.awayVp > m.homeVp;
+          const isDraw = m.homeVp === m.awayVp;
+          const absDiff = Math.abs(m.homeImp);
+
+          return `
+            <div class="p-3 rounded-xl bg-slate-50/80 border border-slate-200/70 hover:border-emerald-300 hover:bg-emerald-50/20 transition-all">
+              <div class="flex items-center justify-between gap-2">
+                <!-- Home Team -->
+                <div class="flex items-center gap-1.5 flex-1 min-w-0">
+                  <span class="text-xs font-bold truncate cursor-pointer hover:text-emerald-700 transition-colors ${{homeWon ? 'text-slate-900 font-extrabold' : 'text-slate-600'}}" data-team="${{m.home}}">
+                    ${{m.home}}
+                  </span>
+                  <span class="text-[11px] text-slate-400 cursor-pointer hover:text-emerald-600 transition-colors shrink-0" data-team="${{m.home}}" title="View roster">👥</span>
+                </div>
+
+                <!-- Match Score Badge (V.P.) -->
+                <div class="shrink-0 flex items-center gap-1 px-2.5 py-1 rounded-lg bg-white border border-slate-200 shadow-2xs font-mono">
+                  <span class="font-extrabold text-xs ${{homeWon ? 'text-emerald-700' : (isDraw ? 'text-slate-700' : 'text-slate-400')}}">${{m.homeVp.toFixed(2)}}</span>
+                  <span class="text-[11px] text-slate-300 font-bold">:</span>
+                  <span class="font-extrabold text-xs ${{awayWon ? 'text-emerald-700' : (isDraw ? 'text-slate-700' : 'text-slate-400')}}">${{m.awayVp.toFixed(2)}}</span>
+                </div>
+
+                <!-- Away Team -->
+                <div class="flex items-center justify-end gap-1.5 flex-1 min-w-0 text-right">
+                  <span class="text-[11px] text-slate-400 cursor-pointer hover:text-emerald-600 transition-colors shrink-0" data-team="${{m.away}}" title="View roster">👥</span>
+                  <span class="text-xs font-bold truncate cursor-pointer hover:text-emerald-700 transition-colors ${{awayWon ? 'text-slate-900 font-extrabold' : 'text-slate-600'}}" data-team="${{m.away}}">
+                    ${{m.away}}
+                  </span>
+                </div>
               </div>
-            `).join('')}}
+
+              <!-- IMP Difference & Outcome Row -->
+              <div class="flex items-center justify-between text-[11px] pt-2 mt-2 border-t border-slate-200/50 font-mono">
+                <span class="${{m.homeImp > 0 ? 'text-emerald-600 font-bold' : 'text-slate-400'}}">
+                  ${{m.homeImp > 0 ? '+' + m.homeImp : m.homeImp}} IMP
+                </span>
+                <span class="text-[10px] font-sans font-bold uppercase tracking-wider px-2 py-0.5 rounded-full ${{isDraw ? 'bg-amber-100/70 text-amber-800 border border-amber-200' : 'bg-emerald-100/70 text-emerald-800 border border-emerald-200'}}">
+                  ${{isDraw ? 'Tie (Draw)' : (homeWon ? `${{m.home}} Win (+${{absDiff}})` : `${{m.away}} Win (+${{absDiff}})` )}}
+                </span>
+                <span class="${{m.awayImp > 0 ? 'text-emerald-600 font-bold' : 'text-slate-400'}}">
+                  ${{m.awayImp > 0 ? '+' + m.awayImp : m.awayImp}} IMP
+                </span>
+              </div>
+            </div>
+          `;
+        }}).join('');
+
+        card.innerHTML = `
+          <div class="flex items-center justify-between pb-2.5 mb-3 border-b border-slate-100">
+            <span class="text-xs font-black text-emerald-800 uppercase tracking-wider flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-emerald-600"></span>
+              Round #${{rnd.round}}
+            </span>
+            <span class="text-[11px] font-medium text-slate-400 bg-slate-100 px-2 py-0.5 rounded-full">Jordan Cup 2026</span>
+          </div>
+          <div class="space-y-2.5">
+            ${{matchesHtml}}
           </div>
         `;
         container.appendChild(card);
