@@ -136,7 +136,7 @@
         <a href="#scores" class="hover:text-sky-700 transition-colors" data-en="Festival Scores" data-ar="نتائج المهرجان">Festival Scores</a>
         <a href="#league" class="hover:text-sky-700 transition-colors text-emerald-700 flex items-center gap-1">
           <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
-          <span data-en="Spreadsheets & Cup" data-ar="جداول الدوري وكأس الأردن">Spreadsheets & Cup</span>
+          <span data-en="National Leagues & Cup" data-ar="الدوري الوطني وكأس الأردن">National Leagues & Cup</span>
         </a>
         <a href="#posters" class="hover:text-sky-700 transition-colors" data-en="Posters" data-ar="الملصقات">Posters</a>
         <a href="#gallery" class="hover:text-sky-700 transition-colors" data-en="Gallery" data-ar="الصور">Gallery</a>
@@ -162,7 +162,7 @@
     <!-- Mobile Navigation Drawer -->
     <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-5 space-y-2 text-sm font-semibold shadow-lg">
       <a href="#scores" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Festival Scores" data-ar="نتائج المهرجان">Festival Scores</a>
-      <a href="#league" onclick="toggleMobileMenu()" class="block py-2 text-emerald-700 font-bold" data-en="Spreadsheets & Cup" data-ar="جداول الدوري وكأس الأردن">Spreadsheets & Cup</a>
+      <a href="#league" onclick="toggleMobileMenu()" class="block py-2 text-emerald-700 font-bold" data-en="National Leagues & Cup" data-ar="الدوري الوطني وكأس الأردن">National Leagues & Cup</a>
       <a href="#posters" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Official Posters" data-ar="الملصقات الرسمية">Official Posters</a>
       <a href="#gallery" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Photo Gallery" data-ar="معرض الصور">Photo Gallery</a>
       <a href="#documents" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Bylaws & Archive" data-ar="الأنظمة والأرشيف">Bylaws & Archive</a>
@@ -452,76 +452,43 @@
         </p>
       </div>
 
-      <!-- Spreadsheet Selector Tabs -->
-      <div class="flex flex-wrap items-center justify-center gap-2 mb-8">
-        <button onclick="switchSpreadsheet('cup26_matrix')" id="tabBtn_cup26_matrix" class="sheet-tab-btn active px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-emerald-700 text-white shadow-xs transition-all flex items-center gap-2">
-          <i data-lucide="grid" class="w-4 h-4"></i>
-          <span>Jordan Cup 2026 Matrix</span>
+      <!-- Spreadsheet Selector Tabs: 3 Main Official Tournament Series -->
+      <div class="flex flex-wrap items-center justify-center gap-2.5 mb-8">
+        <button onclick="switchSpreadsheet('cup26')" id="tabBtn_cup26" class="sheet-tab-btn active px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-emerald-700 text-white shadow-xs transition-all flex items-center gap-2">
+          <i data-lucide="trophy" class="w-4 h-4 text-amber-300"></i>
+          <span data-en="Jordan Cup 2026 (Premier League)" data-ar="كأس الأردن 2026 (الدوري الممتاز)">Jordan Cup 2026 (Premier League)</span>
         </button>
-        <button onclick="switchSpreadsheet('cup26_sched')" id="tabBtn_cup26_sched" class="sheet-tab-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all flex items-center gap-2">
-          <i data-lucide="calendar" class="w-4 h-4"></i>
-          <span>Cup 2026 Schedule & Results</span>
+        <button onclick="switchSpreadsheet('cup25')" id="tabBtn_cup25" class="sheet-tab-btn px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all flex items-center gap-2">
+          <i data-lucide="archive" class="w-4 h-4 text-slate-500"></i>
+          <span data-en="Jordan Cup 2025 Final" data-ar="نهائي كأس الأردن 2025">Jordan Cup 2025 Final</span>
         </button>
-        <button onclick="switchSpreadsheet('cup25_matrix')" id="tabBtn_cup25_matrix" class="sheet-tab-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all flex items-center gap-2">
-          <i data-lucide="trophy" class="w-4 h-4"></i>
-          <span>Jordan Cup 2025 Final</span>
-        </button>
-        <button onclick="switchSpreadsheet('mix25')" id="tabBtn_mix25" class="sheet-tab-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all flex items-center gap-2">
-          <i data-lucide="users" class="w-4 h-4"></i>
-          <span>Mixed Selection 2025</span>
+        <button onclick="switchSpreadsheet('mix25')" id="tabBtn_mix25" class="sheet-tab-btn px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all flex items-center gap-2">
+          <i data-lucide="users" class="w-4 h-4 text-indigo-600"></i>
+          <span data-en="Mixed Selection League 2025" data-ar="تصفيات الزوجي المختلط 2025">Mixed Selection League 2025</span>
         </button>
       </div>
 
-      <!-- TAB 1: Jordan Cup 2026 Matrix Table -->
-      <div id="view_cup26_matrix" class="sheet-view">
-        <div class="bg-slate-50 p-4 rounded-t-2xl border border-b-0 border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
-          <div class="flex items-center gap-2">
-            <span class="font-bold text-slate-900">Tournament Director:</span>
-            <span class="text-slate-600">Raad Otoom</span>
-            <span class="mx-2 text-slate-300">•</span>
-            <span class="font-bold text-slate-900">Format:</span>
-            <span class="text-slate-600">7 Rounds Round-Robin (VP & IMP)</span>
+      <!-- TOURNAMENT 1: JORDAN CUP 2026 (UNIFIED: MATRIX, MATCH SCORES & CLUBS) -->
+      <div id="view_cup26" class="sheet-view">
+        
+        <!-- Controls & Sub-view Switcher Bar -->
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 mb-6 flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div class="flex items-center gap-2 flex-wrap">
+            <span class="text-xs font-bold text-slate-500 uppercase tracking-wider mr-1" data-en="Views:" data-ar="طريقة العرض:">Views:</span>
+            <button onclick="switchCup26Subtab('matrix')" id="cup26SubBtn_matrix" class="cup26-subtab active px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white shadow-xs transition-all flex items-center gap-1.5">
+              <i data-lucide="grid" class="w-3.5 h-3.5"></i>
+              <span data-en="Cross-Table Matrix" data-ar="جدول ومصفوفة الترتيب">Cross-Table Matrix</span>
+            </button>
+            <button onclick="switchCup26Subtab('sched')" id="cup26SubBtn_sched" class="cup26-subtab px-3.5 py-1.5 rounded-lg text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+              <i data-lucide="calendar" class="w-3.5 h-3.5"></i>
+              <span data-en="Match Scores & Pairings" data-ar="نتائج ومباريات الجولات">Match Scores & Pairings</span>
+            </button>
+            <button onclick="switchCup26Subtab('clubs')" id="cup26SubBtn_clubs" class="cup26-subtab px-3.5 py-1.5 rounded-lg text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition-all flex items-center gap-1.5">
+              <i data-lucide="shield" class="w-3.5 h-3.5"></i>
+              <span data-en="Participating Clubs" data-ar="الأندية المشاركة">Participating Clubs</span>
+            </button>
           </div>
-          <a href="public/archive/Jordan Cups 26 Final.xlsx" download class="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs">
-            <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i>
-            <span>Download Raw Excel (.xlsx)</span>
-          </a>
-        </div>
 
-        <div class="border border-slate-200 rounded-b-2xl overflow-hidden shadow-xs">
-          <div class="overflow-x-auto">
-            <table class="w-full text-left border-collapse text-xs sm:text-sm">
-              <thead>
-                <tr class="bg-slate-900 text-white font-bold uppercase tracking-wider text-[11px]">
-                  <th class="py-3 px-3 text-center">#</th>
-                  <th class="py-3 px-4">Team Name (Hover for Roster)</th>
-                  <th class="py-3 px-2 text-center bg-slate-800">R1</th>
-                  <th class="py-3 px-2 text-center">R2</th>
-                  <th class="py-3 px-2 text-center bg-slate-800">R3</th>
-                  <th class="py-3 px-2 text-center">R4</th>
-                  <th class="py-3 px-2 text-center bg-slate-800">R5</th>
-                  <th class="py-3 px-2 text-center">R6</th>
-                  <th class="py-3 px-2 text-center bg-slate-800">R7</th>
-                  <th class="py-3 px-2 text-center">Pen</th>
-                  <th class="py-3 px-3 text-right">Total IMP</th>
-                  <th class="py-3 px-4 text-right bg-emerald-900 text-amber-300 font-black">Total V.P</th>
-                </tr>
-              </thead>
-              <tbody id="cup26MatrixBody" class="divide-y divide-slate-200 bg-white">
-                <!-- Dynamically populated with hover popovers -->
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-
-      <!-- TAB 2: Jordan Cup 2026 Match Schedule & Results -->
-      <div id="view_cup26_sched" class="sheet-view hidden">
-        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 mb-6 flex flex-col sm:flex-row sm:items-center justify-between gap-3">
-          <div>
-            <h4 class="font-bold text-slate-900 text-sm">Official Schedule, Pairings & Results: Jordan Cup 2026</h4>
-            <p class="text-xs text-slate-500">Official tournament pairings, head-to-head VP scores & IMP differentials arranged by Tournament Director Raad Otoom.</p>
-          </div>
           <div class="flex items-center gap-2">
             <a href="public/archive/Jordan Cups 26 Final.xlsx" download class="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs text-xs">
               <i data-lucide="download" class="w-3.5 h-3.5"></i>
@@ -534,13 +501,53 @@
           </div>
         </div>
 
-        <div id="cup26ScheduleContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          <!-- Dynamically populated -->
+        <!-- Subtab 1: Cross-Table Matrix Table -->
+        <div id="cup26SubView_matrix" class="cup26-subview">
+          <div class="border border-slate-200 rounded-2xl overflow-hidden shadow-xs bg-white">
+            <div class="overflow-x-auto">
+              <table class="w-full text-left border-collapse text-xs sm:text-sm">
+                <thead>
+                  <tr class="bg-slate-900 text-white font-bold uppercase tracking-wider text-[11px]">
+                    <th class="py-3 px-3 text-center">#</th>
+                    <th class="py-3 px-4">Team Name (Hover for Roster)</th>
+                    <th class="py-3 px-2 text-center bg-slate-800">R1</th>
+                    <th class="py-3 px-2 text-center">R2</th>
+                    <th class="py-3 px-2 text-center bg-slate-800">R3</th>
+                    <th class="py-3 px-2 text-center">R4</th>
+                    <th class="py-3 px-2 text-center bg-slate-800">R5</th>
+                    <th class="py-3 px-2 text-center">R6</th>
+                    <th class="py-3 px-2 text-center bg-slate-800">R7</th>
+                    <th class="py-3 px-2 text-center">Pen</th>
+                    <th class="py-3 px-3 text-right">Total IMP</th>
+                    <th class="py-3 px-4 text-right bg-emerald-900 text-amber-300 font-black">Total V.P</th>
+                  </tr>
+                </thead>
+                <tbody id="cup26MatrixBody" class="divide-y divide-slate-200 bg-white">
+                  <!-- Dynamically populated with hover popovers -->
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
+
+        <!-- Subtab 2: Match-by-Match Schedule & Results -->
+        <div id="cup26SubView_sched" class="cup26-subview hidden">
+          <div id="cup26ScheduleContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+            <!-- Dynamically populated with match cards & scores -->
+          </div>
+        </div>
+
+        <!-- Subtab 3: Participating Clubs & Rosters Cards -->
+        <div id="cup26SubView_clubs" class="cup26-subview hidden">
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="jordanCupCards">
+            <!-- Dynamically populated with hover roster trigger -->
+          </div>
+        </div>
+
       </div>
 
-      <!-- TAB 3: Jordan Cup 2025 Final Matrix -->
-      <div id="view_cup25_matrix" class="sheet-view hidden">
+      <!-- TOURNAMENT 2: JORDAN CUP 2025 FINAL MATRIX -->
+      <div id="view_cup25" class="sheet-view hidden">
         <div class="bg-slate-50 p-4 rounded-t-2xl border border-b-0 border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
           <div class="flex items-center gap-2">
             <span class="font-bold text-slate-900">Jordan Cup 2025 Final:</span>
@@ -552,7 +559,7 @@
           </a>
         </div>
 
-        <div class="border border-slate-200 rounded-b-2xl overflow-hidden shadow-xs">
+        <div class="border border-slate-200 rounded-b-2xl overflow-hidden shadow-xs bg-white">
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse text-xs sm:text-sm">
               <thead>
@@ -578,7 +585,7 @@
         </div>
       </div>
 
-      <!-- TAB 4: Mixed Selection 2025 Leaderboard -->
+      <!-- TOURNAMENT 3: MIXED SELECTION 2025 LEADERBOARD -->
       <div id="view_mix25" class="sheet-view hidden">
         <div class="bg-slate-50 p-4 rounded-t-2xl border border-b-0 border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
           <div class="flex items-center gap-2">
@@ -591,7 +598,7 @@
           </a>
         </div>
 
-        <div class="border border-slate-200 rounded-b-2xl overflow-hidden shadow-xs">
+        <div class="border border-slate-200 rounded-b-2xl overflow-hidden shadow-xs bg-white">
           <div class="overflow-x-auto">
             <table class="w-full text-left border-collapse text-xs sm:text-sm">
               <thead>
@@ -613,31 +620,6 @@
             </table>
           </div>
         </div>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- SECTION 3: JORDAN CUP CLUBS CARDS & ROSTERS -->
-  <section id="jordancup" class="py-16 bg-slate-50 border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full inline-block mb-1" data-en="National League Standings" data-ar="ترتيب الدوري الوطني">National League Standings</span>
-          <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Jordan Cup 2026 - Club Standings" data-ar="كأس الأردن 2026 - ترتيب الأندية">Jordan Cup 2026 - Club Standings</h2>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1" data-en="Official standings and VP scores for the 8 participating clubs. Hover or tap any club to view full player rosters." data-ar="الترتيب الرسمي ونقاط الأندية الثمانية المشاركة. مرر الفأرة أو انقر فوق أي نادٍ لرؤية كشف اللاعبين.">
-            Official standings and VP scores for the 8 participating clubs. Hover or tap any club to view full player rosters.
-          </p>
-        </div>
-
-        <div class="text-xs text-slate-500 font-medium">
-          <span data-en="Tournament Director: Raad Otoom" data-ar="مدير البطولة: رعد عتوم">Tournament Director: Raad Otoom</span>
-        </div>
-      </div>
-
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="jordanCupCards">
-        <!-- Dynamically populated -->
       </div>
 
     </div>
@@ -1180,19 +1162,34 @@
       });
     }
 
-    // SPREADSHEET TABS SWITCHER
+    // SPREADSHEET TABS SWITCHER (ONE TAB PER TOURNAMENT)
     function switchSpreadsheet(sheetId) {
       document.querySelectorAll('.sheet-tab-btn').forEach(btn => {
         if (btn.id === 'tabBtn_' + sheetId) {
-          btn.className = 'sheet-tab-btn active px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-emerald-700 text-white shadow-xs transition-all flex items-center gap-2';
+          btn.className = 'sheet-tab-btn active px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-emerald-700 text-white shadow-xs transition-all flex items-center gap-2';
         } else {
-          btn.className = 'sheet-tab-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all flex items-center gap-2';
+          btn.className = 'sheet-tab-btn px-5 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all flex items-center gap-2';
         }
       });
 
       document.querySelectorAll('.sheet-view').forEach(v => v.classList.add('hidden'));
       const activeView = document.getElementById('view_' + sheetId);
       if (activeView) activeView.classList.remove('hidden');
+    }
+
+    // SUBTAB SWITCHER FOR JORDAN CUP 2026 (MATRIX, SCORES, CLUBS)
+    function switchCup26Subtab(subtab) {
+      document.querySelectorAll('.cup26-subtab').forEach(btn => {
+        if (btn.id === 'cup26SubBtn_' + subtab) {
+          btn.className = 'cup26-subtab active px-3.5 py-1.5 rounded-lg text-xs font-bold bg-emerald-700 text-white shadow-xs transition-all flex items-center gap-1.5';
+        } else {
+          btn.className = 'cup26-subtab px-3.5 py-1.5 rounded-lg text-xs font-bold bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition-all flex items-center gap-1.5';
+        }
+      });
+
+      document.querySelectorAll('.cup26-subview').forEach(v => v.classList.add('hidden'));
+      const active = document.getElementById('cup26SubView_' + subtab);
+      if (active) active.classList.remove('hidden');
     }
 
     // RENDER JORDAN CUP 2026 MATRIX TABLE (WITH ROSTER HOVER)
