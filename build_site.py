@@ -15,6 +15,11 @@ with open(os.path.join(base_dir, 'public/data/festival2026.json'), 'r', encoding
 with open(os.path.join(base_dir, 'public/data/committee.json'), 'r', encoding='utf-8') as f:
     comm_data = json.load(f)
 
+# Load team directory
+with open(os.path.join(base_dir, 'public/data/team_directory.json'), 'r', encoding='utf-8') as f:
+    team_dir_data = json.load(f)
+team_dir_json_str = json.dumps(team_dir_data, ensure_ascii=False)
+
 master_json_str = json.dumps(master_data, ensure_ascii=False)
 fest2026_json_str = json.dumps(fest2026_data, ensure_ascii=False)
 comm_json_str = json.dumps(comm_data, ensure_ascii=False)
@@ -740,13 +745,16 @@ html_content = f'''<!DOCTYPE html>
     </div>
   </div>
 
-  <!-- TEAM ROSTER POPOVER (FOR DESKTOP HOVER & MOBILE TAP) -->
-  <div id="rosterTooltip" class="fixed z-50 pointer-events-none hidden bg-slate-900 text-white text-xs p-3.5 rounded-xl shadow-xl border border-slate-700 max-w-xs transition-opacity duration-150">
-    <div class="flex items-center gap-1.5 mb-2 pb-1.5 border-b border-slate-800 font-bold text-amber-400">
-      <i data-lucide="users" class="w-3.5 h-3.5"></i>
-      <span id="tooltipTeamName">Team Roster</span>
+  <!-- TEAM ROSTER & LINE-UP POPOVER (FOR DESKTOP HOVER & MOBILE TAP) -->
+  <div id="rosterTooltip" class="fixed z-50 pointer-events-none hidden bg-slate-950/95 backdrop-blur-md text-white text-xs p-4 rounded-2xl shadow-2xl border border-slate-700/80 max-w-sm transition-opacity duration-150">
+    <div class="flex items-center justify-between gap-2 mb-2 pb-2 border-b border-slate-800">
+      <div class="flex items-center gap-1.5 font-black text-amber-400">
+        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span id="tooltipTeamName" class="text-sm">Team Name</span>
+      </div>
+      <span id="tooltipDelegation" class="text-[10px] text-slate-400 bg-slate-800/80 px-2 py-0.5 rounded-full font-medium truncate max-w-[150px]">Delegation</span>
     </div>
-    <div id="tooltipPlayerList" class="flex flex-wrap gap-1">
+    <div id="tooltipPlayerList" class="space-y-1">
       <!-- Injected player chips -->
     </div>
   </div>
@@ -843,6 +851,7 @@ html_content = f'''<!DOCTYPE html>
 
   <!-- EMBEDDED MASTER DATA & APPLICATION SCRIPT -->
   <script>
+    const teamDirectory = {team_dir_json_str};
     const masterData = {master_json_str};
     const fest2026Rounds = {fest2026_json_str}.rounds;
     const committeeData = {comm_json_str};
@@ -912,25 +921,100 @@ html_content = f'''<!DOCTYPE html>
       }}
     }});
 
-    // ROSTER POPOVER TOOLTIP
-    function showRosterTooltip(e, teamName, roster) {{
-      if (!roster || roster.length === 0) return;
+    // ROSTER & TEAM DIRECTORY POPOVER
+    function showRosterTooltip(el, teamName) {{
+      if (!teamName) return;
+      const cleanName = teamName.replace('👥', '').trim();
+      const upperName = cleanName.toUpperCase();
+      const info = teamDirectory[upperName] || teamDirectory[cleanName] || {{
+        delegation: 'Jordan Bridge Festival Entry',
+        roster: []
+      }};
+
       const tooltip = document.getElementById('rosterTooltip');
       const nameEl = document.getElementById('tooltipTeamName');
+      const delegationEl = document.getElementById('tooltipDelegation');
       const listEl = document.getElementById('tooltipPlayerList');
 
-      nameEl.textContent = teamName + ' - Roster:';
-      listEl.innerHTML = roster.map(p => `<span class="bg-slate-800 text-slate-200 px-2 py-0.5 rounded text-[11px] font-medium border border-slate-700">${{p}}</span>`).join('');
-      
-      tooltip.style.left = Math.min(window.innerWidth - 300, Math.max(10, e.clientX + 15)) + 'px';
-      tooltip.style.top = Math.max(10, e.clientY - 20) + 'px';
+      nameEl.textContent = cleanName;
+      delegationEl.textContent = info.delegation || 'Official Entry';
+
+      if (info.roster && info.roster.length > 0) {{
+        listEl.innerHTML = `
+          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">${{currentLang === 'ar' ? 'تشكيلة الفريق (اللاعبون):' : 'Team Line-up / Players:'}}</div>
+          <div class="flex flex-wrap gap-1.5">
+            ${{info.roster.map(p => `
+              <span class="inline-flex items-center gap-1 bg-slate-800 text-slate-100 text-[11px] font-medium px-2 py-0.5 rounded-md border border-slate-700">
+                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+                ${{p}}
+              </span>
+            `).join('')}}
+          </div>
+        `;
+      }} else if (info.captain) {{
+        listEl.innerHTML = `
+          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">${{currentLang === 'ar' ? 'الكابتن / قائد الفريق:' : 'Team Leader / Captain:'}}</div>
+          <span class="inline-flex items-center gap-1 bg-slate-800 text-amber-300 text-xs font-bold px-2 py-0.5 rounded-md border border-slate-700">
+            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
+            ${{info.captain}}
+          </span>
+        `;
+      }} else {{
+        listEl.innerHTML = `
+          <span class="text-[11px] text-slate-400 italic">Jordan International Bridge Festival Delegation</span>
+        `;
+      }}
+
       tooltip.classList.remove('hidden');
+
+      // Accurate Positioning relative to element
+      const rect = el.getBoundingClientRect();
+      const tipWidth = tooltip.offsetWidth || 290;
+      const tipHeight = tooltip.offsetHeight || 115;
+
+      let left = rect.left + (rect.width / 2) - (tipWidth / 2);
+      left = Math.max(10, Math.min(window.innerWidth - tipWidth - 10, left));
+
+      let top = rect.top - tipHeight - 10;
+      if (top < 10) {{
+        top = rect.bottom + 10;
+      }}
+
+      tooltip.style.left = left + 'px';
+      tooltip.style.top = top + 'px';
     }}
 
     function hideRosterTooltip() {{
       const tooltip = document.getElementById('rosterTooltip');
-      tooltip.classList.add('hidden');
+      if (tooltip) tooltip.classList.add('hidden');
     }}
+
+    // Global Event Delegation for ALL elements with data-team
+    document.addEventListener('mouseover', function(e) {{
+      const el = e.target.closest('[data-team]');
+      if (!el) return;
+      const teamName = el.getAttribute('data-team');
+      if (teamName) {{
+        showRosterTooltip(el, teamName);
+      }}
+    }});
+
+    document.addEventListener('mouseout', function(e) {{
+      const el = e.target.closest('[data-team]');
+      if (el) hideRosterTooltip();
+    }});
+
+    document.addEventListener('click', function(e) {{
+      const el = e.target.closest('[data-team]');
+      if (el) {{
+        const teamName = el.getAttribute('data-team');
+        if (teamName) {{
+          showRosterTooltip(el, teamName);
+        }}
+      }} else if (!e.target.closest('#rosterTooltip')) {{
+        hideRosterTooltip();
+      }}
+    }});
 
     // FESTIVAL YEAR SELECTOR
     function selectFestivalYear(year) {{
@@ -1003,8 +1087,11 @@ html_content = f'''<!DOCTYPE html>
               ${{team.rank}}
             </span>
           </td>
-          <td class="py-3 px-4 font-bold text-slate-900">
-            ${{team.name}}
+          <td class="py-3 px-4 font-bold text-slate-900 cursor-pointer hover:text-sky-700 transition-colors" data-team="${{team.name}}">
+            <div class="flex items-center gap-1.5">
+              <span>${{team.name}}</span>
+              <span class="text-[11px] text-slate-400 font-normal">👥</span>
+            </div>
           </td>
           <td class="py-3 px-4 text-center text-xs text-slate-500 font-mono">
             #${{team.teamId}}
@@ -1059,11 +1146,17 @@ html_content = f'''<!DOCTYPE html>
           </div>
           <div class="space-y-2 text-sm">
             <div class="flex items-center justify-between ${{homeWon ? 'font-black text-slate-950' : 'text-slate-600'}}">
-              <span class="truncate">${{m.homeTeam.name}}</span>
+              <span class="truncate cursor-pointer hover:text-amber-600 font-bold transition-colors flex items-center gap-1 group" data-team="${{m.homeTeam.name}}">
+                <span>${{m.homeTeam.name}}</span>
+                <span class="text-[10px] text-slate-400 group-hover:text-amber-600">👥</span>
+              </span>
               <span class="px-2 py-0.5 rounded font-mono ${{homeWon ? 'bg-emerald-100 text-emerald-800 font-bold' : 'bg-slate-100 text-slate-600'}}">${{m.homeTeam.vp.toFixed(2)}}</span>
             </div>
             <div class="flex items-center justify-between ${{awayWon ? 'font-black text-slate-950' : 'text-slate-600'}}">
-              <span class="truncate">${{m.awayTeam.name}}</span>
+              <span class="truncate cursor-pointer hover:text-amber-600 font-bold transition-colors flex items-center gap-1 group" data-team="${{m.awayTeam.name}}">
+                <span>${{m.awayTeam.name}}</span>
+                <span class="text-[10px] text-slate-400 group-hover:text-amber-600">👥</span>
+              </span>
               <span class="px-2 py-0.5 rounded font-mono ${{awayWon ? 'bg-emerald-100 text-emerald-800 font-bold' : 'bg-slate-100 text-slate-600'}}">${{m.awayTeam.vp.toFixed(2)}}</span>
             </div>
           </div>
@@ -1123,7 +1216,7 @@ html_content = f'''<!DOCTYPE html>
               ${{t.rank}}
             </span>
           </td>
-          <td class="py-2.5 px-4 font-bold text-slate-900 cursor-pointer" onmouseenter="showRosterTooltip(event, '${{t.team}}', ${{JSON.stringify(t.roster || [])}})" onmouseleave="hideRosterTooltip()" onclick="showRosterTooltip(event, '${{t.team}}', ${{JSON.stringify(t.roster || [])}})">
+          <td class="py-2.5 px-4 font-bold text-slate-900 cursor-pointer hover:text-emerald-700 transition-colors" data-team="${{t.team}}">
             <div class="flex items-center gap-1.5">
               <span>${{t.team}}</span>
               <i data-lucide="users" class="w-3.5 h-3.5 text-emerald-600 inline"></i>
@@ -1156,9 +1249,9 @@ html_content = f'''<!DOCTYPE html>
           <div class="space-y-2.5 text-xs">
             ${{rnd.matches.map(m => `
               <div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-100">
-                <span class="font-bold text-slate-900">${{m.home}}</span>
+                <span class="font-bold text-slate-900 cursor-pointer hover:text-emerald-700 flex items-center gap-1" data-team="${{m.home}}"><span>${{m.home}}</span><span class="text-[10px] text-slate-400">👥</span></span>
                 <span class="text-[10px] uppercase font-bold text-slate-400 px-1.5 py-0.5 rounded bg-white border border-slate-200">VS</span>
-                <span class="font-bold text-slate-700 text-right">${{m.away}}</span>
+                <span class="font-bold text-slate-700 text-right cursor-pointer hover:text-emerald-700 flex items-center gap-1 justify-end" data-team="${{m.away}}"><span class="text-[10px] text-slate-400">👥</span><span>${{m.away}}</span></span>
               </div>
             `).join('')}}
           </div>
@@ -1193,7 +1286,7 @@ html_content = f'''<!DOCTYPE html>
               ${{t.rank}}
             </span>
           </td>
-          <td class="py-2.5 px-4 font-bold text-slate-900 cursor-pointer" onmouseenter="showRosterTooltip(event, '${{t.team}}', ${{JSON.stringify(t.roster || [])}})" onmouseleave="hideRosterTooltip()" onclick="showRosterTooltip(event, '${{t.team}}', ${{JSON.stringify(t.roster || [])}})">
+          <td class="py-2.5 px-4 font-bold text-slate-900 cursor-pointer hover:text-emerald-700 transition-colors" data-team="${{t.team}}">
             <div class="flex items-center gap-1.5">
               <span>${{t.team}}</span>
               <i data-lucide="users" class="w-3.5 h-3.5 text-emerald-600 inline"></i>
@@ -1277,7 +1370,10 @@ html_content = f'''<!DOCTYPE html>
               <span class="w-8 h-8 rounded-xl flex items-center justify-center text-xs ${{rankColor}} shadow-xs">#${{t.rank}}</span>
               <span class="text-xs font-mono font-bold text-slate-500">${{t.totalImp > 0 ? '+' : ''}}${{t.totalImp}} IMP</span>
             </div>
-            <h4 class="font-black text-slate-900 text-lg mb-1">${{t.team}}</h4>
+            <h4 class="font-black text-slate-900 text-lg mb-1 cursor-pointer hover:text-emerald-700 flex items-center gap-1.5" data-team="${{t.team}}">
+              <span>${{t.team}}</span>
+              <span class="text-xs text-slate-400 font-normal">👥</span>
+            </h4>
             <span class="text-xs text-slate-500">${{currentLang === 'ar' ? 'الدوري الرسمي لكأس الأردن' : 'Official Jordan Cup League'}}</span>
             ${{rosterHtml}}
           </div>
