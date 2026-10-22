@@ -15,8 +15,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Rana Abdelhai & Jamal Abdeljalil"
+   "winner": "Rana Abdelhai & Jamal Abdeljalil",
+   "dd": true
   },
   {
    "id": "20260926_1",
@@ -32,8 +32,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Geta Mihai & Radu Mihai"
+   "winner": "Geta Mihai & Radu Mihai",
+   "dd": true
   },
   {
    "id": "20260923_3",
@@ -49,8 +49,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Walid El Ahmady & Tarek Sadek"
+   "winner": "Walid El Ahmady & Tarek Sadek",
+   "dd": true
   },
   {
    "id": "20260923_2",
@@ -66,8 +66,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Walid El Ahmady & Tarek Sadek"
+   "winner": "Walid El Ahmady & Tarek Sadek",
+   "dd": true
   },
   {
    "id": "20260923_1",
@@ -83,8 +83,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Farida Botrous & Mohamed Magdy"
+   "winner": "Farida Botrous & Mohamed Magdy",
+   "dd": true
   },
   {
    "id": "20260723_1",
@@ -102,8 +102,8 @@
    "hands": true,
    "travellers": true,
    "matches": true,
-   "dd": true,
-   "winner": "AL Nashama"
+   "winner": "AL Nashama",
+   "dd": true
   },
   {
    "id": "20260720_1",
@@ -121,8 +121,8 @@
    "hands": true,
    "travellers": true,
    "matches": true,
-   "dd": true,
-   "winner": "Jordan Team"
+   "winner": "Jordan Team",
+   "dd": true
   },
   {
    "id": "20260718_1",
@@ -143,10 +143,10 @@
    ],
    "boards": 120,
    "hands": true,
-   "travellers": false,
+   "travellers": true,
    "matches": true,
-   "dd": true,
-   "winner": "AL Nashama"
+   "winner": "AL Nashama",
+   "dd": true
   },
   {
    "id": "20260716_1",
@@ -167,10 +167,10 @@
    ],
    "boards": 96,
    "hands": true,
-   "travellers": false,
+   "travellers": true,
    "matches": true,
-   "dd": true,
-   "winner": "AL Nashama"
+   "winner": "AL Nashama",
+   "dd": true
   },
   {
    "id": "20260713_1",
@@ -191,10 +191,10 @@
    ],
    "boards": 96,
    "hands": true,
-   "travellers": false,
+   "travellers": true,
    "matches": true,
-   "dd": true,
-   "winner": "Jordan Teams"
+   "winner": "Jordan Teams",
+   "dd": true
   },
   {
    "id": "20250927_2",
@@ -210,8 +210,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Geta Mihai & Radu Mihai"
+   "winner": "Geta Mihai & Radu Mihai",
+   "dd": true
   },
   {
    "id": "20250927_1",
@@ -227,8 +227,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Yasmin A Jaber & Ghassan Ghanem"
+   "winner": "Yasmin A Jaber & Ghassan Ghanem",
+   "dd": true
   },
   {
    "id": "20250924_3",
@@ -244,8 +244,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Andrzej Pawlak & Dariusz Bogucki"
+   "winner": "Andrzej Pawlak & Dariusz Bogucki",
+   "dd": true
   },
   {
    "id": "20250924_2",
@@ -261,8 +261,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Rasha Saad & Motaz Fouda"
+   "winner": "Rasha Saad & Motaz Fouda",
+   "dd": true
   },
   {
    "id": "20250924_1",
@@ -278,8 +278,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Walid El Ahmady & Tarek Sadek"
+   "winner": "Walid El Ahmady & Tarek Sadek",
+   "dd": true
   },
   {
    "id": "20250726_3",
@@ -297,8 +297,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jba 2"
+   "winner": "Jba 2",
+   "dd": true
   },
   {
    "id": "20250726_2",
@@ -316,8 +316,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jba 2"
+   "winner": "Jba 2",
+   "dd": true
   },
   {
    "id": "20250726_1",
@@ -335,8 +335,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jba 2"
+   "winner": "Jba 2",
+   "dd": true
   },
   {
    "id": "20250723_2",
@@ -354,8 +354,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jba 3"
+   "winner": "Jba 3",
+   "dd": true
   },
   {
    "id": "20250723_1",
@@ -373,8 +373,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jba 3"
+   "winner": "Jba 3",
+   "dd": true
   },
   {
    "id": "20250721_2",
@@ -392,8 +392,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jba 1"
+   "winner": "Jba 1",
+   "dd": true
   },
   {
    "id": "20250721_1",
@@ -411,8 +411,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jba 4"
+   "winner": "Jba 4",
+   "dd": true
   },
   {
    "id": "20250719_3",
@@ -430,8 +430,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "king huseein"
+   "winner": "king huseein",
+   "dd": true
   },
   {
    "id": "20250719_2",
@@ -449,8 +449,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "king huseein"
+   "winner": "king huseein",
+   "dd": true
   },
   {
    "id": "20250719_1",
@@ -468,8 +468,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "king huseein"
+   "winner": "king huseein",
+   "dd": true
   },
   {
    "id": "20250716_2",
@@ -487,8 +487,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "king huseein"
+   "winner": "king huseein",
+   "dd": true
   },
   {
    "id": "20250716_1",
@@ -507,8 +507,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "king huseein"
+   "winner": "king huseein",
+   "dd": true
   },
   {
    "id": "20250714_2",
@@ -527,8 +527,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "king huseein"
+   "winner": "king huseein",
+   "dd": true
   },
   {
    "id": "20250714_1",
@@ -547,8 +547,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "king huseein"
+   "winner": "king huseein",
+   "dd": true
   },
   {
    "id": "20250210_1",
@@ -567,8 +567,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Rana Abdelhadi & Jamal Abdeljalil"
+   "winner": "Rana Abdelhadi & Jamal Abdeljalil",
+   "dd": true
   },
   {
    "id": "20250207_1",
@@ -587,8 +587,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Dima Al Taher & Ahmed Al Samhouri"
+   "winner": "Dima Al Taher & Ahmed Al Samhouri",
+   "dd": true
   },
   {
    "id": "20250206_1",
@@ -607,8 +607,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Huda Rabiai & Zaid Albitar"
+   "winner": "Huda Rabiai & Zaid Albitar",
+   "dd": true
   },
   {
    "id": "20250205_1",
@@ -627,8 +627,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Rana Abdelhadi & Jamal Abdeljalil"
+   "winner": "Rana Abdelhadi & Jamal Abdeljalil",
+   "dd": true
   },
   {
    "id": "20250203_1",
@@ -647,8 +647,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Dima Al Taher & Ahmed Al Samhouri"
+   "winner": "Dima Al Taher & Ahmed Al Samhouri",
+   "dd": true
   },
   {
    "id": "20250131_1",
@@ -667,8 +667,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Nowel Tarawneh & Aziz Amer"
+   "winner": "Nowel Tarawneh & Aziz Amer",
+   "dd": true
   },
   {
    "id": "20250129_1",
@@ -687,8 +687,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Yena Sabageh & Mohd Altaji"
+   "winner": "Yena Sabageh & Mohd Altaji",
+   "dd": true
   },
   {
    "id": "20250127_1",
@@ -707,8 +707,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Rana Abdelhadi & Jamal Abdeljalil"
+   "winner": "Rana Abdelhadi & Jamal Abdeljalil",
+   "dd": true
   },
   {
    "id": "20250124_1",
@@ -727,8 +727,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Maya Khalaf & Rageed Sabageh"
+   "winner": "Maya Khalaf & Rageed Sabageh",
+   "dd": true
   },
   {
    "id": "20250122_1",
@@ -747,8 +747,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Yena Sabageh & Mohd Altaji"
+   "winner": "Yena Sabageh & Mohd Altaji",
+   "dd": true
   },
   {
    "id": "20250120_1",
@@ -767,8 +767,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Yena Sabageh & Mohd Al Taji"
+   "winner": "Yena Sabageh & Mohd Al Taji",
+   "dd": true
   },
   {
    "id": "20240929_1",
@@ -784,8 +784,8 @@
    "hands": false,
    "travellers": false,
    "matches": false,
-   "dd": false,
-   "winner": "AL AHLY"
+   "winner": "AL AHLY",
+   "dd": false
   },
   {
    "id": "20240928_2",
@@ -801,8 +801,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "May Sakr & Pepsi"
+   "winner": "May Sakr & Pepsi",
+   "dd": true
   },
   {
    "id": "20240928_1",
@@ -818,8 +818,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "May Sakr & Pepsi"
+   "winner": "May Sakr & Pepsi",
+   "dd": true
   },
   {
    "id": "20240925_3",
@@ -835,8 +835,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Abdelrahman Mosaad & Mohamed Abdelazim"
+   "winner": "Abdelrahman Mosaad & Mohamed Abdelazim",
+   "dd": true
   },
   {
    "id": "20240925_2",
@@ -852,8 +852,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Abdelrahman Mosaad & Mohamed Abdelazim"
+   "winner": "Abdelrahman Mosaad & Mohamed Abdelazim",
+   "dd": true
   },
   {
    "id": "20240925_1",
@@ -869,8 +869,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Adam Tomczynski & Sylwester Cieslak"
+   "winner": "Adam Tomczynski & Sylwester Cieslak",
+   "dd": true
   },
   {
    "id": "20240812_1",
@@ -888,8 +888,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jordan 1"
+   "winner": "Jordan 1",
+   "dd": true
   },
   {
    "id": "20240720_1",
@@ -907,8 +907,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Aaida Aj. & Sakher Ma."
+   "winner": "Aaida Aj. & Sakher Ma.",
+   "dd": true
   },
   {
    "id": "20240610_1",
@@ -926,8 +926,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "King Hussein"
+   "winner": "King Hussein",
+   "dd": true
   },
   {
    "id": "20240605_1",
@@ -945,8 +945,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "KING HUSSEIN"
+   "winner": "KING HUSSEIN",
+   "dd": true
   },
   {
    "id": "20240527_1",
@@ -964,8 +964,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "King Hussein"
+   "winner": "King Hussein",
+   "dd": true
   },
   {
    "id": "20230930_2",
@@ -981,8 +981,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Nemreen Qasim & Humyoun Sumar"
+   "winner": "Nemreen Qasim & Humyoun Sumar",
+   "dd": true
   },
   {
    "id": "20230930_1",
@@ -998,8 +998,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Fayza Al Azem & George Kachami"
+   "winner": "Fayza Al Azem & George Kachami",
+   "dd": true
   },
   {
    "id": "20230929_1",
@@ -1015,8 +1015,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Walid El Ahmady & Reda Amiry"
+   "winner": "Walid El Ahmady & Reda Amiry",
+   "dd": true
   },
   {
    "id": "20230927_3",
@@ -1032,8 +1032,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Dominik Filipowicz & Jaroslaw Cieslak"
+   "winner": "Dominik Filipowicz & Jaroslaw Cieslak",
+   "dd": true
   },
   {
    "id": "20230927_2",
@@ -1049,8 +1049,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Walid El Ahmady & Reda Amiry"
+   "winner": "Walid El Ahmady & Reda Amiry",
+   "dd": true
   },
   {
    "id": "20230927_1",
@@ -1066,8 +1066,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Walid El Ahmady & Reda Amiry"
+   "winner": "Walid El Ahmady & Reda Amiry",
+   "dd": true
   },
   {
    "id": "20230809_1",
@@ -1085,8 +1085,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "JBA 1"
+   "winner": "JBA 1",
+   "dd": true
   },
   {
    "id": "20230802_3",
@@ -1104,8 +1104,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "KING HUSSEIN"
+   "winner": "KING HUSSEIN",
+   "dd": true
   },
   {
    "id": "20230724_1",
@@ -1123,8 +1123,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "JBA 1"
+   "winner": "JBA 1",
+   "dd": true
   },
   {
    "id": "20230220_2",
@@ -1142,8 +1142,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jarrar"
+   "winner": "Jarrar",
+   "dd": true
   },
   {
    "id": "20230220_1",
@@ -1161,8 +1161,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jarrar"
+   "winner": "Jarrar",
+   "dd": true
   },
   {
    "id": "20230213_2",
@@ -1180,8 +1180,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Rana"
+   "winner": "Rana",
+   "dd": true
   },
   {
    "id": "20230213_1",
@@ -1199,8 +1199,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jarrar"
+   "winner": "Jarrar",
+   "dd": true
   },
   {
    "id": "20230208_2",
@@ -1218,8 +1218,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jarrar"
+   "winner": "Jarrar",
+   "dd": true
   },
   {
    "id": "20230208_1",
@@ -1237,8 +1237,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jarrar"
+   "winner": "Jarrar",
+   "dd": true
   },
   {
    "id": "20230201_2",
@@ -1256,8 +1256,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jarrar"
+   "winner": "Jarrar",
+   "dd": true
   },
   {
    "id": "20230201_1",
@@ -1275,8 +1275,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jarrar"
+   "winner": "Jarrar",
+   "dd": true
   },
   {
    "id": "20230130_3",
@@ -1294,8 +1294,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jarrar"
+   "winner": "Jarrar",
+   "dd": true
   },
   {
    "id": "20230130_2",
@@ -1313,8 +1313,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Jarrar"
+   "winner": "Jarrar",
+   "dd": true
   },
   {
    "id": "20221001_3",
@@ -1330,8 +1330,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Fatena A Maizer & Ayman Azzam"
+   "winner": "Fatena A Maizer & Ayman Azzam",
+   "dd": true
   },
   {
    "id": "20221001_2",
@@ -1347,8 +1347,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Nawar Hachem & Ahmed Zein"
+   "winner": "Nawar Hachem & Ahmed Zein",
+   "dd": true
   },
   {
    "id": "20220928_3",
@@ -1364,8 +1364,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Mareille Hitti & Tony Hachem"
+   "winner": "Mareille Hitti & Tony Hachem",
+   "dd": true
   },
   {
    "id": "20220928_2",
@@ -1381,8 +1381,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Hazem Ghoniem & Abdelrahim Mehelba"
+   "winner": "Hazem Ghoniem & Abdelrahim Mehelba",
+   "dd": true
   },
   {
    "id": "20220928_1",
@@ -1398,8 +1398,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Mais Al Oul & Hana Kredeih"
+   "winner": "Mais Al Oul & Hana Kredeih",
+   "dd": true
   },
   {
    "id": "20220618_1",
@@ -1417,8 +1417,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "KING HUSEEIN"
+   "winner": "KING HUSEEIN",
+   "dd": true
   },
   {
    "id": "20220617_1",
@@ -1436,8 +1436,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "JBA1"
+   "winner": "JBA1",
+   "dd": true
   },
   {
    "id": "20191020_1",
@@ -1453,8 +1453,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Maud & Gamal Abbas"
+   "winner": "Maud & Gamal Abbas",
+   "dd": true
   },
   {
    "id": "20191019_1",
@@ -1470,8 +1470,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Hanan Al-Masry & Ahmed Zain"
+   "winner": "Hanan Al-Masry & Ahmed Zain",
+   "dd": true
   },
   {
    "id": "20191018_2",
@@ -1487,8 +1487,8 @@
    "hands": false,
    "travellers": false,
    "matches": false,
-   "dd": false,
-   "winner": "El Ahly Club"
+   "winner": "El Ahly Club",
+   "dd": false
   },
   {
    "id": "20191018_1",
@@ -1504,8 +1504,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Salim Trabolsi & George Kachami"
+   "winner": "Salim Trabolsi & George Kachami",
+   "dd": true
   },
   {
    "id": "20191017_1",
@@ -1521,8 +1521,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "Salim Trabolsi & George Kachami"
+   "winner": "Salim Trabolsi & George Kachami",
+   "dd": true
   },
   {
    "id": "20191016_1",
@@ -1538,8 +1538,8 @@
    "hands": true,
    "travellers": true,
    "matches": false,
-   "dd": true,
-   "winner": "May Sakr & Jacek Pszczola"
+   "winner": "May Sakr & Jacek Pszczola",
+   "dd": true
   }
  ]
 }

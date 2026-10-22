@@ -180,8 +180,11 @@ for ek,o in d.items():
         sec={'label': o['msecs'][i][1] if o['msecs'] else ''}
         sec['ranking']=parse_rank(o['pages']['rank_'+m])
         at=parse_alltravs(o['pages'].get('sc_'+m))
-        if at: sec['pairs']=at['pairs']; sec['boards']=at['boards']
-        elif o['pages'].get('hands_'+m):
+        if at:
+            sec['pairs']=at['pairs']
+            if at['boards']: sec['boards']=at['boards']
+        if not sec.get('boards') and o['pages'].get('hands_'+m):
+            # no traveller data for this section: use the hand records page
             hb=[b for b in parse_show_hands(o['pages']['hands_'+m]) if b.get('hands')]
             if hb: sec['boards']=hb
         mt=[]
