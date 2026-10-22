@@ -1014,15 +1014,18 @@ html_content = f'''<!DOCTYPE html>
       }}
     }});
 
-    // ROSTER & TEAM DIRECTORY POPOVER
+    // ROSTER & TEAM DIRECTORY POPOVER (STRICTLY AUTHENTIC ROSTERS ONLY)
     function showRosterTooltip(el, teamName) {{
       if (!teamName) return;
       const cleanName = teamName.replace('👥', '').trim();
       const upperName = cleanName.toUpperCase();
-      const info = teamDirectory[upperName] || teamDirectory[cleanName] || {{
-        delegation: 'Jordan Bridge Festival Entry',
-        roster: []
-      }};
+      const info = teamDirectory[upperName] || teamDirectory[cleanName];
+
+      // STRICT AUTHENTICITY: Only display popover if an official verified roster exists
+      if (!info || !info.roster || info.roster.length === 0) {{
+        hideRosterTooltip();
+        return;
+      }}
 
       const tooltip = document.getElementById('rosterTooltip');
       const nameEl = document.getElementById('tooltipTeamName');
@@ -1030,33 +1033,19 @@ html_content = f'''<!DOCTYPE html>
       const listEl = document.getElementById('tooltipPlayerList');
 
       nameEl.textContent = cleanName;
-      delegationEl.textContent = info.delegation || 'Official Entry';
+      delegationEl.textContent = info.delegation || 'Official Jordan Cup League';
 
-      if (info.roster && info.roster.length > 0) {{
-        listEl.innerHTML = `
-          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">${{currentLang === 'ar' ? 'تشكيلة الفريق (اللاعبون):' : 'Team Line-up / Players:'}}</div>
-          <div class="flex flex-wrap gap-1.5">
-            ${{info.roster.map(p => `
-              <span class="inline-flex items-center gap-1 bg-slate-800 text-slate-100 text-[11px] font-medium px-2 py-0.5 rounded-md border border-slate-700">
-                <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
-                ${{p}}
-              </span>
-            `).join('')}}
-          </div>
-        `;
-      }} else if (info.captain) {{
-        listEl.innerHTML = `
-          <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1">${{currentLang === 'ar' ? 'الكابتن / قائد الفريق:' : 'Team Leader / Captain:'}}</div>
-          <span class="inline-flex items-center gap-1 bg-slate-800 text-amber-300 text-xs font-bold px-2 py-0.5 rounded-md border border-slate-700">
-            <span class="w-1.5 h-1.5 rounded-full bg-amber-400"></span>
-            ${{info.captain}}
-          </span>
-        `;
-      }} else {{
-        listEl.innerHTML = `
-          <span class="text-[11px] text-slate-400 italic">Jordan International Bridge Festival Delegation</span>
-        `;
-      }}
+      listEl.innerHTML = `
+        <div class="text-[10px] font-bold uppercase tracking-wider text-slate-400 mb-1.5">${{currentLang === 'ar' ? 'تشكيلة الفريق الرسمية (اللاعبون):' : 'Official Team Line-up / Players:'}}</div>
+        <div class="flex flex-wrap gap-1.5">
+          ${{info.roster.map(p => `
+            <span class="inline-flex items-center gap-1 bg-slate-800 text-slate-100 text-[11px] font-medium px-2 py-0.5 rounded-md border border-slate-700">
+              <span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>
+              ${{p}}
+            </span>
+          `).join('')}}
+        </div>
+      `;
 
       tooltip.classList.remove('hidden');
 
@@ -1180,11 +1169,8 @@ html_content = f'''<!DOCTYPE html>
               ${{team.rank}}
             </span>
           </td>
-          <td class="py-3 px-4 font-bold text-slate-900 cursor-pointer hover:text-sky-700 transition-colors" data-team="${{team.name}}">
-            <div class="flex items-center gap-1.5">
-              <span>${{team.name}}</span>
-              <span class="text-[11px] text-slate-400 font-normal">👥</span>
-            </div>
+          <td class="py-3 px-4 font-bold text-slate-900">
+            <span>${{team.name}}</span>
           </td>
           <td class="py-3 px-4 text-center text-xs text-slate-500 font-mono">
             #${{team.teamId}}
@@ -1239,17 +1225,11 @@ html_content = f'''<!DOCTYPE html>
           </div>
           <div class="space-y-2 text-sm">
             <div class="flex items-center justify-between ${{homeWon ? 'font-black text-slate-950' : 'text-slate-600'}}">
-              <span class="truncate cursor-pointer hover:text-amber-600 font-bold transition-colors flex items-center gap-1 group" data-team="${{m.homeTeam.name}}">
-                <span>${{m.homeTeam.name}}</span>
-                <span class="text-[10px] text-slate-400 group-hover:text-amber-600">👥</span>
-              </span>
+              <span class="truncate font-bold">${{m.homeTeam.name}}</span>
               <span class="px-2 py-0.5 rounded font-mono ${{homeWon ? 'bg-emerald-100 text-emerald-800 font-bold' : 'bg-slate-100 text-slate-600'}}">${{m.homeTeam.vp.toFixed(2)}}</span>
             </div>
             <div class="flex items-center justify-between ${{awayWon ? 'font-black text-slate-950' : 'text-slate-600'}}">
-              <span class="truncate cursor-pointer hover:text-amber-600 font-bold transition-colors flex items-center gap-1 group" data-team="${{m.awayTeam.name}}">
-                <span>${{m.awayTeam.name}}</span>
-                <span class="text-[10px] text-slate-400 group-hover:text-amber-600">👥</span>
-              </span>
+              <span class="truncate font-bold">${{m.awayTeam.name}}</span>
               <span class="px-2 py-0.5 rounded font-mono ${{awayWon ? 'bg-emerald-100 text-emerald-800 font-bold' : 'bg-slate-100 text-slate-600'}}">${{m.awayTeam.vp.toFixed(2)}}</span>
             </div>
           </div>

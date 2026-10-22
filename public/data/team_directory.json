@@ -1,257 +1,169 @@
 {
   "AL NASHAMA": {
-    "delegation": "Jordan National League (Rank #1)",
+    "delegation": "Jordan Cup League 2026 (Champion)",
     "captain": "Abdlah Ajlouni",
-    "roster": ["Abdlah Ajlouni", "Zaid Bitar", "Samer Haddad", "Luai Al Hussari", "Mamoun Al Kotob", "Omran Abu Dhaim"]
+    "roster": [
+      "Abdlah Ajlouni",
+      "Zaid Bitar",
+      "Samer Haddad",
+      "Luai Al Hussari",
+      "Mamoun Al Kotob",
+      "Omran Abu Dhaim"
+    ]
   },
   "LIONS": {
-    "delegation": "Jordan National League (Rank #2)",
-    "captain": "Samer Rwashdeh",
-    "roster": ["Samer Rwashdeh", "Farah Ahmed", "Yena Sabagh", "Mohd Al Taji"]
+    "delegation": "Jordan Cup League 2026 (Runner-Up)",
+    "captain": "Farah Ahmed",
+    "roster": [
+      "Farah Ahmed",
+      "Samer Rwashdeh",
+      "Yena Sabagh",
+      "Mohd Al Taji"
+    ]
   },
   "JORDAN TEAMS": {
-    "delegation": "Jordan National League (Rank #3)",
+    "delegation": "Jordan Cup League 2026 (3rd Place)",
     "captain": "Ghassan Ghaneem",
-    "roster": ["Ghassan Ghaneem", "Yasmin Abu Jaber", "Marwan Ghaneem", "Clement Mamar Bash", "Rana Abdelhadi", "Jamal Abdeljalil"]
+    "roster": [
+      "Ghassan Ghaneem",
+      "Yasmin Abu Jaber",
+      "Marwan Ghaneem",
+      "Clement Mamar Bash",
+      "Rana Abdelhadi",
+      "Jamal Abdeljalil"
+    ]
   },
   "JORDAN MIX": {
-    "delegation": "Jordan National League (Rank #4)",
+    "delegation": "Jordan Cup League 2026 (4th Place)",
     "captain": "Sakher Malkawi",
-    "roster": ["Sakher Malkawi", "Aaida Abu Jaber", "Dima Al Taher", "Ahmed Al Samhouri", "Huda Rabaeh", "Akiel Madi"]
+    "roster": [
+      "Sakher Malkawi",
+      "Aaida Abu Jaber",
+      "Dima Al Taher",
+      "Ahmed Al Samhouri",
+      "Huda Rabaeh",
+      "Akiel Madi"
+    ]
   },
   "ALFA": {
-    "delegation": "Jordan National League (Rank #5)",
+    "delegation": "Jordan Cup League 2026 (5th Place)",
     "captain": "Randa Al Saket",
-    "roster": ["Randa Al Saket", "Azza Qudah", "Hala Sawaf", "Amal Fakhouri"]
+    "roster": [
+      "Randa Al Saket",
+      "Azza Qudah",
+      "Hala Sawaf",
+      "Amal Fakhouri"
+    ]
   },
   "EAGLES": {
-    "delegation": "Jordan National League (Rank #6)",
+    "delegation": "Jordan Cup League 2026 (6th Place)",
     "captain": "Mona Al Omari",
-    "roster": ["Mona Al Omari", "Mais Al Bitar", "Bana Al Taher", "Hanan Juman", "Nowel Trawneh", "Omar Al Masri"]
+    "roster": [
+      "Mona Al Omari",
+      "Mais Al Bitar",
+      "Bana Al Taher",
+      "Hanan Juman",
+      "Nowel Trawneh",
+      "Omar Al Masri"
+    ]
   },
   "ORTHO GROUP": {
-    "delegation": "Orthodox Club Amman (Rank #7)",
+    "delegation": "Jordan Cup League 2026 (Orthodox Club Amman)",
     "captain": "Yousef Batshon",
-    "roster": ["Yousef Batshon", "Jack Qarouta", "Ramzi Qusous", "Rageed Sabagh", "Maya Khalaf", "Laith Tashman"]
+    "roster": [
+      "Yousef Batshon",
+      "Jack Qarouta",
+      "Ramzi Qusous",
+      "Rageed Sabagh",
+      "Maya Khalaf",
+      "Laith Tashman"
+    ]
   },
   "PALESTINE": {
-    "delegation": "Palestine National Delegation",
+    "delegation": "Jordan Cup League 2026 (Palestine Delegation)",
     "captain": "Laila Zruqat",
-    "roster": ["Laila Zruqat", "Hanan Al Masri", "Nawar Hashem", "Fiuroz Badwan", "Alia Shredh"]
+    "roster": [
+      "Laila Zruqat",
+      "Hanan Al Masri",
+      "Nawar Hashem",
+      "Fiuroz Badwan",
+      "Alia Shredh"
+    ]
   },
   "KING HUSSEIN CLUB": {
-    "delegation": "King Hussein Club (2025 Champion)",
+    "delegation": "Jordan Cup League 2025 (Champion)",
     "captain": "Mamoun Al Kotob",
-    "roster": ["Mamoun Al Kotob", "Ghassan Ghaneem", "Omran Abu Dhaim", "Marwan Ghaneem"]
+    "roster": [
+      "Mamoun Al Kotob",
+      "Ghassan Ghaneem",
+      "Omran Abu Dhaim",
+      "Marwan Ghaneem"
+    ]
   },
   "JBA 3": {
-    "delegation": "Jordan Bridge Association #3",
+    "delegation": "Jordan Cup League 2025 (Runner-Up)",
     "captain": "Farah Ahmed",
-    "roster": ["Farah Ahmed", "Samer Rwashdeh", "Dima Al Taher", "Ahmed Al Samhouri"]
+    "roster": [
+      "Farah Ahmed",
+      "Samer Rwashdeh",
+      "Dima Al Taher",
+      "Ahmed Al Samhouri"
+    ]
   },
   "JBA 1": {
-    "delegation": "Jordan Bridge Association #1",
+    "delegation": "Jordan Cup League 2025 (3rd Place)",
     "captain": "Mohd Al Taji",
-    "roster": ["Mohd Al Taji", "Yena Rageed", "Hamzeh Habbob", "Samer Haddad", "Syelvi Skljean"]
+    "roster": [
+      "Mohd Al Taji",
+      "Yena Rageed",
+      "Hamzeh Habbob",
+      "Samer Haddad",
+      "Syelvi Skljean"
+    ]
   },
   "JBA 2": {
-    "delegation": "Jordan Bridge Association #2",
+    "delegation": "Jordan Cup League 2025 (4th Place)",
     "captain": "Jamal Abdeljalil",
-    "roster": ["Jamal Abdeljalil", "Rana Abdelhadi", "Huda Rabaia", "Zaid Bitar"]
+    "roster": [
+      "Jamal Abdeljalil",
+      "Rana Abdelhadi",
+      "Huda Rabaia",
+      "Zaid Bitar"
+    ]
   },
   "OTHODOX CLUB": {
-    "delegation": "Orthodox Club Amman",
+    "delegation": "Jordan Cup League 2025 (Orthodox Club Amman)",
     "captain": "Yousef Batshon",
-    "roster": ["Yousef Batshon", "Rabeha Othman", "Zeyad Shraehah", "Abdlah Ajlouni", "Farid Nabelsi", "Jack Karouta", "Laith Tashman"]
+    "roster": [
+      "Yousef Batshon",
+      "Rabeha Othman",
+      "Zeyad Shraehah",
+      "Abdlah Ajlouni",
+      "Farid Nabelsi",
+      "Jack Karouta",
+      "Laith Tashman"
+    ]
   },
   "JBA 5": {
-    "delegation": "Jordan Bridge Association #5",
+    "delegation": "Jordan Cup League 2025 (6th Place)",
     "captain": "Lina Toukan",
-    "roster": ["Lina Toukan", "Maram Qusous", "Aziz Amer", "Nowel Trawnwh"]
+    "roster": [
+      "Lina Toukan",
+      "Maram Qusous",
+      "Aziz Amer",
+      "Nowel Trawnwh"
+    ]
   },
   "JBA 4": {
-    "delegation": "Jordan Bridge Association #4",
+    "delegation": "Jordan Cup League 2025 (7th Place)",
     "captain": "Hanan Al Masri",
-    "roster": ["Hanan Al Masri", "Nawar Hashem", "Fiuroz Badwan", "Hala Sawaf", "Najwa Najab", "Hassana Zu"]
-  },
-  "AKIEL": {
-    "delegation": "42nd Festival Champion (UAE / Jordan)",
-    "captain": "Akiel Madi",
-    "roster": ["Akiel Madi", "Ahmed Al Samhouri", "Sakher Malkawi", "Aaida Abu Jaber", "Dima Al Taher"]
-  },
-  "AKEIL": {
-    "delegation": "Festival Open Teams Champion",
-    "captain": "Akiel Madi",
-    "roster": ["Akiel Madi", "Ahmed Al Samhouri", "Sakher Malkawi", "Aaida Abu Jaber", "Dima Al Taher"]
-  },
-  "VU": {
-    "delegation": "42nd Festival Runner-Up (Vu-Graph Selection)",
-    "captain": "Jordan International Selection",
-    "roster": ["Samer Haddad", "Zaid Bitar", "Luai Al Hussari", "Omran Abu Dhaim"]
-  },
-  "RADE": {
-    "delegation": "42nd Festival 3rd Place (Director Raad Team)",
-    "captain": "Raad Otoom",
-    "roster": ["Raad Otoom", "Jack Qarouta", "Ramzi Qusous", "Laith Tashman"]
-  },
-  "MIQDDADI": {
-    "delegation": "Amman Bridge League Finalist",
-    "captain": "Amjad Miqdadi",
-    "roster": ["Amjad Miqdadi", "Yousef Batshon", "Rageed Sabagh", "Maya Khalaf"]
-  },
-  "MIQDADI": {
-    "delegation": "Amman Bridge League Finalist",
-    "captain": "Amjad Miqdadi",
-    "roster": ["Amjad Miqdadi", "Yousef Batshon", "Rageed Sabagh", "Maya Khalaf"]
-  },
-  "YAMENN": {
-    "delegation": "Jordan Bridge Festival Finalist",
-    "captain": "Yamen",
-    "roster": ["Yamen", "Hala Sawaf", "Amal Fakhouri", "Randa Al Saket"]
-  },
-  "AL AHLY": {
-    "delegation": "Al Ahly Sporting Club (Cairo, Egypt)",
-    "captain": "Al Ahly SC Delegation",
-    "roster": ["Tarek Salah", "Ahmed Hussein", "Mohamed Abdel Fattah", "Waleed El Menyawi"]
-  },
-  "ALAHLY": {
-    "delegation": "Al Ahly Sporting Club (Cairo, Egypt)",
-    "captain": "Al Ahly SC Delegation",
-    "roster": ["Tarek Salah", "Ahmed Hussein", "Mohamed Abdel Fattah", "Waleed El Menyawi"]
-  },
-  "JOE": {
-    "delegation": "Jordan & International Invitation",
-    "captain": "Joe",
-    "roster": ["Joe", "Farah Ahmed", "Samer Rwashdeh", "Mohd Al Taji"]
-  },
-  "DARK WAVE": {
-    "delegation": "Dark Wave Bridge Club (Amman)",
-    "captain": "Amman League Selection",
-    "roster": ["Mona Al Omari", "Mais Al Bitar", "Bana Al Taher", "Omar Al Masri"]
-  },
-  "AMMAN": {
-    "delegation": "Amman Bridge Club (Prince Hamza Hall)",
-    "captain": "Amman Sports City",
-    "roster": ["Mamoun Al Kotob", "Ghassan Ghaneem", "Marwan Ghaneem", "Clement Mamar Bash"]
-  },
-  "ARAB UNITED": {
-    "delegation": "Arab United International Delegation",
-    "captain": "Arab Bridge Federation",
-    "roster": ["Jamal Abdeljalil", "Rana Abdelhadi", "Huda Rabaeh", "Zaid Bitar"]
-  },
-  "SWISS ARABIAN": {
-    "delegation": "Swiss Arabian Bridge Delegation",
-    "captain": "Swiss Arabian Club",
-    "roster": ["Sakher Malkawi", "Aaida Abu Jaber", "Ahmed Al Samhouri", "Akiel Madi"]
-  },
-  "SHEKA BEKA": {
-    "delegation": "Jordan Bridge Festival Delegation",
-    "captain": "Jordanian Bridge Club",
-    "roster": ["Yousef Batshon", "Jack Karouta", "Farid Nabelsi", "Laith Tashman"]
-  },
-  "RED SEA": {
-    "delegation": "Red Sea Bridge Club (Aqaba)",
-    "captain": "Aqaba Bridge Association",
-    "roster": ["Lina Toukan", "Maram Qusous", "Aziz Amer", "Nowel Trawnwh"]
-  },
-  "AL MAMOUN": {
-    "delegation": "King Hussein Sports Club",
-    "captain": "Mamoun Al Kotob",
-    "roster": ["Mamoun Al Kotob", "Ghassan Ghaneem", "Omran Abu Dhaim", "Marwan Ghaneem"]
-  },
-  "SHARJAH": {
-    "delegation": "Sharjah Bridge Club (UAE)",
-    "captain": "Sharjah Sports Council",
-    "roster": ["Ahmed Al Midfaa", "Darshan Valrani", "Wael Al Agamawi", "Humayun"]
-  },
-  "RFAA": {
-    "delegation": "Jordan National Festival Entry",
-    "captain": "RFAA Selection",
-    "roster": ["Hanan Al Masri", "Nawar Hashem", "Fiuroz Badwan", "Alia Shredh"]
-  },
-  "TURK-JOR": {
-    "delegation": "Turkey & Jordan Friendship Delegation (Türkiye & Ürdün)",
-    "captain": "Turkey-Jordan Bridge Alliance",
-    "roster": ["Erdem Öztürk & Partners", "Samer Haddad", "Zaid Bitar", "Turkish Bridge Federation Delegates"]
-  },
-  "ZAK": {
-    "delegation": "Zakaria Adamjee Memorial Team",
-    "captain": "BFAME Delegation",
-    "roster": ["Pakistan & Jordan Bridge Selection"]
-  },
-  "S.R": {
-    "delegation": "S.R Bridge Team (Amman)",
-    "captain": "Samer Rwashdeh",
-    "roster": ["Samer Rwashdeh", "Farah Ahmed", "Yena Sabagh", "Mohd Al Taji"]
-  },
-  "TRICKS": {
-    "delegation": "Tricks Bridge Club (Amman)",
-    "captain": "Tricks Club Selection",
-    "roster": ["Randa Al Saket", "Azza Qudah", "Hala Sawaf", "Amal Fakhouri"]
-  },
-  "MOROCCO": {
-    "delegation": "Royal Moroccan Bridge Federation (FRMB)",
-    "captain": "Kingdom of Morocco",
-    "roster": ["Fédération Royale Marocaine de Bridge Delegation"]
-  },
-  "SHAHRO": {
-    "delegation": "Shahro Bridge Team",
-    "captain": "Shahro & Partners",
-    "roster": ["Mona Al Omari", "Bana Al Taher", "Hanan Juman", "Nowel Trawneh"]
-  },
-  "WADI RUM": {
-    "delegation": "Wadi Rum Bridge Team (South Jordan)",
-    "captain": "South Jordan Bridge Club",
-    "roster": ["Aqaba & Wadi Rum Bridge Delegates"]
-  },
-  "BEI-SHJ": {
-    "delegation": "39th Festival Champion (Beirut & Sharjah)",
-    "captain": "Lebanon & UAE Alliance",
-    "roster": ["Beirut Bridge Club & Sharjah Club Selection"]
-  },
-  "SENATOR": {
-    "delegation": "39th Festival Runner-Up",
-    "captain": "Senator Bridge Team",
-    "roster": ["Jordan & International Masters"]
-  },
-  "ZICO": {
-    "delegation": "39th Festival 3rd Place",
-    "captain": "Zico & Partners",
-    "roster": ["Egyptian & Jordanian Bridge Masters"]
-  },
-  "ZIKO": {
-    "delegation": "40th Festival 12th Place",
-    "captain": "Zico & Partners",
-    "roster": ["Egyptian & Jordanian Bridge Masters"]
-  },
-  "BONITA": {
-    "delegation": "41st Festival Champion (2025)",
-    "captain": "Bonita International",
-    "roster": ["Bonita International Masters Selection"]
-  },
-  "WASO": {
-    "delegation": "41st Festival Runner-Up (2025)",
-    "captain": "Waso Bridge Team",
-    "roster": ["Waso Bridge Club Selection"]
-  },
-  "HALA X 2": {
-    "delegation": "41st Festival 3rd Place (2025)",
-    "captain": "Hala Sawaf",
-    "roster": ["Hala Sawaf & Partners (Amman)"]
-  },
-  "DAMAS": {
-    "delegation": "40th Festival 3rd Place (2024)",
-    "captain": "Damascus Bridge Club",
-    "roster": ["Syrian & Jordanian Bridge Alliance"]
-  },
-  "RANA": {
-    "delegation": "40th Festival 4th Place (2024)",
-    "captain": "Rana Abdelhadi",
-    "roster": ["Rana Abdelhadi, Jamal Abdeljalil & Partners"]
-  },
-  "GHASSAN": {
-    "delegation": "40th Festival 5th Place (2024)",
-    "captain": "Ghassan Ghaneem",
-    "roster": ["Ghassan Ghaneem, Marwan Ghaneem & Partners"]
+    "roster": [
+      "Hanan Al Masri",
+      "Nawar Hashem",
+      "Fiuroz Badwan",
+      "Hala Sawaf",
+      "Najwa Najab",
+      "Hassana Zu"
+    ]
   }
 }
