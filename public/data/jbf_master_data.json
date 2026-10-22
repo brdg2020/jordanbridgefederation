@@ -1,0 +1,1918 @@
+{
+  "historicalFestivals": {
+    "2026": {
+      "year": "2026",
+      "title": "42nd Jordan Bridge Festival (2026) - Open Teams",
+      "director": "Waleed El Menyawi",
+      "totalTeams": 23,
+      "standings": [
+        {
+          "rank": 1,
+          "teamId": 12,
+          "score": 109.94,
+          "name": "AKIEL"
+        },
+        {
+          "rank": 2,
+          "teamId": 24,
+          "score": 102.54,
+          "name": "VU"
+        },
+        {
+          "rank": 3,
+          "teamId": 14,
+          "score": 102.17,
+          "name": "RADE"
+        },
+        {
+          "rank": 4,
+          "teamId": 4,
+          "score": 100.38,
+          "name": "MIQDDADI"
+        },
+        {
+          "rank": 5,
+          "teamId": 19,
+          "score": 97.47,
+          "name": "YAMENN"
+        },
+        {
+          "rank": 6,
+          "teamId": 20,
+          "score": 97.19,
+          "name": "AL AHLY"
+        },
+        {
+          "rank": 7,
+          "teamId": 17,
+          "score": 91.02,
+          "name": "JOE"
+        },
+        {
+          "rank": 8,
+          "teamId": 7,
+          "score": 86.34,
+          "name": "DARK WAVE"
+        },
+        {
+          "rank": 9,
+          "teamId": 21,
+          "score": 85.13,
+          "name": "AMMAN"
+        },
+        {
+          "rank": 11,
+          "teamId": 5,
+          "score": 84.04,
+          "name": "SWISS ARABIAN"
+        },
+        {
+          "rank": 12,
+          "teamId": 9,
+          "score": 82.33,
+          "name": "SHEKA BEKA"
+        },
+        {
+          "rank": 13,
+          "teamId": 10,
+          "score": 82.29,
+          "name": "RED SEA"
+        },
+        {
+          "rank": 14,
+          "teamId": 18,
+          "score": 82.27,
+          "name": "AL MAMOUN"
+        },
+        {
+          "rank": 15,
+          "teamId": 1,
+          "score": 78.57,
+          "name": "SHARJAH"
+        },
+        {
+          "rank": 16,
+          "teamId": 8,
+          "score": 78.42,
+          "name": "RFAA"
+        },
+        {
+          "rank": 17,
+          "teamId": 15,
+          "score": 74.91,
+          "name": "TURK-JOR"
+        },
+        {
+          "rank": 18,
+          "teamId": 16,
+          "score": 70.03,
+          "name": "LIONS"
+        },
+        {
+          "rank": 19,
+          "teamId": 22,
+          "score": 66.07,
+          "name": "ZAK"
+        },
+        {
+          "rank": 20,
+          "teamId": 2,
+          "score": 65.88,
+          "name": "S.R"
+        },
+        {
+          "rank": 21,
+          "teamId": 13,
+          "score": 61.6,
+          "name": "TRICKS"
+        },
+        {
+          "rank": 22,
+          "teamId": 3,
+          "score": 53.8,
+          "name": "MOROCCO"
+        },
+        {
+          "rank": 23,
+          "teamId": 11,
+          "score": 42.77,
+          "name": "SHAHRO"
+        },
+        {
+          "rank": 24,
+          "teamId": 6,
+          "score": 39.71,
+          "name": "WADI RUM"
+        }
+      ]
+    },
+    "2025": {
+      "year": "2025",
+      "title": "41st Jordan Bridge Festival (2025) - Open Teams",
+      "director": "Waleed El Menyawi",
+      "totalTeams": 28,
+      "standings": [
+        {
+          "rank": 1,
+          "teamId": 13,
+          "score": 105.85,
+          "name": "BONITA"
+        },
+        {
+          "rank": 2,
+          "teamId": 19,
+          "score": 104.28,
+          "name": "WASO"
+        },
+        {
+          "rank": 3,
+          "teamId": 6,
+          "score": 103.2,
+          "name": "HALA X 2"
+        },
+        {
+          "rank": 4,
+          "teamId": 11,
+          "score": 101.17,
+          "name": "SARMAD"
+        },
+        {
+          "rank": 5,
+          "teamId": 21,
+          "score": 97.2,
+          "name": "MIQDADI"
+        },
+        {
+          "rank": 6,
+          "teamId": 25,
+          "score": 97.19,
+          "name": "LEBANON"
+        },
+        {
+          "rank": 7,
+          "teamId": 20,
+          "score": 94.53,
+          "name": "SWISS ARABIAN"
+        },
+        {
+          "rank": 8,
+          "teamId": 23,
+          "score": 93.59,
+          "name": "SENATOR"
+        },
+        {
+          "rank": 9,
+          "teamId": 16,
+          "score": 90.84,
+          "name": "GAME AND GLORY"
+        },
+        {
+          "rank": 10,
+          "teamId": 18,
+          "score": 89.98,
+          "name": "MAJORS"
+        },
+        {
+          "rank": 11,
+          "teamId": 10,
+          "score": 87.66,
+          "name": "RUWAYEH"
+        },
+        {
+          "rank": 12,
+          "teamId": 12,
+          "score": 85.98,
+          "name": "AKEIL"
+        },
+        {
+          "rank": 13,
+          "teamId": 2,
+          "score": 82.35,
+          "name": "TEHSIN"
+        },
+        {
+          "rank": 14,
+          "teamId": 3,
+          "score": 80.24,
+          "name": "Al NASHAMA"
+        },
+        {
+          "rank": 15,
+          "teamId": 27,
+          "score": 78.18,
+          "name": "ZAID"
+        },
+        {
+          "rank": 16,
+          "teamId": 17,
+          "score": 78.05,
+          "name": "DALIA"
+        },
+        {
+          "rank": 17,
+          "teamId": 26,
+          "score": 76.41,
+          "name": "H.A.M.A"
+        },
+        {
+          "rank": 18,
+          "teamId": 7,
+          "score": 75.41,
+          "name": "Al AHLY"
+        },
+        {
+          "rank": 19,
+          "teamId": 8,
+          "score": 72.32,
+          "name": "TYMS"
+        },
+        {
+          "rank": 20,
+          "teamId": 4,
+          "score": 68.74,
+          "name": "WAFIGA"
+        },
+        {
+          "rank": 21,
+          "teamId": 5,
+          "score": 68.11,
+          "name": "RATRUT"
+        },
+        {
+          "rank": 22,
+          "teamId": 15,
+          "score": 66.74,
+          "name": "SILVIE"
+        },
+        {
+          "rank": 23,
+          "teamId": 22,
+          "score": 62.71,
+          "name": "SADER"
+        },
+        {
+          "rank": 24,
+          "teamId": 14,
+          "score": 62.56,
+          "name": "EAGLES"
+        },
+        {
+          "rank": 25,
+          "teamId": 28,
+          "score": 61.73,
+          "name": "ABU DHABI"
+        },
+        {
+          "rank": 26,
+          "teamId": 9,
+          "score": 60.37,
+          "name": "THUNDERS"
+        },
+        {
+          "rank": 27,
+          "teamId": 1,
+          "score": 52.22,
+          "name": "BHHM"
+        },
+        {
+          "rank": 28,
+          "teamId": 24,
+          "score": 42.39,
+          "name": "WANA"
+        }
+      ]
+    },
+    "2024": {
+      "year": "2024",
+      "title": "40th Jordan Bridge Festival (2024) - Open Teams",
+      "director": "Waleed El Menyawi",
+      "totalTeams": 22,
+      "standings": [
+        {
+          "rank": 1,
+          "teamId": 1,
+          "score": 110.16,
+          "name": "AKEIL"
+        },
+        {
+          "rank": 2,
+          "teamId": 17,
+          "score": 103.44,
+          "name": "AL AHLY"
+        },
+        {
+          "rank": 3,
+          "teamId": 5,
+          "score": 99.8,
+          "name": "DAMAS"
+        },
+        {
+          "rank": 4,
+          "teamId": 16,
+          "score": 97.88,
+          "name": "RANA"
+        },
+        {
+          "rank": 5,
+          "teamId": 9,
+          "score": 94.7,
+          "name": "GHASSAN"
+        },
+        {
+          "rank": 6,
+          "teamId": 14,
+          "score": 91.69,
+          "name": "PEPSI"
+        },
+        {
+          "rank": 7,
+          "teamId": 8,
+          "score": 89.42,
+          "name": "VOLARE"
+        },
+        {
+          "rank": 8,
+          "teamId": 18,
+          "score": 88.8,
+          "name": "FARAH"
+        },
+        {
+          "rank": 9,
+          "teamId": 12,
+          "score": 81.16,
+          "name": "NINJA"
+        },
+        {
+          "rank": 10,
+          "teamId": 10,
+          "score": 80.83,
+          "name": "GLOBAL TECH (A)"
+        },
+        {
+          "rank": 11,
+          "teamId": 13,
+          "score": 79.3,
+          "name": "A Z R G"
+        },
+        {
+          "rank": 12,
+          "teamId": 3,
+          "score": 78.8,
+          "name": "ZIKO"
+        },
+        {
+          "rank": 13,
+          "teamId": 19,
+          "score": 76.83,
+          "name": "SFMS"
+        },
+        {
+          "rank": 14,
+          "teamId": 11,
+          "score": 76.58,
+          "name": "El Karma"
+        },
+        {
+          "rank": 15,
+          "teamId": 2,
+          "score": 75.28,
+          "name": "HANOUNA 5"
+        },
+        {
+          "rank": 16,
+          "teamId": 15,
+          "score": 69.79,
+          "name": "GLOBAL TECH (B)"
+        },
+        {
+          "rank": 17,
+          "teamId": 22,
+          "score": 69.22,
+          "name": "S LIPSK"
+        },
+        {
+          "rank": 18,
+          "teamId": 21,
+          "score": 66.51,
+          "name": "AVATAR"
+        },
+        {
+          "rank": 19,
+          "teamId": 7,
+          "score": 66.35,
+          "name": "SHAHRO"
+        },
+        {
+          "rank": 20,
+          "teamId": 4,
+          "score": 50.99,
+          "name": "DR."
+        },
+        {
+          "rank": 21,
+          "teamId": 6,
+          "score": 50.76,
+          "name": "SHYN  (L)"
+        },
+        {
+          "rank": 22,
+          "teamId": 20,
+          "score": 49.71,
+          "name": "PEACE  (L)"
+        }
+      ]
+    },
+    "2023": {
+      "year": "2023",
+      "title": "39th Jordan Bridge Festival (2023) - Open Teams",
+      "director": "Waleed El Menyawi",
+      "totalTeams": 24,
+      "standings": [
+        {
+          "rank": 1,
+          "teamId": 6,
+          "score": 106.24,
+          "name": "BEI-SHJ"
+        },
+        {
+          "rank": 2,
+          "teamId": 22,
+          "score": 104.04,
+          "name": "SENATOR"
+        },
+        {
+          "rank": 3,
+          "teamId": 10,
+          "score": 103.0,
+          "name": "ZICO"
+        },
+        {
+          "rank": 4,
+          "teamId": 13,
+          "score": 98.7,
+          "name": "MAY"
+        },
+        {
+          "rank": 5,
+          "teamId": 17,
+          "score": 92.59,
+          "name": "FARIDA"
+        },
+        {
+          "rank": 6,
+          "teamId": 1,
+          "score": 88.82,
+          "name": "AL HILAL"
+        },
+        {
+          "rank": 7,
+          "teamId": 4,
+          "score": 88.5,
+          "name": "LUPII GALBXII"
+        },
+        {
+          "rank": 8,
+          "teamId": 24,
+          "score": 88.45,
+          "name": "FARAH"
+        },
+        {
+          "rank": 9,
+          "teamId": 16,
+          "score": 85.82,
+          "name": "GHASSAN"
+        },
+        {
+          "rank": 10,
+          "teamId": 12,
+          "score": 85.43,
+          "name": "AL ITHAD"
+        },
+        {
+          "rank": 11,
+          "teamId": 20,
+          "score": 84.83,
+          "name": "THE MIX"
+        },
+        {
+          "rank": 12,
+          "teamId": 2,
+          "score": 84.04,
+          "name": "EGY-JOR"
+        },
+        {
+          "rank": 13,
+          "teamId": 11,
+          "score": 83.02,
+          "name": "OLCZYK"
+        },
+        {
+          "rank": 14,
+          "teamId": 14,
+          "score": 79.16,
+          "name": "KUWAIT"
+        },
+        {
+          "rank": 15,
+          "teamId": 5,
+          "score": 76.85,
+          "name": "DALIA"
+        },
+        {
+          "rank": 16,
+          "teamId": 3,
+          "score": 73.53,
+          "name": "JARRAR"
+        },
+        {
+          "rank": 17,
+          "teamId": 19,
+          "score": 71.75,
+          "name": "AL NASSER"
+        },
+        {
+          "rank": 18,
+          "teamId": 8,
+          "score": 71.31,
+          "name": "ALAHLY"
+        },
+        {
+          "rank": 19,
+          "teamId": 21,
+          "score": 68.5,
+          "name": "WAFIGA"
+        },
+        {
+          "rank": 20,
+          "teamId": 9,
+          "score": 64.75,
+          "name": "CANADA"
+        },
+        {
+          "rank": 21,
+          "teamId": 7,
+          "score": 62.79,
+          "name": "JORDAN LADIES"
+        },
+        {
+          "rank": 22,
+          "teamId": 18,
+          "score": 59.28,
+          "name": "JOR-DUB"
+        },
+        {
+          "rank": 23,
+          "teamId": 23,
+          "score": 49.41,
+          "name": "JERASH"
+        },
+        {
+          "rank": 24,
+          "teamId": 15,
+          "score": 37.19,
+          "name": "HASSANA"
+        }
+      ]
+    }
+  },
+  "jordanCup2026": {
+    "tournament": "Jordan Cup 2026 Final",
+    "director": "Raad Otoom",
+    "matrix": [
+      {
+        "team": "AL Nashama",
+        "rounds": [
+          {
+            "round": 1,
+            "vp": 17.56,
+            "imp": 31
+          },
+          {
+            "round": 2,
+            "vp": 13.97,
+            "imp": 13
+          },
+          {
+            "round": 3,
+            "vp": 10.0,
+            "imp": 0
+          },
+          {
+            "round": 4,
+            "vp": 15.99,
+            "imp": 22
+          },
+          {
+            "round": 5,
+            "vp": 3.09,
+            "imp": -27
+          },
+          {
+            "round": 6,
+            "vp": 17.08,
+            "imp": 28
+          },
+          {
+            "round": 7,
+            "vp": 13.71,
+            "imp": 12
+          }
+        ],
+        "penalty": 0.5,
+        "totalVp": 90.9,
+        "totalImp": 79,
+        "roster": [
+          "Abdlah Ajlouni",
+          "Zaid Bitar",
+          "Samer Haddad",
+          "Luai Al Hussari",
+          "Mamoun Al Kotob",
+          "Omran Abu Dhaim"
+        ],
+        "rank": 1
+      },
+      {
+        "team": "Lions",
+        "rounds": [
+          {
+            "round": 1,
+            "vp": 4.21,
+            "imp": -21
+          },
+          {
+            "round": 2,
+            "vp": 19.34,
+            "imp": 45
+          },
+          {
+            "round": 3,
+            "vp": 10.0,
+            "imp": 0
+          },
+          {
+            "round": 4,
+            "vp": 16.37,
+            "imp": 24
+          },
+          {
+            "round": 5,
+            "vp": 11.7,
+            "imp": 5
+          },
+          {
+            "round": 6,
+            "vp": 17.71,
+            "imp": 32
+          },
+          {
+            "round": 7,
+            "vp": 10.36,
+            "imp": 1
+          }
+        ],
+        "penalty": 0.0,
+        "totalVp": 89.69,
+        "totalImp": 86,
+        "roster": [
+          "Samer Rwashdeh",
+          "Farah Ahmed",
+          "Yena Sabagh",
+          "Mohd Al Taji"
+        ],
+        "rank": 2
+      },
+      {
+        "team": "Jordan Teams",
+        "rounds": [
+          {
+            "round": 1,
+            "vp": 18.78,
+            "imp": 40
+          },
+          {
+            "round": 2,
+            "vp": 16.55,
+            "imp": 25
+          },
+          {
+            "round": 3,
+            "vp": 4.85,
+            "imp": -18
+          },
+          {
+            "round": 4,
+            "vp": 10.0,
+            "imp": 0
+          },
+          {
+            "round": 5,
+            "vp": 16.91,
+            "imp": 27
+          },
+          {
+            "round": 6,
+            "vp": 13.18,
+            "imp": 10
+          },
+          {
+            "round": 7,
+            "vp": 9.64,
+            "imp": -1
+          }
+        ],
+        "penalty": 0.5,
+        "totalVp": 89.41,
+        "totalImp": 83,
+        "roster": [
+          "Ghassan Ghaneem",
+          "Yasmin Abu Jaber",
+          "Marwan Ghaneem",
+          "Clement Mamar Bash",
+          "Rana Abdelhadi",
+          "Jamal Abdeljalil"
+        ],
+        "rank": 3
+      },
+      {
+        "team": "Jordan Mix",
+        "rounds": [
+          {
+            "round": 1,
+            "vp": 8.3,
+            "imp": -5
+          },
+          {
+            "round": 2,
+            "vp": 15.37,
+            "imp": 19
+          },
+          {
+            "round": 3,
+            "vp": 17.56,
+            "imp": 31
+          },
+          {
+            "round": 4,
+            "vp": 4.01,
+            "imp": -22
+          },
+          {
+            "round": 5,
+            "vp": 8.3,
+            "imp": -5
+          },
+          {
+            "round": 6,
+            "vp": 6.82,
+            "imp": -10
+          },
+          {
+            "round": 7,
+            "vp": 17.24,
+            "imp": 29
+          }
+        ],
+        "penalty": 0.0,
+        "totalVp": 77.6,
+        "totalImp": 37,
+        "roster": [
+          "Sakher Malkawi",
+          "Aaida Abu Jaber",
+          "Dima Al Taher",
+          "Ahmed Al Samhouri",
+          "Huda Rabaeh",
+          "Akiel Madi"
+        ],
+        "rank": 4
+      },
+      {
+        "team": "Alfa",
+        "rounds": [
+          {
+            "round": 1,
+            "vp": 11.7,
+            "imp": 5
+          },
+          {
+            "round": 2,
+            "vp": 3.45,
+            "imp": -25
+          },
+          {
+            "round": 3,
+            "vp": 16.55,
+            "imp": 25
+          },
+          {
+            "round": 4,
+            "vp": 3.63,
+            "imp": -24
+          },
+          {
+            "round": 5,
+            "vp": 8.62,
+            "imp": -4
+          },
+          {
+            "round": 6,
+            "vp": 16.37,
+            "imp": 24
+          },
+          {
+            "round": 7,
+            "vp": 6.29,
+            "imp": -12
+          }
+        ],
+        "penalty": 0.5,
+        "totalVp": 66.11,
+        "totalImp": -11,
+        "roster": [
+          "Randa Al Saket",
+          "Azza Qudah",
+          "Hala Sawaf",
+          "Amal Fakhouri"
+        ],
+        "rank": 5
+      },
+      {
+        "team": "Eagles",
+        "rounds": [
+          {
+            "round": 1,
+            "vp": 15.79,
+            "imp": 21
+          },
+          {
+            "round": 2,
+            "vp": 6.03,
+            "imp": -13
+          },
+          {
+            "round": 3,
+            "vp": 2.44,
+            "imp": -31
+          },
+          {
+            "round": 4,
+            "vp": 10.0,
+            "imp": 0
+          },
+          {
+            "round": 5,
+            "vp": 13.18,
+            "imp": 10
+          },
+          {
+            "round": 6,
+            "vp": 3.63,
+            "imp": -24
+          },
+          {
+            "round": 7,
+            "vp": 12.61,
+            "imp": 8
+          }
+        ],
+        "penalty": 0.0,
+        "totalVp": 63.68,
+        "totalImp": -29,
+        "roster": [
+          "Mona Al Omari",
+          "Mais Al Bitar",
+          "Bana Al Taher",
+          "Hanan Juman",
+          "Nowel Trawneh",
+          "Omar Al Masri"
+        ],
+        "rank": 6
+      },
+      {
+        "team": "Ortho Group",
+        "rounds": [
+          {
+            "round": 1,
+            "vp": 2.44,
+            "imp": -31
+          },
+          {
+            "round": 2,
+            "vp": 4.63,
+            "imp": -19
+          },
+          {
+            "round": 3,
+            "vp": 15.15,
+            "imp": 18
+          },
+          {
+            "round": 4,
+            "vp": 10.36,
+            "imp": 1
+          },
+          {
+            "round": 5,
+            "vp": 11.38,
+            "imp": 4
+          },
+          {
+            "round": 6,
+            "vp": 2.29,
+            "imp": -32
+          },
+          {
+            "round": 7,
+            "vp": 7.39,
+            "imp": -8
+          }
+        ],
+        "penalty": 0.5,
+        "totalVp": 53.14,
+        "totalImp": -67,
+        "roster": [
+          "Yousef Batshon",
+          "Jack Qarouta",
+          "Ramzi Qusous",
+          "Rageed Sabagh",
+          "Maya Khalaf",
+          "Laith Tashman"
+        ],
+        "rank": 7
+      },
+      {
+        "team": "Palestine",
+        "rounds": [
+          {
+            "round": 1,
+            "vp": 1.22,
+            "imp": -40
+          },
+          {
+            "round": 2,
+            "vp": 0.66,
+            "imp": -45
+          },
+          {
+            "round": 3,
+            "vp": 3.45,
+            "imp": -25
+          },
+          {
+            "round": 4,
+            "vp": 9.64,
+            "imp": -1
+          },
+          {
+            "round": 5,
+            "vp": 6.82,
+            "imp": -10
+          },
+          {
+            "round": 6,
+            "vp": 2.92,
+            "imp": -28
+          },
+          {
+            "round": 7,
+            "vp": 2.76,
+            "imp": -29
+          }
+        ],
+        "penalty": 0.0,
+        "totalVp": 27.47,
+        "totalImp": -178,
+        "roster": [
+          "Laila Zruqat",
+          "Hanan Al Masri",
+          "Nawar Hashem",
+          "Fiuroz Badwan",
+          "Alia Shredh"
+        ],
+        "rank": 8
+      }
+    ],
+    "schedule": [
+      {
+        "round": 1,
+        "matches": [
+          {
+            "home": "Lions",
+            "away": "Eagles"
+          },
+          {
+            "home": "Jordan Teams",
+            "away": "Palestine"
+          },
+          {
+            "home": "Ortho Group",
+            "away": "AL Nashama"
+          },
+          {
+            "home": "Jordan Mix",
+            "away": "Alfa"
+          }
+        ]
+      },
+      {
+        "round": 2,
+        "matches": [
+          {
+            "home": "Eagles",
+            "away": "AL Nashama"
+          },
+          {
+            "home": "Alfa",
+            "away": "Ortho Group"
+          },
+          {
+            "home": "Jordan Teams",
+            "away": "Jordan Mix"
+          },
+          {
+            "home": "Palestine",
+            "away": "Lions"
+          }
+        ]
+      },
+      {
+        "round": 3,
+        "matches": [
+          {
+            "home": "Jordan Mix",
+            "away": "Palestine"
+          },
+          {
+            "round": 3,
+            "home": "AL Nashama",
+            "away": "Alfa"
+          },
+          {
+            "home": "Lions",
+            "away": "Jordan Teams"
+          },
+          {
+            "home": "Ortho Group",
+            "away": "Eagles"
+          }
+        ]
+      },
+      {
+        "round": 4,
+        "matches": [
+          {
+            "home": "Palestine",
+            "away": "Ortho Group"
+          },
+          {
+            "home": "Jordan Teams",
+            "away": "AL Nashama"
+          },
+          {
+            "home": "Alfa",
+            "away": "Eagles"
+          },
+          {
+            "home": "Jordan Mix",
+            "away": "Lions"
+          }
+        ]
+      },
+      {
+        "round": 5,
+        "matches": [
+          {
+            "home": "Eagles",
+            "away": "Jordan Teams"
+          },
+          {
+            "home": "Lions",
+            "away": "Alfa"
+          },
+          {
+            "home": "Ortho Group",
+            "away": "Jordan Mix"
+          },
+          {
+            "home": "AL Nashama",
+            "away": "Palestine"
+          }
+        ]
+      },
+      {
+        "round": 6,
+        "matches": [
+          {
+            "home": "Palestine",
+            "away": "Alfa"
+          },
+          {
+            "home": "Jordan Mix",
+            "away": "Eagles"
+          },
+          {
+            "home": "Lions",
+            "away": "AL Nashama"
+          },
+          {
+            "home": "Jordan Teams",
+            "away": "Ortho Group"
+          }
+        ]
+      },
+      {
+        "round": 7,
+        "matches": [
+          {
+            "home": "AL Nashama",
+            "away": "Jordan Mix"
+          },
+          {
+            "home": "Eagles",
+            "away": "Palestine"
+          },
+          {
+            "home": "Alfa",
+            "away": "Jordan Teams"
+          },
+          {
+            "home": "Ortho Group",
+            "away": "Lions"
+          }
+        ]
+      }
+    ]
+  },
+  "jordanCup2025": {
+    "tournament": "Jordan Cup 2025 Final",
+    "director": "Raad Otoom",
+    "matrix": [
+      {
+        "team": "KING HUSSEIN CLUB",
+        "rounds": [
+          {
+            "label": "After R7",
+            "vp": 91.49
+          },
+          {
+            "label": "R8",
+            "vp": 4.85
+          },
+          {
+            "label": "R9",
+            "vp": 1.86
+          },
+          {
+            "label": "R10",
+            "vp": 14.46
+          },
+          {
+            "label": "R11",
+            "vp": 0.0
+          },
+          {
+            "label": "R12",
+            "vp": 17.86
+          },
+          {
+            "label": "R13",
+            "vp": 11.05
+          },
+          {
+            "label": "R14",
+            "vp": 17.26
+          }
+        ],
+        "totalVp": 158.83,
+        "roster": [
+          "Mamoun Al Kotob",
+          "Ghassan Ghaneem",
+          "Omran Abu Dhaim",
+          "Marwan Ghaneem"
+        ],
+        "rank": 1
+      },
+      {
+        "team": "JBA 3",
+        "rounds": [
+          {
+            "label": "After R7",
+            "vp": 73.35
+          },
+          {
+            "label": "R8",
+            "vp": 10.71
+          },
+          {
+            "label": "R9",
+            "vp": 18.14
+          },
+          {
+            "label": "R10",
+            "vp": 16.55
+          },
+          {
+            "label": "R11",
+            "vp": 19.13
+          },
+          {
+            "label": "R12",
+            "vp": 12.9
+          },
+          {
+            "label": "R13",
+            "vp": 5.54
+          },
+          {
+            "label": "R14",
+            "vp": 0.0
+          }
+        ],
+        "totalVp": 156.32,
+        "roster": [
+          "Farah Ahmed",
+          "Samer Rwashdeh",
+          "Dima Al Taher",
+          "Ahmed Al Samhouri"
+        ],
+        "rank": 2
+      },
+      {
+        "team": "JBA 1",
+        "rounds": [
+          {
+            "label": "After R7",
+            "vp": 71.13
+          },
+          {
+            "label": "R8",
+            "vp": 15.15
+          },
+          {
+            "label": "R9",
+            "vp": 15.15
+          },
+          {
+            "label": "R10",
+            "vp": 3.45
+          },
+          {
+            "label": "R11",
+            "vp": 16.55
+          },
+          {
+            "label": "R12",
+            "vp": 10.0
+          },
+          {
+            "label": "R13",
+            "vp": 0.0
+          },
+          {
+            "label": "R14",
+            "vp": 9.64
+          }
+        ],
+        "totalVp": 141.07,
+        "roster": [
+          "Mohd Al Taji",
+          "Yena Rageed",
+          "Hamzeh Habbob",
+          "Samer Haddad",
+          "Syelvi Skljean"
+        ],
+        "rank": 3
+      },
+      {
+        "team": "JBA 2",
+        "rounds": [
+          {
+            "label": "After R7",
+            "vp": 64.79
+          },
+          {
+            "label": "R8",
+            "vp": 9.29
+          },
+          {
+            "label": "R9",
+            "vp": 11.05
+          },
+          {
+            "label": "R10",
+            "vp": 5.54
+          },
+          {
+            "label": "R11",
+            "vp": 18.9
+          },
+          {
+            "label": "R12",
+            "vp": 0.0
+          },
+          {
+            "label": "R13",
+            "vp": 17.71
+          },
+          {
+            "label": "R14",
+            "vp": 10.36
+          }
+        ],
+        "totalVp": 137.64,
+        "roster": [
+          "Jamal Abdeljalil",
+          "Rana Abdelhadi",
+          "Huda Rabaia",
+          "Zaid Bitar"
+        ],
+        "rank": 4
+      },
+      {
+        "team": "OTHODOX CLUB",
+        "rounds": [
+          {
+            "label": "After R7",
+            "vp": 40.49
+          },
+          {
+            "label": "R8",
+            "vp": 0.0
+          },
+          {
+            "label": "R9",
+            "vp": 8.95
+          },
+          {
+            "label": "R10",
+            "vp": 11.05
+          },
+          {
+            "label": "R11",
+            "vp": 3.45
+          },
+          {
+            "label": "R12",
+            "vp": 7.1
+          },
+          {
+            "label": "R13",
+            "vp": 8.95
+          },
+          {
+            "label": "R14",
+            "vp": 12.0
+          }
+        ],
+        "totalVp": 91.99,
+        "roster": [
+          "Yousef Batshon",
+          "Rabeha Othman",
+          "Zeyad Shraehah",
+          "Abdlah Ajlouni",
+          "Farid Nabelsi",
+          "Jack Karouta",
+          "Laith Tashman"
+        ],
+        "rank": 5
+      },
+      {
+        "team": "JBA 5",
+        "rounds": [
+          {
+            "label": "After R7",
+            "vp": 42.67
+          },
+          {
+            "label": "R8",
+            "vp": 4.01
+          },
+          {
+            "label": "R9",
+            "vp": 0.0
+          },
+          {
+            "label": "R10",
+            "vp": 8.95
+          },
+          {
+            "label": "R11",
+            "vp": 1.1
+          },
+          {
+            "label": "R12",
+            "vp": 10.0
+          },
+          {
+            "label": "R13",
+            "vp": 14.46
+          },
+          {
+            "label": "R14",
+            "vp": 2.76
+          }
+        ],
+        "totalVp": 83.95,
+        "roster": [
+          "Lina Toukan",
+          "Maram Qusous",
+          "Aziz Amer",
+          "Nowel Trawnwh"
+        ],
+        "rank": 6
+      },
+      {
+        "team": "JBA 4",
+        "rounds": [
+          {
+            "label": "After R7",
+            "vp": 37.09
+          },
+          {
+            "label": "R8",
+            "vp": 15.99
+          },
+          {
+            "label": "R9",
+            "vp": 4.85
+          },
+          {
+            "label": "R10",
+            "vp": 0.0
+          },
+          {
+            "label": "R11",
+            "vp": 0.87
+          },
+          {
+            "label": "R12",
+            "vp": 2.14
+          },
+          {
+            "label": "R13",
+            "vp": 2.29
+          },
+          {
+            "label": "R14",
+            "vp": 8.0
+          }
+        ],
+        "totalVp": 71.23,
+        "roster": [
+          "Hanan Al Masri",
+          "Nawar Hashem",
+          "Fiuroz Badwan",
+          "Hala Sawaf",
+          "Najwa Najab",
+          "Hassana Zu"
+        ],
+        "rank": 7
+      }
+    ]
+  },
+  "mixSelection2025": {
+    "tournament": "National Mixed Selection League 2025",
+    "pairs": [
+      {
+        "pair": "Yena Sabegh-Mohd AL Taji",
+        "rounds": [
+          {
+            "round": 1,
+            "imp": 26,
+            "vp": 15.24
+          },
+          {
+            "round": 2,
+            "imp": 44,
+            "vp": 17.58
+          },
+          {
+            "round": 3,
+            "imp": -17,
+            "vp": 6.28
+          },
+          {
+            "round": 4,
+            "imp": 8,
+            "vp": 11.9
+          },
+          {
+            "round": 5,
+            "imp": 22,
+            "vp": 14.6
+          }
+        ],
+        "totalImp": 83,
+        "totalVp": 65.6,
+        "rank": 1
+      },
+      {
+        "pair": "Huda Rabiai- Zaid AL Bitar",
+        "rounds": [
+          {
+            "round": 1,
+            "imp": 0,
+            "vp": 10.0
+          },
+          {
+            "round": 2,
+            "imp": 14,
+            "vp": 13.15
+          },
+          {
+            "round": 3,
+            "imp": 11,
+            "vp": 12.54
+          },
+          {
+            "round": 4,
+            "imp": -3,
+            "vp": 9.25
+          },
+          {
+            "round": 5,
+            "imp": 12,
+            "vp": 12.75
+          }
+        ],
+        "totalImp": 34,
+        "totalVp": 57.69,
+        "rank": 2
+      },
+      {
+        "pair": "Farah Ahmed- Samer Al Rwashdeh",
+        "rounds": [
+          {
+            "round": 1,
+            "imp": 15,
+            "vp": 13.34
+          },
+          {
+            "round": 2,
+            "imp": 15,
+            "vp": 13.34
+          },
+          {
+            "round": 3,
+            "imp": -2,
+            "vp": 9.5
+          },
+          {
+            "round": 4,
+            "imp": -13,
+            "vp": 7.05
+          },
+          {
+            "round": 5,
+            "imp": -6,
+            "vp": 8.54
+          }
+        ],
+        "totalImp": 9,
+        "totalVp": 51.77,
+        "rank": 3
+      },
+      {
+        "pair": "Rana Abdelhadi-Jamal Abdeljalil",
+        "rounds": [
+          {
+            "round": 1,
+            "imp": -34,
+            "vp": 3.62
+          },
+          {
+            "round": 2,
+            "imp": 1,
+            "vp": 10.25
+          },
+          {
+            "round": 3,
+            "imp": -22,
+            "vp": 4.92
+          },
+          {
+            "round": 4,
+            "imp": 37,
+            "vp": 16.77
+          },
+          {
+            "round": 5,
+            "imp": -1,
+            "vp": 9.75
+          }
+        ],
+        "totalImp": -19,
+        "totalVp": 45.31,
+        "rank": 4
+      },
+      {
+        "pair": "Nowel Tarawneh-Aziz Amer",
+        "rounds": [
+          {
+            "round": 1,
+            "imp": -18,
+            "vp": 6.1
+          },
+          {
+            "round": 2,
+            "imp": -25,
+            "vp": 4.92
+          },
+          {
+            "round": 3,
+            "imp": 7,
+            "vp": 11.68
+          },
+          {
+            "round": 4,
+            "imp": 4,
+            "vp": 10.99
+          },
+          {
+            "round": 5,
+            "imp": 3,
+            "vp": 10.75
+          }
+        ],
+        "totalImp": -29,
+        "totalVp": 44.44,
+        "rank": 5
+      },
+      {
+        "pair": "Maya Khalaf- Rageed Sabegh",
+        "rounds": [
+          {
+            "round": 1,
+            "imp": -6,
+            "vp": 8.54
+          },
+          {
+            "round": 2,
+            "imp": -32,
+            "vp": 3.98
+          },
+          {
+            "round": 3,
+            "imp": 31,
+            "vp": 15.97
+          },
+          {
+            "round": 4,
+            "imp": 8,
+            "vp": 11.9
+          },
+          {
+            "round": 5,
+            "imp": -34,
+            "vp": 3.62
+          }
+        ],
+        "totalImp": -33,
+        "totalVp": 44.01,
+        "rank": 6
+      },
+      {
+        "pair": "Dima AL Taher- Ahmed AL Samhouri",
+        "rounds": [
+          {
+            "round": 1,
+            "imp": 17,
+            "vp": 13.72
+          },
+          {
+            "round": 2,
+            "imp": -17,
+            "vp": 6.28
+          },
+          {
+            "round": 3,
+            "imp": -8,
+            "vp": 8.1
+          },
+          {
+            "round": 4,
+            "imp": -41,
+            "vp": 2.75
+          },
+          {
+            "round": 5,
+            "imp": 4,
+            "vp": 10.99
+          }
+        ],
+        "totalImp": -45,
+        "totalVp": 41.84,
+        "rank": 7
+      }
+    ]
+  },
+  "documents": [
+    {
+      "id": "bylaws_en",
+      "category": "governance",
+      "title_en": "By-Laws Jordan Bridge Federation",
+      "title_ar": "النظام الأساسي للاتحاد الأردني للبريدج",
+      "desc_en": "Official English constitution, governance structure, and federation bylaws.",
+      "desc_ar": "النظام الأساسي الرسمي باللغة الإنجليزية، هيكلية الإدارة ولائحة الاتحاد.",
+      "filename": "By-Laws Jordan Bridge Federation KP 220821.pdf",
+      "filetype": "PDF",
+      "filesize": "912 KB",
+      "icon": "scroll-text"
+    },
+    {
+      "id": "bylaws_ar",
+      "category": "governance",
+      "title_en": "Official Arabic Constitution (Olympic Committee Approved)",
+      "title_ar": "النظام الأساسي المعتمد من اللجنة الأولمبية الأردنية",
+      "desc_en": "Official Arabic statute certified by the Jordan Olympic Committee (2021).",
+      "desc_ar": "النظام الأساسي المعتمد رسمياً والصادر عن اللجنة الأولمبية الأردنية (2021).",
+      "filename": "157516041606159215751605 1575160415751587157515871610 1604160415751578158115751583 1575160415751585158316061610 1604160415761585161015831580 1575160416061607157515741610 2021.pdf",
+      "filetype": "PDF",
+      "filesize": "967 KB",
+      "icon": "award"
+    },
+    {
+      "id": "wbf_alerting",
+      "category": "regulations",
+      "title_en": "WBF Official Alerting Policy",
+      "title_ar": "سياسة التنبيه المعتمدة من الاتحاد الدولي (WBF)",
+      "desc_en": "World Bridge Federation regulations for bidding alerts, announcements, and screens.",
+      "desc_ar": "تعليمات وسياسة التنبيهات الرسمية للإعلانات والمزايدة والشاشات من الاتحاد العالمي.",
+      "filename": "WBF Alerting Policy.pdf",
+      "filetype": "PDF",
+      "filesize": "44 KB",
+      "icon": "bell"
+    },
+    {
+      "id": "bfame_records",
+      "category": "international",
+      "title_en": "BFAME Participation & Historical Record",
+      "title_ar": "سجل مشاركات وإنجازات الأردن في BFAME",
+      "desc_en": "Official records of Jordan national teams in the Bridge Federation of Asia & Middle East.",
+      "desc_ar": "سجل مشاركات ونتائج منتخبات الأردن في بطولات اتحاد آسيا والشرق الأوسط للبريدج.",
+      "filename": "BFAME Participation Record.pdf",
+      "filetype": "PDF",
+      "filesize": "40 KB",
+      "icon": "globe"
+    },
+    {
+      "id": "wbf_women",
+      "category": "international",
+      "title_en": "WBF Women in Bridge Programme",
+      "title_ar": "برنامج المرأة في رياضة البريدج (WBF)",
+      "desc_en": "International initiatives for female bridge athletes and junior development.",
+      "desc_ar": "المبادرات الدولية لدعم وتطوير اللاعبات السيدات والناشئات في رياضة البريدج.",
+      "filename": "WBF Women.pdf",
+      "filetype": "PDF",
+      "filesize": "2.6 MB",
+      "icon": "heart"
+    },
+    {
+      "id": "general_assembly",
+      "category": "governance",
+      "title_en": "General Assembly Roster & Public Committee",
+      "title_ar": "كشف أعضاء الهيئة العامة للاتحاد",
+      "desc_en": "Official registry of the General Assembly submitted to the Jordan Olympic Committee.",
+      "desc_ar": "الكشف الرسمي المعتمد لأسماء أعضاء الهيئة العامة المرفوع للجنة الأولمبية.",
+      "filename": "name of public commite.docx",
+      "filetype": "DOCX",
+      "filesize": "31 KB",
+      "icon": "users"
+    },
+    {
+      "id": "annual_festival_doc",
+      "category": "festival",
+      "title_en": "Annual Jordan International Festival Prospectus",
+      "title_ar": "دليل ونظام مهرجان الأردن الدولي السنوي",
+      "desc_en": "Complete history, tournament format, and event organization standards.",
+      "desc_ar": "تاريخ المهرجان، نظام المنافسات، والمعايير التنظيمية للحدث السنوي العريق.",
+      "filename": "Annual Jordan International Bridge Festival.docx",
+      "filetype": "DOCX",
+      "filesize": "341 KB",
+      "icon": "book-open"
+    },
+    {
+      "id": "bulletin_1",
+      "category": "bulletins",
+      "title_en": "Festival Daily Bulletin #1",
+      "title_ar": "النشرة اليومية للمهرجان - العدد 1",
+      "desc_en": "Welcome message, opening ceremony coverage, team line-ups, and daily hands.",
+      "desc_ar": "كلمة الترحيب، حفل الافتتاح، تشكيلة الفرق، وتحليل التوزيعات اليومية.",
+      "filename": "Bulletin-1.pdf",
+      "filetype": "PDF",
+      "filesize": "2.7 MB",
+      "icon": "newspaper"
+    },
+    {
+      "id": "bulletin_2",
+      "category": "bulletins",
+      "title_en": "Festival Daily Bulletin #2",
+      "title_ar": "النشرة اليومية للمهرجان - العدد 2",
+      "desc_en": "Round 1-3 results, masterpoint leaderboards, and expert bidding analysis.",
+      "desc_ar": "نتائج الجولات الأولى وترتيب النقاط وتحليل فني لمزايدات وألعاب مميزة.",
+      "filename": "Bulletin-2.pdf",
+      "filetype": "PDF",
+      "filesize": "2.6 MB",
+      "icon": "newspaper"
+    },
+    {
+      "id": "bulletin_3",
+      "category": "bulletins",
+      "title_en": "Festival Daily Bulletin #3",
+      "title_ar": "النشرة اليومية للمهرجان - العدد 3",
+      "desc_en": "Semi-final clashes, Butler rankings, and tournament human interest stories.",
+      "desc_ar": "منافسات نصف النهائي، ترتيب البتلر، وقصص وحوارات مع نجوم البطولة.",
+      "filename": "Bulletin-3.pdf",
+      "filetype": "PDF",
+      "filesize": "1.6 MB",
+      "icon": "newspaper"
+    },
+    {
+      "id": "bulletin_4",
+      "category": "bulletins",
+      "title_en": "Festival Daily Bulletin #4 (Championship Special)",
+      "title_ar": "النشرة اليومية للمهرجان - العدد 4 (الختامي)",
+      "desc_en": "Finals scorecards, podium winners, gala dinner photos, and closing speech.",
+      "desc_ar": "نتائج النهائي، تتويج الأبطال، صور الحفل الختامي وتوزيع الجوائز.",
+      "filename": "Bulletin-4.pdf",
+      "filetype": "PDF",
+      "filesize": "1.6 MB",
+      "icon": "newspaper"
+    },
+    {
+      "id": "festival_2022_prog",
+      "category": "festival",
+      "title_en": "Jordan Bridge Festival 2022 Official Program",
+      "title_ar": "كتيب وبرنامج مهرجان الأردن للبريدج 2022",
+      "desc_en": "Complete booklet for the 2022 international festival held in Amman.",
+      "desc_ar": "الكتيب الرسمي الكامل لفعاليات مهرجان الأردن الدولي لعام 2022 في عمّان.",
+      "filename": "festival 2022.pdf",
+      "filetype": "PDF",
+      "filesize": "5.7 MB",
+      "icon": "file-text"
+    },
+    {
+      "id": "festival_2023_prog",
+      "category": "festival",
+      "title_en": "Jordan Bridge Festival 2023 Official Program",
+      "title_ar": "كتيب وبرنامج مهرجان الأردن للبريدج 2023",
+      "desc_en": "Schedule, venue details, and tournament guidelines for the 2023 festival.",
+      "desc_ar": "الجدول الزمني ومكان الإقامة وتعليمات البطولة لمهرجان 2023.",
+      "filename": "festival 1 2023.pdf",
+      "filetype": "PDF",
+      "filesize": "4.7 MB",
+      "icon": "file-text"
+    },
+    {
+      "id": "festival_2024_prog",
+      "category": "festival",
+      "title_en": "Jordan Bridge Festival 2024 Official Program",
+      "title_ar": "برنامج مهرجان الأردن للبريدج 2024",
+      "desc_en": "Program brochure and regulations for the 41st Jordan International Festival.",
+      "desc_ar": "برنامج وكتيب فعاليات المهرجان الدولي الحادي والأربعين في عمّان.",
+      "filename": "festival 2024 new.pdf",
+      "filetype": "PDF",
+      "filesize": "300 KB",
+      "icon": "file-text"
+    }
+  ]
+}

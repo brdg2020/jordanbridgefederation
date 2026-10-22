@@ -1,0 +1,467 @@
+{
+  "2025": {
+    "year": 2025,
+    "tournament": "Jordan Bridge Festival 2025 - Open Teams",
+    "standings": [
+      {
+        "rank": 1,
+        "teamId": 13,
+        "score": 105.85,
+        "name": "BONITA"
+      },
+      {
+        "rank": 2,
+        "teamId": 19,
+        "score": 104.28,
+        "name": "WASO"
+      },
+      {
+        "rank": 3,
+        "teamId": 6,
+        "score": 103.2,
+        "name": "HALA X 2"
+      },
+      {
+        "rank": 4,
+        "teamId": 11,
+        "score": 101.17,
+        "name": "SARMAD"
+      },
+      {
+        "rank": 5,
+        "teamId": 21,
+        "score": 97.2,
+        "name": "MIQDADI"
+      },
+      {
+        "rank": 6,
+        "teamId": 25,
+        "score": 97.19,
+        "name": "LEBANON"
+      },
+      {
+        "rank": 7,
+        "teamId": 20,
+        "score": 94.53,
+        "name": "SWISS ARABIAN"
+      },
+      {
+        "rank": 8,
+        "teamId": 23,
+        "score": 93.59,
+        "name": "SENATOR"
+      },
+      {
+        "rank": 9,
+        "teamId": 16,
+        "score": 90.84,
+        "name": "GAME AND GLORY"
+      },
+      {
+        "rank": 10,
+        "teamId": 18,
+        "score": 89.98,
+        "name": "MAJORS"
+      },
+      {
+        "rank": 11,
+        "teamId": 10,
+        "score": 87.66,
+        "name": "RUWAYEH"
+      },
+      {
+        "rank": 12,
+        "teamId": 12,
+        "score": 85.98,
+        "name": "AKEIL"
+      },
+      {
+        "rank": 13,
+        "teamId": 2,
+        "score": 82.35,
+        "name": "TEHSIN"
+      },
+      {
+        "rank": 14,
+        "teamId": 3,
+        "score": 80.24,
+        "name": "Al NASHAMA"
+      },
+      {
+        "rank": 15,
+        "teamId": 27,
+        "score": 78.18,
+        "name": "ZAID"
+      },
+      {
+        "rank": 16,
+        "teamId": 17,
+        "score": 78.05,
+        "name": "DALIA"
+      },
+      {
+        "rank": 17,
+        "teamId": 26,
+        "score": 76.41,
+        "name": "H.A.M.A"
+      },
+      {
+        "rank": 18,
+        "teamId": 7,
+        "score": 75.41,
+        "name": "Al AHLY"
+      },
+      {
+        "rank": 19,
+        "teamId": 8,
+        "score": 72.32,
+        "name": "TYMS"
+      },
+      {
+        "rank": 20,
+        "teamId": 4,
+        "score": 68.74,
+        "name": "WAFIGA"
+      },
+      {
+        "rank": 21,
+        "teamId": 5,
+        "score": 68.11,
+        "name": "RATRUT"
+      },
+      {
+        "rank": 22,
+        "teamId": 15,
+        "score": 66.74,
+        "name": "SILVIE"
+      },
+      {
+        "rank": 23,
+        "teamId": 22,
+        "score": 62.71,
+        "name": "SADER"
+      },
+      {
+        "rank": 24,
+        "teamId": 14,
+        "score": 62.56,
+        "name": "EAGLES"
+      },
+      {
+        "rank": 25,
+        "teamId": 28,
+        "score": 61.73,
+        "name": "ABU DHABI"
+      },
+      {
+        "rank": 26,
+        "teamId": 9,
+        "score": 60.37,
+        "name": "THUNDERS"
+      },
+      {
+        "rank": 27,
+        "teamId": 1,
+        "score": 52.22,
+        "name": "BHHM"
+      },
+      {
+        "rank": 28,
+        "teamId": 24,
+        "score": 42.39,
+        "name": "WANA"
+      }
+    ],
+    "totalTeams": 28
+  },
+  "2024": {
+    "year": 2024,
+    "tournament": "Jordan Bridge Festival 2024 - Open Teams",
+    "standings": [
+      {
+        "rank": 1,
+        "teamId": 1,
+        "score": 110.16,
+        "name": "AKEIL"
+      },
+      {
+        "rank": 2,
+        "teamId": 17,
+        "score": 103.44,
+        "name": "AL AHLY"
+      },
+      {
+        "rank": 3,
+        "teamId": 5,
+        "score": 99.8,
+        "name": "DAMAS"
+      },
+      {
+        "rank": 4,
+        "teamId": 16,
+        "score": 97.88,
+        "name": "RANA"
+      },
+      {
+        "rank": 5,
+        "teamId": 9,
+        "score": 94.7,
+        "name": "GHASSAN"
+      },
+      {
+        "rank": 6,
+        "teamId": 14,
+        "score": 91.69,
+        "name": "PEPSI"
+      },
+      {
+        "rank": 7,
+        "teamId": 8,
+        "score": 89.42,
+        "name": "VOLARE"
+      },
+      {
+        "rank": 8,
+        "teamId": 18,
+        "score": 88.8,
+        "name": "FARAH"
+      },
+      {
+        "rank": 9,
+        "teamId": 12,
+        "score": 81.16,
+        "name": "NINJA"
+      },
+      {
+        "rank": 10,
+        "teamId": 10,
+        "score": 80.83,
+        "name": "GLOBAL TECH (A)"
+      },
+      {
+        "rank": 11,
+        "teamId": 13,
+        "score": 79.3,
+        "name": "A Z R G"
+      },
+      {
+        "rank": 12,
+        "teamId": 3,
+        "score": 78.8,
+        "name": "ZIKO"
+      },
+      {
+        "rank": 13,
+        "teamId": 19,
+        "score": 76.83,
+        "name": "SFMS"
+      },
+      {
+        "rank": 14,
+        "teamId": 11,
+        "score": 76.58,
+        "name": "El Karma"
+      },
+      {
+        "rank": 15,
+        "teamId": 2,
+        "score": 75.28,
+        "name": "HANOUNA 5"
+      },
+      {
+        "rank": 16,
+        "teamId": 15,
+        "score": 69.79,
+        "name": "GLOBAL TECH (B)"
+      },
+      {
+        "rank": 17,
+        "teamId": 22,
+        "score": 69.22,
+        "name": "S LIPSK"
+      },
+      {
+        "rank": 18,
+        "teamId": 21,
+        "score": 66.51,
+        "name": "AVATAR"
+      },
+      {
+        "rank": 19,
+        "teamId": 7,
+        "score": 66.35,
+        "name": "SHAHRO"
+      },
+      {
+        "rank": 20,
+        "teamId": 4,
+        "score": 50.99,
+        "name": "DR.              -6.00"
+      },
+      {
+        "rank": 21,
+        "teamId": 6,
+        "score": 50.76,
+        "name": "SHYN  (L)        -6.00"
+      },
+      {
+        "rank": 22,
+        "teamId": 20,
+        "score": 49.71,
+        "name": "PEACE  (L)"
+      }
+    ],
+    "totalTeams": 22
+  },
+  "2023": {
+    "year": 2023,
+    "tournament": "Jordan Bridge Festival 2023 - Open Teams",
+    "standings": [
+      {
+        "rank": 1,
+        "teamId": 6,
+        "score": 106.24,
+        "name": "BEI-SHJ"
+      },
+      {
+        "rank": 2,
+        "teamId": 22,
+        "score": 104.04,
+        "name": "SENATOR"
+      },
+      {
+        "rank": 3,
+        "teamId": 10,
+        "score": 103.0,
+        "name": "ZICO"
+      },
+      {
+        "rank": 4,
+        "teamId": 13,
+        "score": 98.7,
+        "name": "MAY"
+      },
+      {
+        "rank": 5,
+        "teamId": 17,
+        "score": 92.59,
+        "name": "FARIDA"
+      },
+      {
+        "rank": 6,
+        "teamId": 1,
+        "score": 88.82,
+        "name": "AL HILAL"
+      },
+      {
+        "rank": 7,
+        "teamId": 4,
+        "score": 88.5,
+        "name": "LUPII GALBXII"
+      },
+      {
+        "rank": 8,
+        "teamId": 24,
+        "score": 88.45,
+        "name": "FARAH"
+      },
+      {
+        "rank": 9,
+        "teamId": 16,
+        "score": 85.82,
+        "name": "GHASSAN"
+      },
+      {
+        "rank": 10,
+        "teamId": 12,
+        "score": 85.43,
+        "name": "AL ITHAD"
+      },
+      {
+        "rank": 11,
+        "teamId": 20,
+        "score": 84.83,
+        "name": "THE MIX        -3.00"
+      },
+      {
+        "rank": 12,
+        "teamId": 2,
+        "score": 84.04,
+        "name": "EGY-JOR"
+      },
+      {
+        "rank": 13,
+        "teamId": 11,
+        "score": 83.02,
+        "name": "OLCZYK"
+      },
+      {
+        "rank": 14,
+        "teamId": 14,
+        "score": 79.16,
+        "name": "KUWAIT         -3.00"
+      },
+      {
+        "rank": 15,
+        "teamId": 5,
+        "score": 76.85,
+        "name": "DALIA"
+      },
+      {
+        "rank": 16,
+        "teamId": 3,
+        "score": 73.53,
+        "name": "JARRAR         -3.00"
+      },
+      {
+        "rank": 17,
+        "teamId": 19,
+        "score": 71.75,
+        "name": "AL NASSER"
+      },
+      {
+        "rank": 18,
+        "teamId": 8,
+        "score": 71.31,
+        "name": "ALAHLY         -3.00"
+      },
+      {
+        "rank": 19,
+        "teamId": 21,
+        "score": 68.5,
+        "name": "WAFIGA"
+      },
+      {
+        "rank": 20,
+        "teamId": 9,
+        "score": 64.75,
+        "name": "CANADA"
+      },
+      {
+        "rank": 21,
+        "teamId": 7,
+        "score": 62.79,
+        "name": "JORDAN LADIES"
+      },
+      {
+        "rank": 22,
+        "teamId": 18,
+        "score": 59.28,
+        "name": "JOR-DUB"
+      },
+      {
+        "rank": 23,
+        "teamId": 23,
+        "score": 49.41,
+        "name": "JERASH"
+      },
+      {
+        "rank": 24,
+        "teamId": 15,
+        "score": 37.19,
+        "name": "HASSANA"
+      }
+    ],
+    "totalTeams": 24
+  }
+}

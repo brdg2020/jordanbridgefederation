@@ -1,0 +1,564 @@
+{
+  "jordanCup2026Matrix": [
+    {
+      "team": "AL Nashama",
+      "totalVp": 90.9,
+      "totalImp": 79,
+      "penalty": "0.5",
+      "rounds": [
+        {
+          "round": 1,
+          "vp": "17.559999999999999",
+          "imp": "31"
+        },
+        {
+          "round": 2,
+          "vp": "13.97",
+          "imp": "13"
+        },
+        {
+          "round": 3,
+          "vp": "10",
+          "imp": "0"
+        },
+        {
+          "round": 4,
+          "vp": "15.99",
+          "imp": "22"
+        },
+        {
+          "round": 5,
+          "vp": "3.09",
+          "imp": "-27"
+        },
+        {
+          "round": 6,
+          "vp": "17.079999999999998",
+          "imp": "28"
+        },
+        {
+          "round": 7,
+          "vp": "13.71",
+          "imp": "12"
+        }
+      ],
+      "rank": 1
+    },
+    {
+      "team": "Lions",
+      "totalVp": 89.69,
+      "totalImp": 86,
+      "penalty": "",
+      "rounds": [
+        {
+          "round": 1,
+          "vp": "4.21",
+          "imp": "-21"
+        },
+        {
+          "round": 2,
+          "vp": "19.34",
+          "imp": "45"
+        },
+        {
+          "round": 3,
+          "vp": "10",
+          "imp": "0"
+        },
+        {
+          "round": 4,
+          "vp": "16.37",
+          "imp": "24"
+        },
+        {
+          "round": 5,
+          "vp": "11.7",
+          "imp": "5"
+        },
+        {
+          "round": 6,
+          "vp": "17.71",
+          "imp": "32"
+        },
+        {
+          "round": 7,
+          "vp": "10.36",
+          "imp": "1"
+        }
+      ],
+      "rank": 2
+    },
+    {
+      "team": "Jordan Teams",
+      "totalVp": 89.41,
+      "totalImp": 83,
+      "penalty": "0.5",
+      "rounds": [
+        {
+          "round": 1,
+          "vp": "18.78",
+          "imp": "40"
+        },
+        {
+          "round": 2,
+          "vp": "16.55",
+          "imp": "25"
+        },
+        {
+          "round": 3,
+          "vp": "4.8499999999999996",
+          "imp": "-18"
+        },
+        {
+          "round": 4,
+          "vp": "10",
+          "imp": "0"
+        },
+        {
+          "round": 5,
+          "vp": "16.91",
+          "imp": "27"
+        },
+        {
+          "round": 6,
+          "vp": "13.18",
+          "imp": "10"
+        },
+        {
+          "round": 7,
+          "vp": "9.64",
+          "imp": "-1"
+        }
+      ],
+      "rank": 3
+    },
+    {
+      "team": "Jordan Mix",
+      "totalVp": 77.6,
+      "totalImp": 37,
+      "penalty": "",
+      "rounds": [
+        {
+          "round": 1,
+          "vp": "8.3000000000000007",
+          "imp": "-5"
+        },
+        {
+          "round": 2,
+          "vp": "15.37",
+          "imp": "19"
+        },
+        {
+          "round": 3,
+          "vp": "17.559999999999999",
+          "imp": "31"
+        },
+        {
+          "round": 4,
+          "vp": "4.01",
+          "imp": "-22"
+        },
+        {
+          "round": 5,
+          "vp": "8.3000000000000007",
+          "imp": "-5"
+        },
+        {
+          "round": 6,
+          "vp": "6.82",
+          "imp": "-10"
+        },
+        {
+          "round": 7,
+          "vp": "17.239999999999998",
+          "imp": "29"
+        }
+      ],
+      "rank": 4
+    },
+    {
+      "team": "Alfa",
+      "totalVp": 66.11,
+      "totalImp": -11,
+      "penalty": "0.5",
+      "rounds": [
+        {
+          "round": 1,
+          "vp": "11.7",
+          "imp": "5"
+        },
+        {
+          "round": 2,
+          "vp": "3.45",
+          "imp": "-25"
+        },
+        {
+          "round": 3,
+          "vp": "16.55",
+          "imp": "25"
+        },
+        {
+          "round": 4,
+          "vp": "3.63",
+          "imp": "-24"
+        },
+        {
+          "round": 5,
+          "vp": "8.6199999999999992",
+          "imp": "-4"
+        },
+        {
+          "round": 6,
+          "vp": "16.37",
+          "imp": "24"
+        },
+        {
+          "round": 7,
+          "vp": "6.29",
+          "imp": "-12"
+        }
+      ],
+      "rank": 5
+    },
+    {
+      "team": "Eagles",
+      "totalVp": 63.68,
+      "totalImp": -29,
+      "penalty": "",
+      "rounds": [
+        {
+          "round": 1,
+          "vp": "15.79",
+          "imp": "21"
+        },
+        {
+          "round": 2,
+          "vp": "6.03",
+          "imp": "-13"
+        },
+        {
+          "round": 3,
+          "vp": "2.44",
+          "imp": "-31"
+        },
+        {
+          "round": 4,
+          "vp": "10",
+          "imp": "0"
+        },
+        {
+          "round": 5,
+          "vp": "13.18",
+          "imp": "10"
+        },
+        {
+          "round": 6,
+          "vp": "3.63",
+          "imp": "-24"
+        },
+        {
+          "round": 7,
+          "vp": "12.61",
+          "imp": "8"
+        }
+      ],
+      "rank": 6
+    },
+    {
+      "team": "Ortho Group",
+      "totalVp": 53.14,
+      "totalImp": -67,
+      "penalty": "0.5",
+      "rounds": [
+        {
+          "round": 1,
+          "vp": "2.44",
+          "imp": "-31"
+        },
+        {
+          "round": 2,
+          "vp": "4.63",
+          "imp": "-19"
+        },
+        {
+          "round": 3,
+          "vp": "15.15",
+          "imp": "18"
+        },
+        {
+          "round": 4,
+          "vp": "10.36",
+          "imp": "1"
+        },
+        {
+          "round": 5,
+          "vp": "11.38",
+          "imp": "4"
+        },
+        {
+          "round": 6,
+          "vp": "2.29",
+          "imp": "-32"
+        },
+        {
+          "round": 7,
+          "vp": "7.39",
+          "imp": "-8"
+        }
+      ],
+      "rank": 7
+    },
+    {
+      "team": "Palestine",
+      "totalVp": 27.47,
+      "totalImp": -178,
+      "penalty": "",
+      "rounds": [
+        {
+          "round": 1,
+          "vp": "1.22",
+          "imp": "-40"
+        },
+        {
+          "round": 2,
+          "vp": "0.66",
+          "imp": "-45"
+        },
+        {
+          "round": 3,
+          "vp": "3.45",
+          "imp": "-25"
+        },
+        {
+          "round": 4,
+          "vp": "9.64",
+          "imp": "-1"
+        },
+        {
+          "round": 5,
+          "vp": "6.82",
+          "imp": "-10"
+        },
+        {
+          "round": 6,
+          "vp": "2.92",
+          "imp": "-28"
+        },
+        {
+          "round": 7,
+          "vp": "2.76",
+          "imp": "-29"
+        }
+      ],
+      "rank": 8
+    }
+  ],
+  "jordanCup2026Schedule": [
+    {
+      "round": 1,
+      "matches": [
+        {
+          "home": "LIONS",
+          "away": "EAGLES"
+        },
+        {
+          "home": "JORDAN TEAMS",
+          "away": "PALESTINE"
+        },
+        {
+          "home": "ORTHO GROUP",
+          "away": "AL NASHAMA"
+        },
+        {
+          "home": "JOR MIX",
+          "away": "ALFA"
+        }
+      ]
+    },
+    {
+      "round": 2,
+      "matches": [
+        {
+          "home": "LIONS",
+          "away": "PALESTINE"
+        },
+        {
+          "home": "EAGLES",
+          "away": "AL NASHAMA"
+        },
+        {
+          "home": "JOR TEAMS",
+          "away": "ALFA"
+        },
+        {
+          "home": "ORTHO GROUP",
+          "away": "JOR MIX"
+        }
+      ]
+    },
+    {
+      "round": 3,
+      "matches": [
+        {
+          "home": "Lions",
+          "away": "AL Nashama"
+        },
+        {
+          "home": "Palestine",
+          "away": "Alfa"
+        },
+        {
+          "home": "Eagles",
+          "away": "Jordan Mix"
+        },
+        {
+          "home": "Jordan Teams",
+          "away": "Ortho Group"
+        }
+      ]
+    },
+    {
+      "round": 4,
+      "matches": [
+        {
+          "home": "Lions",
+          "away": "Alfa"
+        },
+        {
+          "home": "AL Nashama",
+          "away": "Jordan Mix"
+        },
+        {
+          "home": "Palestine",
+          "away": "Ortho Group"
+        },
+        {
+          "home": "Eagles",
+          "away": "Jordan Teams"
+        }
+      ]
+    },
+    {
+      "round": 5,
+      "matches": [
+        {
+          "home": "Lions",
+          "away": "Jordan Mix"
+        },
+        {
+          "home": "Alfa",
+          "away": "Ortho Group"
+        },
+        {
+          "home": "AL Nashama",
+          "away": "Jordan Teams"
+        },
+        {
+          "home": "Palestine",
+          "away": "Eagles"
+        }
+      ]
+    },
+    {
+      "round": 6,
+      "matches": [
+        {
+          "home": "Lions",
+          "away": "Ortho Group"
+        },
+        {
+          "home": "Jordan Mix",
+          "away": "Jordan Teams"
+        },
+        {
+          "home": "Alfa",
+          "away": "Eagles"
+        },
+        {
+          "home": "AL Nashama",
+          "away": "Palestine"
+        }
+      ]
+    },
+    {
+      "round": 7,
+      "matches": [
+        {
+          "home": "Lions",
+          "away": "Jordan Teams"
+        },
+        {
+          "home": "Ortho Group",
+          "away": "Eagles"
+        },
+        {
+          "home": "Jordan Mix",
+          "away": "Palestine"
+        },
+        {
+          "home": "Alfa",
+          "away": "AL Nashama"
+        }
+      ]
+    }
+  ],
+  "jordanCup2025Standings": [],
+  "mixSelectionSample": [
+    [
+      "15.24",
+      "17.579999999999998",
+      "6.28",
+      "11.9",
+      "14.6"
+    ],
+    [
+      "13.34",
+      "13.34",
+      "9.5",
+      "7.05",
+      "8.5399999999999991"
+    ],
+    [
+      "3.62",
+      "10.25",
+      "5.4",
+      "16.77",
+      "9.75"
+    ],
+    [
+      "13.72",
+      "6.28",
+      "8.1",
+      "2.75",
+      "10.99"
+    ],
+    [
+      "10",
+      "13.15",
+      "12.54",
+      "9.25",
+      "12.75"
+    ],
+    [
+      "8.5399999999999991",
+      "3.89",
+      "15.97",
+      "11.9",
+      "3.62"
+    ],
+    [
+      "6.1",
+      "4.92",
+      "11.68",
+      "10.99",
+      "10.75"
+    ],
+    [
+      "1",
+      "2",
+      "3",
+      "4",
+      "5"
+    ]
+  ]
+}

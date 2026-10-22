@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jordan Bridge Federation | الاتحاد الأردني للبريدج</title>
-  <meta name="description" content="Official Portal of the Jordan Bridge Federation (JBF). Tournaments, live Vugraph scores, Jordan Bridge Festival, Jordan Cup, bylaws, committee, and news.">
+  <meta name="description" content="Official Portal of the Jordan Bridge Federation (JBF). Tournaments, live Vugraph scores, Jordan Bridge Festival, Jordan Cup, Excel spreadsheets, bylaws, committee, and archive.">
   <link rel="canonical" href="https://jordanbridgefederation.com/">
   
   <!-- Favicon & Fonts -->
@@ -32,250 +32,353 @@
               gold: '#d97706',
               jordanRed: '#ce1126',
               jordanGreen: '#007a3d',
-              jordanBlack: '#000000'
             }
           },
           fontFamily: {
-            sans: ['Outfit', 'sans-serif'],
+            sans: ['Outfit', 'Cairo', 'sans-serif'],
+            serif: ['Cinzel', 'serif'],
             arabic: ['Cairo', 'sans-serif'],
-            display: ['Cinzel', 'serif']
           }
         }
       }
-    }
+    };
   </script>
-
+  
   <!-- Lucide Icons -->
   <script src="https://unpkg.com/lucide@latest"></script>
 
   <style>
     [dir="rtl"] {
-      font-family: 'Cairo', sans-serif;
+      font-family: 'Cairo', 'Outfit', sans-serif;
+    }
+    .badge-rank-1 {
+      background: linear-gradient(135deg, #fbbf24 0%, #d97706 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 10px rgba(217, 119, 6, 0.35);
+    }
+    .badge-rank-2 {
+      background: linear-gradient(135deg, #cbd5e1 0%, #94a3b8 100%);
+      color: #0f172a;
+      box-shadow: 0 4px 8px rgba(148, 163, 184, 0.3);
+    }
+    .badge-rank-3 {
+      background: linear-gradient(135deg, #fdba74 0%, #ea580c 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 8px rgba(234, 88, 12, 0.3);
     }
     .glass-card {
-      background: rgba(255, 255, 255, 0.94);
-      backdrop-filter: blur(12px);
-      border: 1px solid rgba(226, 232, 240, 0.85);
+      background: rgba(255, 255, 255, 0.95);
+      backdrop-filter: blur(8px);
     }
-    .badge-rank-1 { background: linear-gradient(135deg, #fef3c7, #fde68a); color: #92400e; border: 1px solid #f59e0b; }
-    .badge-rank-2 { background: linear-gradient(135deg, #f1f5f9, #e2e8f0); color: #334155; border: 1px solid #94a3b8; }
-    .badge-rank-3 { background: linear-gradient(135deg, #ffedd5, #fed7aa); color: #9a3412; border: 1px solid #f97316; }
+    /* Custom Sleek Scrollbar */
+    ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f1f5f9;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 4px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+    /* Lightbox animation */
+    .lightbox-enter {
+      opacity: 0;
+      transform: scale(0.96);
+    }
+    .lightbox-enter-active {
+      opacity: 1;
+      transform: scale(1);
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
   </style>
 </head>
 <body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen" id="bodyRoot">
 
-  <!-- TOP STRIPE (Jordan National Flag Colors) -->
-  <div class="h-1.5 w-full flex">
-    <div class="flex-1 bg-black"></div>
-    <div class="flex-1 bg-white"></div>
-    <div class="flex-1 bg-emerald-700"></div>
-    <div class="w-12 bg-red-600"></div>
+  <!-- TOP ROYAL EMIRATES PATRONAGE BANNER -->
+  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+    <div class="max-w-7xl mx-auto flex items-center justify-between">
+      <div class="flex items-center gap-2">
+        <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+        <span class="font-medium tracking-wide" data-en="Hashemite Kingdom of Jordan • Member of BFAME & World Bridge Federation (WBF)" data-ar="المملكة الأردنية الهاشمية • عضو الاتحاد الآسيوي والاتحاد العالمي للبريدج (WBF)">
+          Hashemite Kingdom of Jordan • Member of BFAME & World Bridge Federation (WBF)
+        </span>
+      </div>
+      <div class="flex items-center gap-4">
+        <span class="hidden sm:inline text-slate-400" data-en="Official Federation Portal" data-ar="البوابة الرسمية المعتمدة">Official Federation Portal</span>
+        <button onclick="openAdminModal()" class="text-[11px] font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition-colors">
+          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
+          <span data-en="Admin Portal" data-ar="بوابة المشرف">Admin Portal</span>
+        </button>
+      </div>
+    </div>
   </div>
 
-  <!-- HEADER -->
-  <header class="sticky top-0 z-50 bg-white/95 backdrop-blur shadow-xs border-b border-slate-200">
+  <!-- NAVIGATION BAR -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
       
-      <!-- Brand Logo & Title -->
+      <!-- Logo & Title -->
       <a href="#" class="flex items-center gap-3.5 group">
-        <img src="public/jbf_logo.jpg" alt="Jordan Bridge Federation Logo" class="h-14 w-auto object-contain rounded-lg shadow-xs border border-slate-200 group-hover:scale-105 transition-transform duration-200">
+        <img src="public/jbf_logo.jpg" alt="Jordan Bridge Federation" class="h-14 w-auto rounded-md shadow-xs border border-slate-200 group-hover:scale-105 transition-transform duration-200">
         <div>
-          <span class="block text-lg sm:text-xl font-black tracking-tight text-slate-900 group-hover:text-sky-700 transition-colors" data-en="Jordan Bridge Federation" data-ar="الاتحاد الأردني للبريدج">Jordan Bridge Federation</span>
-          <span class="block text-xs font-semibold uppercase tracking-wider text-slate-500" data-en="Hashemite Kingdom of Jordan • JOC & WBF Affiliate" data-ar="المملكة الأردنية الهاشمية • تحت مظلة اللجنة الأولمبية">Hashemite Kingdom of Jordan • JOC & WBF Affiliate</span>
+          <span class="text-xs uppercase tracking-widest font-extrabold text-amber-700 block" data-en="Jordan Bridge Federation" data-ar="الاتحاد الأردني للبريدج">Jordan Bridge Federation</span>
+          <h1 class="text-base sm:text-lg font-black text-slate-900 tracking-tight" data-en="Official National Portal" data-ar="البوابة الوطنية الرسمية">Official National Portal</h1>
         </div>
       </a>
 
-      <!-- Navigation & Language Switcher -->
-      <div class="flex items-center gap-4 sm:gap-6">
-        <nav class="hidden lg:flex items-center gap-6 text-sm font-semibold text-slate-600">
-          <a href="#scores" class="hover:text-sky-700 transition-colors" data-en="Scores & Vugraph" data-ar="النتائج والسكور">Scores & Vugraph</a>
-          <a href="#jordancup" class="hover:text-sky-700 transition-colors" data-en="Jordan Cup" data-ar="كأس الأردن">Jordan Cup</a>
-          <a href="#patronage" class="hover:text-sky-700 transition-colors" data-en="Olympic Patronage" data-ar="الرعاية الأولمبية">Olympic Patronage</a>
-          <a href="#memorial" class="hover:text-sky-700 transition-colors" data-en="Announcements" data-ar="الإعلانات والتعازي">Announcements</a>
-          <a href="#committee" class="hover:text-sky-700 transition-colors" data-en="Committee" data-ar="مجلس الإدارة">Committee</a>
-          <a href="#documents" class="hover:text-sky-700 transition-colors" data-en="Documents & Bylaws" data-ar="اللوائح والأنظمة">Documents</a>
-          <a href="#venue" class="hover:text-sky-700 transition-colors" data-en="Contact & Club" data-ar="المقر والتواصل">Contact</a>
-        </nav>
-
-        <!-- Official Facebook Link -->
-        <a href="https://www.facebook.com/jordanbridgefederation/" target="_blank" rel="noopener noreferrer" class="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-xs font-bold text-sky-700 bg-sky-50 hover:bg-sky-100 border border-sky-200 transition-all">
-          <i data-lucide="facebook" class="w-3.5 h-3.5"></i>
-          <span>Facebook</span>
+      <!-- Desktop Nav Links -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold text-slate-700">
+        <a href="#scores" class="hover:text-sky-700 transition-colors" data-en="Festival Scores" data-ar="نتائج المهرجان">Festival Scores</a>
+        <a href="#league" class="hover:text-sky-700 transition-colors text-emerald-700 flex items-center gap-1">
+          <span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+          <span data-en="Spreadsheets & Cup" data-ar="جداول الدوري وكأس الأردن">Spreadsheets & Cup</span>
         </a>
+        <a href="#posters" class="hover:text-sky-700 transition-colors" data-en="Posters" data-ar="الملصقات">Posters</a>
+        <a href="#gallery" class="hover:text-sky-700 transition-colors" data-en="Gallery" data-ar="الصور">Gallery</a>
+        <a href="#documents" class="hover:text-sky-700 transition-colors" data-en="Archive" data-ar="الوثائق">Archive</a>
+        <a href="#committee" class="hover:text-sky-700 transition-colors" data-en="Committee" data-ar="الإدارة">Committee</a>
+      </nav>
 
-        <!-- Language Switcher Button -->
-        <button id="langToggleBtn" onclick="toggleLanguage()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold border border-slate-300 bg-slate-100 hover:bg-slate-200 text-slate-800 transition-all shadow-xs">
-          <i data-lucide="globe" class="w-3.5 h-3.5"></i>
+      <!-- Language & Admin Action -->
+      <div class="flex items-center gap-3">
+        <button id="langToggleBtn" onclick="toggleLanguage()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold border border-slate-300 bg-slate-100 hover:bg-slate-200 text-slate-800 transition-all shadow-xs cursor-pointer">
+          <i data-lucide="languages" class="w-4 h-4 text-sky-700"></i>
           <span id="langLabel">العربية</span>
+        </button>
+
+        <!-- Mobile Menu Toggle Button -->
+        <button onclick="toggleMobileMenu()" class="md:hidden p-2 rounded-lg text-slate-600 hover:bg-slate-100 focus:outline-none">
+          <i data-lucide="menu" class="w-6 h-6"></i>
         </button>
       </div>
 
     </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div id="mobileMenu" class="hidden md:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-5 space-y-2 text-sm font-semibold shadow-lg">
+      <a href="#scores" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Festival Scores" data-ar="نتائج المهرجان">Festival Scores</a>
+      <a href="#league" onclick="toggleMobileMenu()" class="block py-2 text-emerald-700 font-bold" data-en="Spreadsheets & Cup" data-ar="جداول الدوري وكأس الأردن">Spreadsheets & Cup</a>
+      <a href="#posters" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Official Posters" data-ar="الملصقات الرسمية">Official Posters</a>
+      <a href="#gallery" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Photo Gallery" data-ar="معرض الصور">Photo Gallery</a>
+      <a href="#documents" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Bylaws & Archive" data-ar="الأنظمة والأرشيف">Bylaws & Archive</a>
+      <a href="#committee" onclick="toggleMobileMenu()" class="block py-2 text-slate-700 hover:text-sky-700" data-en="Executive Committee" data-ar="الهيئة الإدارية">Executive Committee</a>
+      <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
+        <button onclick="openAdminModal(); toggleMobileMenu();" class="text-xs font-bold text-amber-700 flex items-center gap-1.5 py-1">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span data-en="Open Admin Data Entry" data-ar="فتح لوحة إدخال البيانات">Open Admin Data Entry</span>
+        </button>
+      </div>
+    </div>
   </header>
 
-  <!-- CONDOLENCE / MEMORIAL BANNER (Preserving Issam Salfiti Obituary from original site) -->
+  <!-- ROYAL MEMORIAL SECTION -->
   <section id="memorial" class="bg-amber-50/70 border-b border-amber-200 py-6">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row items-center gap-5 p-4 rounded-2xl bg-white border border-amber-200 shadow-xs">
-        <img src="public/images/issam_01.jpg" alt="Late Mr. Issam Halim Salfiti" class="w-20 h-24 sm:w-24 sm:h-28 object-cover rounded-xl border border-slate-200 shadow-sm shrink-0">
-        <div class="text-xs sm:text-sm text-slate-700 leading-relaxed">
-          <div class="flex items-center gap-2 mb-1">
-            <span class="text-xs font-bold uppercase tracking-wider bg-amber-100 text-amber-800 px-2.5 py-0.5 rounded-full" data-en="In Memoriam • Official Obituary" data-ar="نعي صديق عزيز • تعزية رسمية">In Memoriam • Official Obituary</span>
-            <span class="text-xs text-slate-400 font-semibold" data-en="Jordan Bridge Federation Tribute" data-ar="أسرة الاتحاد الأردني للبريدج">Jordan Bridge Federation Tribute</span>
-          </div>
-          <p class="font-bold text-slate-900 text-sm sm:text-base mb-1" data-en="Tribute to Late Mr. Issam Halim Salfiti (رحمه الله)" data-ar="نعي الصديق العزيز والداعم الكبير، السيد عصام حليم السلفيتي (رحمه الله)">
-            Tribute to Late Mr. Issam Halim Salfiti (رحمه الله)
-          </p>
-          <p class="text-slate-600 line-clamp-3 sm:line-clamp-none text-xs sm:text-sm" data-en="With deep sorrow and grief, the Jordan Bridge Federation mourns the loss of our dear friend, Mr. Issam Halim Salfiti. The deceased was among the finest sons of Jordan, a rare individual of noble character, generosity, and boundless support for clubs and community societies. May Almighty God grant him His immense mercy and eternal peace." data-ar="ببالغ الحزن والأسى، ينعى الاتحاد الأردني للبريدج الصديق العزيز، السيد عصام حليم السلفيتي. لقد كان الفقيد من خيرة أبناء الأردن، إنساناً نادراً في أخلاقه وكرمه وعطائه وداعماً للجميع دون انتظار مقابل. تغمد الله الفقيد بواسع رحمته وألهم أسرته ومحبيه الصبر والسلوان.">
-            With deep sorrow and grief, the Jordan Bridge Federation mourns the loss of our dear friend, Mr. Issam Halim Salfiti. The deceased was among the finest sons of Jordan, a rare individual of noble character, generosity, and boundless support for clubs and community societies. May Almighty God grant him His immense mercy and eternal peace.
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div class="flex items-center gap-4 text-center sm:text-left">
+        <img src="public/images/H11111.jpg" alt="HRH Prince Mohammad Bin Talal" class="w-16 h-20 object-cover rounded-lg border-2 border-amber-300 shadow-sm shrink-0 mx-auto sm:mx-0">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-800" data-en="In Loving Memory & Royal Patronage" data-ar="وفاءً لذكرى المغفور له بإذن الله والرعاية الملكية">In Loving Memory & Royal Patronage</span>
+          <h2 class="text-lg font-black text-slate-900 mt-0.5" data-en="His Royal Highness Prince Mohammad Bin Talal (1940–2021)" data-ar="صاحب السمو الملكي الأمير محمد بن طلال المعظم (1940–2021)">
+            His Royal Highness Prince Mohammad Bin Talal (1940–2021)
+          </h2>
+          <p class="text-xs text-slate-600 max-w-2xl mt-1 leading-relaxed" data-en="Honorary Life President of the Jordan Bridge Federation. His visionary leadership established Jordan as the bridge capital of the Middle East." data-ar="الرئيس الفخري للاتحاد الأردني للبريدج مدى الحياة. رسخ سموه مكانة الأردن الرائدة كعاصمة لرياضة البريدج في الشرق الأوسط.">
+            Honorary Life President of the Jordan Bridge Federation. His visionary leadership established Jordan as the bridge capital of the Middle East.
           </p>
         </div>
+      </div>
+      <div class="shrink-0 flex items-center gap-2">
+        <span class="text-xs font-bold text-amber-900 bg-amber-100 border border-amber-300 px-3 py-1.5 rounded-full" data-en="Permanent Honorary Presidency" data-ar="الرئاسة الفخرية الدائمة">
+          Permanent Honorary Presidency
+        </span>
       </div>
     </div>
   </section>
 
-  <!-- HERO SECTION -->
-  <section class="relative bg-gradient-to-b from-sky-950 via-sky-900 to-slate-900 text-white py-16 sm:py-24 overflow-hidden">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 text-center">
-      
-      <!-- Pill -->
-      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur border border-white/20 text-xs sm:text-sm font-semibold tracking-wide text-sky-200 mb-6">
-        <span class="w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
-        <span data-en="National Federation of the Hashemite Kingdom of Jordan • JOC Affiliate" data-ar="الاتحاد الوطني للمملكة الأردنية الهاشمية • تحت مظلة اللجنة الأولمبية">National Federation of the Hashemite Kingdom of Jordan • JOC Affiliate</span>
+  <!-- HERO BANNER -->
+  <section class="relative bg-gradient-to-b from-sky-950 via-sky-900 to-slate-900 text-white py-16 sm:py-20 overflow-hidden">
+    <div class="absolute inset-0 opacity-10 bg-[radial-gradient(#38bdf8_1px,transparent_1px)] [background-size:20px_20px]"></div>
+    
+    <div class="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+      <div class="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-sky-800/60 border border-sky-400/30 text-sky-200 text-xs font-bold mb-6">
+        <i data-lucide="trophy" class="w-4 h-4 text-amber-400"></i>
+        <span data-en="42nd Jordan International Bridge Festival & Official League" data-ar="مهرجان الأردن الدولي الـ 42 للبريدج والدوري الرسمي">42nd Jordan International Bridge Festival & Official League</span>
       </div>
 
-      <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black tracking-tight max-w-4xl mx-auto leading-tight mb-6">
-        <span data-en="Official Portal of the Jordan Bridge Federation" data-ar="المقر والمنصة الرسمية للاتحاد الأردني للبريدج">Official Portal of the Jordan Bridge Federation</span>
+      <h1 class="text-3xl sm:text-5xl font-black tracking-tight max-w-4xl mx-auto leading-tight" data-en="The Official Gateway to Bridge Excellence in the Hashemite Kingdom" data-ar="البوابة الرسمية لرياضة وفكر البريدج في المملكة الأردنية الهاشمية">
+        The Official Gateway to Bridge Excellence in the Hashemite Kingdom
       </h1>
 
-      <p class="text-base sm:text-lg text-sky-100/90 max-w-2xl mx-auto mb-10 leading-relaxed" data-en="Advancing minds, uniting bridge athletes, and hosting premier international championships under the Jordan Olympic Committee (JOC) and World Bridge Federation (WBF)." data-ar="تطوير رياضة الفكر والذكاء، ورعاية البطولات الدولية والمحلية تحت مظلة اللجنة الأولمبية الأردنية والاتحاد العالمي للبريدج (WBF).">
-        Advancing minds, uniting bridge athletes, and hosting premier international championships under the Jordan Olympic Committee (JOC) and World Bridge Federation (WBF).
+      <p class="mt-4 text-base sm:text-lg text-sky-100/80 max-w-3xl mx-auto font-light leading-relaxed" data-en="Live Vugraph scoring, official league cross-tables, tournament bulletins, international regulations, and national championship archives." data-ar="النتائج الحية والمباشرة، جداول الدوري الرسمي، نشرات المهرجانات، اللوائح والأنظمة الدولية، وأرشيف البطولات الوطنية.">
+        Live Vugraph scoring, official league cross-tables, tournament bulletins, international regulations, and national championship archives.
       </p>
 
-      <div class="flex flex-wrap items-center justify-center gap-4">
-        <a href="#scores" class="px-6 py-3.5 rounded-xl font-bold bg-amber-500 hover:bg-amber-400 text-slate-950 shadow-lg shadow-amber-500/20 transition-all transform hover:-translate-y-0.5 inline-flex items-center gap-2">
-          <i data-lucide="trophy" class="w-5 h-5"></i>
-          <span data-en="Festival 2026 Live Scores" data-ar="نتائج مهرجان الأردن 2026">Festival 2026 Live Scores</span>
-        </a>
-        <a href="#jordancup" class="px-6 py-3.5 rounded-xl font-bold bg-white/10 hover:bg-white/20 text-white border border-white/20 backdrop-blur transition-all inline-flex items-center gap-2">
-          <i data-lucide="award" class="w-5 h-5"></i>
-          <span data-en="Jordan Cup 2026 Final" data-ar="نهائي كأس الأردن 2026">Jordan Cup 2026 Final</span>
-        </a>
-        <a href="#documents" class="px-6 py-3.5 rounded-xl font-bold bg-slate-800/80 hover:bg-slate-800 text-slate-200 border border-slate-700 backdrop-blur transition-all inline-flex items-center gap-2">
-          <i data-lucide="scroll-text" class="w-5 h-5"></i>
-          <span data-en="Official Bylaws (PDF)" data-ar="الأنظمة الأساسية (PDF)">Official Bylaws (PDF)</span>
-        </a>
-      </div>
-
-      <!-- Quick Metrics Strip -->
-      <div class="mt-14 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-3xl mx-auto pt-8 border-t border-white/15">
-        <div class="text-center">
-          <span class="block text-2xl sm:text-3xl font-black text-white">42+</span>
-          <span class="text-xs text-sky-200/80 font-medium" data-en="Festival Editions" data-ar="دورات المهرجان الدولي">Festival Editions</span>
+      <!-- Key Quick Stats -->
+      <div class="mt-10 grid grid-cols-2 sm:grid-cols-4 gap-4 max-w-4xl mx-auto text-left">
+        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+          <span class="text-2xl font-black text-amber-400 font-mono">42</span>
+          <span class="block text-xs text-sky-200 uppercase font-semibold mt-1" data-en="Festival Editions" data-ar="نسخة من المهرجان الدولي">Festival Editions</span>
         </div>
-        <div class="text-center">
-          <span class="block text-2xl sm:text-3xl font-black text-white">24</span>
-          <span class="text-xs text-sky-200/80 font-medium" data-en="Teams in 2026 Open" data-ar="فريقاً في بطولة 2026">Teams in 2026 Open</span>
+        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+          <span class="text-2xl font-black text-emerald-400 font-mono">8</span>
+          <span class="block text-xs text-sky-200 uppercase font-semibold mt-1" data-en="Jordan Cup Clubs" data-ar="أندية بكأس الأردن">Jordan Cup Clubs</span>
         </div>
-        <div class="text-center">
-          <span class="block text-2xl sm:text-3xl font-black text-white">WBF</span>
-          <span class="text-xs text-sky-200/80 font-medium" data-en="Zone 4 (BFAME) Member" data-ar="عضو الاتحاد الدولي والآسيوي">Zone 4 (BFAME) Member</span>
+        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+          <span class="text-2xl font-black text-sky-300 font-mono">100%</span>
+          <span class="block text-xs text-sky-200 uppercase font-semibold mt-1" data-en="In-Browser Excels" data-ar="جداول إكسل تفاعلية">In-Browser Excels</span>
         </div>
-        <div class="text-center">
-          <span class="block text-2xl sm:text-3xl font-black text-white">100%</span>
-          <span class="text-xs text-sky-200/80 font-medium" data-en="Mobile Optimized Vugraph" data-ar="سكور وعرض مباشر للموبايل">Mobile Optimized Vugraph</span>
+        <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
+          <span class="text-2xl font-black text-purple-300 font-mono">14</span>
+          <span class="block text-xs text-sky-200 uppercase font-semibold mt-1" data-en="Archived Documents" data-ar="وثائق ولوائح رسمية">Archived Documents</span>
         </div>
       </div>
 
+      <!-- Quick Action Buttons -->
+      <div class="mt-10 flex flex-wrap items-center justify-center gap-4">
+        <a href="#scores" class="px-6 py-3 rounded-xl bg-amber-500 hover:bg-amber-400 text-slate-950 font-black text-sm transition-all shadow-md flex items-center gap-2">
+          <i data-lucide="activity" class="w-4 h-4"></i>
+          <span data-en="View Festival Standings" data-ar="استعراض نتائج المهرجان">View Festival Standings</span>
+        </a>
+        <a href="#league" class="px-6 py-3 rounded-xl bg-white/15 hover:bg-white/25 border border-white/20 text-white font-bold text-sm transition-all backdrop-blur-md flex items-center gap-2">
+          <i data-lucide="table-2" class="w-4 h-4 text-emerald-400"></i>
+          <span data-en="Open Live Spreadsheets" data-ar="فتح جداول الدوري المباشرة">Open Live Spreadsheets</span>
+        </a>
+      </div>
     </div>
   </section>
 
-  <!-- OLYMPIC COMMITTEE PATRONAGE & SPECIAL MESSAGE (Preserving HRH Prince Feisal message) -->
-  <section id="patronage" class="py-14 bg-white border-b border-slate-200">
+  <!-- OFFICIAL FESTIVAL POSTERS & ANNOUNCEMENTS (WITH LIGHTBOX ZOOM) -->
+  <section id="posters" class="py-14 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="p-8 sm:p-10 rounded-3xl bg-gradient-to-br from-slate-900 to-sky-950 text-white shadow-xl border border-slate-800 flex flex-col md:flex-row items-center gap-8">
-        <div class="relative shrink-0">
-          <img src="public/images/feisal.jpg" alt="HRH Prince Feisal bin Al Hussein" class="w-32 h-40 sm:w-40 sm:h-48 object-cover rounded-2xl border-2 border-amber-400/40 shadow-lg">
-          <span class="absolute -bottom-3 left-1/2 -translate-x-1/2 bg-amber-500 text-slate-950 text-[10px] font-black uppercase tracking-wider px-3 py-0.5 rounded-full whitespace-nowrap shadow-xs">JOC President</span>
-        </div>
-        
-        <div class="flex-1 text-center md:text-left">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/10 text-amber-300 text-xs font-bold uppercase tracking-wider mb-3">
-            <i data-lucide="shield" class="w-3.5 h-3.5"></i>
-            <span data-en="Under the Patronage of the Jordan Olympic Committee (JOC)" data-ar="تحت مظلة ورعاية اللجنة الأولمبية الأردنية">Under the Patronage of the Jordan Olympic Committee (JOC)</span>
-          </div>
-          <h3 class="text-xl sm:text-2xl font-bold text-white mb-3" data-en="Message on Sportsmanship & Achievement" data-ar="رسالة الرعاية الرياضية والإنجاز الوطني">
-            Message on Sportsmanship & Achievement
-          </h3>
-          <blockquote class="italic text-slate-300 text-sm sm:text-base leading-relaxed border-l-2 border-amber-400 pl-4 my-3" data-en="&ldquo;Out of scratch sports achievements do not exist. Achievements are the products of big efforts, generous giving, sacrifices, and high determination towards making successes. Successes cannot be achieved without clear, scientific plans and continuous support.&rdquo;" data-ar="&ldquo;الإنجازات الرياضية لا تأتي من فراغ، بل هي نتاج جهود كبيرة وتضحيات وعطاء سخي وعزيمة صادقة نحو صناعة النجاح. والنجاح لا يتحقق إلا بالخطط العلمية الواضحة والرعاية المستمرة.&rdquo;">
-            &ldquo;Out of scratch sports achievements do not exist. Achievements are the products of big efforts, generous giving, sacrifices, and high determination towards making successes. Successes cannot be achieved without clear, scientific plans and continuous support.&rdquo;
-          </blockquote>
-          <span class="block text-xs font-semibold text-slate-400 mt-2" data-en="Hashemite Kingdom of Jordan • Official Sports Federation Charter" data-ar="المملكة الأردنية الهاشمية • الميثاق الرياضي الوطني">Hashemite Kingdom of Jordan • Official Sports Federation Charter</span>
-        </div>
+      
+      <div class="text-center max-w-2xl mx-auto mb-10">
+        <span class="text-xs font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-3 py-1 rounded-full inline-block mb-2" data-en="Official Announcements" data-ar="الإعلانات والملصقات الرسمية">Official Announcements</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="42nd Festival Posters & Program" data-ar="ملصقات وبرنامج المهرجان الدولي الـ 42">42nd Festival Posters & Program</h2>
+        <p class="text-sm text-slate-600 mt-2" data-en="Click on any poster to zoom in full-screen and read tournament schedules, entry conditions, and prizes." data-ar="انقر على أي ملصق لتكبيره بالكامل وقراءة الجدول الزمني وشروط المشاركة والجوائز.">
+          Click on any poster to zoom in full-screen and read tournament schedules, entry conditions, and prizes.
+        </p>
       </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+        
+        <!-- Poster 1 -->
+        <div class="group relative rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl transition-all cursor-pointer bg-slate-900" onclick="openLightbox('public/images/JOR261.jpg', '42nd Jordan Bridge Festival - General Announcement')">
+          <img src="public/images/JOR261.jpg" alt="42nd Jordan Bridge Festival - General Poster" class="w-full h-auto object-cover group-hover:scale-102 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-90 group-hover:opacity-100 transition-opacity flex items-end p-5">
+            <div class="w-full flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-wider" data-en="Official Announcement" data-ar="الإعلان الرسمي">Official Announcement</span>
+                <h4 class="text-white font-black text-base" data-en="42nd Festival Schedule & Venue" data-ar="جدول ومواعيد المهرجان الـ 42">42nd Festival Schedule & Venue</h4>
+              </div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/20 text-white backdrop-blur-md text-xs font-bold border border-white/30">
+                <i data-lucide="zoom-in" class="w-4 h-4"></i>
+                <span data-en="Zoom" data-ar="تكبير">Zoom</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Poster 2 -->
+        <div class="group relative rounded-2xl overflow-hidden border border-slate-200 shadow-md hover:shadow-xl transition-all cursor-pointer bg-slate-900" onclick="openLightbox('public/images/JOR_262.jpg', '42nd Jordan Bridge Festival - Tournament Regulations & Prizes')">
+          <img src="public/images/JOR_262.jpg" alt="42nd Jordan Bridge Festival - Program Poster" class="w-full h-auto object-cover group-hover:scale-102 transition-transform duration-300">
+          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-90 group-hover:opacity-100 transition-opacity flex items-end p-5">
+            <div class="w-full flex items-center justify-between">
+              <div>
+                <span class="text-xs font-bold text-amber-400 uppercase tracking-wider" data-en="Tournament Guidelines" data-ar="تعليمات وجوائز البطولة">Tournament Guidelines</span>
+                <h4 class="text-white font-black text-base" data-en="Prizes, Teams & Pairs Breakdown" data-ar="تفاصيل الجوائز والفرق والزوجي">Prizes, Teams & Pairs Breakdown</h4>
+              </div>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white/20 text-white backdrop-blur-md text-xs font-bold border border-white/30">
+                <i data-lucide="zoom-in" class="w-4 h-4"></i>
+                <span data-en="Zoom" data-ar="تكبير">Zoom</span>
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
     </div>
   </section>
 
-  <!-- MAIN SCORING & VUGRAPH HUB SECTION -->
+  <!-- SECTION 1: FESTIVAL SCORES & ARCHIVE (2026, 2025, 2024, 2023) -->
   <section id="scores" class="py-16 bg-slate-100 border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <!-- Section Header -->
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-slate-300 gap-4">
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4">
         <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-sky-700 bg-sky-100 px-3 py-1 rounded-full inline-block mb-2" data-en="Vugraph & Live Standings" data-ar="عرض النتائج المباشرة والسكور">Vugraph & Live Standings</span>
-          <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Jordan Bridge Festival 2026 — Open Teams" data-ar="مهرجان الأردن الدولي للبريدج 2026 — الفرق المفتوحة">Jordan Bridge Festival 2026 — Open Teams</h2>
-          <p class="text-sm text-slate-600 mt-1" data-en="Director: Waleed El Menyawi • 24 International & National Teams • 8 Complete Rounds" data-ar="مدير البطولة: وليد المنياوي • 24 فريقاً دولياً ومحلياً • 8 جولات كاملة">Director: Waleed El Menyawi • 24 International & National Teams • 8 Complete Rounds</p>
+          <div class="flex items-center gap-2">
+            <span class="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            <span class="text-xs font-bold uppercase tracking-wider text-sky-800" data-en="Festival Standings & Archives" data-ar="نتائج وأرشيف مهرجانات الأردن">Festival Standings & Archives</span>
+          </div>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900 mt-1" id="festivalDisplayTitle">
+            42nd Jordan Bridge Festival (2026) - Open Teams
+          </h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1" id="festivalMetaInfo">
+            Official Scoring • Tournament Director: Waleed El Menyawi (Egyptian Bridge Federation)
+          </p>
+        </div>
+
+        <!-- Year Selector Buttons -->
+        <div class="flex flex-wrap items-center gap-2 bg-white p-1.5 rounded-2xl border border-slate-300 shadow-xs">
+          <button onclick="selectFestivalYear('2026')" id="btnYear2026" class="year-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-700 text-white shadow-xs">2026 (42nd)</button>
+          <button onclick="selectFestivalYear('2025')" id="btnYear2025" class="year-btn px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-100">2025 (41st)</button>
+          <button onclick="selectFestivalYear('2024')" id="btnYear2024" class="year-btn px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-100">2024 (40th)</button>
+          <button onclick="selectFestivalYear('2023')" id="btnYear2023" class="year-btn px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-100">2023 (39th)</button>
+        </div>
+      </div>
+
+      <!-- Controls & Subtabs Bar -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6">
+        
+        <!-- Tab Selector (For 2026) -->
+        <div class="inline-flex p-1 bg-white border border-slate-300 rounded-2xl shadow-xs" id="subtabContainer">
+          <button id="btnTabStandings" onclick="switchFestivalSubtab('standings')" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-sky-700 text-white shadow-xs transition-all">
+            <span data-en="Final Standings" data-ar="الترتيب النهائي">Final Standings</span>
+          </button>
+          <button id="btnTabRounds" onclick="switchFestivalSubtab('rounds')" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-white text-slate-700 hover:bg-slate-50 transition-all">
+            <span data-en="Round Matches (2026)" data-ar="مباريات الجولات (2026)">Round Matches (2026)</span>
+          </button>
         </div>
 
         <!-- Search Bar -->
-        <div class="w-full md:w-72">
-          <div class="relative">
-            <input type="text" id="teamSearchInput" oninput="filterTeams()" placeholder="Search team or score..." class="w-full pl-10 pr-4 py-2 text-sm bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-xs">
-            <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-3"></i>
-          </div>
+        <div class="relative w-full sm:w-72">
+          <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3 top-3"></i>
+          <input type="text" id="teamSearchInput" oninput="filterFestivalTeams()" placeholder="Search team or score..." class="w-full pl-10 pr-4 py-2 text-sm bg-white border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-sky-500 shadow-xs">
         </div>
+
       </div>
 
-      <!-- Tab Buttons: Standings vs. Round-by-Round Breakdown -->
-      <div class="flex items-center gap-2 mb-6 border-b border-slate-200 pb-2">
-        <button id="btnTabStandings" onclick="switchFestivalTab('standings')" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-sky-700 text-white shadow-xs transition-all">
-          <span data-en="Final Standings (Leaderboard)" data-ar="الترتيب النهائي للفرق">Final Standings (Leaderboard)</span>
-        </button>
-        <button id="btnTabRounds" onclick="switchFestivalTab('rounds')" class="px-5 py-2.5 rounded-xl font-bold text-sm bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 transition-all">
-          <span data-en="Round-by-Round Match Results" data-ar="نتائج المباريات جولة بجولة">Round-by-Round Match Results</span>
-        </button>
-        <a href="public/archive/jordanbridgefestival2026-teams.htm" target="_blank" class="ml-auto hidden sm:inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-sky-700 bg-white border border-slate-200 px-3 py-2 rounded-lg">
-          <i data-lucide="file-code" class="w-3.5 h-3.5"></i>
-          <span data-en="Raw Magic Contest Output" data-ar="ملف ماجيك كونتست الأصلي">Raw Magic Contest Output</span>
-        </a>
-      </div>
-
-      <!-- TAB 1: STANDINGS TABLE -->
+      <!-- STANDINGS TABLE CONTENT -->
       <div id="tabStandingsContent" class="glass-card rounded-2xl shadow-sm border border-slate-200 overflow-hidden">
         <div class="overflow-x-auto">
           <table class="w-full text-left border-collapse text-sm">
             <thead>
-              <tr class="bg-slate-900 text-white uppercase text-xs tracking-wider">
-                <th class="py-3.5 px-4 text-center w-16" data-en="Rank" data-ar="الترتيب">Rank</th>
-                <th class="py-3.5 px-4" data-en="Team Name" data-ar="اسم الفريق">Team Name</th>
-                <th class="py-3.5 px-4 text-center w-28" data-en="Team #" data-ar="رقم الفريق">Team #</th>
-                <th class="py-3.5 px-6 text-right w-36" data-en="Total V.P" data-ar="مجموع النقاط (VP)">Total V.P</th>
-                <th class="py-3.5 px-4 text-center w-32" data-en="Status" data-ar="الحالة">Status</th>
+              <tr class="bg-slate-900 text-white text-xs uppercase tracking-wider">
+                <th class="py-3.5 px-4 text-center font-bold" data-en="Rank" data-ar="المركز">Rank</th>
+                <th class="py-3.5 px-4 font-bold" data-en="Team Name" data-ar="اسم الفريق">Team Name</th>
+                <th class="py-3.5 px-4 text-center font-bold" data-en="Team #" data-ar="رقم الفريق">Team #</th>
+                <th class="py-3.5 px-6 text-right font-bold" data-en="Victory Points (V.P)" data-ar="النقاط (V.P)">Victory Points (V.P)</th>
+                <th class="py-3.5 px-4 text-center font-bold" data-en="Status" data-ar="الحالة">Status</th>
               </tr>
             </thead>
             <tbody id="standingsTableBody" class="divide-y divide-slate-200 bg-white">
-              <!-- Populated by JS -->
+              <!-- Dynamically populated -->
             </tbody>
           </table>
         </div>
       </div>
 
-      <!-- TAB 2: ROUND-BY-ROUND MATCHES -->
+      <!-- ROUND-BY-ROUND MATCHES CONTENT (2026) -->
       <div id="tabRoundsContent" class="hidden">
-        <!-- Round Selector Pills (1 to 8) -->
+        
+        <!-- Round Pills -->
         <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-4">
-          <span class="text-xs font-bold text-slate-500 uppercase mr-2" data-en="Select Round:" data-ar="اختر الجولة:">Select Round:</span>
+          <span class="text-xs font-bold text-slate-500 uppercase tracking-wider mr-2" data-en="Rounds:" data-ar="الجولات:">Rounds:</span>
           <button onclick="renderRoundMatches(8)" class="round-pill-btn active px-4 py-2 rounded-xl text-xs font-bold bg-sky-700 text-white shadow-xs" data-round="8">Round 8 (Final)</button>
           <button onclick="renderRoundMatches(7)" class="round-pill-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-300" data-round="7">Round 7</button>
           <button onclick="renderRoundMatches(6)" class="round-pill-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-300" data-round="6">Round 6</button>
@@ -286,132 +389,181 @@
           <button onclick="renderRoundMatches(1)" class="round-pill-btn px-4 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-300" data-round="1">Round 1</button>
         </div>
 
-        <!-- Matches Cards Grid -->
+        <!-- Matches Grid -->
         <div id="roundMatchesContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          <!-- Populated by JS -->
+          <!-- Dynamically populated -->
         </div>
+
       </div>
 
     </div>
   </section>
 
-  <!-- FESTIVAL 2026 FLYERS & VISUAL GALLERY -->
-  <section class="py-14 bg-white border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="text-center max-w-2xl mx-auto mb-10">
-        <span class="text-xs font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-3 py-1 rounded-full inline-block mb-2" data-en="Tournament Gallery" data-ar="ملصقات وبرامج البطولة">Tournament Gallery</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Jordan Bridge Festival 2026 Posters & Bulletins" data-ar="بوسترات وبرامج مهرجان الأردن 2026">Jordan Bridge Festival 2026 Posters & Bulletins</h2>
-      </div>
-
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
-        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all">
-          <img src="public/images/JOR261.jpg" alt="Jordan Festival 2026 Bulletin" class="w-full h-auto object-contain rounded-xl shadow-xs">
-          <span class="block text-center text-xs font-bold text-slate-600 mt-3" data-en="Festival Schedule & Announcement Part 1" data-ar="جدول مباريات المهرجان - الجزء الأول">Festival Schedule & Announcement Part 1</span>
-        </div>
-        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 shadow-xs hover:shadow-md transition-all">
-          <img src="public/images/JOR_262.jpg" alt="Jordan Festival 2026 Programme" class="w-full h-auto object-contain rounded-xl shadow-xs">
-          <span class="block text-center text-xs font-bold text-slate-600 mt-3" data-en="Festival Schedule & Announcement Part 2" data-ar="جدول مباريات المهرجان - الجزء الثاني">Festival Schedule & Announcement Part 2</span>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- JORDAN CUP SECTION (From Official Excel) -->
-  <section id="jordancup" class="py-16 bg-slate-50 border-b border-slate-200">
+  <!-- SECTION 2: OFFICIAL LEAGUE SPREADSHEETS & SPREADSHEET VIEWER -->
+  <section id="league" class="py-16 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="flex flex-col md:flex-row md:items-end justify-between mb-8 pb-4 border-b border-slate-200 gap-4">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full inline-block mb-2" data-en="National League Championship" data-ar="بطولة الدوري الوطني">National League Championship</span>
-          <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Jordan Cup 2026 — Final League Standings" data-ar="كأس الأردن 2026 — الترتيب النهائي للدوري">Jordan Cup 2026 — Final League Standings</h2>
-          <p class="text-sm text-slate-600 mt-1" data-en="Tournament Director: Raad Otoom • Verified Federation Excel Record" data-ar="مدير البطولة: رعد العتوم • السجل المعتمد من الاتحاد">Tournament Director: Raad Otoom • Verified Federation Excel Record</p>
-        </div>
-
-        <div class="flex flex-wrap items-center gap-2 self-start md:self-end">
-          <a href="public/archive/Jordan Cups 26 schedule.xlsx" download class="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-300 hover:bg-slate-100 shadow-xs transition-all">
-            <i data-lucide="calendar" class="w-4 h-4 text-emerald-700"></i>
-            <span data-en="2026 Schedule (XLSX)" data-ar="جدول مباريات 2026">2026 Schedule</span>
-          </a>
-          <a href="public/archive/Jordan Cups 26 Final.xlsx" download class="inline-flex items-center gap-2 px-4 py-2 rounded-xl text-xs font-bold bg-emerald-700 text-white hover:bg-emerald-600 shadow-xs transition-all">
-            <i data-lucide="file-spreadsheet" class="w-4 h-4"></i>
-            <span data-en="2026 Final (XLSX)" data-ar="النتائج النهائية 2026">2026 Final (XLSX)</span>
-          </a>
-          <a href="public/archive/Jordan Cups 2025 Final.xlsx" download class="inline-flex items-center gap-2 px-3 py-2 rounded-xl text-xs font-bold bg-white text-slate-700 border border-slate-300 hover:bg-slate-100 shadow-xs transition-all">
-            <i data-lucide="archive" class="w-4 h-4 text-slate-500"></i>
-            <span data-en="2025 Archive" data-ar="أرشيف 2025">2025 Archive</span>
-          </a>
-        </div>
-      </div>
-
-      <!-- Cup Standings Grid -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="jordanCupCards">
-        <!-- Populated by JS -->
-      </div>
-
-    </div>
-  </section>
-
-
-  <!-- HISTORICAL PHOTO GALLERY & TOURNAMENT ALBUM (Preserving Pictures Album from BridgeWebs) -->
-  <section id="gallery" class="py-16 bg-white border-b border-slate-200">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      
-      <div class="text-center max-w-2xl mx-auto mb-10">
-        <span class="text-xs font-bold uppercase tracking-wider text-amber-800 bg-amber-100 px-3 py-1 rounded-full inline-block mb-2" data-en="Historical Archives & Memories" data-ar="أرشيف الصور والذكريات">Historical Archives & Memories</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Jordan Bridge Photo Album & Championships" data-ar="ألبوم صور بطولات ومهرجانات الأردن للبريدج">Jordan Bridge Photo Album & Championships</h2>
-        <p class="text-sm text-slate-600 mt-2" data-en="Preserving moments of triumph, international BFAME championships, and Jordan Festival award ceremonies." data-ar="توثيق لحظات التتويج، والمشاركات الدولية لمنتخب الأردن في بطولات آسيا والشرق الأوسط (BFAME).">
-          Preserving moments of triumph, international BFAME championships, and Jordan Festival award ceremonies.
+      <div class="text-center max-w-3xl mx-auto mb-10">
+        <span class="text-xs font-bold uppercase tracking-wider text-emerald-800 bg-emerald-100 px-3 py-1 rounded-full inline-block mb-2" data-en="Interactive In-Browser Spreadsheets" data-ar="جداول الدوري المباشرة دون الحاجة للتحميل">Interactive In-Browser Spreadsheets</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Official National League Cross-Tables & Matrices" data-ar="مصفوفات وجداول ترتيب الدوري الوطني الرسمي">Official National League Cross-Tables & Matrices</h2>
+        <p class="text-sm text-slate-600 mt-2" data-en="Explore every round score, VP, IMP differential, and complete player rosters directly in your browser. Hover over any team name to reveal player line-ups." data-ar="استعرض نتائج كل جولة، نقاط الفيكتوري بوينت، وفارق الإمب وتشكيلة اللاعبين مباشرة دون الحاجة لتحميل ملفات. مرر الفأرة فوق أي فريق لرؤية كشف اللاعبين.">
+          Explore every round score, VP, IMP differential, and complete player rosters directly in your browser. Hover over any team name to reveal player line-ups.
         </p>
       </div>
 
-      <!-- Photo Grid -->
-      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
-        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
-          <img src="public/gallery/imgl9575.jpg" alt="Festival Awards Ceremony" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
-            <span class="text-xs text-white font-bold">Festival Awards Ceremony</span>
+      <!-- Spreadsheet Selector Tabs -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-8">
+        <button onclick="switchSpreadsheet('cup26_matrix')" id="tabBtn_cup26_matrix" class="sheet-tab-btn active px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-emerald-700 text-white shadow-xs transition-all flex items-center gap-2">
+          <i data-lucide="grid" class="w-4 h-4"></i>
+          <span>Jordan Cup 2026 Matrix</span>
+        </button>
+        <button onclick="switchSpreadsheet('cup26_sched')" id="tabBtn_cup26_sched" class="sheet-tab-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all flex items-center gap-2">
+          <i data-lucide="calendar" class="w-4 h-4"></i>
+          <span>Cup 2026 Match Schedule</span>
+        </button>
+        <button onclick="switchSpreadsheet('cup25_matrix')" id="tabBtn_cup25_matrix" class="sheet-tab-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all flex items-center gap-2">
+          <i data-lucide="trophy" class="w-4 h-4"></i>
+          <span>Jordan Cup 2025 Final</span>
+        </button>
+        <button onclick="switchSpreadsheet('mix25')" id="tabBtn_mix25" class="sheet-tab-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all flex items-center gap-2">
+          <i data-lucide="users" class="w-4 h-4"></i>
+          <span>Mixed Selection 2025</span>
+        </button>
+      </div>
+
+      <!-- TAB 1: Jordan Cup 2026 Matrix Table -->
+      <div id="view_cup26_matrix" class="sheet-view">
+        <div class="bg-slate-50 p-4 rounded-t-2xl border border-b-0 border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-slate-900">Tournament Director:</span>
+            <span class="text-slate-600">Raad Otoom</span>
+            <span class="mx-2 text-slate-300">•</span>
+            <span class="font-bold text-slate-900">Format:</span>
+            <span class="text-slate-600">7 Rounds Round-Robin (VP & IMP)</span>
+          </div>
+          <a href="public/archive/Jordan Cups 26 Final.xlsx" download class="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs">
+            <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i>
+            <span>Download Raw Excel (.xlsx)</span>
+          </a>
+        </div>
+
+        <div class="border border-slate-200 rounded-b-2xl overflow-hidden shadow-xs">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-slate-900 text-white font-bold uppercase tracking-wider text-[11px]">
+                  <th class="py-3 px-3 text-center">#</th>
+                  <th class="py-3 px-4">Team Name (Hover for Roster)</th>
+                  <th class="py-3 px-2 text-center bg-slate-800">R1</th>
+                  <th class="py-3 px-2 text-center">R2</th>
+                  <th class="py-3 px-2 text-center bg-slate-800">R3</th>
+                  <th class="py-3 px-2 text-center">R4</th>
+                  <th class="py-3 px-2 text-center bg-slate-800">R5</th>
+                  <th class="py-3 px-2 text-center">R6</th>
+                  <th class="py-3 px-2 text-center bg-slate-800">R7</th>
+                  <th class="py-3 px-2 text-center">Pen</th>
+                  <th class="py-3 px-3 text-right">Total IMP</th>
+                  <th class="py-3 px-4 text-right bg-emerald-900 text-amber-300 font-black">Total V.P</th>
+                </tr>
+              </thead>
+              <tbody id="cup26MatrixBody" class="divide-y divide-slate-200 bg-white">
+                <!-- Dynamically populated with hover popovers -->
+              </tbody>
+            </table>
           </div>
         </div>
-        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
-          <img src="public/gallery/dsc_2534.jpg" alt="Tournament Play at Tables" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
-            <span class="text-xs text-white font-bold">Jordan Festival Open Teams</span>
+      </div>
+
+      <!-- TAB 2: Jordan Cup 2026 Match Schedule -->
+      <div id="view_cup26_sched" class="sheet-view hidden">
+        <div class="bg-slate-50 p-4 rounded-2xl border border-slate-200 mb-6 flex items-center justify-between">
+          <div>
+            <h4 class="font-bold text-slate-900 text-sm">Official Schedule & Pairings: Jordan Cup 2026</h4>
+            <p class="text-xs text-slate-500">Official tournament pairings arranged by Tournament Director Raad Otoom.</p>
+          </div>
+          <a href="public/archive/Jordan Cups 26 schedule.xlsx" download class="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs text-xs">
+            <i data-lucide="download" class="w-3.5 h-3.5"></i>
+            <span>Download Schedule (.xlsx)</span>
+          </a>
+        </div>
+
+        <div id="cup26ScheduleContainer" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
+          <!-- Dynamically populated -->
+        </div>
+      </div>
+
+      <!-- TAB 3: Jordan Cup 2025 Final Matrix -->
+      <div id="view_cup25_matrix" class="sheet-view hidden">
+        <div class="bg-slate-50 p-4 rounded-t-2xl border border-b-0 border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-slate-900">Jordan Cup 2025 Final:</span>
+            <span class="text-slate-600">Director Raad Otoom • 14 Rounds Total</span>
+          </div>
+          <a href="public/archive/Jordan Cups 2025 Final.xlsx" download class="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs">
+            <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i>
+            <span>Download Cup 2025 Excel (.xlsx)</span>
+          </a>
+        </div>
+
+        <div class="border border-slate-200 rounded-b-2xl overflow-hidden shadow-xs">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-slate-900 text-white font-bold uppercase tracking-wider text-[11px]">
+                  <th class="py-3 px-3 text-center">#</th>
+                  <th class="py-3 px-4">Team Name (Hover for Roster)</th>
+                  <th class="py-3 px-2 text-center bg-slate-800">After R7</th>
+                  <th class="py-3 px-2 text-center">R8</th>
+                  <th class="py-3 px-2 text-center bg-slate-800">R9</th>
+                  <th class="py-3 px-2 text-center">R10</th>
+                  <th class="py-3 px-2 text-center bg-slate-800">R11</th>
+                  <th class="py-3 px-2 text-center">R12</th>
+                  <th class="py-3 px-2 text-center bg-slate-800">R13</th>
+                  <th class="py-3 px-2 text-center">R14</th>
+                  <th class="py-3 px-4 text-right bg-emerald-900 text-amber-300 font-black">Total V.P</th>
+                </tr>
+              </thead>
+              <tbody id="cup25MatrixBody" class="divide-y divide-slate-200 bg-white">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
           </div>
         </div>
-        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
-          <img src="public/gallery/dsc_2582.jpg" alt="Pairs Championship Session" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
-            <span class="text-xs text-white font-bold">Duplicate Session Action</span>
+      </div>
+
+      <!-- TAB 4: Mixed Selection 2025 Leaderboard -->
+      <div id="view_mix25" class="sheet-view hidden">
+        <div class="bg-slate-50 p-4 rounded-t-2xl border border-b-0 border-slate-200 flex flex-col sm:flex-row sm:items-center justify-between gap-3 text-xs">
+          <div class="flex items-center gap-2">
+            <span class="font-bold text-slate-900">National Mixed Pairs Selection 2025:</span>
+            <span class="text-slate-600">Official IMPs & Victory Points</span>
           </div>
+          <a href="public/archive/MIX SELECTION FINAL.xlsx" download class="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs">
+            <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i>
+            <span>Download Mixed Selection (.xlsx)</span>
+          </a>
         </div>
-        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
-          <img src="public/gallery/dsc_3563.jpg" alt="Trophy Presentation" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
-            <span class="text-xs text-white font-bold">Trophy & Medal Ceremony</span>
-          </div>
-        </div>
-        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
-          <img src="public/gallery/bfame_16th_chennai_120.jpg" alt="Jordan National Team at BFAME" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
-            <span class="text-xs text-white font-bold">Jordan National Team (BFAME)</span>
-          </div>
-        </div>
-        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
-          <img src="public/gallery/bfame_16th_chennai_122.jpg" alt="Zone 4 Championship Match" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
-            <span class="text-xs text-white font-bold">BFAME Zone 4 Championship</span>
-          </div>
-        </div>
-        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
-          <img src="public/gallery/ghassan.jpg" alt="Eng. Ghassan Majali" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
-            <span class="text-xs text-white font-bold">Eng. Ghassan Majali • JBF Legend</span>
-          </div>
-        </div>
-        <div class="group relative overflow-hidden rounded-2xl border border-slate-200 shadow-xs bg-slate-100 aspect-4/3">
-          <img src="public/gallery/bahjat_almjali_1.jpg" alt="Bahjat Al-Majali" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
-          <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity p-3 flex items-end">
-            <span class="text-xs text-white font-bold">Bahjat Al-Majali Memorial</span>
+
+        <div class="border border-slate-200 rounded-b-2xl overflow-hidden shadow-xs">
+          <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse text-xs sm:text-sm">
+              <thead>
+                <tr class="bg-slate-900 text-white font-bold uppercase tracking-wider text-[11px]">
+                  <th class="py-3 px-3 text-center">#</th>
+                  <th class="py-3 px-4">Pairs Name</th>
+                  <th class="py-3 px-3 text-center bg-slate-800">R1 (IMP / VP)</th>
+                  <th class="py-3 px-3 text-center">R2 (IMP / VP)</th>
+                  <th class="py-3 px-3 text-center bg-slate-800">R3 (IMP / VP)</th>
+                  <th class="py-3 px-3 text-center">R4 (IMP / VP)</th>
+                  <th class="py-3 px-3 text-center bg-slate-800">R5 (IMP / VP)</th>
+                  <th class="py-3 px-3 text-right">Total IMP</th>
+                  <th class="py-3 px-4 text-right bg-emerald-900 text-amber-300 font-black">Total V.P</th>
+                </tr>
+              </thead>
+              <tbody id="mix25TableBody" class="divide-y divide-slate-200 bg-white">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -419,136 +571,99 @@
     </div>
   </section>
 
-  <!-- EXECUTIVE COMMITTEE & GENERAL AUTHORITY (With Official Photo Portraits) -->
-  <section id="committee" class="py-16 bg-white border-b border-slate-200">
+  <!-- SECTION 3: JORDAN CUP CLUBS CARDS & ROSTERS -->
+  <section id="jordancup" class="py-16 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="flex flex-col sm:flex-row sm:items-end justify-between mb-10 gap-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-100 px-3 py-1 rounded-full inline-block mb-1" data-en="National Teams & Line-ups" data-ar="الفرق الوطنية والتشكيلات">National Teams & Line-ups</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Jordan Cup 2026 - Roster Showcase" data-ar="كأس الأردن 2026 - كشوفات وتشكيلة الفرق">Jordan Cup 2026 - Roster Showcase</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1" data-en="Full roster of players for each participating club in the national premier league." data-ar="كشف اللاعبين والتشكيلة الرسمية لكل نادٍ وفريق مشارك في الدوري الممتاز.">
+            Full roster of players for each participating club in the national premier league.
+          </p>
+        </div>
+
+        <div class="text-xs text-slate-500 font-medium">
+          <span data-en="Tournament Director: Raad Otoom" data-ar="مدير البطولة: رعد عتوم">Tournament Director: Raad Otoom</span>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="jordanCupCards">
+        <!-- Dynamically populated -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 4: HISTORICAL TOURNAMENT PHOTO GALLERY (WITH LIGHTBOX ZOOM) -->
+  <section id="gallery" class="py-16 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-12">
-        <span class="text-xs font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-3 py-1 rounded-full inline-block mb-2" data-en="Leadership & Governance" data-ar="الإدارة والقيادة">Leadership & Governance</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="General Authority & Executive Board" data-ar="الهيئة العامة ومجلس إدارة الاتحاد">General Authority & Executive Board</h2>
-        <p class="text-sm text-slate-600 mt-2" data-en="Distinguished bridge leaders, patrons, and tournament officials dedicated to the development of mind sports in Jordan." data-ar="نخبة من رواد ومؤسسي رياضة البريدج والقائمين على تنظيم البطولات في المملكة الأردنية الهاشمية.">
-          Distinguished bridge leaders, patrons, and tournament officials dedicated to the development of mind sports in Jordan.
+        <span class="text-xs font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-3 py-1 rounded-full inline-block mb-2" data-en="Federation Archives" data-ar="أرشيف الاتحاد المصور">Federation Archives</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Photo Gallery & Champions Hall" data-ar="معرض الصور وسجل الأبطال">Photo Gallery & Champions Hall</h2>
+        <p class="text-sm text-slate-600 mt-2" data-en="Memorable moments from the Jordan International Bridge Festivals, BFAME Championships in Chennai, and podium ceremonies. Click any photo to view in high resolution." data-ar="لحظات تاريخية خالدة من مهرجانات الأردن الدولية، بطولات آسيا والشرق الأوسط (BFAME)، ومنصات التتويج. انقر على أي صورة لمشاهدتها بالحجم الكامل.">
+          Memorable moments from the Jordan International Bridge Festivals, BFAME Championships in Chennai, and podium ceremonies. Click any photo to view in high resolution.
+        </p>
+      </div>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4" id="galleryGrid">
+        <!-- Dynamically populated from 21 gallery images with lightbox click -->
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SECTION 5: EXECUTIVE COMMITTEE & GENERAL ASSEMBLY -->
+  <section id="committee" class="py-16 bg-slate-50 border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-12">
+        <span class="text-xs font-bold uppercase tracking-wider text-slate-600 bg-slate-200 px-3 py-1 rounded-full inline-block mb-2" data-en="Federation Leadership" data-ar="قيادة وإدارة الاتحاد">Federation Leadership</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Executive Board & General Assembly" data-ar="مجلس الإدارة والهيئة العامة">Executive Board & General Assembly</h2>
+        <p class="text-sm text-slate-600 mt-2" data-en="Duly elected members and officers overseeing the development of bridge across Jordan." data-ar="أعضاء مجلس الإدارة والهيئة العامة المنتخبون والمعتمدون لدى اللجنة الأولمبية الأردنية.">
+          Duly elected members and officers overseeing the development of bridge across Jordan.
         </p>
       </div>
 
       <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-5" id="committeeGrid">
-        <!-- Populated by JS with portraits -->
+        <!-- Dynamically populated from committee.json -->
       </div>
 
     </div>
   </section>
 
-  <!-- OFFICIAL BYLAWS & DOCUMENTS (Kayıpsız Arşiv) -->
-  <section id="documents" class="py-16 bg-slate-50 border-b border-slate-200">
+  <!-- SECTION 6: COMPLETE DOCUMENT ARCHIVE & REGULATIONS (14 OFFICIAL DOCUMENTS) -->
+  <section id="documents" class="py-16 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
-      <div class="text-center max-w-2xl mx-auto mb-12">
+      <div class="text-center max-w-2xl mx-auto mb-10">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-600 bg-slate-200 px-3 py-1 rounded-full inline-block mb-2" data-en="Governance & Regulations" data-ar="الأنظمة واللوائح والقرارات">Governance & Regulations</span>
-        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Official Federation Documents & Arşiv" data-ar="الوثائق واللوائح الرسمية وأرشيف الاتحاد">Official Federation Documents & Archive</h2>
-        <p class="text-sm text-slate-600 mt-2" data-en="Every constitution, tournament bulletin, and international alerting policy is archived and accessible for all members." data-ar="جميع الأنظمة الأساسية، نشرات المهرجان، وسياسات التنبيه المعتمدة متاحة لجميع الأعضاء واللاعبين.">
-          Every constitution, tournament bulletin, and international alerting policy is archived and accessible for all members.
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Complete Federation Document Archive" data-ar="أرشيف الوثائق واللوائح الرسمية الكامل">Complete Federation Document Archive</h2>
+        <p class="text-sm text-slate-600 mt-2" data-en="100% of the federation bylaws, Olympic statutes, daily tournament bulletins, and international policies preserved." data-ar="جميع الأنظمة الأساسية، لوائح اللجنة الأولمبية، النشرات اليومية، والسياسات الدولية محفوظة ومتاحة للجميع.">
+          100% of the federation bylaws, Olympic statutes, daily tournament bulletins, and international policies preserved.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        
-        <!-- Doc 1: By-Laws KP 220821 -->
-        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-sky-400 hover:shadow-md transition-all flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center mb-4">
-              <i data-lucide="scroll-text" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-bold text-slate-900 text-base mb-1" data-en="By-Laws Jordan Bridge Federation" data-ar="النظام الداخلي للاتحاد الأردني للبريدج">By-Laws Jordan Bridge Federation</h3>
-            <p class="text-xs text-slate-500 mb-4" data-en="Official English constitution, governance rules, and executive board responsibilities." data-ar="النظام الأساسي باللغة الإنجليزية وقواعد الحوكمة ومسؤوليات مجلس الإدارة.">Official English constitution, governance rules, and executive board responsibilities.</p>
-          </div>
-          <a href="public/archive/BFAME Participation Record.pdf" target="_blank" class="inline-flex items-center justify-between text-xs font-bold text-sky-700 hover:text-sky-800 bg-sky-50 hover:bg-sky-100 px-4 py-2.5 rounded-xl transition-all">
-            <span data-en="View Document (PDF)" data-ar="عرض الوثيقة (PDF)">View Document (PDF)</span>
-            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </a>
-        </div>
+      <!-- Filter Categories -->
+      <div class="flex flex-wrap items-center justify-center gap-2 mb-8">
+        <button onclick="filterDocuments('all')" class="doc-filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-700 text-white shadow-xs">All Documents (14)</button>
+        <button onclick="filterDocuments('governance')" class="doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">Governance & Bylaws</button>
+        <button onclick="filterDocuments('bulletins')" class="doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">Festival Bulletins (1–4)</button>
+        <button onclick="filterDocuments('regulations')" class="doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">WBF & Regulations</button>
+        <button onclick="filterDocuments('festival')" class="doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">Festival Programs</button>
+      </div>
 
-        <!-- Doc 2: WBF Alerting Policy -->
-        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-sky-400 hover:shadow-md transition-all flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4">
-              <i data-lucide="bell" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-bold text-slate-900 text-base mb-1" data-en="WBF Alerting Policy" data-ar="سياسة التنبيه المعتمدة من الاتحاد الدولي">WBF Alerting Policy</h3>
-            <p class="text-xs text-slate-500 mb-4" data-en="Official World Bridge Federation regulations for bidding announcements, screens, and alerts." data-ar="لوائح الاتحاد العالمي للبريدج الرسمية للإعلانات والتنبيهات والشاشات أثناء اللعب.">Official World Bridge Federation regulations for bidding announcements, screens, and alerts.</p>
-          </div>
-          <a href="public/archive/WBF Alerting Policy.pdf" target="_blank" class="inline-flex items-center justify-between text-xs font-bold text-amber-700 hover:text-amber-800 bg-amber-50 hover:bg-amber-100 px-4 py-2.5 rounded-xl transition-all">
-            <span data-en="Download Policy (PDF)" data-ar="تحميل السياسة (PDF)">Download Policy (PDF)</span>
-            <i data-lucide="download" class="w-4 h-4"></i>
-          </a>
-        </div>
-
-        <!-- Doc 3: Annual Festival Prospectus -->
-        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-sky-400 hover:shadow-md transition-all flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center mb-4">
-              <i data-lucide="file-text" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-bold text-slate-900 text-base mb-1" data-en="Annual Jordan Festival Prospectus" data-ar="دليل ولوائح مهرجان الأردن السنوي">Annual Jordan Festival Prospectus</h3>
-            <p class="text-xs text-slate-500 mb-4" data-en="Tournament formats, masterpoints awards, match point schedules, and prize structures." data-ar="نظام البطولة، توزيع النقاط الذهبية، برامج اللعب، ومكافآت الفائزين.">Tournament formats, masterpoints awards, match point schedules, and prize structures.</p>
-          </div>
-          <a href="public/archive/Annual Jordan International Bridge Festival.docx" download class="inline-flex items-center justify-between text-xs font-bold text-emerald-700 hover:text-emerald-800 bg-emerald-50 hover:bg-emerald-100 px-4 py-2.5 rounded-xl transition-all">
-            <span data-en="Download Prospectus (DOCX)" data-ar="تحميل الدليل (DOCX)">Download Prospectus (DOCX)</span>
-            <i data-lucide="download" class="w-4 h-4"></i>
-          </a>
-        </div>
-
-        <!-- Doc 4: General Authority Roster -->
-        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-sky-400 hover:shadow-md transition-all flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-purple-100 text-purple-700 flex items-center justify-center mb-4">
-              <i data-lucide="users" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-bold text-slate-900 text-base mb-1" data-en="General Authority Member List" data-ar="سجل وأعضاء الهيئة العامة الرسمية">General Authority Member List</h3>
-            <p class="text-xs text-slate-500 mb-4" data-en="Official registrar of the General Assembly submitted to the Jordan Olympic Committee." data-ar="الكشف الرسمي المعتمد لأسماء أعضاء الهيئة العامة المرفوع للجنة الأولمبية.">Official registrar of the General Assembly submitted to the Jordan Olympic Committee.</p>
-          </div>
-          <a href="public/archive/name of public commite.docx" download class="inline-flex items-center justify-between text-xs font-bold text-purple-700 hover:text-purple-800 bg-purple-50 hover:bg-purple-100 px-4 py-2.5 rounded-xl transition-all">
-            <span data-en="Download Roster (DOCX)" data-ar="تحميل الكشف (DOCX)">Download Roster (DOCX)</span>
-            <i data-lucide="download" class="w-4 h-4"></i>
-          </a>
-        </div>
-
-        <!-- Doc 5: WBF Women in Bridge -->
-        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-sky-400 hover:shadow-md transition-all flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-pink-100 text-pink-700 flex items-center justify-center mb-4">
-              <i data-lucide="heart" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-bold text-slate-900 text-base mb-1" data-en="WBF Women in Bridge Programme" data-ar="برنامج المرأة في رياضة البريدج">WBF Women in Bridge Programme</h3>
-            <p class="text-xs text-slate-500 mb-4" data-en="Initiatives for female bridge athletes, junior development, and international participation." data-ar="مبادرات دعم وتطوير اللاعبات السيدات والناشئات في البطولات الدولية.">Initiatives for female bridge athletes, junior development, and international participation.</p>
-          </div>
-          <a href="public/archive/WBF Women.pdf" target="_blank" class="inline-flex items-center justify-between text-xs font-bold text-pink-700 hover:text-pink-800 bg-pink-50 hover:bg-pink-100 px-4 py-2.5 rounded-xl transition-all">
-            <span data-en="View Guide (PDF)" data-ar="عرض الدليل (PDF)">View Guide (PDF)</span>
-            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-          </a>
-        </div>
-
-        <!-- Doc 6: Mix Selection Final Excel -->
-        <div class="bg-white p-6 rounded-2xl border border-slate-200 shadow-xs hover:border-sky-400 hover:shadow-md transition-all flex flex-col justify-between">
-          <div>
-            <div class="w-10 h-10 rounded-xl bg-indigo-100 text-indigo-700 flex items-center justify-center mb-4">
-              <i data-lucide="file-spreadsheet" class="w-5 h-5"></i>
-            </div>
-            <h3 class="font-bold text-slate-900 text-base mb-1" data-en="Mix Selection League Results" data-ar="نتائج دوري الزوجي المختلط">Mix Selection League Results</h3>
-            <p class="text-xs text-slate-500 mb-4" data-en="Official scoring records and VP leaderboards for the national Mixed pairs selection." data-ar="سجلات النتائج وترتيب نقاط الفيكتوري بوينت لبطولة تصفيات الزوجي المختلط.">Official scoring records and VP leaderboards for the national Mixed pairs selection.</p>
-          </div>
-          <a href="public/archive/MIX SELECTION FINAL.xlsx" download class="inline-flex items-center justify-between text-xs font-bold text-indigo-700 hover:text-indigo-800 bg-indigo-50 hover:bg-indigo-100 px-4 py-2.5 rounded-xl transition-all">
-            <span data-en="Download Excel (XLSX)" data-ar="تحميل الإكسل (XLSX)">Download Excel (XLSX)</span>
-            <i data-lucide="download" class="w-4 h-4"></i>
-          </a>
-        </div>
-
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="documentsGrid">
+        <!-- Dynamically populated from docs_inventory -->
       </div>
 
     </div>
   </section>
 
   <!-- SPONSORS & AFFILIATES -->
-  <section class="py-12 bg-white border-b border-slate-200">
+  <section class="py-12 bg-slate-50 border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
       <span class="text-xs font-bold uppercase tracking-wider text-slate-500 block mb-6" data-en="Official Federation Sponsors & Partners" data-ar="الرعاة الرسميون وشركاء الاتحاد">Official Federation Sponsors & Partners</span>
       
@@ -557,80 +672,6 @@
         <img src="public/ethad_bank.jpg" alt="Bank Al Etihad" class="h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all">
         <img src="public/capital_bank.jpg" alt="Capital Bank of Jordan" class="h-10 w-auto object-contain grayscale hover:grayscale-0 transition-all">
         <img src="public/national_paints.jpg" alt="National Paints" class="h-12 w-auto object-contain grayscale hover:grayscale-0 transition-all">
-      </div>
-    </div>
-  </section>
-
-  <!-- VENUE & CONTACT SECTION -->
-  <section id="venue" class="py-16 bg-slate-50">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-        
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-red-700 bg-red-100 px-3 py-1 rounded-full inline-block mb-3" data-en="Location & Sessions" data-ar="المقر ومواعيد اللعب">Location & Sessions</span>
-          <h2 class="text-3xl font-black text-slate-900 mb-4" data-en="Visit the Federation Club in Amman" data-ar="مقر الاتحاد الأردني للبريدج في عمان">Visit the Federation Club in Amman</h2>
-          <p class="text-slate-600 text-sm leading-relaxed mb-6" data-en="Regular duplicate bridge sessions, pairs tournaments, masterclasses, and national team training take place at our official headquarters inside Prince Hamza Hall." data-ar="تقام بطولات الزوجي الأسبوعية والتدريبات الخاصة بالمنتخب الوطني والدورات التدريبية في مقرنا الرسمي بمدينة الحسين للشباب.">
-            Regular duplicate bridge sessions, pairs tournaments, masterclasses, and national team training take place at our official headquarters inside Prince Hamza Hall.
-          </p>
-
-          <div class="space-y-4 text-sm text-slate-700">
-            <div class="flex items-start gap-3">
-              <i data-lucide="map-pin" class="w-5 h-5 text-red-600 shrink-0 mt-0.5"></i>
-              <div>
-                <strong class="block text-slate-900" data-en="Address:" data-ar="العنوان:">Address:</strong>
-                <span data-en="Al Hussein Youth City, Prince Hamza Hall (Next to Sports Medicine Center), Sports City, Amman, Jordan" data-ar="مدينة الحسين للشباب، صالة الأمير حمزة (بجانب مركز الطب الرياضي)، المدينة الرياضية، عمان، الأردن">Al Hussein Youth City, Prince Hamza Hall (Next to Sports Medicine Center), Sports City, Amman, Jordan</span>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3">
-              <i data-lucide="phone" class="w-5 h-5 text-emerald-700 shrink-0 mt-0.5"></i>
-              <div>
-                <strong class="block text-slate-900" data-en="Telephone & Mobile:" data-ar="أرقام الهواتف:">Telephone & Mobile:</strong>
-                <span class="block" dir="ltr">+962 569 1057 (Office)</span>
-                <span class="block" dir="ltr">+962 79 666 5565 (Federation Director)</span>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3">
-              <i data-lucide="mail" class="w-5 h-5 text-sky-700 shrink-0 mt-0.5"></i>
-              <div>
-                <strong class="block text-slate-900" data-en="Official Email:" data-ar="البريد الإلكتروني:">Official Email:</strong>
-                <a href="mailto:jo_bridge@yahoo.com" class="text-sky-700 font-semibold hover:underline">jo_bridge@yahoo.com</a>
-              </div>
-            </div>
-
-            <div class="flex items-start gap-3">
-              <i data-lucide="facebook" class="w-5 h-5 text-blue-600 shrink-0 mt-0.5"></i>
-              <div>
-                <strong class="block text-slate-900" data-en="Official Facebook Community:" data-ar="الصفحة الرسمية على فيسبوك:">Official Facebook Community:</strong>
-                <a href="https://www.facebook.com/jordanbridgefederation/" target="_blank" rel="noopener noreferrer" class="text-sky-700 font-semibold hover:underline">facebook.com/jordanbridgefederation</a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Venue Card -->
-        <div class="bg-gradient-to-br from-slate-900 to-sky-950 text-white p-8 rounded-3xl shadow-xl border border-slate-800">
-          <div class="flex items-center gap-4 mb-6">
-            <div class="w-12 h-12 rounded-2xl bg-white/10 flex items-center justify-center border border-white/20">
-              <i data-lucide="calendar" class="w-6 h-6 text-amber-400"></i>
-            </div>
-            <div>
-              <h3 class="font-bold text-lg" data-en="Weekly Duplicate Sessions" data-ar="الجلسات الأسبوعية">Weekly Duplicate Sessions</h3>
-              <span class="text-xs text-sky-300" data-en="Visitors & International Guests Welcome" data-ar="نرحب بالضيوف واللاعبين الدوليين">Visitors & International Guests Welcome</span>
-            </div>
-          </div>
-
-          <p class="text-sm text-slate-300 leading-relaxed mb-6" data-en="Whether you are an experienced tournament master or looking to find a partner for the upcoming Jordan Festival, our directors and committee members are here to assist." data-ar="سواء كنت لاعباً محترفاً أو تبحث عن شريك للمشاركة في مهرجان الأردن القادم، فإن مدراء اللعب وأعضاء اللجنة في خدمتكم.">
-            Whether you are an experienced tournament master or looking to find a partner for the upcoming Jordan Festival, our directors and committee members are here to assist.
-          </p>
-
-          <div class="p-4 rounded-xl bg-white/5 border border-white/10 text-xs text-slate-300 flex items-center justify-between">
-            <span data-en="Sanctioned by WBF Zone 4" data-ar="معتمد من الاتحاد العالمي للبريدج">Sanctioned by WBF Zone 4</span>
-            <span class="font-bold text-amber-400" data-en="Amman, Jordan" data-ar="عمان، الأردن">Amman, Jordan</span>
-          </div>
-        </div>
-
       </div>
     </div>
   </section>
@@ -647,24 +688,145 @@
         </div>
       </div>
 
-      <div class="text-center sm:text-right">
-        <p class="text-slate-400">Official Web Domain: <span class="text-amber-400 font-semibold">jordanbridgefederation.com</span></p>
-        <p class="text-slate-600 mt-0.5">Olympic Sports City • Prince Hamza Hall • Amman</p>
+      <div class="flex items-center gap-4">
+        <button onclick="openAdminModal()" class="inline-flex items-center gap-1.5 text-xs text-amber-400 hover:text-amber-300 font-bold bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">
+          <i data-lucide="shield-check" class="w-4 h-4"></i>
+          <span data-en="Admin Data Entry" data-ar="إدخال بيانات المشرف">Admin Data Entry</span>
+        </button>
+        <div class="text-center sm:text-right">
+          <p class="text-slate-400">Official Web Domain: <span class="text-amber-400 font-semibold">jordanbridgefederation.com</span></p>
+          <p class="text-slate-600 mt-0.5">Olympic Sports City • Prince Hamza Hall • Amman</p>
+        </div>
       </div>
 
     </div>
   </footer>
 
-  <!-- EMBEDDED REAL DATA & CLIENT CONTROLLER SCRIPT -->
+  <!-- LIGHTBOX MODAL COMPONENT (FOR POSTERS & GALLERY) -->
+  <div id="lightboxModal" class="fixed inset-0 z-50 bg-slate-950/90 backdrop-blur-md hidden items-center justify-center p-4" onclick="closeLightbox(event)">
+    <div class="relative max-w-5xl max-h-[90vh] flex flex-col items-center" onclick="event.stopPropagation()">
+      <button onclick="closeLightbox()" class="absolute -top-12 right-0 text-white/80 hover:text-white p-2 rounded-full bg-white/10 hover:bg-white/20 transition-colors">
+        <i data-lucide="x" class="w-6 h-6"></i>
+      </button>
+      <img id="lightboxImage" src="" alt="Enlarged Poster / Photo" class="max-h-[82vh] w-auto object-contain rounded-xl shadow-2xl border border-white/10">
+      <p id="lightboxCaption" class="mt-3 text-sm text-slate-200 font-medium text-center"></p>
+    </div>
+  </div>
+
+  <!-- TEAM ROSTER POPOVER (FOR DESKTOP HOVER & MOBILE TAP) -->
+  <div id="rosterTooltip" class="fixed z-50 pointer-events-none hidden bg-slate-900 text-white text-xs p-3.5 rounded-xl shadow-xl border border-slate-700 max-w-xs transition-opacity duration-150">
+    <div class="flex items-center gap-1.5 mb-2 pb-1.5 border-b border-slate-800 font-bold text-amber-400">
+      <i data-lucide="users" class="w-3.5 h-3.5"></i>
+      <span id="tooltipTeamName">Team Roster</span>
+    </div>
+    <div id="tooltipPlayerList" class="flex flex-wrap gap-1">
+      <!-- Injected player chips -->
+    </div>
+  </div>
+
+  <!-- ADMIN DATA ENTRY MODAL (FOR JBF STAFF TO UPDATE SCORES EASILY) -->
+  <div id="adminModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
+    <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-xl max-h-[90vh] overflow-y-auto p-6 text-slate-800" onclick="event.stopPropagation()">
+      
+      <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
+        <div class="flex items-center gap-2.5">
+          <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center">
+            <i data-lucide="shield-check" class="w-5 h-5"></i>
+          </div>
+          <div>
+            <h3 class="font-black text-slate-900 text-base" data-en="JBF Score & Data Entry Portal" data-ar="بوابة إدخال وتعديل نتائج الاتحاد">JBF Score & Data Entry Portal</h3>
+            <p class="text-xs text-slate-500" data-en="Easily enter tournament scores and team rosters without touching code." data-ar="إدخال نتائج البطولات وكشوفات الفرق بسهولة دون الحاجة لخبرة برمجية.">Easily enter tournament scores and team rosters.</p>
+          </div>
+        </div>
+        <button onclick="closeAdminModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+
+      <!-- PIN Input -->
+      <div id="adminPinSection" class="space-y-4">
+        <p class="text-xs text-slate-600" data-en="Please enter the Federation Admin PIN to access data entry:" data-ar="يرجى إدخال رمز التحقق الخاص بمشرفي الاتحاد:">Please enter the Federation Admin PIN to access data entry:</p>
+        <div class="flex gap-2">
+          <input type="password" id="adminPinInput" placeholder="Default: jbf2026" class="px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none flex-1 font-mono">
+          <button onclick="verifyAdminPin()" class="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition-all">
+            <span data-en="Unlock" data-ar="دخول">Unlock</span>
+          </button>
+        </div>
+        <p id="adminPinError" class="text-xs text-red-600 hidden">Incorrect PIN. Please try again.</p>
+      </div>
+
+      <!-- Data Entry Form (Unlocked) -->
+      <div id="adminFormSection" class="hidden space-y-4">
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Target Tournament:</label>
+          <select id="adminTargetTourney" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500">
+            <option value="jordancup2026">Jordan Cup 2026 Final</option>
+            <option value="festival2026">Jordan Bridge Festival 2026</option>
+          </select>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Team Name:</label>
+            <input type="text" id="adminTeamName" placeholder="e.g. Al Nashama" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Rank (#):</label>
+            <input type="number" id="adminTeamRank" placeholder="1" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-2 gap-3">
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Total V.P Score:</label>
+            <input type="number" step="0.01" id="adminTeamVp" placeholder="90.90" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl">
+          </div>
+          <div>
+            <label class="block text-xs font-bold text-slate-700 mb-1">Total IMP (Differential):</label>
+            <input type="number" id="adminTeamImp" placeholder="+79" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl">
+          </div>
+        </div>
+
+        <div>
+          <label class="block text-xs font-bold text-slate-700 mb-1">Player Roster (comma-separated):</label>
+          <input type="text" id="adminTeamRoster" placeholder="Abdlah Ajlouni, Zaid Bitar, Samer Haddad" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl">
+          <span class="text-[11px] text-slate-400 mt-0.5 block">Separate each player's name with a comma.</span>
+        </div>
+
+        <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
+          <button onclick="applyAdminUpdate()" class="px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs rounded-xl transition-all flex items-center gap-1.5 shadow-xs">
+            <i data-lucide="check" class="w-4 h-4"></i>
+            <span>Apply Live Preview</span>
+          </button>
+          <button onclick="exportAdminJson()" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition-all flex items-center gap-1.5">
+            <i data-lucide="code" class="w-4 h-4"></i>
+            <span>Export Clean JSON</span>
+          </button>
+        </div>
+
+        <div id="adminJsonOutputBox" class="hidden mt-3">
+          <label class="block text-xs font-bold text-slate-600 mb-1">Exported JSON (Ready to copy/save):</label>
+          <textarea id="adminJsonTextarea" rows="4" readonly class="w-full font-mono text-[11px] p-2 bg-slate-900 text-emerald-400 rounded-xl border border-slate-700"></textarea>
+          <button onclick="copyAdminJson()" class="mt-1 text-xs font-bold text-sky-700 hover:underline">Copy JSON to Clipboard</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- EMBEDDED MASTER DATA & APPLICATION SCRIPT -->
   <script>
-    const festivalData = {"tournament": "Jordan Bridge Festival 2026 - Open Teams", "date": "2026-09-27 / 2026-09-28", "organizer": "Jordan Bridge Federation & Egyptian Bridge Federation", "director": "Waleed El Menyawi", "totalTeams": 24, "standings": [{"rank": 1, "teamId": 12, "score": 109.94, "name": "AKIEL"}, {"rank": 2, "teamId": 24, "score": 102.54, "name": "VU"}, {"rank": 3, "teamId": 14, "score": 102.17, "name": "RADE"}, {"rank": 4, "teamId": 4, "score": 100.38, "name": "MIQDDADI"}, {"rank": 5, "teamId": 19, "score": 97.47, "name": "YAMENN"}, {"rank": 6, "teamId": 20, "score": 97.19, "name": "AL AHLY"}, {"rank": 7, "teamId": 17, "score": 91.02, "name": "JOE"}, {"rank": 8, "teamId": 7, "score": 86.34, "name": "DARK WAVE"}, {"rank": 9, "teamId": 21, "score": 85.13, "name": "AMMAN"}, {"rank": 9, "teamId": 23, "score": 85.13, "name": "ARAB UNITED"}, {"rank": 11, "teamId": 5, "score": 84.04, "name": "SWISS ARABIAN"}, {"rank": 12, "teamId": 9, "score": 82.33, "name": "SHEKA BEKA"}, {"rank": 13, "teamId": 10, "score": 82.29, "name": "RED SEA"}, {"rank": 14, "teamId": 18, "score": 82.27, "name": "AL MAMOUN"}, {"rank": 15, "teamId": 1, "score": 78.57, "name": "SHARJAH"}, {"rank": 16, "teamId": 8, "score": 78.42, "name": "RFAA"}, {"rank": 17, "teamId": 15, "score": 74.91, "name": "TURK-JOR"}, {"rank": 18, "teamId": 16, "score": 70.03, "name": "LIONS"}, {"rank": 19, "teamId": 22, "score": 66.07, "name": "ZAK"}, {"rank": 20, "teamId": 2, "score": 65.88, "name": "S.R"}, {"rank": 21, "teamId": 13, "score": 61.6, "name": "TRICKS"}, {"rank": 22, "teamId": 3, "score": 53.8, "name": "MOROCCO"}, {"rank": 23, "teamId": 11, "score": 42.77, "name": "SHAHRO"}, {"rank": 24, "teamId": 6, "score": 39.71, "name": "WADI RUM"}], "rounds": {"8": [{"table": 1, "homeTeam": {"id": 12, "name": "AKIEL", "imp": 22, "vp": 12.77}, "awayTeam": {"id": 24, "name": "VU", "imp": 15, "vp": 7.23}}, {"table": 2, "homeTeam": {"id": 20, "name": "AL AHLY", "imp": 21, "vp": 4.0}, "awayTeam": {"id": 14, "name": "RADE", "imp": 39, "vp": 16.0}}, {"table": 3, "homeTeam": {"id": 17, "name": "JOE", "imp": 16, "vp": 5.91}, "awayTeam": {"id": 19, "name": "YAMENN", "imp": 27, "vp": 14.09}}, {"table": 4, "homeTeam": {"id": 4, "name": "MIQDDADI", "imp": 27, "vp": 17.87}, "awayTeam": {"id": 1, "name": "SHARJAH", "imp": 0, "vp": 2.13}}, {"table": 5, "homeTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 13, "vp": 8.73}, "awayTeam": {"id": 7, "name": "DARK WAVE", "imp": 16, "vp": 11.27}}, {"table": 6, "homeTeam": {"id": 21, "name": "AMMAN", "imp": 23, "vp": 10.44}, "awayTeam": {"id": 10, "name": "RED SEA", "imp": 22, "vp": 9.56}}, {"table": 7, "homeTeam": {"id": 8, "name": "RFAA", "imp": 17, "vp": 6.22}, "awayTeam": {"id": 23, "name": "ARAB UNITED", "imp": 27, "vp": 13.78}}, {"table": 8, "homeTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 17, "vp": 12.42}, "awayTeam": {"id": 15, "name": "TURK-JOR", "imp": 11, "vp": 7.58}}, {"table": 9, "homeTeam": {"id": 18, "name": "AL MAMOUN", "imp": 31, "vp": 17.11}, "awayTeam": {"id": 22, "name": "ZAK", "imp": 8, "vp": 2.89}}, {"table": 10, "homeTeam": {"id": 16, "name": "LIONS", "imp": 17, "vp": 10.0}, "awayTeam": {"id": 2, "name": "S.R", "imp": 17, "vp": 10.0}}, {"table": 11, "homeTeam": {"id": 3, "name": "MOROCCO", "imp": 9, "vp": 1.96}, "awayTeam": {"id": 13, "name": "TRICKS", "imp": 37, "vp": 18.04}}, {"table": 12, "homeTeam": {"id": 11, "name": "SHAHRO", "imp": 32, "vp": 7.58}, "awayTeam": {"id": 6, "name": "WADI RUM", "imp": 38, "vp": 12.42}}], "7": [{"table": 1, "homeTeam": {"id": 14, "name": "RADE", "imp": 14, "vp": 4.25}, "awayTeam": {"id": 12, "name": "AKIEL", "imp": 31, "vp": 15.75}}, {"table": 2, "homeTeam": {"id": 24, "name": "VU", "imp": 21, "vp": 15.5}, "awayTeam": {"id": 19, "name": "YAMENN", "imp": 5, "vp": 4.5}}, {"table": 3, "homeTeam": {"id": 20, "name": "AL AHLY", "imp": 21, "vp": 16.46}, "awayTeam": {"id": 7, "name": "DARK WAVE", "imp": 1, "vp": 3.54}}, {"table": 4, "homeTeam": {"id": 10, "name": "RED SEA", "imp": 11, "vp": 4.77}, "awayTeam": {"id": 17, "name": "JOE", "imp": 26, "vp": 15.23}}, {"table": 5, "homeTeam": {"id": 21, "name": "AMMAN", "imp": 1, "vp": 7.58}, "awayTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 7, "vp": 12.42}}, {"table": 6, "homeTeam": {"id": 18, "name": "AL MAMOUN", "imp": 13, "vp": 2.5}, "awayTeam": {"id": 4, "name": "MIQDDADI", "imp": 38, "vp": 17.5}}, {"table": 7, "homeTeam": {"id": 16, "name": "LIONS", "imp": 1, "vp": 2.5}, "awayTeam": {"id": 1, "name": "SHARJAH", "imp": 26, "vp": 17.5}}, {"table": 8, "homeTeam": {"id": 8, "name": "RFAA", "imp": 46, "vp": 20.0}, "awayTeam": {"id": 2, "name": "S.R", "imp": 1, "vp": 0.0}}, {"table": 9, "homeTeam": {"id": 23, "name": "ARAB UNITED", "imp": 39, "vp": 19.37}, "awayTeam": {"id": 3, "name": "MOROCCO", "imp": 2, "vp": 0.63}}, {"table": 10, "homeTeam": {"id": 22, "name": "ZAK", "imp": 12, "vp": 13.12}, "awayTeam": {"id": 13, "name": "TRICKS", "imp": 4, "vp": 6.88}}, {"table": 11, "homeTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 49, "vp": 20.0}, "awayTeam": {"id": 6, "name": "WADI RUM", "imp": 1, "vp": 0.0}}, {"table": 12, "homeTeam": {"id": 11, "name": "SHAHRO", "imp": 0, "vp": 2.31}, "awayTeam": {"id": 15, "name": "TURK-JOR", "imp": 26, "vp": 17.69}}], "6": [{"table": 1, "homeTeam": {"id": 20, "name": "AL AHLY", "imp": 11, "vp": 10.0}, "awayTeam": {"id": 12, "name": "AKIEL", "imp": 11, "vp": 10.0}}, {"table": 2, "homeTeam": {"id": 17, "name": "JOE", "imp": 7, "vp": 3.32}, "awayTeam": {"id": 14, "name": "RADE", "imp": 28, "vp": 16.68}}, {"table": 3, "homeTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 2, "vp": 0.38}, "awayTeam": {"id": 24, "name": "VU", "imp": 41, "vp": 19.62}}, {"table": 4, "homeTeam": {"id": 4, "name": "MIQDDADI", "imp": 6, "vp": 5.91}, "awayTeam": {"id": 21, "name": "AMMAN", "imp": 17, "vp": 14.09}}, {"table": 5, "homeTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 1, "vp": 0.0}, "awayTeam": {"id": 19, "name": "YAMENN", "imp": 52, "vp": 20.0}}, {"table": 6, "homeTeam": {"id": 7, "name": "DARK WAVE", "imp": 34, "vp": 17.69}, "awayTeam": {"id": 23, "name": "ARAB UNITED", "imp": 8, "vp": 2.31}}, {"table": 7, "homeTeam": {"id": 8, "name": "RFAA", "imp": 4, "vp": 1.32}, "awayTeam": {"id": 10, "name": "RED SEA", "imp": 36, "vp": 18.68}}, {"table": 8, "homeTeam": {"id": 22, "name": "ZAK", "imp": 7, "vp": 3.32}, "awayTeam": {"id": 18, "name": "AL MAMOUN", "imp": 28, "vp": 16.68}}, {"table": 9, "homeTeam": {"id": 16, "name": "LIONS", "imp": 27, "vp": 11.67}, "awayTeam": {"id": 3, "name": "MOROCCO", "imp": 23, "vp": 8.33}}, {"table": 10, "homeTeam": {"id": 15, "name": "TURK-JOR", "imp": 2, "vp": 5.91}, "awayTeam": {"id": 2, "name": "S.R", "imp": 13, "vp": 14.09}}, {"table": 11, "homeTeam": {"id": 1, "name": "SHARJAH", "imp": 24, "vp": 17.31}, "awayTeam": {"id": 13, "name": "TRICKS", "imp": 0, "vp": 2.69}}, {"table": 12, "homeTeam": {"id": 6, "name": "WADI RUM", "imp": 1, "vp": 1.63}, "awayTeam": {"id": 11, "name": "SHAHRO", "imp": 31, "vp": 18.37}}], "5": [{"table": 1, "homeTeam": {"id": 12, "name": "AKIEL", "imp": 16, "vp": 9.14}, "awayTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 18, "vp": 10.86}}, {"table": 2, "homeTeam": {"id": 21, "name": "AMMAN", "imp": 6, "vp": 2.5}, "awayTeam": {"id": 20, "name": "AL AHLY", "imp": 31, "vp": 17.5}}, {"table": 3, "homeTeam": {"id": 17, "name": "JOE", "imp": 30, "vp": 17.69}, "awayTeam": {"id": 23, "name": "ARAB UNITED", "imp": 4, "vp": 2.31}}, {"table": 4, "homeTeam": {"id": 19, "name": "YAMENN", "imp": 8, "vp": 12.42}, "awayTeam": {"id": 7, "name": "DARK WAVE", "imp": 2, "vp": 7.58}}, {"table": 5, "homeTeam": {"id": 14, "name": "RADE", "imp": 44, "vp": 19.85}, "awayTeam": {"id": 15, "name": "TURK-JOR", "imp": 3, "vp": 0.15}}, {"table": 6, "homeTeam": {"id": 24, "name": "VU", "imp": 35, "vp": 18.37}, "awayTeam": {"id": 3, "name": "MOROCCO", "imp": 5, "vp": 1.63}}, {"table": 7, "homeTeam": {"id": 1, "name": "SHARJAH", "imp": 4, "vp": 1.47}, "awayTeam": {"id": 4, "name": "MIQDDADI", "imp": 35, "vp": 18.53}}, {"table": 8, "homeTeam": {"id": 16, "name": "LIONS", "imp": 17, "vp": 7.23}, "awayTeam": {"id": 8, "name": "RFAA", "imp": 24, "vp": 12.77}}, {"table": 9, "homeTeam": {"id": 10, "name": "RED SEA", "imp": 16, "vp": 11.27}, "awayTeam": {"id": 22, "name": "ZAK", "imp": 13, "vp": 8.73}}, {"table": 10, "homeTeam": {"id": 13, "name": "TRICKS", "imp": 16, "vp": 1.63}, "awayTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 46, "vp": 18.37}}, {"table": 11, "homeTeam": {"id": 18, "name": "AL MAMOUN", "imp": 34, "vp": 17.69}, "awayTeam": {"id": 6, "name": "WADI RUM", "imp": 8, "vp": 2.31}}, {"table": 12, "homeTeam": {"id": 2, "name": "S.R", "imp": 34, "vp": 18.53}, "awayTeam": {"id": 11, "name": "SHAHRO", "imp": 3, "vp": 1.47}}], "4": [{"table": 1, "homeTeam": {"id": 21, "name": "AMMAN", "imp": 3, "vp": 8.73}, "awayTeam": {"id": 12, "name": "AKIEL", "imp": 6, "vp": 11.27}}, {"table": 2, "homeTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 11, "vp": 12.05}, "awayTeam": {"id": 17, "name": "JOE", "imp": 6, "vp": 7.95}}, {"table": 3, "homeTeam": {"id": 23, "name": "ARAB UNITED", "imp": 15, "vp": 10.44}, "awayTeam": {"id": 14, "name": "RADE", "imp": 14, "vp": 9.56}}, {"table": 4, "homeTeam": {"id": 24, "name": "VU", "imp": 12, "vp": 7.23}, "awayTeam": {"id": 20, "name": "AL AHLY", "imp": 19, "vp": 12.77}}, {"table": 5, "homeTeam": {"id": 4, "name": "MIQDDADI", "imp": 1, "vp": 5.32}, "awayTeam": {"id": 7, "name": "DARK WAVE", "imp": 14, "vp": 14.68}}, {"table": 6, "homeTeam": {"id": 19, "name": "YAMENN", "imp": 10, "vp": 13.45}, "awayTeam": {"id": 8, "name": "RFAA", "imp": 1, "vp": 6.55}}, {"table": 7, "homeTeam": {"id": 10, "name": "RED SEA", "imp": 0, "vp": 9.14}, "awayTeam": {"id": 1, "name": "SHARJAH", "imp": 2, "vp": 10.86}}, {"table": 8, "homeTeam": {"id": 15, "name": "TURK-JOR", "imp": 24, "vp": 15.5}, "awayTeam": {"id": 13, "name": "TRICKS", "imp": 8, "vp": 4.5}}, {"table": 9, "homeTeam": {"id": 18, "name": "AL MAMOUN", "imp": 12, "vp": 4.77}, "awayTeam": {"id": 3, "name": "MOROCCO", "imp": 27, "vp": 15.23}}, {"table": 10, "homeTeam": {"id": 6, "name": "WADI RUM", "imp": 1, "vp": 0.5}, "awayTeam": {"id": 16, "name": "LIONS", "imp": 39, "vp": 19.5}}, {"table": 11, "homeTeam": {"id": 2, "name": "S.R", "imp": 10, "vp": 4.77}, "awayTeam": {"id": 22, "name": "ZAK", "imp": 25, "vp": 15.23}}, {"table": 12, "homeTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 21, "vp": 14.39}, "awayTeam": {"id": 11, "name": "SHAHRO", "imp": 9, "vp": 5.61}}], "3": [{"table": 1, "homeTeam": {"id": 12, "name": "AKIEL", "imp": 47, "vp": 20.0}, "awayTeam": {"id": 10, "name": "RED SEA", "imp": 1, "vp": 0.0}}, {"table": 2, "homeTeam": {"id": 20, "name": "AL AHLY", "imp": 20, "vp": 8.33}, "awayTeam": {"id": 23, "name": "ARAB UNITED", "imp": 24, "vp": 11.67}}, {"table": 3, "homeTeam": {"id": 15, "name": "TURK-JOR", "imp": 2, "vp": 2.89}, "awayTeam": {"id": 21, "name": "AMMAN", "imp": 25, "vp": 17.11}}, {"table": 4, "homeTeam": {"id": 14, "name": "RADE", "imp": 34, "vp": 12.05}, "awayTeam": {"id": 7, "name": "DARK WAVE", "imp": 29, "vp": 7.95}}, {"table": 5, "homeTeam": {"id": 8, "name": "RFAA", "imp": 20, "vp": 8.33}, "awayTeam": {"id": 24, "name": "VU", "imp": 24, "vp": 11.67}}, {"table": 6, "homeTeam": {"id": 18, "name": "AL MAMOUN", "imp": 11, "vp": 1.96}, "awayTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 39, "vp": 18.04}}, {"table": 7, "homeTeam": {"id": 17, "name": "JOE", "imp": 42, "vp": 19.37}, "awayTeam": {"id": 16, "name": "LIONS", "imp": 5, "vp": 0.63}}, {"table": 8, "homeTeam": {"id": 3, "name": "MOROCCO", "imp": 25, "vp": 7.58}, "awayTeam": {"id": 1, "name": "SHARJAH", "imp": 31, "vp": 12.42}}, {"table": 9, "homeTeam": {"id": 4, "name": "MIQDDADI", "imp": 49, "vp": 18.37}, "awayTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 19, "vp": 1.63}}, {"table": 10, "homeTeam": {"id": 2, "name": "S.R", "imp": 14, "vp": 3.54}, "awayTeam": {"id": 19, "name": "YAMENN", "imp": 34, "vp": 16.46}}, {"table": 11, "homeTeam": {"id": 22, "name": "ZAK", "imp": 9, "vp": 8.73}, "awayTeam": {"id": 6, "name": "WADI RUM", "imp": 12, "vp": 11.27}}, {"table": 12, "homeTeam": {"id": 11, "name": "SHAHRO", "imp": 8, "vp": 2.13}, "awayTeam": {"id": 13, "name": "TRICKS", "imp": 35, "vp": 17.87}}], "2": [{"table": 1, "homeTeam": {"id": 12, "name": "AKIEL", "imp": 15, "vp": 11.27}, "awayTeam": {"id": 15, "name": "TURK-JOR", "imp": 12, "vp": 8.73}}, {"table": 2, "homeTeam": {"id": 10, "name": "RED SEA", "imp": 20, "vp": 13.12}, "awayTeam": {"id": 18, "name": "AL MAMOUN", "imp": 12, "vp": 6.88}}, {"table": 3, "homeTeam": {"id": 14, "name": "RADE", "imp": 10, "vp": 10.0}, "awayTeam": {"id": 21, "name": "AMMAN", "imp": 10, "vp": 10.0}}, {"table": 4, "homeTeam": {"id": 20, "name": "AL AHLY", "imp": 23, "vp": 14.68}, "awayTeam": {"id": 3, "name": "MOROCCO", "imp": 10, "vp": 5.32}}, {"table": 5, "homeTeam": {"id": 7, "name": "DARK WAVE", "imp": 17, "vp": 10.86}, "awayTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 15, "vp": 9.14}}, {"table": 6, "homeTeam": {"id": 1, "name": "SHARJAH", "imp": 21, "vp": 5.61}, "awayTeam": {"id": 23, "name": "ARAB UNITED", "imp": 33, "vp": 14.39}}, {"table": 7, "homeTeam": {"id": 24, "name": "VU", "imp": 12, "vp": 13.78}, "awayTeam": {"id": 2, "name": "S.R", "imp": 2, "vp": 6.22}}, {"table": 8, "homeTeam": {"id": 6, "name": "WADI RUM", "imp": 5, "vp": 4.0}, "awayTeam": {"id": 8, "name": "RFAA", "imp": 23, "vp": 16.0}}, {"table": 9, "homeTeam": {"id": 4, "name": "MIQDDADI", "imp": 12, "vp": 10.0}, "awayTeam": {"id": 19, "name": "YAMENN", "imp": 12, "vp": 10.0}}, {"table": 10, "homeTeam": {"id": 13, "name": "TRICKS", "imp": 8, "vp": 3.77}, "awayTeam": {"id": 17, "name": "JOE", "imp": 27, "vp": 16.23}}, {"table": 11, "homeTeam": {"id": 22, "name": "ZAK", "imp": 15, "vp": 8.73}, "awayTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 18, "vp": 11.27}}, {"table": 12, "homeTeam": {"id": 16, "name": "LIONS", "imp": 15, "vp": 14.96}, "awayTeam": {"id": 11, "name": "SHAHRO", "imp": 1, "vp": 5.04}}], "1": [{"table": 1, "homeTeam": {"id": 1, "name": "SHARJAH", "imp": 10, "vp": 11.27}, "awayTeam": {"id": 2, "name": "S.R", "imp": 7, "vp": 8.73}}, {"table": 2, "homeTeam": {"id": 3, "name": "MOROCCO", "imp": 20, "vp": 13.12}, "awayTeam": {"id": 4, "name": "MIQDDADI", "imp": 12, "vp": 6.88}}, {"table": 3, "homeTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 28, "vp": 12.42}, "awayTeam": {"id": 6, "name": "WADI RUM", "imp": 22, "vp": 7.58}}, {"table": 4, "homeTeam": {"id": 7, "name": "DARK WAVE", "imp": 16, "vp": 12.77}, "awayTeam": {"id": 8, "name": "RFAA", "imp": 9, "vp": 7.23}}, {"table": 5, "homeTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 5, "vp": 4.25}, "awayTeam": {"id": 10, "name": "RED SEA", "imp": 22, "vp": 15.75}}, {"table": 6, "homeTeam": {"id": 11, "name": "SHAHRO", "imp": 9, "vp": 0.26}, "awayTeam": {"id": 12, "name": "AKIEL", "imp": 49, "vp": 19.74}}, {"table": 7, "homeTeam": {"id": 13, "name": "TRICKS", "imp": 10, "vp": 6.22}, "awayTeam": {"id": 14, "name": "RADE", "imp": 20, "vp": 13.78}}, {"table": 8, "homeTeam": {"id": 15, "name": "TURK-JOR", "imp": 25, "vp": 16.46}, "awayTeam": {"id": 16, "name": "LIONS", "imp": 5, "vp": 3.54}}, {"table": 9, "homeTeam": {"id": 17, "name": "JOE", "imp": 17, "vp": 5.32}, "awayTeam": {"id": 18, "name": "AL MAMOUN", "imp": 30, "vp": 14.68}}, {"table": 10, "homeTeam": {"id": 19, "name": "YAMENN", "imp": 12, "vp": 6.55}, "awayTeam": {"id": 20, "name": "AL AHLY", "imp": 21, "vp": 13.45}}, {"table": 11, "homeTeam": {"id": 21, "name": "AMMAN", "imp": 23, "vp": 14.68}, "awayTeam": {"id": 22, "name": "ZAK", "imp": 10, "vp": 5.32}}, {"table": 12, "homeTeam": {"id": 23, "name": "ARAB UNITED", "imp": 19, "vp": 10.86}, "awayTeam": {"id": 24, "name": "VU", "imp": 17, "vp": 9.14}}]}};
-    const jordanCupData = {"tournament": "Jordan Cup 2026 Final", "director": "Raad Otoom", "teams": [{"team": "AL Nashama", "vp": 90.9, "imp": 79, "rank": 1, "roster": ["Abdlah Ajlouni", "Zaid Bitar", "Samer Haddad", "Luai Al Hussari", "Mamoun Al Kotob", "Omran Abu Dhaim"]}, {"team": "Lions", "vp": 89.69, "imp": 86, "rank": 2, "roster": ["Samer Rwashdeh", "Farah Ahmed", "Yena Sabagh", "Mohd Al Taji"]}, {"team": "Jordan Teams", "vp": 89.41, "imp": 83, "rank": 3, "roster": ["Ghassan Ghaneem", "Yasmin Abu Jaber", "Marwan Ghaneem", "Clement Mamar Bash", "Rana Abdelhadi", "Jamal Abdeljalil"]}, {"team": "Jordan Mix", "vp": 77.6, "imp": 37, "rank": 4, "roster": ["Sakher Malkawi", "Aaida Abu Jaber", "Dima Al Taher", "Ahmed Al Samhouri", "Huda Rabaeh", "Akiel Madi"]}, {"team": "Alfa", "vp": 66.11, "imp": -11, "rank": 5, "roster": ["Randa Al Saket", "Azza Qudah", "Hala Sawaf", "Amal Fakhouri"]}, {"team": "Eagles", "vp": 63.68, "imp": -29, "rank": 6, "roster": ["Mona Al Omari", "Mais Al Bitar", "Bana Al Taher", "Hanan Juman", "Nowel Trawneh", "Omar Al Masri"]}, {"team": "Ortho Group", "vp": 53.14, "imp": -67, "rank": 7, "roster": ["Yousef Batshon", "Jack Qarouta", "Ramzi Qusous", "Rageed Sabagh", "Maya Khalaf", "Laith Tashman"]}, {"team": "Palestine", "vp": 27.47, "imp": -178, "rank": 8, "roster": ["Laila Zruqat", "Hanan Al Masri", "Nawar Hashem", "Fiuroz Badwan", "Alia Shredh"]}]};
+    const masterData = {"historicalFestivals": {"2026": {"year": "2026", "title": "42nd Jordan Bridge Festival (2026) - Open Teams", "director": "Waleed El Menyawi", "totalTeams": 23, "standings": [{"rank": 1, "teamId": 12, "score": 109.94, "name": "AKIEL"}, {"rank": 2, "teamId": 24, "score": 102.54, "name": "VU"}, {"rank": 3, "teamId": 14, "score": 102.17, "name": "RADE"}, {"rank": 4, "teamId": 4, "score": 100.38, "name": "MIQDDADI"}, {"rank": 5, "teamId": 19, "score": 97.47, "name": "YAMENN"}, {"rank": 6, "teamId": 20, "score": 97.19, "name": "AL AHLY"}, {"rank": 7, "teamId": 17, "score": 91.02, "name": "JOE"}, {"rank": 8, "teamId": 7, "score": 86.34, "name": "DARK WAVE"}, {"rank": 9, "teamId": 21, "score": 85.13, "name": "AMMAN"}, {"rank": 11, "teamId": 5, "score": 84.04, "name": "SWISS ARABIAN"}, {"rank": 12, "teamId": 9, "score": 82.33, "name": "SHEKA BEKA"}, {"rank": 13, "teamId": 10, "score": 82.29, "name": "RED SEA"}, {"rank": 14, "teamId": 18, "score": 82.27, "name": "AL MAMOUN"}, {"rank": 15, "teamId": 1, "score": 78.57, "name": "SHARJAH"}, {"rank": 16, "teamId": 8, "score": 78.42, "name": "RFAA"}, {"rank": 17, "teamId": 15, "score": 74.91, "name": "TURK-JOR"}, {"rank": 18, "teamId": 16, "score": 70.03, "name": "LIONS"}, {"rank": 19, "teamId": 22, "score": 66.07, "name": "ZAK"}, {"rank": 20, "teamId": 2, "score": 65.88, "name": "S.R"}, {"rank": 21, "teamId": 13, "score": 61.6, "name": "TRICKS"}, {"rank": 22, "teamId": 3, "score": 53.8, "name": "MOROCCO"}, {"rank": 23, "teamId": 11, "score": 42.77, "name": "SHAHRO"}, {"rank": 24, "teamId": 6, "score": 39.71, "name": "WADI RUM"}]}, "2025": {"year": "2025", "title": "41st Jordan Bridge Festival (2025) - Open Teams", "director": "Waleed El Menyawi", "totalTeams": 28, "standings": [{"rank": 1, "teamId": 13, "score": 105.85, "name": "BONITA"}, {"rank": 2, "teamId": 19, "score": 104.28, "name": "WASO"}, {"rank": 3, "teamId": 6, "score": 103.2, "name": "HALA X 2"}, {"rank": 4, "teamId": 11, "score": 101.17, "name": "SARMAD"}, {"rank": 5, "teamId": 21, "score": 97.2, "name": "MIQDADI"}, {"rank": 6, "teamId": 25, "score": 97.19, "name": "LEBANON"}, {"rank": 7, "teamId": 20, "score": 94.53, "name": "SWISS ARABIAN"}, {"rank": 8, "teamId": 23, "score": 93.59, "name": "SENATOR"}, {"rank": 9, "teamId": 16, "score": 90.84, "name": "GAME AND GLORY"}, {"rank": 10, "teamId": 18, "score": 89.98, "name": "MAJORS"}, {"rank": 11, "teamId": 10, "score": 87.66, "name": "RUWAYEH"}, {"rank": 12, "teamId": 12, "score": 85.98, "name": "AKEIL"}, {"rank": 13, "teamId": 2, "score": 82.35, "name": "TEHSIN"}, {"rank": 14, "teamId": 3, "score": 80.24, "name": "Al NASHAMA"}, {"rank": 15, "teamId": 27, "score": 78.18, "name": "ZAID"}, {"rank": 16, "teamId": 17, "score": 78.05, "name": "DALIA"}, {"rank": 17, "teamId": 26, "score": 76.41, "name": "H.A.M.A"}, {"rank": 18, "teamId": 7, "score": 75.41, "name": "Al AHLY"}, {"rank": 19, "teamId": 8, "score": 72.32, "name": "TYMS"}, {"rank": 20, "teamId": 4, "score": 68.74, "name": "WAFIGA"}, {"rank": 21, "teamId": 5, "score": 68.11, "name": "RATRUT"}, {"rank": 22, "teamId": 15, "score": 66.74, "name": "SILVIE"}, {"rank": 23, "teamId": 22, "score": 62.71, "name": "SADER"}, {"rank": 24, "teamId": 14, "score": 62.56, "name": "EAGLES"}, {"rank": 25, "teamId": 28, "score": 61.73, "name": "ABU DHABI"}, {"rank": 26, "teamId": 9, "score": 60.37, "name": "THUNDERS"}, {"rank": 27, "teamId": 1, "score": 52.22, "name": "BHHM"}, {"rank": 28, "teamId": 24, "score": 42.39, "name": "WANA"}]}, "2024": {"year": "2024", "title": "40th Jordan Bridge Festival (2024) - Open Teams", "director": "Waleed El Menyawi", "totalTeams": 22, "standings": [{"rank": 1, "teamId": 1, "score": 110.16, "name": "AKEIL"}, {"rank": 2, "teamId": 17, "score": 103.44, "name": "AL AHLY"}, {"rank": 3, "teamId": 5, "score": 99.8, "name": "DAMAS"}, {"rank": 4, "teamId": 16, "score": 97.88, "name": "RANA"}, {"rank": 5, "teamId": 9, "score": 94.7, "name": "GHASSAN"}, {"rank": 6, "teamId": 14, "score": 91.69, "name": "PEPSI"}, {"rank": 7, "teamId": 8, "score": 89.42, "name": "VOLARE"}, {"rank": 8, "teamId": 18, "score": 88.8, "name": "FARAH"}, {"rank": 9, "teamId": 12, "score": 81.16, "name": "NINJA"}, {"rank": 10, "teamId": 10, "score": 80.83, "name": "GLOBAL TECH (A)"}, {"rank": 11, "teamId": 13, "score": 79.3, "name": "A Z R G"}, {"rank": 12, "teamId": 3, "score": 78.8, "name": "ZIKO"}, {"rank": 13, "teamId": 19, "score": 76.83, "name": "SFMS"}, {"rank": 14, "teamId": 11, "score": 76.58, "name": "El Karma"}, {"rank": 15, "teamId": 2, "score": 75.28, "name": "HANOUNA 5"}, {"rank": 16, "teamId": 15, "score": 69.79, "name": "GLOBAL TECH (B)"}, {"rank": 17, "teamId": 22, "score": 69.22, "name": "S LIPSK"}, {"rank": 18, "teamId": 21, "score": 66.51, "name": "AVATAR"}, {"rank": 19, "teamId": 7, "score": 66.35, "name": "SHAHRO"}, {"rank": 20, "teamId": 4, "score": 50.99, "name": "DR."}, {"rank": 21, "teamId": 6, "score": 50.76, "name": "SHYN  (L)"}, {"rank": 22, "teamId": 20, "score": 49.71, "name": "PEACE  (L)"}]}, "2023": {"year": "2023", "title": "39th Jordan Bridge Festival (2023) - Open Teams", "director": "Waleed El Menyawi", "totalTeams": 24, "standings": [{"rank": 1, "teamId": 6, "score": 106.24, "name": "BEI-SHJ"}, {"rank": 2, "teamId": 22, "score": 104.04, "name": "SENATOR"}, {"rank": 3, "teamId": 10, "score": 103.0, "name": "ZICO"}, {"rank": 4, "teamId": 13, "score": 98.7, "name": "MAY"}, {"rank": 5, "teamId": 17, "score": 92.59, "name": "FARIDA"}, {"rank": 6, "teamId": 1, "score": 88.82, "name": "AL HILAL"}, {"rank": 7, "teamId": 4, "score": 88.5, "name": "LUPII GALBXII"}, {"rank": 8, "teamId": 24, "score": 88.45, "name": "FARAH"}, {"rank": 9, "teamId": 16, "score": 85.82, "name": "GHASSAN"}, {"rank": 10, "teamId": 12, "score": 85.43, "name": "AL ITHAD"}, {"rank": 11, "teamId": 20, "score": 84.83, "name": "THE MIX"}, {"rank": 12, "teamId": 2, "score": 84.04, "name": "EGY-JOR"}, {"rank": 13, "teamId": 11, "score": 83.02, "name": "OLCZYK"}, {"rank": 14, "teamId": 14, "score": 79.16, "name": "KUWAIT"}, {"rank": 15, "teamId": 5, "score": 76.85, "name": "DALIA"}, {"rank": 16, "teamId": 3, "score": 73.53, "name": "JARRAR"}, {"rank": 17, "teamId": 19, "score": 71.75, "name": "AL NASSER"}, {"rank": 18, "teamId": 8, "score": 71.31, "name": "ALAHLY"}, {"rank": 19, "teamId": 21, "score": 68.5, "name": "WAFIGA"}, {"rank": 20, "teamId": 9, "score": 64.75, "name": "CANADA"}, {"rank": 21, "teamId": 7, "score": 62.79, "name": "JORDAN LADIES"}, {"rank": 22, "teamId": 18, "score": 59.28, "name": "JOR-DUB"}, {"rank": 23, "teamId": 23, "score": 49.41, "name": "JERASH"}, {"rank": 24, "teamId": 15, "score": 37.19, "name": "HASSANA"}]}}, "jordanCup2026": {"tournament": "Jordan Cup 2026 Final", "director": "Raad Otoom", "matrix": [{"team": "AL Nashama", "rounds": [{"round": 1, "vp": 17.56, "imp": 31}, {"round": 2, "vp": 13.97, "imp": 13}, {"round": 3, "vp": 10.0, "imp": 0}, {"round": 4, "vp": 15.99, "imp": 22}, {"round": 5, "vp": 3.09, "imp": -27}, {"round": 6, "vp": 17.08, "imp": 28}, {"round": 7, "vp": 13.71, "imp": 12}], "penalty": 0.5, "totalVp": 90.9, "totalImp": 79, "roster": ["Abdlah Ajlouni", "Zaid Bitar", "Samer Haddad", "Luai Al Hussari", "Mamoun Al Kotob", "Omran Abu Dhaim"], "rank": 1}, {"team": "Lions", "rounds": [{"round": 1, "vp": 4.21, "imp": -21}, {"round": 2, "vp": 19.34, "imp": 45}, {"round": 3, "vp": 10.0, "imp": 0}, {"round": 4, "vp": 16.37, "imp": 24}, {"round": 5, "vp": 11.7, "imp": 5}, {"round": 6, "vp": 17.71, "imp": 32}, {"round": 7, "vp": 10.36, "imp": 1}], "penalty": 0.0, "totalVp": 89.69, "totalImp": 86, "roster": ["Samer Rwashdeh", "Farah Ahmed", "Yena Sabagh", "Mohd Al Taji"], "rank": 2}, {"team": "Jordan Teams", "rounds": [{"round": 1, "vp": 18.78, "imp": 40}, {"round": 2, "vp": 16.55, "imp": 25}, {"round": 3, "vp": 4.85, "imp": -18}, {"round": 4, "vp": 10.0, "imp": 0}, {"round": 5, "vp": 16.91, "imp": 27}, {"round": 6, "vp": 13.18, "imp": 10}, {"round": 7, "vp": 9.64, "imp": -1}], "penalty": 0.5, "totalVp": 89.41, "totalImp": 83, "roster": ["Ghassan Ghaneem", "Yasmin Abu Jaber", "Marwan Ghaneem", "Clement Mamar Bash", "Rana Abdelhadi", "Jamal Abdeljalil"], "rank": 3}, {"team": "Jordan Mix", "rounds": [{"round": 1, "vp": 8.3, "imp": -5}, {"round": 2, "vp": 15.37, "imp": 19}, {"round": 3, "vp": 17.56, "imp": 31}, {"round": 4, "vp": 4.01, "imp": -22}, {"round": 5, "vp": 8.3, "imp": -5}, {"round": 6, "vp": 6.82, "imp": -10}, {"round": 7, "vp": 17.24, "imp": 29}], "penalty": 0.0, "totalVp": 77.6, "totalImp": 37, "roster": ["Sakher Malkawi", "Aaida Abu Jaber", "Dima Al Taher", "Ahmed Al Samhouri", "Huda Rabaeh", "Akiel Madi"], "rank": 4}, {"team": "Alfa", "rounds": [{"round": 1, "vp": 11.7, "imp": 5}, {"round": 2, "vp": 3.45, "imp": -25}, {"round": 3, "vp": 16.55, "imp": 25}, {"round": 4, "vp": 3.63, "imp": -24}, {"round": 5, "vp": 8.62, "imp": -4}, {"round": 6, "vp": 16.37, "imp": 24}, {"round": 7, "vp": 6.29, "imp": -12}], "penalty": 0.5, "totalVp": 66.11, "totalImp": -11, "roster": ["Randa Al Saket", "Azza Qudah", "Hala Sawaf", "Amal Fakhouri"], "rank": 5}, {"team": "Eagles", "rounds": [{"round": 1, "vp": 15.79, "imp": 21}, {"round": 2, "vp": 6.03, "imp": -13}, {"round": 3, "vp": 2.44, "imp": -31}, {"round": 4, "vp": 10.0, "imp": 0}, {"round": 5, "vp": 13.18, "imp": 10}, {"round": 6, "vp": 3.63, "imp": -24}, {"round": 7, "vp": 12.61, "imp": 8}], "penalty": 0.0, "totalVp": 63.68, "totalImp": -29, "roster": ["Mona Al Omari", "Mais Al Bitar", "Bana Al Taher", "Hanan Juman", "Nowel Trawneh", "Omar Al Masri"], "rank": 6}, {"team": "Ortho Group", "rounds": [{"round": 1, "vp": 2.44, "imp": -31}, {"round": 2, "vp": 4.63, "imp": -19}, {"round": 3, "vp": 15.15, "imp": 18}, {"round": 4, "vp": 10.36, "imp": 1}, {"round": 5, "vp": 11.38, "imp": 4}, {"round": 6, "vp": 2.29, "imp": -32}, {"round": 7, "vp": 7.39, "imp": -8}], "penalty": 0.5, "totalVp": 53.14, "totalImp": -67, "roster": ["Yousef Batshon", "Jack Qarouta", "Ramzi Qusous", "Rageed Sabagh", "Maya Khalaf", "Laith Tashman"], "rank": 7}, {"team": "Palestine", "rounds": [{"round": 1, "vp": 1.22, "imp": -40}, {"round": 2, "vp": 0.66, "imp": -45}, {"round": 3, "vp": 3.45, "imp": -25}, {"round": 4, "vp": 9.64, "imp": -1}, {"round": 5, "vp": 6.82, "imp": -10}, {"round": 6, "vp": 2.92, "imp": -28}, {"round": 7, "vp": 2.76, "imp": -29}], "penalty": 0.0, "totalVp": 27.47, "totalImp": -178, "roster": ["Laila Zruqat", "Hanan Al Masri", "Nawar Hashem", "Fiuroz Badwan", "Alia Shredh"], "rank": 8}], "schedule": [{"round": 1, "matches": [{"home": "Lions", "away": "Eagles"}, {"home": "Jordan Teams", "away": "Palestine"}, {"home": "Ortho Group", "away": "AL Nashama"}, {"home": "Jordan Mix", "away": "Alfa"}]}, {"round": 2, "matches": [{"home": "Eagles", "away": "AL Nashama"}, {"home": "Alfa", "away": "Ortho Group"}, {"home": "Jordan Teams", "away": "Jordan Mix"}, {"home": "Palestine", "away": "Lions"}]}, {"round": 3, "matches": [{"home": "Jordan Mix", "away": "Palestine"}, {"round": 3, "home": "AL Nashama", "away": "Alfa"}, {"home": "Lions", "away": "Jordan Teams"}, {"home": "Ortho Group", "away": "Eagles"}]}, {"round": 4, "matches": [{"home": "Palestine", "away": "Ortho Group"}, {"home": "Jordan Teams", "away": "AL Nashama"}, {"home": "Alfa", "away": "Eagles"}, {"home": "Jordan Mix", "away": "Lions"}]}, {"round": 5, "matches": [{"home": "Eagles", "away": "Jordan Teams"}, {"home": "Lions", "away": "Alfa"}, {"home": "Ortho Group", "away": "Jordan Mix"}, {"home": "AL Nashama", "away": "Palestine"}]}, {"round": 6, "matches": [{"home": "Palestine", "away": "Alfa"}, {"home": "Jordan Mix", "away": "Eagles"}, {"home": "Lions", "away": "AL Nashama"}, {"home": "Jordan Teams", "away": "Ortho Group"}]}, {"round": 7, "matches": [{"home": "AL Nashama", "away": "Jordan Mix"}, {"home": "Eagles", "away": "Palestine"}, {"home": "Alfa", "away": "Jordan Teams"}, {"home": "Ortho Group", "away": "Lions"}]}]}, "jordanCup2025": {"tournament": "Jordan Cup 2025 Final", "director": "Raad Otoom", "matrix": [{"team": "KING HUSSEIN CLUB", "rounds": [{"label": "After R7", "vp": 91.49}, {"label": "R8", "vp": 4.85}, {"label": "R9", "vp": 1.86}, {"label": "R10", "vp": 14.46}, {"label": "R11", "vp": 0.0}, {"label": "R12", "vp": 17.86}, {"label": "R13", "vp": 11.05}, {"label": "R14", "vp": 17.26}], "totalVp": 158.83, "roster": ["Mamoun Al Kotob", "Ghassan Ghaneem", "Omran Abu Dhaim", "Marwan Ghaneem"], "rank": 1}, {"team": "JBA 3", "rounds": [{"label": "After R7", "vp": 73.35}, {"label": "R8", "vp": 10.71}, {"label": "R9", "vp": 18.14}, {"label": "R10", "vp": 16.55}, {"label": "R11", "vp": 19.13}, {"label": "R12", "vp": 12.9}, {"label": "R13", "vp": 5.54}, {"label": "R14", "vp": 0.0}], "totalVp": 156.32, "roster": ["Farah Ahmed", "Samer Rwashdeh", "Dima Al Taher", "Ahmed Al Samhouri"], "rank": 2}, {"team": "JBA 1", "rounds": [{"label": "After R7", "vp": 71.13}, {"label": "R8", "vp": 15.15}, {"label": "R9", "vp": 15.15}, {"label": "R10", "vp": 3.45}, {"label": "R11", "vp": 16.55}, {"label": "R12", "vp": 10.0}, {"label": "R13", "vp": 0.0}, {"label": "R14", "vp": 9.64}], "totalVp": 141.07, "roster": ["Mohd Al Taji", "Yena Rageed", "Hamzeh Habbob", "Samer Haddad", "Syelvi Skljean"], "rank": 3}, {"team": "JBA 2", "rounds": [{"label": "After R7", "vp": 64.79}, {"label": "R8", "vp": 9.29}, {"label": "R9", "vp": 11.05}, {"label": "R10", "vp": 5.54}, {"label": "R11", "vp": 18.9}, {"label": "R12", "vp": 0.0}, {"label": "R13", "vp": 17.71}, {"label": "R14", "vp": 10.36}], "totalVp": 137.64, "roster": ["Jamal Abdeljalil", "Rana Abdelhadi", "Huda Rabaia", "Zaid Bitar"], "rank": 4}, {"team": "OTHODOX CLUB", "rounds": [{"label": "After R7", "vp": 40.49}, {"label": "R8", "vp": 0.0}, {"label": "R9", "vp": 8.95}, {"label": "R10", "vp": 11.05}, {"label": "R11", "vp": 3.45}, {"label": "R12", "vp": 7.1}, {"label": "R13", "vp": 8.95}, {"label": "R14", "vp": 12.0}], "totalVp": 91.99, "roster": ["Yousef Batshon", "Rabeha Othman", "Zeyad Shraehah", "Abdlah Ajlouni", "Farid Nabelsi", "Jack Karouta", "Laith Tashman"], "rank": 5}, {"team": "JBA 5", "rounds": [{"label": "After R7", "vp": 42.67}, {"label": "R8", "vp": 4.01}, {"label": "R9", "vp": 0.0}, {"label": "R10", "vp": 8.95}, {"label": "R11", "vp": 1.1}, {"label": "R12", "vp": 10.0}, {"label": "R13", "vp": 14.46}, {"label": "R14", "vp": 2.76}], "totalVp": 83.95, "roster": ["Lina Toukan", "Maram Qusous", "Aziz Amer", "Nowel Trawnwh"], "rank": 6}, {"team": "JBA 4", "rounds": [{"label": "After R7", "vp": 37.09}, {"label": "R8", "vp": 15.99}, {"label": "R9", "vp": 4.85}, {"label": "R10", "vp": 0.0}, {"label": "R11", "vp": 0.87}, {"label": "R12", "vp": 2.14}, {"label": "R13", "vp": 2.29}, {"label": "R14", "vp": 8.0}], "totalVp": 71.23, "roster": ["Hanan Al Masri", "Nawar Hashem", "Fiuroz Badwan", "Hala Sawaf", "Najwa Najab", "Hassana Zu"], "rank": 7}]}, "mixSelection2025": {"tournament": "National Mixed Selection League 2025", "pairs": [{"pair": "Yena Sabegh-Mohd AL Taji", "rounds": [{"round": 1, "imp": 26, "vp": 15.24}, {"round": 2, "imp": 44, "vp": 17.58}, {"round": 3, "imp": -17, "vp": 6.28}, {"round": 4, "imp": 8, "vp": 11.9}, {"round": 5, "imp": 22, "vp": 14.6}], "totalImp": 83, "totalVp": 65.6, "rank": 1}, {"pair": "Huda Rabiai- Zaid AL Bitar", "rounds": [{"round": 1, "imp": 0, "vp": 10.0}, {"round": 2, "imp": 14, "vp": 13.15}, {"round": 3, "imp": 11, "vp": 12.54}, {"round": 4, "imp": -3, "vp": 9.25}, {"round": 5, "imp": 12, "vp": 12.75}], "totalImp": 34, "totalVp": 57.69, "rank": 2}, {"pair": "Farah Ahmed- Samer Al Rwashdeh", "rounds": [{"round": 1, "imp": 15, "vp": 13.34}, {"round": 2, "imp": 15, "vp": 13.34}, {"round": 3, "imp": -2, "vp": 9.5}, {"round": 4, "imp": -13, "vp": 7.05}, {"round": 5, "imp": -6, "vp": 8.54}], "totalImp": 9, "totalVp": 51.77, "rank": 3}, {"pair": "Rana Abdelhadi-Jamal Abdeljalil", "rounds": [{"round": 1, "imp": -34, "vp": 3.62}, {"round": 2, "imp": 1, "vp": 10.25}, {"round": 3, "imp": -22, "vp": 4.92}, {"round": 4, "imp": 37, "vp": 16.77}, {"round": 5, "imp": -1, "vp": 9.75}], "totalImp": -19, "totalVp": 45.31, "rank": 4}, {"pair": "Nowel Tarawneh-Aziz Amer", "rounds": [{"round": 1, "imp": -18, "vp": 6.1}, {"round": 2, "imp": -25, "vp": 4.92}, {"round": 3, "imp": 7, "vp": 11.68}, {"round": 4, "imp": 4, "vp": 10.99}, {"round": 5, "imp": 3, "vp": 10.75}], "totalImp": -29, "totalVp": 44.44, "rank": 5}, {"pair": "Maya Khalaf- Rageed Sabegh", "rounds": [{"round": 1, "imp": -6, "vp": 8.54}, {"round": 2, "imp": -32, "vp": 3.98}, {"round": 3, "imp": 31, "vp": 15.97}, {"round": 4, "imp": 8, "vp": 11.9}, {"round": 5, "imp": -34, "vp": 3.62}], "totalImp": -33, "totalVp": 44.01, "rank": 6}, {"pair": "Dima AL Taher- Ahmed AL Samhouri", "rounds": [{"round": 1, "imp": 17, "vp": 13.72}, {"round": 2, "imp": -17, "vp": 6.28}, {"round": 3, "imp": -8, "vp": 8.1}, {"round": 4, "imp": -41, "vp": 2.75}, {"round": 5, "imp": 4, "vp": 10.99}], "totalImp": -45, "totalVp": 41.84, "rank": 7}]}, "documents": [{"id": "bylaws_en", "category": "governance", "title_en": "By-Laws Jordan Bridge Federation", "title_ar": "النظام الأساسي للاتحاد الأردني للبريدج", "desc_en": "Official English constitution, governance structure, and federation bylaws.", "desc_ar": "النظام الأساسي الرسمي باللغة الإنجليزية، هيكلية الإدارة ولائحة الاتحاد.", "filename": "By-Laws Jordan Bridge Federation KP 220821.pdf", "filetype": "PDF", "filesize": "912 KB", "icon": "scroll-text"}, {"id": "bylaws_ar", "category": "governance", "title_en": "Official Arabic Constitution (Olympic Committee Approved)", "title_ar": "النظام الأساسي المعتمد من اللجنة الأولمبية الأردنية", "desc_en": "Official Arabic statute certified by the Jordan Olympic Committee (2021).", "desc_ar": "النظام الأساسي المعتمد رسمياً والصادر عن اللجنة الأولمبية الأردنية (2021).", "filename": "157516041606159215751605 1575160415751587157515871610 1604160415751578158115751583 1575160415751585158316061610 1604160415761585161015831580 1575160416061607157515741610 2021.pdf", "filetype": "PDF", "filesize": "967 KB", "icon": "award"}, {"id": "wbf_alerting", "category": "regulations", "title_en": "WBF Official Alerting Policy", "title_ar": "سياسة التنبيه المعتمدة من الاتحاد الدولي (WBF)", "desc_en": "World Bridge Federation regulations for bidding alerts, announcements, and screens.", "desc_ar": "تعليمات وسياسة التنبيهات الرسمية للإعلانات والمزايدة والشاشات من الاتحاد العالمي.", "filename": "WBF Alerting Policy.pdf", "filetype": "PDF", "filesize": "44 KB", "icon": "bell"}, {"id": "bfame_records", "category": "international", "title_en": "BFAME Participation & Historical Record", "title_ar": "سجل مشاركات وإنجازات الأردن في BFAME", "desc_en": "Official records of Jordan national teams in the Bridge Federation of Asia & Middle East.", "desc_ar": "سجل مشاركات ونتائج منتخبات الأردن في بطولات اتحاد آسيا والشرق الأوسط للبريدج.", "filename": "BFAME Participation Record.pdf", "filetype": "PDF", "filesize": "40 KB", "icon": "globe"}, {"id": "wbf_women", "category": "international", "title_en": "WBF Women in Bridge Programme", "title_ar": "برنامج المرأة في رياضة البريدج (WBF)", "desc_en": "International initiatives for female bridge athletes and junior development.", "desc_ar": "المبادرات الدولية لدعم وتطوير اللاعبات السيدات والناشئات في رياضة البريدج.", "filename": "WBF Women.pdf", "filetype": "PDF", "filesize": "2.6 MB", "icon": "heart"}, {"id": "general_assembly", "category": "governance", "title_en": "General Assembly Roster & Public Committee", "title_ar": "كشف أعضاء الهيئة العامة للاتحاد", "desc_en": "Official registry of the General Assembly submitted to the Jordan Olympic Committee.", "desc_ar": "الكشف الرسمي المعتمد لأسماء أعضاء الهيئة العامة المرفوع للجنة الأولمبية.", "filename": "name of public commite.docx", "filetype": "DOCX", "filesize": "31 KB", "icon": "users"}, {"id": "annual_festival_doc", "category": "festival", "title_en": "Annual Jordan International Festival Prospectus", "title_ar": "دليل ونظام مهرجان الأردن الدولي السنوي", "desc_en": "Complete history, tournament format, and event organization standards.", "desc_ar": "تاريخ المهرجان، نظام المنافسات، والمعايير التنظيمية للحدث السنوي العريق.", "filename": "Annual Jordan International Bridge Festival.docx", "filetype": "DOCX", "filesize": "341 KB", "icon": "book-open"}, {"id": "bulletin_1", "category": "bulletins", "title_en": "Festival Daily Bulletin #1", "title_ar": "النشرة اليومية للمهرجان - العدد 1", "desc_en": "Welcome message, opening ceremony coverage, team line-ups, and daily hands.", "desc_ar": "كلمة الترحيب، حفل الافتتاح، تشكيلة الفرق، وتحليل التوزيعات اليومية.", "filename": "Bulletin-1.pdf", "filetype": "PDF", "filesize": "2.7 MB", "icon": "newspaper"}, {"id": "bulletin_2", "category": "bulletins", "title_en": "Festival Daily Bulletin #2", "title_ar": "النشرة اليومية للمهرجان - العدد 2", "desc_en": "Round 1-3 results, masterpoint leaderboards, and expert bidding analysis.", "desc_ar": "نتائج الجولات الأولى وترتيب النقاط وتحليل فني لمزايدات وألعاب مميزة.", "filename": "Bulletin-2.pdf", "filetype": "PDF", "filesize": "2.6 MB", "icon": "newspaper"}, {"id": "bulletin_3", "category": "bulletins", "title_en": "Festival Daily Bulletin #3", "title_ar": "النشرة اليومية للمهرجان - العدد 3", "desc_en": "Semi-final clashes, Butler rankings, and tournament human interest stories.", "desc_ar": "منافسات نصف النهائي، ترتيب البتلر، وقصص وحوارات مع نجوم البطولة.", "filename": "Bulletin-3.pdf", "filetype": "PDF", "filesize": "1.6 MB", "icon": "newspaper"}, {"id": "bulletin_4", "category": "bulletins", "title_en": "Festival Daily Bulletin #4 (Championship Special)", "title_ar": "النشرة اليومية للمهرجان - العدد 4 (الختامي)", "desc_en": "Finals scorecards, podium winners, gala dinner photos, and closing speech.", "desc_ar": "نتائج النهائي، تتويج الأبطال، صور الحفل الختامي وتوزيع الجوائز.", "filename": "Bulletin-4.pdf", "filetype": "PDF", "filesize": "1.6 MB", "icon": "newspaper"}, {"id": "festival_2022_prog", "category": "festival", "title_en": "Jordan Bridge Festival 2022 Official Program", "title_ar": "كتيب وبرنامج مهرجان الأردن للبريدج 2022", "desc_en": "Complete booklet for the 2022 international festival held in Amman.", "desc_ar": "الكتيب الرسمي الكامل لفعاليات مهرجان الأردن الدولي لعام 2022 في عمّان.", "filename": "festival 2022.pdf", "filetype": "PDF", "filesize": "5.7 MB", "icon": "file-text"}, {"id": "festival_2023_prog", "category": "festival", "title_en": "Jordan Bridge Festival 2023 Official Program", "title_ar": "كتيب وبرنامج مهرجان الأردن للبريدج 2023", "desc_en": "Schedule, venue details, and tournament guidelines for the 2023 festival.", "desc_ar": "الجدول الزمني ومكان الإقامة وتعليمات البطولة لمهرجان 2023.", "filename": "festival 1 2023.pdf", "filetype": "PDF", "filesize": "4.7 MB", "icon": "file-text"}, {"id": "festival_2024_prog", "category": "festival", "title_en": "Jordan Bridge Festival 2024 Official Program", "title_ar": "برنامج مهرجان الأردن للبريدج 2024", "desc_en": "Program brochure and regulations for the 41st Jordan International Festival.", "desc_ar": "برنامج وكتيب فعاليات المهرجان الدولي الحادي والأربعين في عمّان.", "filename": "festival 2024 new.pdf", "filetype": "PDF", "filesize": "300 KB", "icon": "file-text"}]};
+    const fest2026Rounds = {"tournament": "Jordan Bridge Festival 2026 - Open Teams", "date": "2026-09-27 / 2026-09-28", "organizer": "Jordan Bridge Federation & Egyptian Bridge Federation", "director": "Waleed El Menyawi", "totalTeams": 24, "standings": [{"rank": 1, "teamId": 12, "score": 109.94, "name": "AKIEL"}, {"rank": 2, "teamId": 24, "score": 102.54, "name": "VU"}, {"rank": 3, "teamId": 14, "score": 102.17, "name": "RADE"}, {"rank": 4, "teamId": 4, "score": 100.38, "name": "MIQDDADI"}, {"rank": 5, "teamId": 19, "score": 97.47, "name": "YAMENN"}, {"rank": 6, "teamId": 20, "score": 97.19, "name": "AL AHLY"}, {"rank": 7, "teamId": 17, "score": 91.02, "name": "JOE"}, {"rank": 8, "teamId": 7, "score": 86.34, "name": "DARK WAVE"}, {"rank": 9, "teamId": 21, "score": 85.13, "name": "AMMAN"}, {"rank": 9, "teamId": 23, "score": 85.13, "name": "ARAB UNITED"}, {"rank": 11, "teamId": 5, "score": 84.04, "name": "SWISS ARABIAN"}, {"rank": 12, "teamId": 9, "score": 82.33, "name": "SHEKA BEKA"}, {"rank": 13, "teamId": 10, "score": 82.29, "name": "RED SEA"}, {"rank": 14, "teamId": 18, "score": 82.27, "name": "AL MAMOUN"}, {"rank": 15, "teamId": 1, "score": 78.57, "name": "SHARJAH"}, {"rank": 16, "teamId": 8, "score": 78.42, "name": "RFAA"}, {"rank": 17, "teamId": 15, "score": 74.91, "name": "TURK-JOR"}, {"rank": 18, "teamId": 16, "score": 70.03, "name": "LIONS"}, {"rank": 19, "teamId": 22, "score": 66.07, "name": "ZAK"}, {"rank": 20, "teamId": 2, "score": 65.88, "name": "S.R"}, {"rank": 21, "teamId": 13, "score": 61.6, "name": "TRICKS"}, {"rank": 22, "teamId": 3, "score": 53.8, "name": "MOROCCO"}, {"rank": 23, "teamId": 11, "score": 42.77, "name": "SHAHRO"}, {"rank": 24, "teamId": 6, "score": 39.71, "name": "WADI RUM"}], "rounds": {"8": [{"table": 1, "homeTeam": {"id": 12, "name": "AKIEL", "imp": 22, "vp": 12.77}, "awayTeam": {"id": 24, "name": "VU", "imp": 15, "vp": 7.23}}, {"table": 2, "homeTeam": {"id": 20, "name": "AL AHLY", "imp": 21, "vp": 4.0}, "awayTeam": {"id": 14, "name": "RADE", "imp": 39, "vp": 16.0}}, {"table": 3, "homeTeam": {"id": 17, "name": "JOE", "imp": 16, "vp": 5.91}, "awayTeam": {"id": 19, "name": "YAMENN", "imp": 27, "vp": 14.09}}, {"table": 4, "homeTeam": {"id": 4, "name": "MIQDDADI", "imp": 27, "vp": 17.87}, "awayTeam": {"id": 1, "name": "SHARJAH", "imp": 0, "vp": 2.13}}, {"table": 5, "homeTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 13, "vp": 8.73}, "awayTeam": {"id": 7, "name": "DARK WAVE", "imp": 16, "vp": 11.27}}, {"table": 6, "homeTeam": {"id": 21, "name": "AMMAN", "imp": 23, "vp": 10.44}, "awayTeam": {"id": 10, "name": "RED SEA", "imp": 22, "vp": 9.56}}, {"table": 7, "homeTeam": {"id": 8, "name": "RFAA", "imp": 17, "vp": 6.22}, "awayTeam": {"id": 23, "name": "ARAB UNITED", "imp": 27, "vp": 13.78}}, {"table": 8, "homeTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 17, "vp": 12.42}, "awayTeam": {"id": 15, "name": "TURK-JOR", "imp": 11, "vp": 7.58}}, {"table": 9, "homeTeam": {"id": 18, "name": "AL MAMOUN", "imp": 31, "vp": 17.11}, "awayTeam": {"id": 22, "name": "ZAK", "imp": 8, "vp": 2.89}}, {"table": 10, "homeTeam": {"id": 16, "name": "LIONS", "imp": 17, "vp": 10.0}, "awayTeam": {"id": 2, "name": "S.R", "imp": 17, "vp": 10.0}}, {"table": 11, "homeTeam": {"id": 3, "name": "MOROCCO", "imp": 9, "vp": 1.96}, "awayTeam": {"id": 13, "name": "TRICKS", "imp": 37, "vp": 18.04}}, {"table": 12, "homeTeam": {"id": 11, "name": "SHAHRO", "imp": 32, "vp": 7.58}, "awayTeam": {"id": 6, "name": "WADI RUM", "imp": 38, "vp": 12.42}}], "7": [{"table": 1, "homeTeam": {"id": 14, "name": "RADE", "imp": 14, "vp": 4.25}, "awayTeam": {"id": 12, "name": "AKIEL", "imp": 31, "vp": 15.75}}, {"table": 2, "homeTeam": {"id": 24, "name": "VU", "imp": 21, "vp": 15.5}, "awayTeam": {"id": 19, "name": "YAMENN", "imp": 5, "vp": 4.5}}, {"table": 3, "homeTeam": {"id": 20, "name": "AL AHLY", "imp": 21, "vp": 16.46}, "awayTeam": {"id": 7, "name": "DARK WAVE", "imp": 1, "vp": 3.54}}, {"table": 4, "homeTeam": {"id": 10, "name": "RED SEA", "imp": 11, "vp": 4.77}, "awayTeam": {"id": 17, "name": "JOE", "imp": 26, "vp": 15.23}}, {"table": 5, "homeTeam": {"id": 21, "name": "AMMAN", "imp": 1, "vp": 7.58}, "awayTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 7, "vp": 12.42}}, {"table": 6, "homeTeam": {"id": 18, "name": "AL MAMOUN", "imp": 13, "vp": 2.5}, "awayTeam": {"id": 4, "name": "MIQDDADI", "imp": 38, "vp": 17.5}}, {"table": 7, "homeTeam": {"id": 16, "name": "LIONS", "imp": 1, "vp": 2.5}, "awayTeam": {"id": 1, "name": "SHARJAH", "imp": 26, "vp": 17.5}}, {"table": 8, "homeTeam": {"id": 8, "name": "RFAA", "imp": 46, "vp": 20.0}, "awayTeam": {"id": 2, "name": "S.R", "imp": 1, "vp": 0.0}}, {"table": 9, "homeTeam": {"id": 23, "name": "ARAB UNITED", "imp": 39, "vp": 19.37}, "awayTeam": {"id": 3, "name": "MOROCCO", "imp": 2, "vp": 0.63}}, {"table": 10, "homeTeam": {"id": 22, "name": "ZAK", "imp": 12, "vp": 13.12}, "awayTeam": {"id": 13, "name": "TRICKS", "imp": 4, "vp": 6.88}}, {"table": 11, "homeTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 49, "vp": 20.0}, "awayTeam": {"id": 6, "name": "WADI RUM", "imp": 1, "vp": 0.0}}, {"table": 12, "homeTeam": {"id": 11, "name": "SHAHRO", "imp": 0, "vp": 2.31}, "awayTeam": {"id": 15, "name": "TURK-JOR", "imp": 26, "vp": 17.69}}], "6": [{"table": 1, "homeTeam": {"id": 20, "name": "AL AHLY", "imp": 11, "vp": 10.0}, "awayTeam": {"id": 12, "name": "AKIEL", "imp": 11, "vp": 10.0}}, {"table": 2, "homeTeam": {"id": 17, "name": "JOE", "imp": 7, "vp": 3.32}, "awayTeam": {"id": 14, "name": "RADE", "imp": 28, "vp": 16.68}}, {"table": 3, "homeTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 2, "vp": 0.38}, "awayTeam": {"id": 24, "name": "VU", "imp": 41, "vp": 19.62}}, {"table": 4, "homeTeam": {"id": 4, "name": "MIQDDADI", "imp": 6, "vp": 5.91}, "awayTeam": {"id": 21, "name": "AMMAN", "imp": 17, "vp": 14.09}}, {"table": 5, "homeTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 1, "vp": 0.0}, "awayTeam": {"id": 19, "name": "YAMENN", "imp": 52, "vp": 20.0}}, {"table": 6, "homeTeam": {"id": 7, "name": "DARK WAVE", "imp": 34, "vp": 17.69}, "awayTeam": {"id": 23, "name": "ARAB UNITED", "imp": 8, "vp": 2.31}}, {"table": 7, "homeTeam": {"id": 8, "name": "RFAA", "imp": 4, "vp": 1.32}, "awayTeam": {"id": 10, "name": "RED SEA", "imp": 36, "vp": 18.68}}, {"table": 8, "homeTeam": {"id": 22, "name": "ZAK", "imp": 7, "vp": 3.32}, "awayTeam": {"id": 18, "name": "AL MAMOUN", "imp": 28, "vp": 16.68}}, {"table": 9, "homeTeam": {"id": 16, "name": "LIONS", "imp": 27, "vp": 11.67}, "awayTeam": {"id": 3, "name": "MOROCCO", "imp": 23, "vp": 8.33}}, {"table": 10, "homeTeam": {"id": 15, "name": "TURK-JOR", "imp": 2, "vp": 5.91}, "awayTeam": {"id": 2, "name": "S.R", "imp": 13, "vp": 14.09}}, {"table": 11, "homeTeam": {"id": 1, "name": "SHARJAH", "imp": 24, "vp": 17.31}, "awayTeam": {"id": 13, "name": "TRICKS", "imp": 0, "vp": 2.69}}, {"table": 12, "homeTeam": {"id": 6, "name": "WADI RUM", "imp": 1, "vp": 1.63}, "awayTeam": {"id": 11, "name": "SHAHRO", "imp": 31, "vp": 18.37}}], "5": [{"table": 1, "homeTeam": {"id": 12, "name": "AKIEL", "imp": 16, "vp": 9.14}, "awayTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 18, "vp": 10.86}}, {"table": 2, "homeTeam": {"id": 21, "name": "AMMAN", "imp": 6, "vp": 2.5}, "awayTeam": {"id": 20, "name": "AL AHLY", "imp": 31, "vp": 17.5}}, {"table": 3, "homeTeam": {"id": 17, "name": "JOE", "imp": 30, "vp": 17.69}, "awayTeam": {"id": 23, "name": "ARAB UNITED", "imp": 4, "vp": 2.31}}, {"table": 4, "homeTeam": {"id": 19, "name": "YAMENN", "imp": 8, "vp": 12.42}, "awayTeam": {"id": 7, "name": "DARK WAVE", "imp": 2, "vp": 7.58}}, {"table": 5, "homeTeam": {"id": 14, "name": "RADE", "imp": 44, "vp": 19.85}, "awayTeam": {"id": 15, "name": "TURK-JOR", "imp": 3, "vp": 0.15}}, {"table": 6, "homeTeam": {"id": 24, "name": "VU", "imp": 35, "vp": 18.37}, "awayTeam": {"id": 3, "name": "MOROCCO", "imp": 5, "vp": 1.63}}, {"table": 7, "homeTeam": {"id": 1, "name": "SHARJAH", "imp": 4, "vp": 1.47}, "awayTeam": {"id": 4, "name": "MIQDDADI", "imp": 35, "vp": 18.53}}, {"table": 8, "homeTeam": {"id": 16, "name": "LIONS", "imp": 17, "vp": 7.23}, "awayTeam": {"id": 8, "name": "RFAA", "imp": 24, "vp": 12.77}}, {"table": 9, "homeTeam": {"id": 10, "name": "RED SEA", "imp": 16, "vp": 11.27}, "awayTeam": {"id": 22, "name": "ZAK", "imp": 13, "vp": 8.73}}, {"table": 10, "homeTeam": {"id": 13, "name": "TRICKS", "imp": 16, "vp": 1.63}, "awayTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 46, "vp": 18.37}}, {"table": 11, "homeTeam": {"id": 18, "name": "AL MAMOUN", "imp": 34, "vp": 17.69}, "awayTeam": {"id": 6, "name": "WADI RUM", "imp": 8, "vp": 2.31}}, {"table": 12, "homeTeam": {"id": 2, "name": "S.R", "imp": 34, "vp": 18.53}, "awayTeam": {"id": 11, "name": "SHAHRO", "imp": 3, "vp": 1.47}}], "4": [{"table": 1, "homeTeam": {"id": 21, "name": "AMMAN", "imp": 3, "vp": 8.73}, "awayTeam": {"id": 12, "name": "AKIEL", "imp": 6, "vp": 11.27}}, {"table": 2, "homeTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 11, "vp": 12.05}, "awayTeam": {"id": 17, "name": "JOE", "imp": 6, "vp": 7.95}}, {"table": 3, "homeTeam": {"id": 23, "name": "ARAB UNITED", "imp": 15, "vp": 10.44}, "awayTeam": {"id": 14, "name": "RADE", "imp": 14, "vp": 9.56}}, {"table": 4, "homeTeam": {"id": 24, "name": "VU", "imp": 12, "vp": 7.23}, "awayTeam": {"id": 20, "name": "AL AHLY", "imp": 19, "vp": 12.77}}, {"table": 5, "homeTeam": {"id": 4, "name": "MIQDDADI", "imp": 1, "vp": 5.32}, "awayTeam": {"id": 7, "name": "DARK WAVE", "imp": 14, "vp": 14.68}}, {"table": 6, "homeTeam": {"id": 19, "name": "YAMENN", "imp": 10, "vp": 13.45}, "awayTeam": {"id": 8, "name": "RFAA", "imp": 1, "vp": 6.55}}, {"table": 7, "homeTeam": {"id": 10, "name": "RED SEA", "imp": 0, "vp": 9.14}, "awayTeam": {"id": 1, "name": "SHARJAH", "imp": 2, "vp": 10.86}}, {"table": 8, "homeTeam": {"id": 15, "name": "TURK-JOR", "imp": 24, "vp": 15.5}, "awayTeam": {"id": 13, "name": "TRICKS", "imp": 8, "vp": 4.5}}, {"table": 9, "homeTeam": {"id": 18, "name": "AL MAMOUN", "imp": 12, "vp": 4.77}, "awayTeam": {"id": 3, "name": "MOROCCO", "imp": 27, "vp": 15.23}}, {"table": 10, "homeTeam": {"id": 6, "name": "WADI RUM", "imp": 1, "vp": 0.5}, "awayTeam": {"id": 16, "name": "LIONS", "imp": 39, "vp": 19.5}}, {"table": 11, "homeTeam": {"id": 2, "name": "S.R", "imp": 10, "vp": 4.77}, "awayTeam": {"id": 22, "name": "ZAK", "imp": 25, "vp": 15.23}}, {"table": 12, "homeTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 21, "vp": 14.39}, "awayTeam": {"id": 11, "name": "SHAHRO", "imp": 9, "vp": 5.61}}], "3": [{"table": 1, "homeTeam": {"id": 12, "name": "AKIEL", "imp": 47, "vp": 20.0}, "awayTeam": {"id": 10, "name": "RED SEA", "imp": 1, "vp": 0.0}}, {"table": 2, "homeTeam": {"id": 20, "name": "AL AHLY", "imp": 20, "vp": 8.33}, "awayTeam": {"id": 23, "name": "ARAB UNITED", "imp": 24, "vp": 11.67}}, {"table": 3, "homeTeam": {"id": 15, "name": "TURK-JOR", "imp": 2, "vp": 2.89}, "awayTeam": {"id": 21, "name": "AMMAN", "imp": 25, "vp": 17.11}}, {"table": 4, "homeTeam": {"id": 14, "name": "RADE", "imp": 34, "vp": 12.05}, "awayTeam": {"id": 7, "name": "DARK WAVE", "imp": 29, "vp": 7.95}}, {"table": 5, "homeTeam": {"id": 8, "name": "RFAA", "imp": 20, "vp": 8.33}, "awayTeam": {"id": 24, "name": "VU", "imp": 24, "vp": 11.67}}, {"table": 6, "homeTeam": {"id": 18, "name": "AL MAMOUN", "imp": 11, "vp": 1.96}, "awayTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 39, "vp": 18.04}}, {"table": 7, "homeTeam": {"id": 17, "name": "JOE", "imp": 42, "vp": 19.37}, "awayTeam": {"id": 16, "name": "LIONS", "imp": 5, "vp": 0.63}}, {"table": 8, "homeTeam": {"id": 3, "name": "MOROCCO", "imp": 25, "vp": 7.58}, "awayTeam": {"id": 1, "name": "SHARJAH", "imp": 31, "vp": 12.42}}, {"table": 9, "homeTeam": {"id": 4, "name": "MIQDDADI", "imp": 49, "vp": 18.37}, "awayTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 19, "vp": 1.63}}, {"table": 10, "homeTeam": {"id": 2, "name": "S.R", "imp": 14, "vp": 3.54}, "awayTeam": {"id": 19, "name": "YAMENN", "imp": 34, "vp": 16.46}}, {"table": 11, "homeTeam": {"id": 22, "name": "ZAK", "imp": 9, "vp": 8.73}, "awayTeam": {"id": 6, "name": "WADI RUM", "imp": 12, "vp": 11.27}}, {"table": 12, "homeTeam": {"id": 11, "name": "SHAHRO", "imp": 8, "vp": 2.13}, "awayTeam": {"id": 13, "name": "TRICKS", "imp": 35, "vp": 17.87}}], "2": [{"table": 1, "homeTeam": {"id": 12, "name": "AKIEL", "imp": 15, "vp": 11.27}, "awayTeam": {"id": 15, "name": "TURK-JOR", "imp": 12, "vp": 8.73}}, {"table": 2, "homeTeam": {"id": 10, "name": "RED SEA", "imp": 20, "vp": 13.12}, "awayTeam": {"id": 18, "name": "AL MAMOUN", "imp": 12, "vp": 6.88}}, {"table": 3, "homeTeam": {"id": 14, "name": "RADE", "imp": 10, "vp": 10.0}, "awayTeam": {"id": 21, "name": "AMMAN", "imp": 10, "vp": 10.0}}, {"table": 4, "homeTeam": {"id": 20, "name": "AL AHLY", "imp": 23, "vp": 14.68}, "awayTeam": {"id": 3, "name": "MOROCCO", "imp": 10, "vp": 5.32}}, {"table": 5, "homeTeam": {"id": 7, "name": "DARK WAVE", "imp": 17, "vp": 10.86}, "awayTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 15, "vp": 9.14}}, {"table": 6, "homeTeam": {"id": 1, "name": "SHARJAH", "imp": 21, "vp": 5.61}, "awayTeam": {"id": 23, "name": "ARAB UNITED", "imp": 33, "vp": 14.39}}, {"table": 7, "homeTeam": {"id": 24, "name": "VU", "imp": 12, "vp": 13.78}, "awayTeam": {"id": 2, "name": "S.R", "imp": 2, "vp": 6.22}}, {"table": 8, "homeTeam": {"id": 6, "name": "WADI RUM", "imp": 5, "vp": 4.0}, "awayTeam": {"id": 8, "name": "RFAA", "imp": 23, "vp": 16.0}}, {"table": 9, "homeTeam": {"id": 4, "name": "MIQDDADI", "imp": 12, "vp": 10.0}, "awayTeam": {"id": 19, "name": "YAMENN", "imp": 12, "vp": 10.0}}, {"table": 10, "homeTeam": {"id": 13, "name": "TRICKS", "imp": 8, "vp": 3.77}, "awayTeam": {"id": 17, "name": "JOE", "imp": 27, "vp": 16.23}}, {"table": 11, "homeTeam": {"id": 22, "name": "ZAK", "imp": 15, "vp": 8.73}, "awayTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 18, "vp": 11.27}}, {"table": 12, "homeTeam": {"id": 16, "name": "LIONS", "imp": 15, "vp": 14.96}, "awayTeam": {"id": 11, "name": "SHAHRO", "imp": 1, "vp": 5.04}}], "1": [{"table": 1, "homeTeam": {"id": 1, "name": "SHARJAH", "imp": 10, "vp": 11.27}, "awayTeam": {"id": 2, "name": "S.R", "imp": 7, "vp": 8.73}}, {"table": 2, "homeTeam": {"id": 3, "name": "MOROCCO", "imp": 20, "vp": 13.12}, "awayTeam": {"id": 4, "name": "MIQDDADI", "imp": 12, "vp": 6.88}}, {"table": 3, "homeTeam": {"id": 5, "name": "SWISS ARABIAN", "imp": 28, "vp": 12.42}, "awayTeam": {"id": 6, "name": "WADI RUM", "imp": 22, "vp": 7.58}}, {"table": 4, "homeTeam": {"id": 7, "name": "DARK WAVE", "imp": 16, "vp": 12.77}, "awayTeam": {"id": 8, "name": "RFAA", "imp": 9, "vp": 7.23}}, {"table": 5, "homeTeam": {"id": 9, "name": "SHEKA BEKA", "imp": 5, "vp": 4.25}, "awayTeam": {"id": 10, "name": "RED SEA", "imp": 22, "vp": 15.75}}, {"table": 6, "homeTeam": {"id": 11, "name": "SHAHRO", "imp": 9, "vp": 0.26}, "awayTeam": {"id": 12, "name": "AKIEL", "imp": 49, "vp": 19.74}}, {"table": 7, "homeTeam": {"id": 13, "name": "TRICKS", "imp": 10, "vp": 6.22}, "awayTeam": {"id": 14, "name": "RADE", "imp": 20, "vp": 13.78}}, {"table": 8, "homeTeam": {"id": 15, "name": "TURK-JOR", "imp": 25, "vp": 16.46}, "awayTeam": {"id": 16, "name": "LIONS", "imp": 5, "vp": 3.54}}, {"table": 9, "homeTeam": {"id": 17, "name": "JOE", "imp": 17, "vp": 5.32}, "awayTeam": {"id": 18, "name": "AL MAMOUN", "imp": 30, "vp": 14.68}}, {"table": 10, "homeTeam": {"id": 19, "name": "YAMENN", "imp": 12, "vp": 6.55}, "awayTeam": {"id": 20, "name": "AL AHLY", "imp": 21, "vp": 13.45}}, {"table": 11, "homeTeam": {"id": 21, "name": "AMMAN", "imp": 23, "vp": 14.68}, "awayTeam": {"id": 22, "name": "ZAK", "imp": 10, "vp": 5.32}}, {"table": 12, "homeTeam": {"id": 23, "name": "ARAB UNITED", "imp": 19, "vp": 10.86}, "awayTeam": {"id": 24, "name": "VU", "imp": 17, "vp": 9.14}}]}}.rounds;
     const committeeData = {"title": "General Authority / Executive Committee", "members": [{"num": "1.1", "name": "السيد  جوان خلدون غالب هلسا", "phone": "0796926341", "email": "", "photo": "public/images/jwan.jpg"}, {"num": "2.2", "name": "السيدة سلفي هايك خورين  سكلجيان", "phone": "0795555373", "email": "", "photo": "public/images/syelve.jpg"}, {"num": "1.3", "name": "السيد رمزي نجيب يوسف قسوس", "phone": "0795915151", "email": "", "photo": null}, {"num": "2.4", "name": "السيدة رنا  سيف الدين ناجي عبد الهادي", "phone": "0795534561", "email": "", "photo": "public/images/RANA.jpg"}, {"num": "3.5", "name": "السيدة ديما عمر الشيخ محمود الطاهر", "phone": "0777889941", "email": "", "photo": "public/images/dima.jpg"}, {"num": "4.6", "name": "السيد فادي الياس بولس سويدان", "phone": "0795383739", "email": "", "photo": null}, {"num": "5.7", "name": "السيد عبد الله محمود سعيد العجلوني", "phone": "0795251199", "email": "", "photo": "public/images/abdlah.jpg"}, {"num": "6.8", "name": "السيدة عايئده حنا ابو جابر", "phone": "0795591591", "email": "", "photo": null}, {"num": "7.9", "name": "السيد احمد حمدي محمد السمهوري", "phone": "0795531784", "email": "", "photo": null}, {"num": "8.10", "name": "السيد جعفر فالح عواد القضاه", "phone": "0797279757", "email": "", "photo": null}, {"num": "1.11", "name": "السيد مروان اسعد غانم", "phone": "0798822992", "email": "", "photo": null}, {"num": "2.12", "name": "السيدة امل توفيق شاكر فاخوري", "phone": "0795568262", "email": "", "photo": null}, {"num": "3.13", "name": "رعد محمد درويش /مدير الاتحاد", "phone": "0796665565", "email": "", "photo": "public/images/raad_drw.jpg"}]};
+    const galleryList = ["45d0f389_7789_4b8f_9ce8_90baa9dd16fe.jpg", "5227a79b_6a7f_40a1_b72e_00ff0ff8de52.jpg", "8163fb2c_f533_49c9_a412_1bf8475d7287.jpg", "8p8a0632_1_.jpg", "8p8a0681_1.jpg", "_101_.jpg", "_327_.jpg", "a525d373_adcb_47a3_b0ae_22f57abc929f.jpg", "bahjat_almjali_1.jpg", "bfame_1.jpg", "bfame_16th_chennai_120.jpg", "bfame_16th_chennai_122.jpg", "bfame_16th_chennai_245.jpg", "dsc_2534.jpg", "dsc_2582.jpg", "dsc_2587_1.jpg", "dsc_2634_2.jpg", "dsc_3563.jpg", "ghassan.jpg", "img_20170403_192014.jpg", "imgl9575.jpg"];
 
-    let currentLang = 'en'; // 'en' or 'ar'
-    let currentRound = 8;
+    let currentLang = 'en';
+    let currentFestYear = '2026';
+    let currentRoundNum = 8;
+    let activeDocCategory = 'all';
 
-    // Language Toggle
+    // LANGUAGE TOGGLE
     function toggleLanguage() {
       currentLang = (currentLang === 'en') ? 'ar' : 'en';
       const root = document.getElementById('bodyRoot');
@@ -678,7 +840,6 @@
         langLabel.textContent = 'العربية';
       }
 
-      // Update all translated tags
       document.querySelectorAll('[data-en]').forEach(el => {
         const txt = el.getAttribute('data-' + currentLang);
         if (txt) {
@@ -686,15 +847,95 @@
         }
       });
 
-      // Re-render components with translated dynamic text
-      renderStandings(festivalData.standings);
-      renderRoundMatches(currentRound);
-      renderJordanCup();
+      renderCurrentFestivalStandings();
+      renderCup26Matrix();
+      renderCup25Matrix();
+      renderJordanCupCards();
       renderCommittee();
     }
 
-    // Switch between Festival Standings and Round Matches
-    function switchFestivalTab(tab) {
+    // MOBILE MENU
+    function toggleMobileMenu() {
+      const menu = document.getElementById('mobileMenu');
+      menu.classList.toggle('hidden');
+    }
+
+    // LIGHTBOX
+    function openLightbox(src, caption) {
+      const modal = document.getElementById('lightboxModal');
+      const img = document.getElementById('lightboxImage');
+      const cap = document.getElementById('lightboxCaption');
+      img.src = src;
+      cap.textContent = caption || '';
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeLightbox(e) {
+      if (e && e.target && e.target.id === 'lightboxImage') return;
+      const modal = document.getElementById('lightboxModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeLightbox();
+        closeAdminModal();
+      }
+    });
+
+    // ROSTER POPOVER TOOLTIP
+    function showRosterTooltip(e, teamName, roster) {
+      if (!roster || roster.length === 0) return;
+      const tooltip = document.getElementById('rosterTooltip');
+      const nameEl = document.getElementById('tooltipTeamName');
+      const listEl = document.getElementById('tooltipPlayerList');
+
+      nameEl.textContent = teamName + ' - Roster:';
+      listEl.innerHTML = roster.map(p => `<span class="bg-slate-800 text-slate-200 px-2 py-0.5 rounded text-[11px] font-medium border border-slate-700">${p}</span>`).join('');
+      
+      tooltip.style.left = Math.min(window.innerWidth - 300, Math.max(10, e.clientX + 15)) + 'px';
+      tooltip.style.top = Math.max(10, e.clientY - 20) + 'px';
+      tooltip.classList.remove('hidden');
+    }
+
+    function hideRosterTooltip() {
+      const tooltip = document.getElementById('rosterTooltip');
+      tooltip.classList.add('hidden');
+    }
+
+    // FESTIVAL YEAR SELECTOR
+    function selectFestivalYear(year) {
+      currentFestYear = year;
+      document.querySelectorAll('.year-btn').forEach(b => {
+        if (b.id === 'btnYear' + year) {
+          b.className = 'year-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-700 text-white shadow-xs';
+        } else {
+          b.className = 'year-btn px-3.5 py-1.5 rounded-xl text-xs font-bold text-slate-700 hover:bg-slate-100';
+        }
+      });
+
+      const fest = masterData.historicalFestivals[year];
+      if (fest) {
+        document.getElementById('festivalDisplayTitle').textContent = fest.title;
+        document.getElementById('festivalMetaInfo').textContent = `Official Scoring • Tournament Director: ${fest.director} • Total Teams: ${fest.totalTeams}`;
+      }
+
+      // Show/hide subtabs: rounds are only available for 2026
+      const subtabContainer = document.getElementById('subtabContainer');
+      if (year === '2026') {
+        subtabContainer.classList.remove('hidden');
+      } else {
+        subtabContainer.classList.add('hidden');
+        switchFestivalSubtab('standings');
+      }
+
+      renderCurrentFestivalStandings();
+    }
+
+    // FESTIVAL SUBTAB (STANDINGS VS ROUND MATCHES)
+    function switchFestivalSubtab(tab) {
       const standingsContent = document.getElementById('tabStandingsContent');
       const roundsContent = document.getElementById('tabRoundsContent');
       const btnStandings = document.getElementById('btnTabStandings');
@@ -704,26 +945,28 @@
         standingsContent.classList.remove('hidden');
         roundsContent.classList.add('hidden');
         btnStandings.className = 'px-5 py-2.5 rounded-xl font-bold text-sm bg-sky-700 text-white shadow-xs transition-all';
-        btnRounds.className = 'px-5 py-2.5 rounded-xl font-bold text-sm bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 transition-all';
+        btnRounds.className = 'px-5 py-2.5 rounded-xl font-bold text-sm bg-white text-slate-700 hover:bg-slate-50 transition-all';
       } else {
         standingsContent.classList.add('hidden');
         roundsContent.classList.remove('hidden');
         btnRounds.className = 'px-5 py-2.5 rounded-xl font-bold text-sm bg-sky-700 text-white shadow-xs transition-all';
-        btnStandings.className = 'px-5 py-2.5 rounded-xl font-bold text-sm bg-white text-slate-700 border border-slate-300 hover:bg-slate-50 transition-all';
-        renderRoundMatches(currentRound);
+        btnStandings.className = 'px-5 py-2.5 rounded-xl font-bold text-sm bg-white text-slate-700 hover:bg-slate-50 transition-all';
+        renderRoundMatches(currentRoundNum);
       }
     }
 
-    // Render Standings
-    function renderStandings(standingsList) {
+    // RENDER FESTIVAL STANDINGS TABLE
+    function renderCurrentFestivalStandings(customList) {
+      const fest = masterData.historicalFestivals[currentFestYear];
+      const list = customList || (fest ? fest.standings : []);
       const tbody = document.getElementById('standingsTableBody');
       tbody.innerHTML = '';
 
-      standingsList.forEach((team) => {
+      list.forEach((team) => {
         let rankBadgeClass = 'bg-slate-100 text-slate-700';
-        if (team.rank === 1) rankBadgeClass = 'badge-rank-1 font-bold';
-        else if (team.rank === 2) rankBadgeClass = 'badge-rank-2 font-bold';
-        else if (team.rank === 3) rankBadgeClass = 'badge-rank-3 font-bold';
+        if (team.rank === 1) rankBadgeClass = 'badge-rank-1 font-black';
+        else if (team.rank === 2) rankBadgeClass = 'badge-rank-2 font-black';
+        else if (team.rank === 3) rankBadgeClass = 'badge-rank-3 font-black';
 
         const tr = document.createElement('tr');
         tr.className = 'hover:bg-sky-50/60 transition-colors border-b border-slate-100';
@@ -750,19 +993,20 @@
       });
     }
 
-    // Filter teams by search input
-    function filterTeams() {
+    // FILTER FESTIVAL TEAMS
+    function filterFestivalTeams() {
       const q = document.getElementById('teamSearchInput').value.toLowerCase().trim();
-      const filtered = festivalData.standings.filter(t => 
+      const fest = masterData.historicalFestivals[currentFestYear];
+      if (!fest) return;
+      const filtered = fest.standings.filter(t => 
         t.name.toLowerCase().includes(q) || t.score.toString().includes(q)
       );
-      renderStandings(filtered);
+      renderCurrentFestivalStandings(filtered);
     }
 
-    // Render Round Matches
+    // RENDER ROUND MATCHES (2026)
     function renderRoundMatches(roundNum) {
-      currentRound = roundNum;
-      
+      currentRoundNum = roundNum;
       document.querySelectorAll('.round-pill-btn').forEach(btn => {
         if (parseInt(btn.getAttribute('data-round')) === roundNum) {
           btn.className = 'round-pill-btn active px-4 py-2 rounded-xl text-xs font-bold bg-sky-700 text-white shadow-xs';
@@ -773,12 +1017,11 @@
 
       const container = document.getElementById('roundMatchesContainer');
       container.innerHTML = '';
-      const matches = festivalData.rounds[roundNum] || [];
+      const matches = fest2026Rounds[roundNum] || [];
 
       matches.forEach(m => {
         const card = document.createElement('div');
         card.className = 'bg-white p-4 rounded-xl border border-slate-200 shadow-xs hover:border-sky-300 transition-all';
-        
         const homeWon = m.homeTeam.vp > m.awayTeam.vp;
         const awayWon = m.awayTeam.vp > m.homeTeam.vp;
 
@@ -787,7 +1030,6 @@
             <span class="font-bold text-sky-700">Table ${m.table}</span>
             <span>IMP ${m.homeTeam.imp} - ${m.awayTeam.imp}</span>
           </div>
-
           <div class="space-y-2 text-sm">
             <div class="flex items-center justify-between ${homeWon ? 'font-black text-slate-950' : 'text-slate-600'}">
               <span class="truncate">${m.homeTeam.name}</span>
@@ -803,12 +1045,188 @@
       });
     }
 
-    // Render Jordan Cup Cards (With Full Player Rosters)
-    function renderJordanCup() {
+    // SPREADSHEET TABS SWITCHER
+    function switchSpreadsheet(sheetId) {
+      document.querySelectorAll('.sheet-tab-btn').forEach(btn => {
+        if (btn.id === 'tabBtn_' + sheetId) {
+          btn.className = 'sheet-tab-btn active px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-emerald-700 text-white shadow-xs transition-all flex items-center gap-2';
+        } else {
+          btn.className = 'sheet-tab-btn px-4 py-2.5 rounded-xl font-bold text-xs sm:text-sm bg-slate-100 text-slate-700 hover:bg-slate-200 transition-all flex items-center gap-2';
+        }
+      });
+
+      document.querySelectorAll('.sheet-view').forEach(v => v.classList.add('hidden'));
+      const activeView = document.getElementById('view_' + sheetId);
+      if (activeView) activeView.classList.remove('hidden');
+    }
+
+    // RENDER JORDAN CUP 2026 MATRIX TABLE (WITH ROSTER HOVER)
+    function renderCup26Matrix() {
+      const tbody = document.getElementById('cup26MatrixBody');
+      tbody.innerHTML = '';
+      const matrix = masterData.jordanCup2026.matrix;
+
+      matrix.forEach((t) => {
+        let rankBadge = 'bg-slate-100 text-slate-700';
+        if (t.rank === 1) rankBadge = 'badge-rank-1 font-black';
+        else if (t.rank === 2) rankBadge = 'badge-rank-2 font-black';
+        else if (t.rank === 3) rankBadge = 'badge-rank-3 font-black';
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-emerald-50/50 transition-colors border-b border-slate-100';
+
+        const rosterAttr = encodeURIComponent(JSON.stringify(t.roster || []));
+
+        let roundsHtml = '';
+        t.rounds.forEach(rnd => {
+          const isHigh = rnd.vp >= 13;
+          const isLow = rnd.vp <= 7;
+          const colorClass = isHigh ? 'text-emerald-700 font-bold' : (isLow ? 'text-rose-600' : 'text-slate-700');
+          roundsHtml += `
+            <td class="py-2.5 px-2 text-center font-mono">
+              <span class="block ${colorClass}">${rnd.vp.toFixed(2)}</span>
+              <span class="block text-[10px] text-slate-400 font-normal">${rnd.imp > 0 ? '+' : ''}${rnd.imp}</span>
+            </td>
+          `;
+        });
+
+        tr.innerHTML = `
+          <td class="py-2.5 px-3 text-center">
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-full text-xs ${rankBadge}">
+              ${t.rank}
+            </span>
+          </td>
+          <td class="py-2.5 px-4 font-bold text-slate-900 cursor-pointer" onmouseenter="showRosterTooltip(event, '${t.team}', ${JSON.stringify(t.roster || [])})" onmouseleave="hideRosterTooltip()" onclick="showRosterTooltip(event, '${t.team}', ${JSON.stringify(t.roster || [])})">
+            <div class="flex items-center gap-1.5">
+              <span>${t.team}</span>
+              <i data-lucide="users" class="w-3.5 h-3.5 text-emerald-600 inline"></i>
+            </div>
+          </td>
+          ${roundsHtml}
+          <td class="py-2.5 px-2 text-center text-slate-400 font-mono text-xs">${t.penalty || '0'}</td>
+          <td class="py-2.5 px-3 text-right font-mono font-bold text-slate-600">${t.totalImp > 0 ? '+' : ''}${t.totalImp}</td>
+          <td class="py-2.5 px-4 text-right font-mono font-extrabold text-emerald-800 text-sm bg-emerald-50">${t.totalVp.toFixed(2)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+      lucide.createIcons();
+    }
+
+    // RENDER JORDAN CUP 2026 SCHEDULE
+    function renderCup26Schedule() {
+      const container = document.getElementById('cup26ScheduleContainer');
+      container.innerHTML = '';
+      const sched = masterData.jordanCup2026.schedule;
+
+      sched.forEach(rnd => {
+        const card = document.createElement('div');
+        card.className = 'bg-white p-4 rounded-xl border border-slate-200 shadow-xs';
+        card.innerHTML = `
+          <div class="flex items-center justify-between pb-2 mb-3 border-b border-slate-100">
+            <span class="text-xs font-bold text-emerald-800 uppercase tracking-wider">Round #${rnd.round}</span>
+            <span class="text-[11px] text-slate-400">Jordan Cup League</span>
+          </div>
+          <div class="space-y-2.5 text-xs">
+            ${rnd.matches.map(m => `
+              <div class="flex items-center justify-between p-2 rounded-lg bg-slate-50 border border-slate-100">
+                <span class="font-bold text-slate-900">${m.home}</span>
+                <span class="text-[10px] uppercase font-bold text-slate-400 px-1.5 py-0.5 rounded bg-white border border-slate-200">VS</span>
+                <span class="font-bold text-slate-700 text-right">${m.away}</span>
+              </div>
+            `).join('')}
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    // RENDER JORDAN CUP 2025 MATRIX
+    function renderCup25Matrix() {
+      const tbody = document.getElementById('cup25MatrixBody');
+      tbody.innerHTML = '';
+      const matrix = masterData.jordanCup2025.matrix;
+
+      matrix.forEach((t) => {
+        let rankBadge = 'bg-slate-100 text-slate-700';
+        if (t.rank === 1) rankBadge = 'badge-rank-1 font-black';
+        else if (t.rank === 2) rankBadge = 'badge-rank-2 font-black';
+        else if (t.rank === 3) rankBadge = 'badge-rank-3 font-black';
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-emerald-50/50 transition-colors border-b border-slate-100';
+
+        let roundsHtml = '';
+        t.rounds.forEach(r => {
+          roundsHtml += `<td class="py-2 px-2 text-center font-mono text-slate-700">${r.vp > 0 ? r.vp.toFixed(2) : '-'}</td>`;
+        });
+
+        tr.innerHTML = `
+          <td class="py-2.5 px-3 text-center">
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-full text-xs ${rankBadge}">
+              ${t.rank}
+            </span>
+          </td>
+          <td class="py-2.5 px-4 font-bold text-slate-900 cursor-pointer" onmouseenter="showRosterTooltip(event, '${t.team}', ${JSON.stringify(t.roster || [])})" onmouseleave="hideRosterTooltip()" onclick="showRosterTooltip(event, '${t.team}', ${JSON.stringify(t.roster || [])})">
+            <div class="flex items-center gap-1.5">
+              <span>${t.team}</span>
+              <i data-lucide="users" class="w-3.5 h-3.5 text-emerald-600 inline"></i>
+            </div>
+          </td>
+          ${roundsHtml}
+          <td class="py-2.5 px-4 text-right font-mono font-extrabold text-emerald-800 text-sm bg-emerald-50">${t.totalVp.toFixed(2)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+      lucide.createIcons();
+    }
+
+    // RENDER MIXED SELECTION 2025
+    function renderMix25() {
+      const tbody = document.getElementById('mix25TableBody');
+      tbody.innerHTML = '';
+      const pairs = masterData.mixSelection2025.pairs;
+
+      pairs.forEach(p => {
+        let rankBadge = 'bg-slate-100 text-slate-700';
+        if (p.rank === 1) rankBadge = 'badge-rank-1 font-black';
+        else if (p.rank === 2) rankBadge = 'badge-rank-2 font-black';
+        else if (p.rank === 3) rankBadge = 'badge-rank-3 font-black';
+
+        const tr = document.createElement('tr');
+        tr.className = 'hover:bg-indigo-50/40 transition-colors border-b border-slate-100';
+
+        let rndHtml = '';
+        p.rounds.forEach(r => {
+          rndHtml += `
+            <td class="py-2 px-3 text-center font-mono text-xs">
+              <span class="font-bold text-indigo-950">${r.vp.toFixed(2)}</span>
+              <span class="text-[10px] text-slate-400 block">${r.imp > 0 ? '+' : ''}${r.imp} IMP</span>
+            </td>
+          `;
+        });
+
+        tr.innerHTML = `
+          <td class="py-2.5 px-3 text-center">
+            <span class="inline-flex items-center justify-center w-6 h-6 rounded-full text-xs ${rankBadge}">
+              ${p.rank}
+            </span>
+          </td>
+          <td class="py-2.5 px-4 font-bold text-slate-900">${p.pair}</td>
+          ${rndHtml}
+          <td class="py-2.5 px-3 text-right font-mono font-bold text-slate-600">${p.totalImp > 0 ? '+' : ''}${p.totalImp}</td>
+          <td class="py-2.5 px-4 text-right font-mono font-extrabold text-indigo-900 text-sm bg-indigo-50">${p.totalVp.toFixed(2)}</td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // RENDER JORDAN CUP CARDS (WITH ROSTER CHIPS)
+    function renderJordanCupCards() {
       const container = document.getElementById('jordanCupCards');
       container.innerHTML = '';
+      const matrix = masterData.jordanCup2026.matrix;
 
-      jordanCupData.teams.forEach(t => {
+      matrix.forEach(t => {
         const card = document.createElement('div');
         card.className = 'bg-white p-5 rounded-2xl border border-slate-200 hover:border-emerald-400 hover:shadow-md transition-all flex flex-col justify-between';
         
@@ -830,7 +1248,7 @@
           <div>
             <div class="flex items-center justify-between mb-3">
               <span class="w-8 h-8 rounded-xl flex items-center justify-center text-xs ${rankColor} shadow-xs">#${t.rank}</span>
-              <span class="text-xs font-mono font-bold text-slate-500">${t.imp > 0 ? '+' : ''}${t.imp} IMP</span>
+              <span class="text-xs font-mono font-bold text-slate-500">${t.totalImp > 0 ? '+' : ''}${t.totalImp} IMP</span>
             </div>
             <h4 class="font-black text-slate-900 text-lg mb-1">${t.team}</h4>
             <span class="text-xs text-slate-500">${currentLang === 'ar' ? 'الدوري الرسمي لكأس الأردن' : 'Official Jordan Cup League'}</span>
@@ -839,21 +1257,44 @@
 
           <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between">
             <span class="text-xs font-semibold text-slate-600">${currentLang === 'ar' ? 'مجموع النقاط:' : 'Total V.P:'}</span>
-            <span class="text-lg font-black font-mono text-emerald-700">${t.vp.toFixed(2)}</span>
+            <span class="text-lg font-black font-mono text-emerald-700">${t.totalVp.toFixed(2)}</span>
           </div>
         `;
         container.appendChild(card);
       });
     }
 
-    // Render Committee With Photos
+    // RENDER GALLERY WITH LIGHTBOX ZOOM
+    function renderGallery() {
+      const container = document.getElementById('galleryGrid');
+      container.innerHTML = '';
+
+      galleryList.forEach(imgName => {
+        const card = document.createElement('div');
+        card.className = 'group relative rounded-xl overflow-hidden border border-slate-200 shadow-xs hover:shadow-md transition-all cursor-pointer bg-slate-900 aspect-4/3';
+        const imgPath = 'public/gallery/' + imgName;
+        const caption = imgName.replace(/_/g, ' ').replace('.jpg', '').replace('.png', '');
+
+        card.onclick = () => openLightbox(imgPath, 'JBF Tournament History: ' + caption);
+        card.innerHTML = `
+          <img src="${imgPath}" alt="${caption}" loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">
+          <div class="absolute inset-0 bg-slate-950/40 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center text-white">
+            <i data-lucide="zoom-in" class="w-6 h-6"></i>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    // RENDER COMMITTEE
     function renderCommittee() {
       const container = document.getElementById('committeeGrid');
       container.innerHTML = '';
 
       committeeData.members.forEach(m => {
         const card = document.createElement('div');
-        card.className = 'bg-slate-50 p-4 rounded-2xl border border-slate-200 text-sm hover:border-sky-300 hover:shadow-xs transition-all flex items-center gap-3.5';
+        card.className = 'bg-white p-4 rounded-2xl border border-slate-200 text-sm hover:border-sky-300 hover:shadow-xs transition-all flex items-center gap-3.5';
         
         const avatarHtml = m.photo ? 
           `<img src="${m.photo}" alt="${m.name}" class="w-12 h-14 object-cover rounded-xl border border-slate-300 shadow-xs shrink-0">` :
@@ -874,12 +1315,145 @@
       lucide.createIcons();
     }
 
-    // Initialization
+    // RENDER DOCUMENTS ARCHIVE
+    function filterDocuments(category) {
+      activeDocCategory = category;
+      document.querySelectorAll('.doc-filter-btn').forEach(btn => {
+        if (btn.textContent.toLowerCase().includes(category)) {
+          btn.className = 'doc-filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-700 text-white shadow-xs';
+        } else {
+          btn.className = 'doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200';
+        }
+      });
+      renderDocuments();
+    }
+
+    function renderDocuments() {
+      const container = document.getElementById('documentsGrid');
+      container.innerHTML = '';
+
+      const docs = masterData.documents.filter(d => activeDocCategory === 'all' || d.category === activeDocCategory);
+
+      docs.forEach(d => {
+        const card = document.createElement('div');
+        card.className = 'bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:border-sky-400 hover:shadow-md transition-all flex flex-col justify-between';
+        
+        const isPdf = d.filetype === 'PDF';
+        const actionLabel = isPdf ? (currentLang === 'ar' ? 'عرض الوثيقة (PDF)' : 'View Document (PDF)') : (currentLang === 'ar' ? 'تحميل الملف' : 'Download File');
+        const iconName = d.icon || 'file-text';
+        const fileUrl = 'public/archive/' + d.filename;
+
+        card.innerHTML = `
+          <div>
+            <div class="flex items-center justify-between mb-3">
+              <div class="w-9 h-9 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center">
+                <i data-lucide="${iconName}" class="w-4 h-4"></i>
+              </div>
+              <span class="text-[11px] font-bold text-slate-400 font-mono">${d.filesize} • ${d.filetype}</span>
+            </div>
+            <h3 class="font-bold text-slate-900 text-sm mb-1">${currentLang === 'ar' ? d.title_ar : d.title_en}</h3>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">${currentLang === 'ar' ? d.desc_ar : d.desc_en}</p>
+          </div>
+          <a href="${fileUrl}" target="_blank" ${isPdf ? '' : 'download'} class="inline-flex items-center justify-between text-xs font-bold text-sky-700 hover:text-sky-800 bg-sky-50 hover:bg-sky-100 px-3.5 py-2 rounded-xl transition-all">
+            <span>${actionLabel}</span>
+            <i data-lucide="${isPdf ? 'arrow-right' : 'download'}" class="w-3.5 h-3.5"></i>
+          </a>
+        `;
+        container.appendChild(card);
+      });
+      lucide.createIcons();
+    }
+
+    // ADMIN DATA ENTRY MODAL
+    function openAdminModal() {
+      const modal = document.getElementById('adminModal');
+      modal.classList.remove('hidden');
+      modal.classList.add('flex');
+    }
+
+    function closeAdminModal() {
+      const modal = document.getElementById('adminModal');
+      modal.classList.add('hidden');
+      modal.classList.remove('flex');
+    }
+
+    function verifyAdminPin() {
+      const pin = document.getElementById('adminPinInput').value;
+      const err = document.getElementById('adminPinError');
+      if (pin === 'jbf2026' || pin === 'admin') {
+        document.getElementById('adminPinSection').classList.add('hidden');
+        document.getElementById('adminFormSection').classList.remove('hidden');
+        err.classList.add('hidden');
+      } else {
+        err.classList.remove('hidden');
+      }
+    }
+
+    function applyAdminUpdate() {
+      const tName = document.getElementById('adminTeamName').value.trim();
+      const rank = parseInt(document.getElementById('adminTeamRank').value);
+      const vp = parseFloat(document.getElementById('adminTeamVp').value);
+      const imp = parseInt(document.getElementById('adminTeamImp').value) || 0;
+      const rosterRaw = document.getElementById('adminTeamRoster').value.trim();
+      const roster = rosterRaw ? rosterRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
+
+      if (!tName || isNaN(vp)) {
+        alert('Please provide at least a Team Name and Total V.P score.');
+        return;
+      }
+
+      // Find or add in Jordan Cup matrix
+      let existing = masterData.jordanCup2026.matrix.find(x => x.team.toLowerCase() === tName.toLowerCase());
+      if (existing) {
+        existing.totalVp = vp;
+        existing.totalImp = imp;
+        if (!isNaN(rank)) existing.rank = rank;
+        if (roster.length > 0) existing.roster = roster;
+      } else {
+        masterData.jordanCup2026.matrix.push({
+          team: tName,
+          rank: rank || masterData.jordanCup2026.matrix.length + 1,
+          totalVp: vp,
+          totalImp: imp,
+          rounds: [],
+          penalty: 0,
+          roster: roster
+        });
+      }
+
+      // Re-sort and re-render
+      masterData.jordanCup2026.matrix.sort((a, b) => b.totalVp - a.totalVp);
+      renderCup26Matrix();
+      renderJordanCupCards();
+      alert('Live update applied! Check the tables and cards below.');
+    }
+
+    function exportAdminJson() {
+      const box = document.getElementById('adminJsonOutputBox');
+      const textarea = document.getElementById('adminJsonTextarea');
+      box.classList.remove('hidden');
+      textarea.value = JSON.stringify(masterData.jordanCup2026.matrix, null, 2);
+    }
+
+    function copyAdminJson() {
+      const textarea = document.getElementById('adminJsonTextarea');
+      textarea.select();
+      document.execCommand('copy');
+      alert('JSON copied to clipboard!');
+    }
+
+    // INITIALIZATION
     window.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
-      renderStandings(festivalData.standings);
-      renderJordanCup();
+      selectFestivalYear('2026');
+      renderCup26Matrix();
+      renderCup26Schedule();
+      renderCup25Matrix();
+      renderMix25();
+      renderJordanCupCards();
+      renderGallery();
       renderCommittee();
+      renderDocuments();
     });
   </script>
 </body>
