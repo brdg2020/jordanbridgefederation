@@ -48,254 +48,236 @@ for year, fname, title, director in fest_configs:
     }
 print(f"Parsed {len(festivals)} historical festivals.")
 
-# 2. Parse Jordan Cup 2026 (From Jordan Cups 26 Final.xlsx & schedule)
-cup2026_file = os.path.join(archive_dir, 'Jordan Cups 26 Final.xlsx')
-wb_cup26 = openpyxl.load_workbook(cup2026_file, data_only=True)
-ws_cup26 = wb_cup26.active
+# 2-4. Jordan Cup 2026/2025 and Mixed Selection 2025.
+# The source spreadsheets were fully transferred into public/data/jbf_master_data.json
+# and then removed from the site (see tools/BRIDGEWEBS_MIGRATION.md). If they are put
+# back in public/archive they are parsed again; otherwise the stored data is reused.
+_xlsx = ['Jordan Cups 26 Final.xlsx', 'Jordan Cups 26 schedule.xlsx', 'Jordan Cups 2025 Final.xlsx', 'MIX SELECTION FINAL.xlsx']
+if all(os.path.exists(os.path.join(archive_dir, f)) for f in _xlsx):
+    # 2. Parse Jordan Cup 2026 (From Jordan Cups 26 Final.xlsx & schedule)
+    cup2026_file = os.path.join(archive_dir, 'Jordan Cups 26 Final.xlsx')
+    wb_cup26 = openpyxl.load_workbook(cup2026_file, data_only=True)
+    ws_cup26 = wb_cup26.active
 
-# Team rosters from Jordan Cups 26 schedule.xlsx & 26 Final
-rosters_2026 = {
-    'AL Nashama': ['Abdlah Ajlouni', 'Zaid Bitar', 'Samer Haddad', 'Luai Al Hussari', 'Mamoun Al Kotob', 'Omran Abu Dhaim'],
-    'Lions': ['Samer Rwashdeh', 'Farah Ahmed', 'Yena Sabagh', 'Mohd Al Taji'],
-    'Jordan Teams': ['Ghassan Ghaneem', 'Yasmin Abu Jaber', 'Marwan Ghaneem', 'Clement Mamar Bash', 'Rana Abdelhadi', 'Jamal Abdeljalil'],
-    'Jordan Mix': ['Sakher Malkawi', 'Aaida Abu Jaber', 'Dima Al Taher', 'Ahmed Al Samhouri', 'Huda Rabaeh', 'Akiel Madi'],
-    'Alfa': ['Randa Al Saket', 'Azza Qauah', 'Hala Sawaf', 'Amal Fakhouri'],
-    'Eagles': ['Mona Al Omari', 'Mais Al Bitar', 'Bana Al Taher', 'Hanan Juman', 'Nowel Trawneh', 'Omar Al Masri'],
-    'Ortho Group': ['Yousef Batshon', 'Jack Qarouta', 'Ramzi Qusous', 'Rageed Sabagh', 'Maya Khalaf', 'Laith Tashman'],
-    'Palestine': ['Laila Zruqat', 'Hanan Al Masri', 'Nawar Hashem', 'Fiuroz Badwan', 'Alia Shredh']
-}
-
-matrix_2026 = []
-for r in range(14, 22):
-    tname = ws_cup26.cell(r, 1).value
-    if not tname:
-        continue
-    tname = str(tname).strip()
-    rounds = []
-    # 7 rounds, each has VP and IMP
-    for rnd in range(1, 8):
-        c_vp = 2 + (rnd - 1) * 2
-        c_imp = c_vp + 1
-        vp_val = ws_cup26.cell(r, c_vp).value
-        imp_val = ws_cup26.cell(r, c_imp).value
-        rounds.append({
-            'round': rnd,
-            'vp': round(float(vp_val), 2) if vp_val is not None else 0.0,
-            'imp': int(float(imp_val)) if imp_val is not None else 0
-        })
-    penalty = ws_cup26.cell(r, 16).value
-    total_vp = ws_cup26.cell(r, 17).value
-    total_imp = ws_cup26.cell(r, 18).value
-    
-    matrix_2026.append({
-        'team': tname,
-        'rounds': rounds,
-        'penalty': float(penalty) if penalty is not None else 0.0,
-        'totalVp': round(float(total_vp), 2) if total_vp is not None else 0.0,
-        'totalImp': int(float(total_imp)) if total_imp is not None else 0,
-        'roster': rosters_2026.get(tname, [])
-    })
-
-matrix_2026.sort(key=lambda x: x['totalVp'], reverse=True)
-for idx, item in enumerate(matrix_2026):
-    item['rank'] = idx + 1
-
-# Schedule 2026 with Match Scores & IMPs
-sched_file = os.path.join(archive_dir, 'Jordan Cups 26 schedule.xlsx')
-wb_sched = openpyxl.load_workbook(sched_file, data_only=True)
-ws_sched = wb_sched.active
-
-team_aliases = {
-    'lions': 'Lions',
-    'eagles': 'Eagles',
-    'jordan teams': 'Jordan Teams',
-    'jor teams': 'Jordan Teams',
-    'palestine': 'Palestine',
-    'ortho group': 'Ortho Group',
-    'al nashama': 'AL Nashama',
-    'jordan mix': 'Jordan Mix',
-    'jor mix': 'Jordan Mix',
-    'alfa': 'Alfa'
-}
-
-def norm_team(name):
-    clean = str(name).strip().lower()
-    return team_aliases.get(clean, str(name).strip())
-
-team_stats_map = {}
-for entry in matrix_2026:
-    t_name = norm_team(entry['team'])
-    team_stats_map[t_name] = {}
-    for r_stat in entry['rounds']:
-        team_stats_map[t_name][r_stat['round']] = r_stat
-
-raw_pairings = {
-    1: [(ws_sched.cell(r, 1).value, ws_sched.cell(r, 2).value) for r in range(24, 28)],
-    2: [(ws_sched.cell(r, 3).value, ws_sched.cell(r, 4).value) for r in range(24, 28)],
-    3: [(ws_sched.cell(r, 1).value, ws_sched.cell(r, 2).value) for r in range(30, 34)],
-    4: [(ws_sched.cell(r, 3).value, ws_sched.cell(r, 4).value) for r in range(30, 34)],
-    5: [(ws_sched.cell(r, 1).value, ws_sched.cell(r, 2).value) for r in range(36, 40)],
-    6: [(ws_sched.cell(r, 3).value, ws_sched.cell(r, 4).value) for r in range(36, 40)],
-    7: [(ws_sched.cell(r, 1).value, ws_sched.cell(r, 2).value) for r in range(42, 46)]
-}
-
-schedule_2026 = []
-for rnd in range(1, 8):
-    round_matches = []
-    for h_raw, a_raw in raw_pairings[rnd]:
-        h = norm_team(h_raw)
-        a = norm_team(a_raw)
-        h_s = team_stats_map.get(h, {}).get(rnd, {'vp': 0.0, 'imp': 0})
-        a_s = team_stats_map.get(a, {}).get(rnd, {'vp': 0.0, 'imp': 0})
-        winner = h if h_s['vp'] > a_s['vp'] else (a if a_s['vp'] > h_s['vp'] else 'Tie')
-        round_matches.append({
-            'home': h,
-            'away': a,
-            'homeVp': h_s['vp'],
-            'awayVp': a_s['vp'],
-            'homeImp': h_s['imp'],
-            'awayImp': a_s['imp'],
-            'winner': winner
-        })
-    schedule_2026.append({
-        'round': rnd,
-        'matches': round_matches
-    })
-
-# 3. Parse Jordan Cup 2025 (Jordan Cups 2025 Final.xlsx)
-cup2025_file = os.path.join(archive_dir, 'Jordan Cups 2025 Final.xlsx')
-wb_cup25 = openpyxl.load_workbook(cup2025_file, data_only=True)
-ws_cup25 = wb_cup25.active
-
-# Rosters for 2025
-rosters_2025 = {
-    'KING HUSSEIN CLUB': ['Mamoun Al Kotob', 'Ghassan Ghaneem', 'Omran Abu Dhaim', 'Marwan Ghaneem'],
-    'JBA 3': ['Farah Ahmed', 'Samer Rwashdeh', 'Dima Al Taher', 'Ahmed Al Samhouri'],
-    'JBA 1': ['Mohd Al Taji', 'Yena Rageed', 'Hamzeh Habbob', 'Samer Haddad', 'Syelvi Skljean'],
-    'JBA 2': ['Jamal Abdeljalil', 'Rana Abdelhadi', 'Huda Rabaia', 'Zaid Bitar'],
-    'OTHODOX CLUB': ['Yousef Batshon', 'Rabeha Othman', 'Zeyad Shraehah', 'Abdlah Ajlouni', 'Farid Nabelsi', 'Jack Karouta', 'Laith Tashman'],
-    'JBA 5': ['Lina Toukan', 'Maram Qusous', 'Aziz Amer', 'Nowel Trawnwh'],
-    'JBA 4': ['Hanan Al Masri', 'Nawar Hashem', 'Fiuroz Badwan', 'Hala Sawaf', 'Najwa Najab', 'Hassana Zu']
-}
-
-matrix_2025 = []
-for r in range(14, 21):
-    tname = ws_cup25.cell(r, 1).value
-    if not tname:
-        continue
-    tname = str(tname).strip()
-    after_r7 = ws_cup25.cell(r, 2).value
-    r8 = ws_cup25.cell(r, 3).value
-    r9 = ws_cup25.cell(r, 4).value
-    r10 = ws_cup25.cell(r, 5).value
-    r11 = ws_cup25.cell(r, 6).value
-    r12 = ws_cup25.cell(r, 7).value
-    r13 = ws_cup25.cell(r, 8).value
-    r14 = ws_cup25.cell(r, 9).value
-    total_vp = ws_cup25.cell(r, 11).value
-    
-    rounds_vps = [
-        {'label': 'After R7', 'vp': round(float(after_r7), 2) if after_r7 is not None else 0.0},
-        {'label': 'R8', 'vp': round(float(r8), 2) if r8 is not None else 0.0},
-        {'label': 'R9', 'vp': round(float(r9), 2) if r9 is not None else 0.0},
-        {'label': 'R10', 'vp': round(float(r10), 2) if r10 is not None else 0.0},
-        {'label': 'R11', 'vp': round(float(r11), 2) if r11 is not None else 0.0},
-        {'label': 'R12', 'vp': round(float(r12), 2) if r12 is not None else 0.0},
-        {'label': 'R13', 'vp': round(float(r13), 2) if r13 is not None else 0.0},
-        {'label': 'R14', 'vp': round(float(r14), 2) if r14 is not None else 0.0}
-    ]
-    
-    clean_total = round(float(total_vp), 2) if total_vp is not None else sum(x['vp'] for x in rounds_vps)
-    matrix_2025.append({
-        'team': tname,
-        'rounds': rounds_vps,
-        'totalVp': clean_total,
-        'roster': rosters_2025.get(tname, [])
-    })
-
-matrix_2025.sort(key=lambda x: x['totalVp'], reverse=True)
-for idx, item in enumerate(matrix_2025):
-    item['rank'] = idx + 1
-
-# 4. Parse Mixed Selection 2025 (MIX SELECTION FINAL.xlsx)
-# The final standings are on the "BYE" sheet: 11 rounds (IMPs + VPs), totals,
-# the best-9-rounds table ("Top 9 VP") and the official final ranking.
-# The other sheets (Sheet1 = after 5 rounds, Sheet2/Sheet3 = after 8 rounds)
-# are interim working copies of the same figures.
-mix_file = os.path.join(archive_dir, 'MIX SELECTION FINAL.xlsx')
-wb_mix = openpyxl.load_workbook(mix_file, data_only=True)
-ws_mix = wb_mix['BYE']
-
-def _num(v):
-    return None if v is None or v == '' else float(v)
-
-mix_by_name = {}
-for r in range(14, 21):
-    pname = ws_mix.cell(r, 2).value
-    if not pname:
-        continue
-    pname = str(pname).strip()
-    r_scores = []
-    for rnd in range(1, 12):
-        c_imp = 3 + (rnd - 1) * 2
-        imp_v = _num(ws_mix.cell(r, c_imp).value)
-        vp_v = _num(ws_mix.cell(r, c_imp + 1).value)
-        r_scores.append({'round': rnd,
-                         'imp': int(imp_v) if imp_v is not None else None,
-                         'vp': round(vp_v, 2) if vp_v is not None else None})
-    mix_by_name[pname] = {
-        'pair': pname,
-        'rounds': r_scores,
-        'totalImp': int(_num(ws_mix.cell(r, 25).value)),
-        'totalVp': round(_num(ws_mix.cell(r, 26).value), 2),
+    # Team rosters from Jordan Cups 26 schedule.xlsx & 26 Final
+    rosters_2026 = {
+        'AL Nashama': ['Abdlah Ajlouni', 'Zaid Bitar', 'Samer Haddad', 'Luai Al Hussari', 'Mamoun Al Kotob', 'Omran Abu Dhaim'],
+        'Lions': ['Samer Rwashdeh', 'Farah Ahmed', 'Yena Sabagh', 'Mohd Al Taji'],
+        'Jordan Teams': ['Ghassan Ghaneem', 'Yasmin Abu Jaber', 'Marwan Ghaneem', 'Clement Mamar Bash', 'Rana Abdelhadi', 'Jamal Abdeljalil'],
+        'Jordan Mix': ['Sakher Malkawi', 'Aaida Abu Jaber', 'Dima Al Taher', 'Ahmed Al Samhouri', 'Huda Rabaeh', 'Akiel Madi'],
+        'Alfa': ['Randa Al Saket', 'Azza Qauah', 'Hala Sawaf', 'Amal Fakhouri'],
+        'Eagles': ['Mona Al Omari', 'Mais Al Bitar', 'Bana Al Taher', 'Hanan Juman', 'Nowel Trawneh', 'Omar Al Masri'],
+        'Ortho Group': ['Yousef Batshon', 'Jack Qarouta', 'Ramzi Qusous', 'Rageed Sabagh', 'Maya Khalaf', 'Laith Tashman'],
+        'Palestine': ['Laila Zruqat', 'Hanan Al Masri', 'Nawar Hashem', 'Fiuroz Badwan', 'Alia Shredh']
     }
-# Top 9 VP table (rows 26-32: name in B, 9 best VPs in C..K, total in L)
-for r in range(26, 33):
-    pname = str(ws_mix.cell(r, 2).value).strip()
-    mix_by_name[pname]['top9'] = [round(_num(ws_mix.cell(r, c).value), 2) for c in range(3, 12)]
-    mix_by_name[pname]['top9Total'] = round(_num(ws_mix.cell(r, 12).value), 2)
-# Final ranking (rows 38-44: name in B, Top 9 total in C, rank in D)
-for r in range(38, 45):
-    pname = str(ws_mix.cell(r, 2).value).strip()
-    mix_by_name[pname]['rank'] = int(_num(ws_mix.cell(r, 4).value))
-    assert round(_num(ws_mix.cell(r, 3).value), 2) == mix_by_name[pname]['top9Total']
-mix_pairs = sorted(mix_by_name.values(), key=lambda x: x['rank'])
+
+    matrix_2026 = []
+    for r in range(14, 22):
+        tname = ws_cup26.cell(r, 1).value
+        if not tname:
+            continue
+        tname = str(tname).strip()
+        rounds = []
+        # 7 rounds, each has VP and IMP
+        for rnd in range(1, 8):
+            c_vp = 2 + (rnd - 1) * 2
+            c_imp = c_vp + 1
+            vp_val = ws_cup26.cell(r, c_vp).value
+            imp_val = ws_cup26.cell(r, c_imp).value
+            rounds.append({
+                'round': rnd,
+                'vp': round(float(vp_val), 2) if vp_val is not None else 0.0,
+                'imp': int(float(imp_val)) if imp_val is not None else 0
+            })
+        penalty = ws_cup26.cell(r, 16).value
+        total_vp = ws_cup26.cell(r, 17).value
+        total_imp = ws_cup26.cell(r, 18).value
+    
+        matrix_2026.append({
+            'team': tname,
+            'rounds': rounds,
+            'penalty': float(penalty) if penalty is not None else 0.0,
+            'totalVp': round(float(total_vp), 2) if total_vp is not None else 0.0,
+            'totalImp': int(float(total_imp)) if total_imp is not None else 0,
+            'roster': rosters_2026.get(tname, [])
+        })
+
+    matrix_2026.sort(key=lambda x: x['totalVp'], reverse=True)
+    for idx, item in enumerate(matrix_2026):
+        item['rank'] = idx + 1
+
+    # Schedule 2026 with Match Scores & IMPs
+    sched_file = os.path.join(archive_dir, 'Jordan Cups 26 schedule.xlsx')
+    wb_sched = openpyxl.load_workbook(sched_file, data_only=True)
+    ws_sched = wb_sched.active
+
+    team_aliases = {
+        'lions': 'Lions',
+        'eagles': 'Eagles',
+        'jordan teams': 'Jordan Teams',
+        'jor teams': 'Jordan Teams',
+        'palestine': 'Palestine',
+        'ortho group': 'Ortho Group',
+        'al nashama': 'AL Nashama',
+        'jordan mix': 'Jordan Mix',
+        'jor mix': 'Jordan Mix',
+        'alfa': 'Alfa'
+    }
+
+    def norm_team(name):
+        clean = str(name).strip().lower()
+        return team_aliases.get(clean, str(name).strip())
+
+    team_stats_map = {}
+    for entry in matrix_2026:
+        t_name = norm_team(entry['team'])
+        team_stats_map[t_name] = {}
+        for r_stat in entry['rounds']:
+            team_stats_map[t_name][r_stat['round']] = r_stat
+
+    raw_pairings = {
+        1: [(ws_sched.cell(r, 1).value, ws_sched.cell(r, 2).value) for r in range(24, 28)],
+        2: [(ws_sched.cell(r, 3).value, ws_sched.cell(r, 4).value) for r in range(24, 28)],
+        3: [(ws_sched.cell(r, 1).value, ws_sched.cell(r, 2).value) for r in range(30, 34)],
+        4: [(ws_sched.cell(r, 3).value, ws_sched.cell(r, 4).value) for r in range(30, 34)],
+        5: [(ws_sched.cell(r, 1).value, ws_sched.cell(r, 2).value) for r in range(36, 40)],
+        6: [(ws_sched.cell(r, 3).value, ws_sched.cell(r, 4).value) for r in range(36, 40)],
+        7: [(ws_sched.cell(r, 1).value, ws_sched.cell(r, 2).value) for r in range(42, 46)]
+    }
+
+    schedule_2026 = []
+    for rnd in range(1, 8):
+        round_matches = []
+        for h_raw, a_raw in raw_pairings[rnd]:
+            h = norm_team(h_raw)
+            a = norm_team(a_raw)
+            h_s = team_stats_map.get(h, {}).get(rnd, {'vp': 0.0, 'imp': 0})
+            a_s = team_stats_map.get(a, {}).get(rnd, {'vp': 0.0, 'imp': 0})
+            winner = h if h_s['vp'] > a_s['vp'] else (a if a_s['vp'] > h_s['vp'] else 'Tie')
+            round_matches.append({
+                'home': h,
+                'away': a,
+                'homeVp': h_s['vp'],
+                'awayVp': a_s['vp'],
+                'homeImp': h_s['imp'],
+                'awayImp': a_s['imp'],
+                'winner': winner
+            })
+        schedule_2026.append({
+            'round': rnd,
+            'matches': round_matches
+        })
+
+    # 3. Parse Jordan Cup 2025 (Jordan Cups 2025 Final.xlsx)
+    cup2025_file = os.path.join(archive_dir, 'Jordan Cups 2025 Final.xlsx')
+    wb_cup25 = openpyxl.load_workbook(cup2025_file, data_only=True)
+    ws_cup25 = wb_cup25.active
+
+    # Rosters for 2025
+    rosters_2025 = {
+        'KING HUSSEIN CLUB': ['Mamoun Al Kotob', 'Ghassan Ghaneem', 'Omran Abu Dhaim', 'Marwan Ghaneem'],
+        'JBA 3': ['Farah Ahmed', 'Samer Rwashdeh', 'Dima Al Taher', 'Ahmed Al Samhouri'],
+        'JBA 1': ['Mohd Al Taji', 'Yena Rageed', 'Hamzeh Habbob', 'Samer Haddad', 'Syelvi Skljean'],
+        'JBA 2': ['Jamal Abdeljalil', 'Rana Abdelhadi', 'Huda Rabaia', 'Zaid Bitar'],
+        'OTHODOX CLUB': ['Yousef Batshon', 'Rabeha Othman', 'Zeyad Shraehah', 'Abdlah Ajlouni', 'Farid Nabelsi', 'Jack Karouta', 'Laith Tashman'],
+        'JBA 5': ['Lina Toukan', 'Maram Qusous', 'Aziz Amer', 'Nowel Trawnwh'],
+        'JBA 4': ['Hanan Al Masri', 'Nawar Hashem', 'Fiuroz Badwan', 'Hala Sawaf', 'Najwa Najab', 'Hassana Zu']
+    }
+
+    matrix_2025 = []
+    for r in range(14, 21):
+        tname = ws_cup25.cell(r, 1).value
+        if not tname:
+            continue
+        tname = str(tname).strip()
+        after_r7 = ws_cup25.cell(r, 2).value
+        r8 = ws_cup25.cell(r, 3).value
+        r9 = ws_cup25.cell(r, 4).value
+        r10 = ws_cup25.cell(r, 5).value
+        r11 = ws_cup25.cell(r, 6).value
+        r12 = ws_cup25.cell(r, 7).value
+        r13 = ws_cup25.cell(r, 8).value
+        r14 = ws_cup25.cell(r, 9).value
+        total_vp = ws_cup25.cell(r, 11).value
+    
+        rounds_vps = [
+            {'label': 'After R7', 'vp': round(float(after_r7), 2) if after_r7 is not None else 0.0},
+            {'label': 'R8', 'vp': round(float(r8), 2) if r8 is not None else 0.0},
+            {'label': 'R9', 'vp': round(float(r9), 2) if r9 is not None else 0.0},
+            {'label': 'R10', 'vp': round(float(r10), 2) if r10 is not None else 0.0},
+            {'label': 'R11', 'vp': round(float(r11), 2) if r11 is not None else 0.0},
+            {'label': 'R12', 'vp': round(float(r12), 2) if r12 is not None else 0.0},
+            {'label': 'R13', 'vp': round(float(r13), 2) if r13 is not None else 0.0},
+            {'label': 'R14', 'vp': round(float(r14), 2) if r14 is not None else 0.0}
+        ]
+    
+        clean_total = round(float(total_vp), 2) if total_vp is not None else sum(x['vp'] for x in rounds_vps)
+        matrix_2025.append({
+            'team': tname,
+            'rounds': rounds_vps,
+            'totalVp': clean_total,
+            'roster': rosters_2025.get(tname, [])
+        })
+
+    matrix_2025.sort(key=lambda x: x['totalVp'], reverse=True)
+    for idx, item in enumerate(matrix_2025):
+        item['rank'] = idx + 1
+
+    # 4. Parse Mixed Selection 2025 (MIX SELECTION FINAL.xlsx)
+    # The final standings are on the "BYE" sheet: 11 rounds (IMPs + VPs), totals,
+    # the best-9-rounds table ("Top 9 VP") and the official final ranking.
+    # The other sheets (Sheet1 = after 5 rounds, Sheet2/Sheet3 = after 8 rounds)
+    # are interim working copies of the same figures.
+    mix_file = os.path.join(archive_dir, 'MIX SELECTION FINAL.xlsx')
+    wb_mix = openpyxl.load_workbook(mix_file, data_only=True)
+    ws_mix = wb_mix['BYE']
+
+    def _num(v):
+        return None if v is None or v == '' else float(v)
+
+    mix_by_name = {}
+    for r in range(14, 21):
+        pname = ws_mix.cell(r, 2).value
+        if not pname:
+            continue
+        pname = str(pname).strip()
+        r_scores = []
+        for rnd in range(1, 12):
+            c_imp = 3 + (rnd - 1) * 2
+            imp_v = _num(ws_mix.cell(r, c_imp).value)
+            vp_v = _num(ws_mix.cell(r, c_imp + 1).value)
+            r_scores.append({'round': rnd,
+                             'imp': int(imp_v) if imp_v is not None else None,
+                             'vp': round(vp_v, 2) if vp_v is not None else None})
+        mix_by_name[pname] = {
+            'pair': pname,
+            'rounds': r_scores,
+            'totalImp': int(_num(ws_mix.cell(r, 25).value)),
+            'totalVp': round(_num(ws_mix.cell(r, 26).value), 2),
+        }
+    # Top 9 VP table (rows 26-32: name in B, 9 best VPs in C..K, total in L)
+    for r in range(26, 33):
+        pname = str(ws_mix.cell(r, 2).value).strip()
+        mix_by_name[pname]['top9'] = [round(_num(ws_mix.cell(r, c).value), 2) for c in range(3, 12)]
+        mix_by_name[pname]['top9Total'] = round(_num(ws_mix.cell(r, 12).value), 2)
+    # Final ranking (rows 38-44: name in B, Top 9 total in C, rank in D)
+    for r in range(38, 45):
+        pname = str(ws_mix.cell(r, 2).value).strip()
+        mix_by_name[pname]['rank'] = int(_num(ws_mix.cell(r, 4).value))
+        assert round(_num(ws_mix.cell(r, 3).value), 2) == mix_by_name[pname]['top9Total']
+    mix_pairs = sorted(mix_by_name.values(), key=lambda x: x['rank'])
+else:
+    with open(os.path.join(data_dir, 'jbf_master_data.json'), 'r', encoding='utf-8') as f:
+        _prev = json.load(f)
+    matrix_2026 = _prev['jordanCup2026']['matrix']
+    schedule_2026 = _prev['jordanCup2026']['schedule']
+    matrix_2025 = _prev['jordanCup2025']['matrix']
+    mix_pairs = _prev['mixSelection2025']['pairs']
+    print('Spreadsheets not present: reusing Jordan Cup / Mixed Selection data from jbf_master_data.json')
 
 # 5. Documents Inventory
 docs_inventory = [
     # 2026
-    {
-        'id': 'jordan_cup_2026_matrix',
-        'category': 'tournaments',
-        'title_en': 'Jordan Cup 2026 - Official Results & Score Matrix',
-        'title_ar': 'كأس الأردن 2026 - النتائج الرسمية ومصفوفة النقاط',
-        'desc_en': 'Complete match scores, VP standings, and IMP calculations for the 2026 premier league.',
-        'desc_ar': 'نتائج المباريات الكاملة وترتيب نقاط VP وحسابات IMP لبطولة دوري كأس الأردن 2026.',
-        'filename': 'Jordan Cups 26 Final.xlsx',
-        'filetype': 'XLSX',
-        'filesize': '97 KB',
-        'date': '2026-03-01',
-        'year': 2026,
-        'date_display_en': 'Mar 2026',
-        'date_display_ar': 'مارس 2026',
-        'icon': 'table'
-    },
-    {
-        'id': 'jordan_cup_2026_schedule',
-        'category': 'tournaments',
-        'title_en': 'Jordan Cup 2026 - Official Schedule & Pairings',
-        'title_ar': 'كأس الأردن 2026 - جدول ومواعيد المباريات الرسمية',
-        'desc_en': 'Official tournament pairings and match schedule arranged by Tournament Director Raad Otoom.',
-        'desc_ar': 'جدول ومواعيد مباريات بطولة كأس الأردن الرسمية المعتمدة من مدير البطولة رعد عتوم.',
-        'filename': 'Jordan Cups 26 schedule.xlsx',
-        'filetype': 'XLSX',
-        'filesize': '12 KB',
-        'date': '2026-01-20',
-        'year': 2026,
-        'date_display_en': 'Jan 2026',
-        'date_display_ar': 'يناير 2026',
-        'icon': 'calendar'
-    },
     # 2025
     {
         'id': 'wbf_women',
@@ -312,54 +294,6 @@ docs_inventory = [
         'date_display_en': 'Sep 2025',
         'date_display_ar': 'سبتمبر 2025',
         'icon': 'heart'
-    },
-    {
-        'id': 'jordan_cup_2025_final',
-        'category': 'tournaments',
-        'title_en': 'Jordan Cup 2025 - Final Standings & VP Matrix',
-        'title_ar': 'كأس الأردن 2025 - النتائج النهائية ومصفوفة VP',
-        'desc_en': 'Full final results, team VP ranks, and complete head-to-head calculations for Jordan Cup 2025.',
-        'desc_ar': 'الترتيب النهائي لبطولة كأس الأردن 2025 ونتائج الجولات ومصفوفة النقاط الكاملة.',
-        'filename': 'Jordan Cups 2025 Final.xlsx',
-        'filetype': 'XLSX',
-        'filesize': '96 KB',
-        'date': '2025-04-15',
-        'year': 2025,
-        'date_display_en': 'Apr 2025',
-        'date_display_ar': 'أبريل 2025',
-        'icon': 'table'
-    },
-    {
-        'id': 'jordan_cup_2025_r11',
-        'category': 'tournaments',
-        'title_en': 'Jordan Cup 2025 - Standings After Round 11',
-        'title_ar': 'كأس الأردن 2025 - ترتيب الفرق بعد الجولة 11',
-        'desc_en': 'Intermediate standings and cumulative VP points after Round 11 of the 2025 season.',
-        'desc_ar': 'الترتيب التراكمي ونقاط الفرق بعد انتهاء الجولة 11 من بطولة كأس الأردن 2025.',
-        'filename': 'JORDAN CUP 2025 AFTER ROUND 11.xlsx',
-        'filetype': 'XLSX',
-        'filesize': '96 KB',
-        'date': '2025-03-20',
-        'year': 2025,
-        'date_display_en': 'Mar 2025',
-        'date_display_ar': 'مارس 2025',
-        'icon': 'file-spreadsheet'
-    },
-    {
-        'id': 'mixed_selection_2025',
-        'category': 'tournaments',
-        'title_en': 'Jordan National Mixed Selection 2025 - Final VP',
-        'title_ar': 'تصفيات المنتخب الأردني للزوجي المختلط 2025 - الترتيب النهائي',
-        'desc_en': 'Official VP rankings of Jordan pairs competing for the national mixed team representation.',
-        'desc_ar': 'الترتيب النهائي لنقاط VP لفرق الزوجي المختلط المتنافسة لتمثيل المنتخب الوطني 2025.',
-        'filename': 'MIX SELECTION FINAL.xlsx',
-        'filetype': 'XLSX',
-        'filesize': '108 KB',
-        'date': '2025-02-10',
-        'year': 2025,
-        'date_display_en': 'Feb 2025',
-        'date_display_ar': 'فبراير 2025',
-        'icon': 'award'
     },
     # 2024
     {

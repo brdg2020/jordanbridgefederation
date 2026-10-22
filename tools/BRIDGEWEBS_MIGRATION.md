@@ -5,7 +5,7 @@ Audit of every menu entry on https://www.bridgewebs.com/jbf (checked 22 Oct 2026
 | Bridgewebs page | Content there | On the new site |
 |---|---|---|
 | Home Page | Condolence for Issam Salfiti | Memorial section |
-| | Jordan Cup 26 results + schedule (.xlsx) | National Leagues & Cup, Archive |
+| | Jordan Cup 26 results + schedule (.xlsx) | National Leagues & Cup (the data; the spreadsheets themselves were removed) |
 | | Festival 2026 posters (JOR261, JOR_262) | Posters |
 | | Sponsors (Tejari, Etihad, Capital, National Paints) | Sponsors strip |
 | | Special message from HRH Prince Feisal + Olympic logo | Olympic patronage block |
@@ -26,7 +26,9 @@ Audit of every menu entry on https://www.bridgewebs.com/jbf (checked 22 Oct 2026
 - **EBU Information (EBU News, Best Behaviour, Law Change 2017, Announcing Rules)**: the English Bridge Union's own pages that Bridgewebs inserts into every club site. This is not JBF content.
 - **Administration, BridgeWebs**: the platform's admin and directory pages.
 
-## Excel files in public/archive (checked 23 Oct 2026)
+## Excel files (checked 23 Oct 2026, then removed from the site)
+
+All figures were transferred into `public/data/jbf_master_data.json`; the spreadsheets and their download links were then removed (23 Oct 2026). `generate_master_data.py` reuses the stored data, and parses the files again if they are put back in `public/archive/`.
 
 | File | What it holds | On the site |
 |---|---|---|

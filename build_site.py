@@ -50,7 +50,7 @@ html_content = f'''<!DOCTYPE html>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Jordan Bridge Federation | الاتحاد الأردني للبريدج</title>
-  <meta name="description" content="Official Portal of the Jordan Bridge Federation (JBF). Tournaments, live Vugraph scores, Jordan Bridge Festival, Jordan Cup, Excel spreadsheets, bylaws, committee, and archive.">
+  <meta name="description" content="Official Portal of the Jordan Bridge Federation (JBF). Tournaments, live Vugraph scores, Jordan Bridge Festival, Jordan Cup, results archive, bylaws, committee, and archive.">
   <link rel="canonical" href="https://jordanbridgefederation.com/">
   
   <!-- Favicons & App Icons -->
@@ -557,14 +557,6 @@ html_content = f'''<!DOCTYPE html>
           </div>
 
           <div class="flex items-center gap-2">
-            <a href="public/archive/Jordan Cups 26 Final.xlsx" download class="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs text-xs">
-              <i data-lucide="download" class="w-3.5 h-3.5"></i>
-              <span>Final Results (.xlsx)</span>
-            </a>
-            <a href="public/archive/Jordan Cups 26 schedule.xlsx" download class="inline-flex items-center gap-1.5 font-bold text-slate-600 hover:text-slate-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs text-xs">
-              <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i>
-              <span>Schedule (.xlsx)</span>
-            </a>
           </div>
         </div>
 
@@ -620,10 +612,6 @@ html_content = f'''<!DOCTYPE html>
             <span class="font-bold text-slate-900">Jordan Cup 2025 Final:</span>
             <span class="text-slate-600">Director Raad Otoom • 14 Rounds Total</span>
           </div>
-          <a href="public/archive/Jordan Cups 2025 Final.xlsx" download class="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs">
-            <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i>
-            <span>Download Cup 2025 Excel (.xlsx)</span>
-          </a>
         </div>
 
         <div class="border border-slate-200 rounded-b-2xl overflow-hidden shadow-xs bg-white">
@@ -659,10 +647,6 @@ html_content = f'''<!DOCTYPE html>
             <span class="font-bold text-slate-900">National Mixed Pairs Selection 2025:</span>
             <span class="text-slate-600" data-en="11 rounds · final ranking on the best 9 rounds (Top 9 VP)" data-ar="11 جولة · الترتيب النهائي حسب أفضل 9 جولات">11 rounds · final ranking on the best 9 rounds (Top 9 VP)</span>
           </div>
-          <a href="public/archive/MIX SELECTION FINAL.xlsx" download class="inline-flex items-center gap-1.5 font-bold text-emerald-700 hover:text-emerald-800 bg-white px-3 py-1.5 rounded-lg border border-slate-200 shadow-xs">
-            <i data-lucide="file-spreadsheet" class="w-3.5 h-3.5"></i>
-            <span>Download Mixed Selection (.xlsx)</span>
-          </a>
         </div>
 
         <div class="border border-slate-200 rounded-b-2xl overflow-hidden shadow-xs bg-white">
@@ -748,7 +732,7 @@ html_content = f'''<!DOCTYPE html>
     </div>
   </section>
 
-  <!-- SECTION 6: COMPLETE DOCUMENT ARCHIVE & REGULATIONS (20 OFFICIAL DOCUMENTS) -->
+  <!-- SECTION 6: COMPLETE DOCUMENT ARCHIVE & REGULATIONS (OFFICIAL DOCUMENTS) -->
   <section id="documents" class="py-16 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
@@ -1494,7 +1478,7 @@ html_content = f'''<!DOCTYPE html>
         if (p.rank === 1) rankBadge = 'badge-rank-1 font-black';
         else if (p.rank === 2) rankBadge = 'badge-rank-2 font-black';
         else if (p.rank === 3) rankBadge = 'badge-rank-3 font-black';
-        // mark the rounds whose VPs make up the Top 9 list from the spreadsheet
+        // mark the rounds whose VPs make up the Top 9 list
         const pool = (p.top9 || []).slice();
         const counted = p.rounds.map(r => {{ const k = pool.indexOf(r.vp); if (k >= 0) {{ pool.splice(k, 1); return true; }} return false; }});
         const tr = document.createElement('tr');
