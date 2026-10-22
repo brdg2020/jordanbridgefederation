@@ -299,7 +299,7 @@ html_content = f'''<!DOCTYPE html>
           <span class="block text-xs text-sky-200 uppercase font-semibold mt-1" data-en="In-Browser Excels" data-ar="جداول إكسل تفاعلية">In-Browser Excels</span>
         </div>
         <div class="bg-white/10 backdrop-blur-md p-4 rounded-2xl border border-white/10">
-          <span class="text-2xl font-black text-purple-300 font-mono">14</span>
+          <span class="text-2xl font-black text-purple-300 font-mono">20</span>
           <span class="block text-xs text-sky-200 uppercase font-semibold mt-1" data-en="Archived Documents" data-ar="وثائق ولوائح رسمية">Archived Documents</span>
         </div>
       </div>
@@ -711,28 +711,75 @@ html_content = f'''<!DOCTYPE html>
     </div>
   </section>
 
-  <!-- SECTION 6: COMPLETE DOCUMENT ARCHIVE & REGULATIONS (14 OFFICIAL DOCUMENTS) -->
+  <!-- SECTION 6: COMPLETE DOCUMENT ARCHIVE & REGULATIONS (20 OFFICIAL DOCUMENTS) -->
   <section id="documents" class="py-16 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
       
       <div class="text-center max-w-2xl mx-auto mb-10">
         <span class="text-xs font-bold uppercase tracking-wider text-slate-600 bg-slate-200 px-3 py-1 rounded-full inline-block mb-2" data-en="Governance & Regulations" data-ar="الأنظمة واللوائح والقرارات">Governance & Regulations</span>
         <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Complete Federation Document Archive" data-ar="أرشيف الوثائق واللوائح الرسمية الكامل">Complete Federation Document Archive</h2>
-        <p class="text-sm text-slate-600 mt-2" data-en="100% of the federation bylaws, Olympic statutes, daily tournament bulletins, and international policies preserved." data-ar="جميع الأنظمة الأساسية، لوائح اللجنة الأولمبية، النشرات اليومية، والسياسات الدولية محفوظة ومتاحة للجميع.">
-          100% of the federation bylaws, Olympic statutes, daily tournament bulletins, and international policies preserved.
+        <p class="text-sm text-slate-600 mt-2" data-en="100% of the federation bylaws, Olympic statutes, daily tournament bulletins, official draws, and international policies preserved." data-ar="جميع الأنظمة الأساسية، لوائح اللجنة الأولمبية، النشرات اليومية، جداول البطولات والسياسات الدولية محفوظة ومتاحة للجميع.">
+          100% of the federation bylaws, Olympic statutes, daily tournament bulletins, official draws, and international policies preserved.
         </p>
       </div>
 
-      <!-- Filter Categories -->
-      <div class="flex flex-wrap items-center justify-center gap-2 mb-8">
-        <button onclick="filterDocuments('all')" class="doc-filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-700 text-white shadow-xs">All Documents (14)</button>
-        <button onclick="filterDocuments('governance')" class="doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">Governance & Bylaws</button>
-        <button onclick="filterDocuments('bulletins')" class="doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">Festival Bulletins (1–4)</button>
-        <button onclick="filterDocuments('regulations')" class="doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">WBF & Regulations</button>
-        <button onclick="filterDocuments('festival')" class="doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200">Festival Programs</button>
+      <!-- Controls Bar: Category Filters + View Mode & Sort Controls -->
+      <div class="bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200 mb-8 space-y-4">
+        
+        <!-- Category Filter Tabs -->
+        <div class="flex flex-wrap items-center justify-center gap-2" id="docCategoryTabs">
+          <button onclick="filterDocuments('all')" class="doc-filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-700 text-white shadow-xs transition-all" data-cat="all">
+            <span data-en="All Documents (20)" data-ar="جميع الوثائق (20)">All Documents (20)</span>
+          </button>
+          <button onclick="filterDocuments('governance')" class="doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all" data-cat="governance">
+            <span data-en="Governance & Bylaws" data-ar="الأنظمة واللوائح">Governance & Bylaws</span>
+          </button>
+          <button onclick="filterDocuments('festival')" class="doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all" data-cat="festival">
+            <span data-en="Festival Programs & Guides" data-ar="برامج وأدلة المهرجانات">Festival Programs & Guides</span>
+          </button>
+          <button onclick="filterDocuments('bulletins')" class="doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all" data-cat="bulletins">
+            <span data-en="Daily Bulletins" data-ar="النشرات اليومية">Daily Bulletins</span>
+          </button>
+          <button onclick="filterDocuments('tournaments')" class="doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all" data-cat="tournaments">
+            <span data-en="Tournament Draws & Sheets" data-ar="جداول ونتائج البطولات">Tournament Draws & Sheets</span>
+          </button>
+          <button onclick="filterDocuments('international')" class="doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all" data-cat="international">
+            <span data-en="WBF & International" data-ar="اللوائح والسياسات الدولية">WBF & International</span>
+          </button>
+        </div>
+
+        <!-- Sort, View Mode & Search Toolbar -->
+        <div class="flex flex-col sm:flex-row items-center justify-between gap-3 pt-3 border-t border-slate-200">
+          
+          <!-- View Mode & Sort Toggle -->
+          <div class="flex flex-wrap items-center gap-2 w-full sm:w-auto">
+            
+            <!-- Date Sort Button (Tarihe Göre Sıralama) -->
+            <button onclick="toggleDocSortOrder()" id="docSortBtn" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition-all shadow-2xs">
+              <i data-lucide="arrow-down-narrow-wide" class="w-3.5 h-3.5 text-sky-700"></i>
+              <span id="docSortLabel" data-en="Date: Newest First" data-ar="التاريخ: الأحدث أولاً">Date: Newest First</span>
+            </button>
+
+            <!-- Group by Content Toggle (İçeriğe Göre Grupla) -->
+            <button onclick="toggleDocViewMode()" id="docViewModeBtn" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white border border-slate-200 text-slate-700 hover:bg-slate-100 transition-all shadow-2xs">
+              <i data-lucide="layers" class="w-3.5 h-3.5 text-sky-700"></i>
+              <span id="docViewLabel" data-en="View: Grouped by Content" data-ar="العرض: تجميع حسب المحتوى">View: Grouped by Content</span>
+            </button>
+
+          </div>
+
+          <!-- Document Search -->
+          <div class="relative w-full sm:w-64">
+            <i data-lucide="search" class="w-3.5 h-3.5 absolute left-3 top-1/2 -translate-y-1/2 text-slate-400"></i>
+            <input type="text" id="docSearchInput" oninput="handleDocSearch(this.value)" placeholder="Search documents or year..." class="w-full pl-9 pr-3 py-1.5 text-xs bg-white border border-slate-200 rounded-xl focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500 transition-all">
+          </div>
+
+        </div>
+
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="documentsGrid">
+      <!-- Container for Documents (Grid or Category Groups) -->
+      <div id="documentsContainer">
         <!-- Dynamically populated from docs_inventory -->
       </div>
 
@@ -933,6 +980,7 @@ html_content = f'''<!DOCTYPE html>
       renderCup25Matrix();
       renderJordanCupCards();
       renderCommittee();
+      renderDocuments();
     }}
 
     // MOBILE MENU
@@ -1562,51 +1610,242 @@ html_content = f'''<!DOCTYPE html>
     }}
 
     // RENDER DOCUMENTS ARCHIVE
+    let activeDocCategory = 'all';
+    let docSortOrder = 'desc'; // 'desc' (newest first) or 'asc' (oldest first)
+    let docViewMode = 'category'; // 'category' (grouped by content) or 'timeline' (flat list)
+    let docSearchQuery = '';
+
+    const categoryMeta = {{
+      'governance': {{
+        title_en: 'Governance & Bylaws',
+        title_ar: 'الأنظمة واللوائح الأساسية',
+        desc_en: 'Official federation constitutions, Olympic statutes, and General Assembly rosters.',
+        desc_ar: 'الأنظمة الأساسية المعتمدة رسمياً، لوائح اللجنة الأولمبية وكشوف الهيئة العامة.',
+        icon: 'scale',
+        badgeClass: 'bg-emerald-50 text-emerald-700 border-emerald-200'
+      }},
+      'festival': {{
+        title_en: 'Festival Programs & Guides',
+        title_ar: 'برامج وأدلة المهرجانات',
+        desc_en: 'Official brochures, programs, schedules, and historical festival prospectuses.',
+        desc_ar: 'الكتيبات الرسمية، الجداول الزمنية، المعايير التنظيمية وبرامج مهرجانات الأردن الدولية.',
+        icon: 'book-open',
+        badgeClass: 'bg-amber-50 text-amber-700 border-amber-200'
+      }},
+      'bulletins': {{
+        title_en: 'Championship Daily Bulletins',
+        title_ar: 'النشرات اليومية للبطولات (BFAME)',
+        desc_en: 'Daily championship bulletins from the 20th BFAME Amman with hands and results.',
+        desc_ar: 'النشرات اليومية الرسمية الصادرة خلال بطولة آسيا والشرق الأوسط العشرين في عمان.',
+        icon: 'newspaper',
+        badgeClass: 'bg-sky-50 text-sky-700 border-sky-200'
+      }},
+      'tournaments': {{
+        title_en: 'Tournament Draws & Sheets',
+        title_ar: 'جداول ونتائج وسجلات البطولات',
+        desc_en: 'Official pairings, schedules, score matrices, and team VP rankings (Jordan Cup & Mixed Selection).',
+        desc_ar: 'الجداول ومصفوفات النتائج الرسمية لبطولات دوري كأس الأردن وتصفيات المنتخب الوطني.',
+        icon: 'table',
+        badgeClass: 'bg-indigo-50 text-indigo-700 border-indigo-200'
+      }},
+      'international': {{
+        title_en: 'WBF & International Policies',
+        title_ar: 'اللوائح والسياسات الدولية (WBF & BFAME)',
+        desc_en: 'World Bridge Federation regulations, women programmes, and historical Asian records.',
+        desc_ar: 'لوائح الاتحاد العالمي للبريدج، برامج المرأة، وسجل المشاركات والإنجازات القارية.',
+        icon: 'globe',
+        badgeClass: 'bg-purple-50 text-purple-700 border-purple-200'
+      }}
+    }};
+
     function filterDocuments(category) {{
       activeDocCategory = category;
       document.querySelectorAll('.doc-filter-btn').forEach(btn => {{
-        if (btn.textContent.toLowerCase().includes(category)) {{
-          btn.className = 'doc-filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-700 text-white shadow-xs';
+        const btnCat = btn.getAttribute('data-cat');
+        if (btnCat === category) {{
+          btn.className = 'doc-filter-btn active px-3.5 py-1.5 rounded-xl text-xs font-bold bg-sky-700 text-white shadow-xs transition-all';
         }} else {{
-          btn.className = 'doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-slate-100 text-slate-700 hover:bg-slate-200';
+          btn.className = 'doc-filter-btn px-3.5 py-1.5 rounded-xl text-xs font-bold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition-all';
         }}
       }});
       renderDocuments();
     }}
 
-    function renderDocuments() {{
-      const container = document.getElementById('documentsGrid');
-      container.innerHTML = '';
+    function toggleDocSortOrder() {{
+      docSortOrder = (docSortOrder === 'desc') ? 'asc' : 'desc';
+      const label = document.getElementById('docSortLabel');
+      if (label) {{
+        if (docSortOrder === 'desc') {{
+          label.textContent = currentLang === 'ar' ? 'التاريخ: الأحدث أولاً' : 'Date: Newest First';
+        }} else {{
+          label.textContent = currentLang === 'ar' ? 'التاريخ: الأقدم أولاً' : 'Date: Oldest First';
+        }}
+      }}
+      renderDocuments();
+    }}
 
-      const docs = masterData.documents.filter(d => activeDocCategory === 'all' || d.category === activeDocCategory);
+    function toggleDocViewMode() {{
+      docViewMode = (docViewMode === 'category') ? 'timeline' : 'category';
+      const label = document.getElementById('docViewLabel');
+      if (label) {{
+        if (docViewMode === 'category') {{
+          label.textContent = currentLang === 'ar' ? 'العرض: تجميع حسب المحتوى' : 'View: Grouped by Content';
+        }} else {{
+          label.textContent = currentLang === 'ar' ? 'العرض: قائمة زمنية' : 'View: Timeline List';
+        }}
+      }}
+      renderDocuments();
+    }}
 
-      docs.forEach(d => {{
-        const card = document.createElement('div');
-        card.className = 'bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:border-sky-400 hover:shadow-md transition-all flex flex-col justify-between';
-        
-        const isPdf = d.filetype === 'PDF';
-        const actionLabel = isPdf ? (currentLang === 'ar' ? 'عرض الوثيقة (PDF)' : 'View Document (PDF)') : (currentLang === 'ar' ? 'تحميل الملف' : 'Download File');
-        const iconName = d.icon || 'file-text';
-        const fileUrl = 'public/archive/' + d.filename;
+    function handleDocSearch(q) {{
+      docSearchQuery = q.toLowerCase().trim();
+      renderDocuments();
+    }}
 
-        card.innerHTML = `
+    function renderDocumentCard(d) {{
+      const isPdf = d.filetype === 'PDF';
+      const actionLabel = isPdf ? (currentLang === 'ar' ? 'عرض الوثيقة (PDF)' : 'View Document (PDF)') : (currentLang === 'ar' ? 'تحميل الملف' : 'Download File');
+      const actionIcon = isPdf ? 'external-link' : 'download';
+      const fileUrl = 'public/archive/' + d.filename;
+      const catInfo = categoryMeta[d.category] || {{
+        title_en: 'General',
+        title_ar: 'عام',
+        badgeClass: 'bg-slate-100 text-slate-700 border-slate-200'
+      }};
+      const catTitle = currentLang === 'ar' ? catInfo.title_ar : catInfo.title_en;
+      const dateDisplay = currentLang === 'ar' ? (d.date_display_ar || d.year) : (d.date_display_en || d.year);
+      const docTitle = currentLang === 'ar' ? d.title_ar : d.title_en;
+      const docDesc = currentLang === 'ar' ? d.desc_ar : d.desc_en;
+
+      return `
+        <div class="bg-white p-5 rounded-2xl border border-slate-200 shadow-xs hover:border-sky-400 hover:shadow-md transition-all flex flex-col justify-between group">
           <div>
-            <div class="flex items-center justify-between mb-3">
-              <div class="w-9 h-9 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center">
-                <i data-lucide="${{iconName}}" class="w-4 h-4"></i>
+            <div class="flex items-center justify-between gap-2 mb-3">
+              <div class="flex items-center gap-1.5 flex-wrap">
+                <span class="inline-flex items-center gap-1 text-[11px] font-bold px-2.5 py-0.5 rounded-lg bg-sky-50 text-sky-700 border border-sky-100">
+                  <i data-lucide="calendar" class="w-3 h-3"></i>
+                  <span>${{dateDisplay}}</span>
+                </span>
+                <span class="text-[10px] uppercase font-bold tracking-wider px-2 py-0.5 rounded-md border ${{catInfo.badgeClass}}">
+                  ${{catTitle}}
+                </span>
               </div>
               <span class="text-[11px] font-bold text-slate-400 font-mono">${{d.filesize}} • ${{d.filetype}}</span>
             </div>
-            <h3 class="font-bold text-slate-900 text-sm mb-1">${{currentLang === 'ar' ? d.title_ar : d.title_en}}</h3>
-            <p class="text-xs text-slate-500 mb-4 leading-relaxed">${{currentLang === 'ar' ? d.desc_ar : d.desc_en}}</p>
+            <h3 class="font-bold text-slate-900 text-sm mb-1.5 leading-snug group-hover:text-sky-700 transition-colors">${{docTitle}}</h3>
+            <p class="text-xs text-slate-500 mb-4 leading-relaxed">${{docDesc}}</p>
           </div>
-          <a href="${{fileUrl}}" target="_blank" ${{isPdf ? '' : 'download'}} class="inline-flex items-center justify-between text-xs font-bold text-sky-700 hover:text-sky-800 bg-sky-50 hover:bg-sky-100 px-3.5 py-2 rounded-xl transition-all">
-            <span>${{actionLabel}}</span>
-            <i data-lucide="${{isPdf ? 'arrow-right' : 'download'}}" class="w-3.5 h-3.5"></i>
+          <a href="${{fileUrl}}" target="_blank" ${{isPdf ? '' : 'download'}} class="inline-flex items-center justify-between text-xs font-bold text-sky-700 hover:text-white bg-sky-50 hover:bg-sky-600 px-3.5 py-2.5 rounded-xl transition-all">
+            <span class="flex items-center gap-1.5">
+              <i data-lucide="${{d.icon || 'file-text'}}" class="w-3.5 h-3.5"></i>
+              <span>${{actionLabel}}</span>
+            </span>
+            <i data-lucide="${{actionIcon}}" class="w-3.5 h-3.5 opacity-70"></i>
           </a>
-        `;
-        container.appendChild(card);
+        </div>
+      `;
+    }}
+
+    function renderDocuments() {{
+      const container = document.getElementById('documentsContainer');
+      if (!container) return;
+      container.innerHTML = '';
+
+      // Update control labels for current language
+      const sortLabel = document.getElementById('docSortLabel');
+      if (sortLabel) {{
+        sortLabel.textContent = (docSortOrder === 'desc') 
+          ? (currentLang === 'ar' ? 'التاريخ: الأحدث أولاً' : 'Date: Newest First')
+          : (currentLang === 'ar' ? 'التاريخ: الأقدم أولاً' : 'Date: Oldest First');
+      }}
+      const viewLabel = document.getElementById('docViewLabel');
+      if (viewLabel) {{
+        viewLabel.textContent = (docViewMode === 'category')
+          ? (currentLang === 'ar' ? 'العرض: تجميع حسب المحتوى' : 'View: Grouped by Content')
+          : (currentLang === 'ar' ? 'العرض: قائمة زمنية' : 'View: Timeline List');
+      }}
+
+      // 1. Filter by category & search query
+      let docs = masterData.documents.filter(d => {{
+        const matchCat = (activeDocCategory === 'all' || d.category === activeDocCategory);
+        if (!matchCat) return false;
+        if (!docSearchQuery) return true;
+        const q = docSearchQuery;
+        const haystack = [
+          d.title_en, d.title_ar, d.desc_en, d.desc_ar,
+          d.filename, d.filetype, d.category, d.date || '', d.year ? d.year.toString() : ''
+        ].join(' ').toLowerCase();
+        return haystack.includes(q);
       }});
+
+      // 2. Sort documents by date
+      docs.sort((a, b) => {{
+        const dateA = a.date || '0000-00-00';
+        const dateB = b.date || '0000-00-00';
+        return docSortOrder === 'desc' ? dateB.localeCompare(dateA) : dateA.localeCompare(dateB);
+      }});
+
+      if (docs.length === 0) {{
+        container.innerHTML = `
+          <div class="text-center py-12 bg-slate-50 rounded-2xl border border-dashed border-slate-200">
+            <i data-lucide="folder-search" class="w-10 h-10 text-slate-400 mx-auto mb-2"></i>
+            <p class="text-sm font-bold text-slate-700">${{currentLang === 'ar' ? 'لم يتم العثور على وثائق مطابقة' : 'No matching documents found'}}</p>
+            <p class="text-xs text-slate-400 mt-1">${{currentLang === 'ar' ? 'جرب البحث بكلمة أو سنة أخرى' : 'Try searching for a different keyword or year'}}</p>
+          </div>
+        `;
+        lucide.createIcons();
+        return;
+      }}
+
+      // 3. Render according to view mode
+      // If a specific category is chosen OR viewMode is 'timeline' OR search is active, render flat grid
+      if (activeDocCategory !== 'all' || docViewMode === 'timeline' || docSearchQuery !== '') {{
+        const grid = document.createElement('div');
+        grid.className = 'grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6';
+        grid.innerHTML = docs.map(renderDocumentCard).join('');
+        container.appendChild(grid);
+      }} else {{
+        // Grouped by Category mode: group cards by category, and inside each category cards are sorted by date
+        const catOrder = ['tournaments', 'festival', 'governance', 'bulletins', 'international'];
+        catOrder.forEach(catKey => {{
+          const catDocs = docs.filter(d => d.category === catKey);
+          if (catDocs.length === 0) return;
+
+          const meta = categoryMeta[catKey] || {{
+            title_en: catKey,
+            title_ar: catKey,
+            desc_en: '',
+            desc_ar: '',
+            icon: 'folder'
+          }};
+
+          const section = document.createElement('div');
+          section.className = 'mb-10 last:mb-0';
+          section.innerHTML = `
+            <div class="flex items-center justify-between pb-3 mb-4 border-b border-slate-200">
+              <div class="flex items-center gap-2.5">
+                <div class="w-8 h-8 rounded-xl bg-sky-100 text-sky-700 flex items-center justify-center">
+                  <i data-lucide="${{meta.icon}}" class="w-4 h-4"></i>
+                </div>
+                <div>
+                  <h3 class="font-extrabold text-slate-900 text-base leading-tight">
+                    ${{currentLang === 'ar' ? meta.title_ar : meta.title_en}}
+                  </h3>
+                  <p class="text-xs text-slate-500 mt-0.5">${{currentLang === 'ar' ? meta.desc_ar : meta.desc_en}}</p>
+                </div>
+              </div>
+              <span class="text-xs font-bold text-sky-700 bg-sky-50 px-2.5 py-1 rounded-full border border-sky-100">
+                ${{catDocs.length}} ${{currentLang === 'ar' ? 'وثائق' : 'Docs'}}
+              </span>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              ${{catDocs.map(renderDocumentCard).join('')}}
+            </div>
+          `;
+          container.appendChild(section);
+        }});
+      }}
+
       lucide.createIcons();
     }}
 
