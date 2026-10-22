@@ -1,95 +1,77 @@
 {
-  "title": "General Authority / Executive Committee",
+  "title": "Jordan Bridge Federation Executive Board",
+  "title_ar": "مجلس إدارة الاتحاد الأردني للبريدج",
   "members": [
     {
-      "num": "1.1",
-      "name": "السيد  جوان خلدون غالب هلسا",
-      "phone": "0796926341",
-      "email": "",
-      "photo": "public/images/jwan.jpg"
+      "name": "Mr. Ma'moun Kotob",
+      "name_ar": "السيد مأمون القطب",
+      "role": "J.B.F President",
+      "role_ar": "رئيس الاتحاد الأردني للبريدج",
+      "phone": "",
+      "email": "jor_bridge@yahoo.com",
+      "photo": "public/images/mamoun.jpg"
     },
     {
-      "num": "2.2",
-      "name": "السيدة سلفي هايك خورين  سكلجيان",
-      "phone": "0795555373",
-      "email": "",
-      "photo": "public/images/syelve.jpg"
-    },
-    {
-      "num": "1.3",
-      "name": "السيد رمزي نجيب يوسف قسوس",
-      "phone": "0795915151",
-      "email": "",
-      "photo": null
-    },
-    {
-      "num": "2.4",
-      "name": "السيدة رنا  سيف الدين ناجي عبد الهادي",
+      "name": "Mrs. Rana Abdelhadi",
+      "name_ar": "السيدة رنا عبد الهادي",
+      "role": "Vice President",
+      "role_ar": "نائب رئيس الاتحاد",
       "phone": "0795534561",
       "email": "",
       "photo": "public/images/RANA.jpg"
     },
     {
-      "num": "3.5",
-      "name": "السيدة ديما عمر الشيخ محمود الطاهر",
-      "phone": "0777889941",
+      "name": "Mrs. Huda Rabaie",
+      "name_ar": "السيدة هدى ربيعي",
+      "role": "Secretary General",
+      "role_ar": "أمين السر",
+      "phone": "",
       "email": "",
-      "photo": "public/images/dima.jpg"
+      "photo": "public/images/H11111.jpg"
     },
     {
-      "num": "4.6",
-      "name": "السيد فادي الياس بولس سويدان",
-      "phone": "0795383739",
-      "email": "",
-      "photo": null
-    },
-    {
-      "num": "5.7",
-      "name": "السيد عبد الله محمود سعيد العجلوني",
+      "name": "Mr. Abdulah Ajloni",
+      "name_ar": "السيد عبد الله العجلوني",
+      "role": "Treasurer",
+      "role_ar": "أمين الصندوق",
       "phone": "0795251199",
       "email": "",
       "photo": "public/images/abdlah.jpg"
     },
     {
-      "num": "6.8",
-      "name": "السيدة عايئده حنا ابو جابر",
-      "phone": "0795591591",
+      "name": "Mrs. Dima AL Taher",
+      "name_ar": "السيدة ديما الطاهر",
+      "role": "Board Member",
+      "role_ar": "عضو مجلس الإدارة",
+      "phone": "0777889941",
       "email": "",
-      "photo": null
+      "photo": "public/images/dima.jpg"
     },
     {
-      "num": "7.9",
-      "name": "السيد احمد حمدي محمد السمهوري",
-      "phone": "0795531784",
+      "name": "Mrs. Silvie Saklejian",
+      "name_ar": "السيدة سلفي سكلجيان",
+      "role": "Board Member",
+      "role_ar": "عضو مجلس الإدارة",
+      "phone": "0795555373",
       "email": "",
-      "photo": null
+      "photo": "public/images/syelve.jpg"
     },
     {
-      "num": "8.10",
-      "name": "السيد جعفر فالح عواد القضاه",
-      "phone": "0797279757",
+      "name": "Mr. Jwan Halasah",
+      "name_ar": "السيد جوان هلسا",
+      "role": "Board Member",
+      "role_ar": "عضو مجلس الإدارة",
+      "phone": "0796926341",
       "email": "",
-      "photo": null
+      "photo": "public/images/jwan.jpg"
     },
     {
-      "num": "1.11",
-      "name": "السيد مروان اسعد غانم",
-      "phone": "0798822992",
-      "email": "",
-      "photo": null
-    },
-    {
-      "num": "2.12",
-      "name": "السيدة امل توفيق شاكر فاخوري",
-      "phone": "0795568262",
-      "email": "",
-      "photo": null
-    },
-    {
-      "num": "3.13",
-      "name": "رعد محمد درويش /مدير الاتحاد",
-      "phone": "0796665565",
-      "email": "",
+      "name": "Mr. Raed Darwesh",
+      "name_ar": "السيد رعد درويش",
+      "role": "J.B.F Manager",
+      "role_ar": "مدير عام الاتحاد",
+      "phone": "00962796665565",
+      "email": "jor_bridge@yahoo.com",
       "photo": "public/images/raad_drw.jpg"
     }
   ]

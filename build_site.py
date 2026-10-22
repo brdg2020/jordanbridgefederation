@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 import json
 import os
 
@@ -208,25 +209,44 @@ html_content = f'''<!DOCTYPE html>
     </div>
   </header>
 
-  <!-- ROYAL MEMORIAL SECTION -->
-  <section id="memorial" class="bg-amber-50/70 border-b border-amber-200 py-6">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row items-center justify-between gap-4">
-      <div class="flex items-center gap-4 text-center sm:text-left">
-        <img src="public/images/H11111.jpg" alt="HRH Prince Mohammad Bin Talal" class="w-16 h-20 object-cover rounded-lg border-2 border-amber-300 shadow-sm shrink-0 mx-auto sm:mx-0">
-        <div>
-          <span class="text-xs font-bold uppercase tracking-wider text-amber-800" data-en="In Loving Memory & Royal Patronage" data-ar="وفاءً لذكرى المغفور له بإذن الله والرعاية الملكية">In Loving Memory & Royal Patronage</span>
-          <h2 class="text-lg font-black text-slate-900 mt-0.5" data-en="His Royal Highness Prince Mohammad Bin Talal (1940–2021)" data-ar="صاحب السمو الملكي الأمير محمد بن طلال المعظم (1940–2021)">
-            His Royal Highness Prince Mohammad Bin Talal (1940–2021)
+  <!-- MEMORIAL & CONDOLENCE SECTION: MR. ISSAM HALIM SALFITI -->
+  <section id="memorial" class="bg-gradient-to-r from-amber-50 via-slate-50 to-amber-50 border-b border-amber-200/80 py-10">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col md:flex-row items-center gap-8 bg-white p-6 sm:p-8 rounded-3xl border border-amber-200 shadow-md">
+        
+        <!-- Large Portrait with Gold Frame & Lightbox Zoom -->
+        <div class="relative group shrink-0 cursor-pointer" onclick="openLightbox('public/images/issam_01.jpg', 'In Loving Memory: Mr. Issam Halim Salfiti (السيد عصام حليم السلفيتي رحمه الله)')">
+          <img src="public/images/issam_01.jpg" alt="Mr. Issam Halim Salfiti" class="w-48 h-48 sm:w-56 sm:h-56 object-cover rounded-2xl border-4 border-amber-400 shadow-xl group-hover:scale-102 transition-transform duration-300">
+          <div class="absolute inset-0 bg-slate-950/20 opacity-0 group-hover:opacity-100 rounded-2xl transition-opacity flex items-center justify-center text-white">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-slate-900/80 backdrop-blur-md text-xs font-bold border border-white/20">
+              <i data-lucide="zoom-in" class="w-4 h-4 text-amber-400"></i>
+              <span data-en="Zoom Portrait" data-ar="تكبير الصورة">Zoom Portrait</span>
+            </span>
+          </div>
+        </div>
+
+        <!-- Obituary Text Content -->
+        <div class="flex-1 text-center md:text-left">
+          <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900 text-amber-300 text-xs font-bold mb-3 border border-amber-500/30">
+            <span class="w-2 h-2 rounded-full bg-amber-400"></span>
+            <span data-en="Federation Memorial & Obituary Tribute" data-ar="نعي وتأبين الاتحاد الأردني للبريدج">Federation Memorial & Obituary Tribute</span>
+          </div>
+          
+          <h2 class="text-xl sm:text-2xl font-black text-slate-900 tracking-tight" data-en="In Loving Memory of Mr. Issam Halim Salfiti" data-ar="نعي الصديق العزيز والراعي الكريم السيد عصام حليم السلفيتي رحمه الله">
+            In Loving Memory of Mr. Issam Halim Salfiti (عصام حليم السلفيتي)
           </h2>
-          <p class="text-xs text-slate-600 max-w-2xl mt-1 leading-relaxed" data-en="Honorary Life President of the Jordan Bridge Federation. His visionary leadership established Jordan as the bridge capital of the Middle East." data-ar="الرئيس الفخري للاتحاد الأردني للبريدج مدى الحياة. رسخ سموه مكانة الأردن الرائدة كعاصمة لرياضة البريدج في الشرق الأوسط.">
-            Honorary Life President of the Jordan Bridge Federation. His visionary leadership established Jordan as the bridge capital of the Middle East.
+
+          <!-- Arabic Official Obituary -->
+          <p class="text-xs sm:text-sm text-slate-700 mt-2.5 leading-relaxed font-arabic" dir="rtl">
+            ببالغ الحزن والأسى، ينعى الاتحاد الأردني للبريدج الصديق العزيز، <strong>السيد عصام حليم السلفيتي</strong> الذي انتقل إلى رحمة الله تعالى بعد صراع مع المرض. لقد كان الفقيد من خيرة أبناء الأردن، إنسانًا نادرًا في أخلاقه وكرمه وعطائه، محبًا للناس وداعمًا للجميع، وكان دائمًا إلى جانب الجمعيات والأندية والاتحادات الرياضية. وباسم أسرة الاتحاد الأردني للبريدج، رئيسًا وأعضاءً ولاعبين، نتقدم بأصدق مشاعر التعزية والمواساة إلى عائلة الفقيد الكريمة، سائلين المولى عز وجل أن يتغمده بواسع رحمته ويسكنه فسيح جناته. رحم الله عصام السلفيتي، وأبقى ذكراه العطرة وأثره الطيب بين الناس.
+          </p>
+
+          <!-- English Tribute -->
+          <p class="text-xs sm:text-sm text-slate-600 mt-2 leading-relaxed" data-en="In deep grief and sorrow, the Jordan Bridge Federation mourns the passing of our dear friend, pillar, and patron, Mr. Issam Halim Salfiti. The deceased was among Jordan's finest sons—a rare individual of noble character, boundless generosity, and heartfelt support for sports, clubs, and charitable foundations across the Kingdom. May his soul rest in eternal peace." data-ar="">
+            In deep grief and sorrow, the Jordan Bridge Federation mourns the passing of our dear friend, pillar, and patron, Mr. Issam Halim Salfiti. The deceased was among Jordan's finest sons—a rare individual of noble character, boundless generosity, and heartfelt support for sports, clubs, and charitable foundations across the Kingdom. May his soul rest in eternal peace.
           </p>
         </div>
-      </div>
-      <div class="shrink-0 flex items-center gap-2">
-        <span class="text-xs font-bold text-amber-900 bg-amber-100 border border-amber-300 px-3 py-1.5 rounded-full" data-en="Permanent Honorary Presidency" data-ar="الرئاسة الفخرية الدائمة">
-          Permanent Honorary Presidency
-        </span>
+
       </div>
     </div>
   </section>
@@ -279,6 +299,28 @@ html_content = f'''<!DOCTYPE html>
           <i data-lucide="table-2" class="w-4 h-4 text-emerald-400"></i>
           <span data-en="Open Live Spreadsheets" data-ar="فتح جداول الدوري المباشرة">Open Live Spreadsheets</span>
         </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- OLYMPIC PATRONAGE: HRH PRINCE FEISAL IBN AL-HUSSEIN -->
+  <section class="py-8 bg-white border-b border-slate-200">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex flex-col sm:flex-row items-center gap-6 p-6 rounded-2xl bg-slate-50 border border-slate-200 text-center sm:text-left shadow-xs">
+        <div class="relative group cursor-pointer shrink-0" onclick="openLightbox('public/images/feisal.jpg', 'HRH Prince Feisal Ibn Al-Hussein - President of Jordan Olympic Committee')">
+          <img src="public/images/feisal.jpg" alt="HRH Prince Feisal Ibn Al-Hussein" class="w-20 h-28 sm:w-24 sm:h-32 object-cover rounded-xl border-2 border-slate-300 shadow-sm group-hover:border-sky-500 transition-all">
+          <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity flex items-center justify-center text-white text-xs">
+            <i data-lucide="zoom-in" class="w-4 h-4"></i>
+          </div>
+        </div>
+        <div class="flex-1">
+          <span class="text-xs font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-3 py-1 rounded-full inline-block mb-1.5" data-en="Jordan Olympic Committee (JOC)" data-ar="اللجنة الأولمبية الأردنية">Jordan Olympic Committee (JOC)</span>
+          <h3 class="text-base sm:text-lg font-black text-slate-900" data-en="Royal Highness Prince Feisal Ibn Al-Hussein" data-ar="صاحب السمو الملكي الأمير فيصل بن الحسين المعظم">Royal Highness Prince Feisal Ibn Al-Hussein</h3>
+          <p class="text-xs font-bold text-slate-500 uppercase tracking-wider" data-en="President, Jordan Olympic Committee" data-ar="رئيس اللجنة الأولمبية الأردنية">President, Jordan Olympic Committee</p>
+          <blockquote class="mt-2 text-xs sm:text-sm text-slate-700 italic border-l-2 sm:border-l-4 border-amber-400 pl-3 py-0.5" data-en="&ldquo;Out of scratch sports achievements do not exist. Achievements are the products of big efforts, generous giving, sacrifices and high expenditures.&rdquo;" data-ar="&ldquo;الإنجازات الرياضية لا تأتي من فراغ، بل هي نتاج جهود كبيرة وعطاء سخي وتضحيات وإنفاق مدروس.&rdquo;">
+            &ldquo;Out of scratch sports achievements do not exist. Achievements are the products of big efforts, generous giving, sacrifices and high expenditures.&rdquo;
+          </blockquote>
+        </div>
       </div>
     </div>
   </section>
@@ -1410,27 +1452,40 @@ html_content = f'''<!DOCTYPE html>
       lucide.createIcons();
     }}
 
-    // RENDER COMMITTEE
+    // RENDER COMMITTEE (OFFICIAL EXECUTIVE BOARD WITH BRIDGWEBS PHOTOS)
     function renderCommittee() {{
       const container = document.getElementById('committeeGrid');
       container.innerHTML = '';
 
       committeeData.members.forEach(m => {{
         const card = document.createElement('div');
-        card.className = 'bg-white p-4 rounded-2xl border border-slate-200 text-sm hover:border-sky-300 hover:shadow-xs transition-all flex items-center gap-3.5';
+        card.className = 'bg-white p-5 rounded-2xl border border-slate-200 text-sm hover:border-amber-400 hover:shadow-md transition-all flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left';
         
+        const displayName = currentLang === 'ar' ? (m.name_ar || m.name) : m.name;
+        const displayRole = currentLang === 'ar' ? (m.role_ar || m.role) : m.role;
+
         const avatarHtml = m.photo ? 
-          `<img src="${{m.photo}}" alt="${{m.name}}" class="w-12 h-14 object-cover rounded-xl border border-slate-300 shadow-xs shrink-0">` :
-          `<div class="w-12 h-14 rounded-xl bg-sky-100 text-sky-800 font-bold flex items-center justify-center text-xs shrink-0 border border-sky-200">
-             <i data-lucide="user" class="w-5 h-5"></i>
+          `<div class="relative group cursor-pointer shrink-0" onclick="openLightbox('${{m.photo}}', '${{displayName}} - ${{displayRole}}')">
+             <img src="${{m.photo}}" alt="${{displayName}}" class="w-20 h-24 object-cover rounded-xl border-2 border-slate-200 group-hover:border-amber-400 shadow-sm transition-all">
+             <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity flex items-center justify-center text-white text-xs">
+               <i data-lucide="zoom-in" class="w-4 h-4"></i>
+             </div>
+           </div>` :
+          `<div class="w-20 h-24 rounded-xl bg-sky-100 text-sky-800 font-bold flex items-center justify-center text-xs shrink-0 border border-sky-200">
+             <i data-lucide="user" class="w-6 h-6"></i>
            </div>`;
 
         card.innerHTML = `
           ${{avatarHtml}}
-          <div class="min-w-0 flex-1">
-            <strong class="block text-slate-900 font-bold truncate text-sm">${{m.name}}</strong>
-            <span class="block text-xs text-slate-500 truncate mt-0.5">${{m.email ? m.email : 'General Assembly'}}</span>
-            ${{m.phone ? `<span class="block text-xs font-mono text-slate-400 mt-1" dir="ltr">${{m.phone}}</span>` : ''}}
+          <div class="min-w-0 flex-1 flex flex-col justify-between h-full">
+            <div>
+              <span class="inline-block text-[11px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full mb-1">${{displayRole}}</span>
+              <strong class="block text-slate-900 font-black text-base truncate">${{displayName}}</strong>
+            </div>
+            <div class="mt-3 pt-2 border-t border-slate-100 text-xs space-y-0.5">
+              ${{m.phone ? `<span class="block font-mono text-slate-500 text-[11px]" dir="ltr">📞 ${{m.phone}}</span>` : ''}}
+              ${{m.email ? `<span class="block text-slate-400 text-[11px] truncate">✉️ ${{m.email}}</span>` : ''}}
+            </div>
           </div>
         `;
         container.appendChild(card);
