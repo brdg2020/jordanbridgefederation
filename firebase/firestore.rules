@@ -1,0 +1,52 @@
+rules_version = '2';
+// JBF portal: the public site reads published items; only the admin account
+// (custom claim admin == true, set server-side) can create, edit or delete.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isAdmin() {
+      return request.auth != null && request.auth.token.admin == true;
+    }
+
+    function validAnnouncement() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['title_en', 'title_ar', 'body_en', 'body_ar', 'date', 'pinned', 'published', 'link', 'updatedAt'])
+        && d.title_en is string && d.title_en.size() <= 300
+        && d.title_ar is string && d.title_ar.size() <= 300
+        && d.body_en is string && d.body_en.size() <= 20000
+        && d.body_ar is string && d.body_ar.size() <= 20000
+        && d.date is string && d.date.size() <= 20
+        && d.pinned is bool && d.published is bool
+        && d.link is string && d.link.size() <= 500;
+    }
+
+    function validTournament() {
+      let d = request.resource.data;
+      return d.keys().hasOnly(['title', 'title_ar', 'date', 'category', 'note', 'table', 'source', 'published', 'updatedAt'])
+        && d.title is string && d.title.size() <= 300
+        && d.title_ar is string && d.title_ar.size() <= 300
+        && d.date is string && d.date.size() <= 20
+        && d.category is string && d.category.size() <= 100
+        && d.note is string && d.note.size() <= 5000
+        && d.table is string && d.table.size() <= 900000
+        && d.source is string && d.source.size() <= 200
+        && d.published is bool;
+    }
+
+    match /announcements/{id} {
+      allow read: if resource.data.published == true || isAdmin();
+      allow create, update: if isAdmin() && validAnnouncement();
+      allow delete: if isAdmin();
+    }
+
+    match /tournaments/{id} {
+      allow read: if resource.data.published == true || isAdmin();
+      allow create, update: if isAdmin() && validTournament();
+      allow delete: if isAdmin();
+    }
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

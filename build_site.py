@@ -35,6 +35,7 @@ gallery_json_str = json.dumps(gallery_images, ensure_ascii=False)
 import sys
 sys.path.insert(0, os.path.join(base_dir, 'tools'))
 from results_ui import RESULTS_SECTION_HTML, RESULTS_CSS, RESULTS_JS
+from news_ui import NEWS_SECTION_HTML, NEWS_JS
 with open(os.path.join(base_dir, 'public/data/results/index.json'), 'r', encoding='utf-8') as f:
     results_index = json.load(f)
 results_index_json_str = json.dumps(results_index, ensure_ascii=False, separators=(',', ':'))
@@ -182,10 +183,6 @@ html_content = f'''<!DOCTYPE html>
       </div>
       <div class="flex items-center gap-4">
         <span class="hidden sm:inline text-slate-400" data-en="Official Federation Portal" data-ar="البوابة الرسمية المعتمدة">Official Federation Portal</span>
-        <button onclick="openAdminModal()" class="text-[11px] font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition-colors">
-          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
-          <span data-en="Admin Portal" data-ar="بوابة المشرف">Admin Portal</span>
-        </button>
       </div>
     </div>
   </div>
@@ -205,6 +202,7 @@ html_content = f'''<!DOCTYPE html>
 
       <!-- Desktop Nav Links -->
       <nav class="hidden xl:flex items-center gap-1 text-sm font-semibold text-slate-700" id="mainNav">
+        <a href="#news" data-sec="news" class="nav-link px-3 py-2 rounded-full hidden" data-en="News" data-ar="الأخبار">News</a>
         <a href="#posters" data-sec="posters" class="nav-link px-3 py-2 rounded-full" data-en="Posters" data-ar="الملصقات">Posters</a>
         <a href="#scores" data-sec="scores" class="nav-link px-3 py-2 rounded-full" data-en="Festival Scores" data-ar="نتائج المهرجان">Festival Scores</a>
         <a href="#league" data-sec="league" class="nav-link px-3 py-2 rounded-full" data-en="National Leagues & Cup" data-ar="الدوري الوطني وكأس الأردن">National Leagues & Cup</a>
@@ -232,7 +230,8 @@ html_content = f'''<!DOCTYPE html>
 
     <!-- Mobile Navigation Drawer -->
     <div id="mobileMenu" class="hidden xl:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-5 space-y-1 text-sm font-semibold shadow-lg">
-<a href="#posters" onclick="toggleMobileMenu()" data-sec="posters" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Official Posters" data-ar="الملصقات الرسمية">Official Posters</a>
+<a href="#news" onclick="toggleMobileMenu()" data-sec="news" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700 hidden" data-en="News & Results" data-ar="الأخبار والنتائج">News & Results</a>
+      <a href="#posters" onclick="toggleMobileMenu()" data-sec="posters" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Official Posters" data-ar="الملصقات الرسمية">Official Posters</a>
       <a href="#scores" onclick="toggleMobileMenu()" data-sec="scores" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Festival Scores" data-ar="نتائج المهرجان">Festival Scores</a>
       <a href="#league" onclick="toggleMobileMenu()" data-sec="league" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="National Leagues & Cup" data-ar="الدوري الوطني وكأس الأردن">National Leagues & Cup</a>
       <a href="#results" onclick="toggleMobileMenu()" data-sec="results" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Results Archive" data-ar="أرشيف النتائج">Results Archive</a>
@@ -240,12 +239,6 @@ html_content = f'''<!DOCTYPE html>
       <a href="#committee" onclick="toggleMobileMenu()" data-sec="committee" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Executive Committee" data-ar="الهيئة الإدارية">Executive Committee</a>
       <a href="#contact" onclick="toggleMobileMenu()" data-sec="contact" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Contact Details" data-ar="معلومات الاتصال">Contact Details</a>
       <a href="#documents" onclick="toggleMobileMenu()" data-sec="documents" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Bylaws & Archive" data-ar="الأنظمة والأرشيف">Bylaws & Archive</a>
-      <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-        <button onclick="openAdminModal(); toggleMobileMenu();" class="text-xs font-bold text-amber-700 flex items-center gap-1.5 py-1">
-          <i data-lucide="shield-check" class="w-4 h-4"></i>
-          <span data-en="Open Admin Data Entry" data-ar="فتح لوحة إدخال البيانات">Open Admin Data Entry</span>
-        </button>
-      </div>
     </div>
   </header>
 
@@ -366,6 +359,7 @@ html_content = f'''<!DOCTYPE html>
     </div>
   </section>
 
+{NEWS_SECTION_HTML}
   <!-- OFFICIAL FESTIVAL POSTERS & ANNOUNCEMENTS (WITH LIGHTBOX ZOOM) -->
   <section id="posters" class="py-14 bg-white border-b border-slate-200">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -841,10 +835,6 @@ html_content = f'''<!DOCTYPE html>
       </div>
 
       <div class="flex items-center gap-4">
-        <button onclick="openAdminModal()" class="inline-flex items-center gap-1.5 text-xs text-amber-400 hover:text-amber-300 font-bold bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">
-          <i data-lucide="shield-check" class="w-4 h-4"></i>
-          <span data-en="Admin Data Entry" data-ar="إدخال بيانات المشرف">Admin Data Entry</span>
-        </button>
         <div class="text-center sm:text-right">
           <p class="text-slate-400">Official Web Domain: <span class="text-amber-400 font-semibold">jordanbridgefederation.com</span></p>
           <p class="text-slate-600 mt-0.5">Olympic Sports City • Prince Hamza Hall • Amman</p>
@@ -876,96 +866,6 @@ html_content = f'''<!DOCTYPE html>
     </div>
     <div id="tooltipPlayerList" class="space-y-1">
       <!-- Injected player chips -->
-    </div>
-  </div>
-
-  <!-- ADMIN DATA ENTRY MODAL (FOR JBF STAFF TO UPDATE SCORES EASILY) -->
-  <div id="adminModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-xl max-h-[90vh] overflow-y-auto p-6 text-slate-800" onclick="event.stopPropagation()">
-      
-      <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
-        <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center">
-            <i data-lucide="shield-check" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <h3 class="font-black text-slate-900 text-base" data-en="JBF Score & Data Entry Portal" data-ar="بوابة إدخال وتعديل نتائج الاتحاد">JBF Score & Data Entry Portal</h3>
-            <p class="text-xs text-slate-500" data-en="Easily enter tournament scores and team rosters without touching code." data-ar="إدخال نتائج البطولات وكشوفات الفرق بسهولة دون الحاجة لخبرة برمجية.">Easily enter tournament scores and team rosters.</p>
-          </div>
-        </div>
-        <button onclick="closeAdminModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-
-      <!-- PIN Input -->
-      <div id="adminPinSection" class="space-y-4">
-        <p class="text-xs text-slate-600" data-en="Please enter the Federation Admin PIN to access data entry:" data-ar="يرجى إدخال رمز التحقق الخاص بمشرفي الاتحاد:">Please enter the Federation Admin PIN to access data entry:</p>
-        <div class="flex gap-2">
-          <input type="password" id="adminPinInput" placeholder="••••••••" onkeydown="if(event.key==='Enter') verifyAdminPin()" class="px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none flex-1 font-mono">
-          <button onclick="verifyAdminPin()" class="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition-all">
-            <span data-en="Unlock" data-ar="دخول">Unlock</span>
-          </button>
-        </div>
-        <p id="adminPinError" class="text-xs text-red-600 hidden">Incorrect PIN. Please try again.</p>
-      </div>
-
-      <!-- Data Entry Form (Unlocked) -->
-      <div id="adminFormSection" class="hidden space-y-4">
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Target Tournament:</label>
-          <select id="adminTargetTourney" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500">
-            <option value="jordancup2026">Jordan Cup 2026 Final</option>
-            <option value="festival2026">Jordan Bridge Festival 2026</option>
-          </select>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Team Name:</label>
-            <input type="text" id="adminTeamName" placeholder="e.g. Al Nashama" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Rank (#):</label>
-            <input type="number" id="adminTeamRank" placeholder="1" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl">
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Total V.P Score:</label>
-            <input type="number" step="0.01" id="adminTeamVp" placeholder="90.90" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Total IMP (Differential):</label>
-            <input type="number" id="adminTeamImp" placeholder="+79" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl">
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Player Roster (comma-separated):</label>
-          <input type="text" id="adminTeamRoster" placeholder="Abdlah Ajlouni, Zaid Bitar, Samer Haddad" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl">
-          <span class="text-[11px] text-slate-400 mt-0.5 block">Separate each player's name with a comma.</span>
-        </div>
-
-        <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
-          <button onclick="applyAdminUpdate()" class="px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs rounded-xl transition-all flex items-center gap-1.5 shadow-xs">
-            <i data-lucide="check" class="w-4 h-4"></i>
-            <span>Apply Live Preview</span>
-          </button>
-          <button onclick="exportAdminJson()" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition-all flex items-center gap-1.5">
-            <i data-lucide="code" class="w-4 h-4"></i>
-            <span>Export Clean JSON</span>
-          </button>
-        </div>
-
-        <div id="adminJsonOutputBox" class="hidden mt-3">
-          <label class="block text-xs font-bold text-slate-600 mb-1">Exported JSON (Ready to copy/save):</label>
-          <textarea id="adminJsonTextarea" rows="4" readonly class="w-full font-mono text-[11px] p-2 bg-slate-900 text-emerald-400 rounded-xl border border-slate-700"></textarea>
-          <button onclick="copyAdminJson()" class="mt-1 text-xs font-bold text-sky-700 hover:underline">Copy JSON to Clipboard</button>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -1013,6 +913,7 @@ html_content = f'''<!DOCTYPE html>
       renderResultsList();
       renderGallery();
       renderMix25();
+      renderNews();
       if (RES.ev) resRenderEvent();
     }}
 
@@ -1605,7 +1506,7 @@ html_content = f'''<!DOCTYPE html>
         const displayRole = currentLang === 'ar' ? (m.role_ar || m.role) : m.role;
 
         const avatarHtml = m.photo ? 
-          `<div class="relative group cursor-pointer shrink-0" onclick="openLightbox('${{m.photo}}', '${{displayName}} - ${{displayRole}}')">
+          `<div class="relative group cursor-pointer shrink-0" data-zoom="1">
              <img src="${{m.photo}}" alt="${{displayName}}" class="w-20 h-24 object-cover rounded-xl border-2 border-slate-200 group-hover:border-amber-400 shadow-sm transition-all">
              <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity flex items-center justify-center text-white text-xs">
                <i data-lucide="zoom-in" class="w-4 h-4"></i>
@@ -1628,6 +1529,9 @@ html_content = f'''<!DOCTYPE html>
             </div>
           </div>
         `;
+        // attach the zoom handler in JS: names such as "Ma'moun" break an inline onclick string
+        const z = card.querySelector('[data-zoom]');
+        if (z) z.addEventListener('click', () => openLightbox(m.photo, displayName + ' - ' + displayRole));
         container.appendChild(card);
       }});
       lucide.createIcons();
@@ -1873,93 +1777,8 @@ html_content = f'''<!DOCTYPE html>
       lucide.createIcons();
     }}
 
-    // ADMIN DATA ENTRY MODAL
-    function openAdminModal() {{
-      const modal = document.getElementById('adminModal');
-      const pinInput = document.getElementById('adminPinInput');
-      if (pinInput) pinInput.value = '';
-      const err = document.getElementById('adminPinError');
-      if (err) err.classList.add('hidden');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      if (pinInput) setTimeout(() => pinInput.focus(), 100);
-    }}
-
-    function closeAdminModal() {{
-      const modal = document.getElementById('adminModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }}
-
-    async function verifyAdminPin() {{
-      const pin = document.getElementById('adminPinInput').value;
-      const err = document.getElementById('adminPinError');
-      // Secure SHA-256 cryptographic verification — password is never exposed in plain text
-      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pin));
-      const hash = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-      if (hash === 'f54dfd493397bd939a0f3a00d0a8a47b5e72022cc7d55851dac58e1a8b1de00f') {{
-        document.getElementById('adminPinSection').classList.add('hidden');
-        document.getElementById('adminFormSection').classList.remove('hidden');
-        err.classList.add('hidden');
-      }} else {{
-        err.classList.remove('hidden');
-      }}
-    }}
-
-    function applyAdminUpdate() {{
-      const tName = document.getElementById('adminTeamName').value.trim();
-      const rank = parseInt(document.getElementById('adminTeamRank').value);
-      const vp = parseFloat(document.getElementById('adminTeamVp').value);
-      const imp = parseInt(document.getElementById('adminTeamImp').value) || 0;
-      const rosterRaw = document.getElementById('adminTeamRoster').value.trim();
-      const roster = rosterRaw ? rosterRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
-
-      if (!tName || isNaN(vp)) {{
-        alert('Please provide at least a Team Name and Total V.P score.');
-        return;
-      }}
-
-      // Find or add in Jordan Cup matrix
-      let existing = masterData.jordanCup2026.matrix.find(x => x.team.toLowerCase() === tName.toLowerCase());
-      if (existing) {{
-        existing.totalVp = vp;
-        existing.totalImp = imp;
-        if (!isNaN(rank)) existing.rank = rank;
-        if (roster.length > 0) existing.roster = roster;
-      }} else {{
-        masterData.jordanCup2026.matrix.push({{
-          team: tName,
-          rank: rank || masterData.jordanCup2026.matrix.length + 1,
-          totalVp: vp,
-          totalImp: imp,
-          rounds: [],
-          penalty: 0,
-          roster: roster
-        }});
-      }}
-
-      // Re-sort and re-render
-      masterData.jordanCup2026.matrix.sort((a, b) => b.totalVp - a.totalVp);
-      renderCup26Matrix();
-      renderJordanCupCards();
-      alert('Live update applied! Check the tables and cards below.');
-    }}
-
-    function exportAdminJson() {{
-      const box = document.getElementById('adminJsonOutputBox');
-      const textarea = document.getElementById('adminJsonTextarea');
-      box.classList.remove('hidden');
-      textarea.value = JSON.stringify(masterData.jordanCup2026.matrix, null, 2);
-    }}
-
-    function copyAdminJson() {{
-      const textarea = document.getElementById('adminJsonTextarea');
-      textarea.select();
-      document.execCommand('copy');
-      alert('JSON copied to clipboard!');
-    }}
-
 {RESULTS_JS}
+{NEWS_JS}
 
     // TOP MENU: highlight the section on screen and the item just clicked
     function setActiveNav(id) {{
@@ -1997,6 +1816,7 @@ html_content = f'''<!DOCTYPE html>
       renderResultsList();
       resInitFromHash();
       initNavSpy();
+      loadNews();
     }});
   </script>
 </body>

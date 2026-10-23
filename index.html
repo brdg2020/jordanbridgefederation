@@ -173,10 +173,6 @@
       </div>
       <div class="flex items-center gap-4">
         <span class="hidden sm:inline text-slate-400" data-en="Official Federation Portal" data-ar="البوابة الرسمية المعتمدة">Official Federation Portal</span>
-        <button onclick="openAdminModal()" class="text-[11px] font-bold text-amber-400 hover:text-amber-300 flex items-center gap-1 transition-colors">
-          <i data-lucide="shield-check" class="w-3.5 h-3.5"></i>
-          <span data-en="Admin Portal" data-ar="بوابة المشرف">Admin Portal</span>
-        </button>
       </div>
     </div>
   </div>
@@ -196,6 +192,7 @@
 
       <!-- Desktop Nav Links -->
       <nav class="hidden xl:flex items-center gap-1 text-sm font-semibold text-slate-700" id="mainNav">
+        <a href="#news" data-sec="news" class="nav-link px-3 py-2 rounded-full hidden" data-en="News" data-ar="الأخبار">News</a>
         <a href="#posters" data-sec="posters" class="nav-link px-3 py-2 rounded-full" data-en="Posters" data-ar="الملصقات">Posters</a>
         <a href="#scores" data-sec="scores" class="nav-link px-3 py-2 rounded-full" data-en="Festival Scores" data-ar="نتائج المهرجان">Festival Scores</a>
         <a href="#league" data-sec="league" class="nav-link px-3 py-2 rounded-full" data-en="National Leagues & Cup" data-ar="الدوري الوطني وكأس الأردن">National Leagues & Cup</a>
@@ -223,7 +220,8 @@
 
     <!-- Mobile Navigation Drawer -->
     <div id="mobileMenu" class="hidden xl:hidden border-t border-slate-200 bg-white px-4 pt-3 pb-5 space-y-1 text-sm font-semibold shadow-lg">
-<a href="#posters" onclick="toggleMobileMenu()" data-sec="posters" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Official Posters" data-ar="الملصقات الرسمية">Official Posters</a>
+<a href="#news" onclick="toggleMobileMenu()" data-sec="news" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700 hidden" data-en="News & Results" data-ar="الأخبار والنتائج">News & Results</a>
+      <a href="#posters" onclick="toggleMobileMenu()" data-sec="posters" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Official Posters" data-ar="الملصقات الرسمية">Official Posters</a>
       <a href="#scores" onclick="toggleMobileMenu()" data-sec="scores" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Festival Scores" data-ar="نتائج المهرجان">Festival Scores</a>
       <a href="#league" onclick="toggleMobileMenu()" data-sec="league" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="National Leagues & Cup" data-ar="الدوري الوطني وكأس الأردن">National Leagues & Cup</a>
       <a href="#results" onclick="toggleMobileMenu()" data-sec="results" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Results Archive" data-ar="أرشيف النتائج">Results Archive</a>
@@ -231,12 +229,6 @@
       <a href="#committee" onclick="toggleMobileMenu()" data-sec="committee" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Executive Committee" data-ar="الهيئة الإدارية">Executive Committee</a>
       <a href="#contact" onclick="toggleMobileMenu()" data-sec="contact" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Contact Details" data-ar="معلومات الاتصال">Contact Details</a>
       <a href="#documents" onclick="toggleMobileMenu()" data-sec="documents" class="nav-link-m block px-3 py-2.5 rounded-xl text-slate-700" data-en="Bylaws & Archive" data-ar="الأنظمة والأرشيف">Bylaws & Archive</a>
-      <div class="pt-2 border-t border-slate-100 flex items-center justify-between">
-        <button onclick="openAdminModal(); toggleMobileMenu();" class="text-xs font-bold text-amber-700 flex items-center gap-1.5 py-1">
-          <i data-lucide="shield-check" class="w-4 h-4"></i>
-          <span data-en="Open Admin Data Entry" data-ar="فتح لوحة إدخال البيانات">Open Admin Data Entry</span>
-        </button>
-      </div>
     </div>
   </header>
 
@@ -356,6 +348,33 @@
       </div>
     </div>
   </section>
+
+
+  <!-- SECTION: NEWS & LATEST RESULTS (managed from /admin) -->
+  <section id="news" class="py-14 bg-white border-b border-slate-200 hidden">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="text-center max-w-2xl mx-auto mb-8">
+        <span class="text-xs font-bold uppercase tracking-wider text-sky-800 bg-sky-100 px-3 py-1 rounded-full inline-block mb-2" data-en="Federation News" data-ar="أخبار الاتحاد">Federation News</span>
+        <h2 class="text-2xl sm:text-3xl font-black text-slate-900" data-en="Announcements & Latest Results" data-ar="الإعلانات وأحدث النتائج">Announcements & Latest Results</h2>
+      </div>
+      <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+        <div class="lg:col-span-3 space-y-4" id="newsAnnList"></div>
+        <div class="lg:col-span-2 space-y-3" id="newsTourList"></div>
+      </div>
+    </div>
+  </section>
+
+  <div id="newsModal" class="fixed inset-0 z-50 bg-slate-950/70 backdrop-blur-sm hidden items-start justify-center p-0 sm:p-4 overflow-y-auto" onclick="if(event.target===this) closeNewsTable()">
+    <div class="bg-white w-full max-w-6xl sm:rounded-3xl shadow-2xl sm:my-4 overflow-hidden min-h-screen sm:min-h-0">
+      <div class="bg-gradient-to-r from-sky-950 via-sky-900 to-slate-900 text-white px-5 sm:px-8 py-6 relative">
+        <button onclick="closeNewsTable()" class="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20" aria-label="Close"><i data-lucide="x" class="w-5 h-5"></i></button>
+        <p class="text-xs font-bold uppercase tracking-wider text-amber-300" id="newsModalMeta"></p>
+        <h3 class="text-xl sm:text-2xl font-black mt-1 pr-12" id="newsModalTitle"></h3>
+        <p class="text-xs text-sky-100/80 mt-2" id="newsModalNote"></p>
+      </div>
+      <div class="px-3 sm:px-8 py-6" id="newsModalBody"></div>
+    </div>
+  </div>
 
   <!-- OFFICIAL FESTIVAL POSTERS & ANNOUNCEMENTS (WITH LIGHTBOX ZOOM) -->
   <section id="posters" class="py-14 bg-white border-b border-slate-200">
@@ -894,10 +913,6 @@
       </div>
 
       <div class="flex items-center gap-4">
-        <button onclick="openAdminModal()" class="inline-flex items-center gap-1.5 text-xs text-amber-400 hover:text-amber-300 font-bold bg-slate-900 border border-slate-800 px-3 py-1.5 rounded-lg">
-          <i data-lucide="shield-check" class="w-4 h-4"></i>
-          <span data-en="Admin Data Entry" data-ar="إدخال بيانات المشرف">Admin Data Entry</span>
-        </button>
         <div class="text-center sm:text-right">
           <p class="text-slate-400">Official Web Domain: <span class="text-amber-400 font-semibold">jordanbridgefederation.com</span></p>
           <p class="text-slate-600 mt-0.5">Olympic Sports City • Prince Hamza Hall • Amman</p>
@@ -929,96 +944,6 @@
     </div>
     <div id="tooltipPlayerList" class="space-y-1">
       <!-- Injected player chips -->
-    </div>
-  </div>
-
-  <!-- ADMIN DATA ENTRY MODAL (FOR JBF STAFF TO UPDATE SCORES EASILY) -->
-  <div id="adminModal" class="fixed inset-0 z-50 bg-slate-950/80 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-white rounded-2xl shadow-2xl border border-slate-200 w-full max-w-xl max-h-[90vh] overflow-y-auto p-6 text-slate-800" onclick="event.stopPropagation()">
-      
-      <div class="flex items-center justify-between pb-4 border-b border-slate-100 mb-5">
-        <div class="flex items-center gap-2.5">
-          <div class="w-9 h-9 rounded-xl bg-amber-100 text-amber-800 flex items-center justify-center">
-            <i data-lucide="shield-check" class="w-5 h-5"></i>
-          </div>
-          <div>
-            <h3 class="font-black text-slate-900 text-base" data-en="JBF Score & Data Entry Portal" data-ar="بوابة إدخال وتعديل نتائج الاتحاد">JBF Score & Data Entry Portal</h3>
-            <p class="text-xs text-slate-500" data-en="Easily enter tournament scores and team rosters without touching code." data-ar="إدخال نتائج البطولات وكشوفات الفرق بسهولة دون الحاجة لخبرة برمجية.">Easily enter tournament scores and team rosters.</p>
-          </div>
-        </div>
-        <button onclick="closeAdminModal()" class="text-slate-400 hover:text-slate-600 p-1 rounded-lg">
-          <i data-lucide="x" class="w-5 h-5"></i>
-        </button>
-      </div>
-
-      <!-- PIN Input -->
-      <div id="adminPinSection" class="space-y-4">
-        <p class="text-xs text-slate-600" data-en="Please enter the Federation Admin PIN to access data entry:" data-ar="يرجى إدخال رمز التحقق الخاص بمشرفي الاتحاد:">Please enter the Federation Admin PIN to access data entry:</p>
-        <div class="flex gap-2">
-          <input type="password" id="adminPinInput" placeholder="••••••••" onkeydown="if(event.key==='Enter') verifyAdminPin()" class="px-3.5 py-2 text-sm border border-slate-300 rounded-xl focus:ring-2 focus:ring-amber-500 focus:outline-none flex-1 font-mono">
-          <button onclick="verifyAdminPin()" class="px-5 py-2 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition-all">
-            <span data-en="Unlock" data-ar="دخول">Unlock</span>
-          </button>
-        </div>
-        <p id="adminPinError" class="text-xs text-red-600 hidden">Incorrect PIN. Please try again.</p>
-      </div>
-
-      <!-- Data Entry Form (Unlocked) -->
-      <div id="adminFormSection" class="hidden space-y-4">
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Target Tournament:</label>
-          <select id="adminTargetTourney" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-sky-500">
-            <option value="jordancup2026">Jordan Cup 2026 Final</option>
-            <option value="festival2026">Jordan Bridge Festival 2026</option>
-          </select>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Team Name:</label>
-            <input type="text" id="adminTeamName" placeholder="e.g. Al Nashama" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Rank (#):</label>
-            <input type="number" id="adminTeamRank" placeholder="1" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl">
-          </div>
-        </div>
-
-        <div class="grid grid-cols-2 gap-3">
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Total V.P Score:</label>
-            <input type="number" step="0.01" id="adminTeamVp" placeholder="90.90" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl">
-          </div>
-          <div>
-            <label class="block text-xs font-bold text-slate-700 mb-1">Total IMP (Differential):</label>
-            <input type="number" id="adminTeamImp" placeholder="+79" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl">
-          </div>
-        </div>
-
-        <div>
-          <label class="block text-xs font-bold text-slate-700 mb-1">Player Roster (comma-separated):</label>
-          <input type="text" id="adminTeamRoster" placeholder="Abdlah Ajlouni, Zaid Bitar, Samer Haddad" class="w-full text-xs p-2.5 border border-slate-300 rounded-xl">
-          <span class="text-[11px] text-slate-400 mt-0.5 block">Separate each player's name with a comma.</span>
-        </div>
-
-        <div class="pt-3 border-t border-slate-100 flex items-center justify-between gap-3">
-          <button onclick="applyAdminUpdate()" class="px-4 py-2.5 bg-emerald-700 hover:bg-emerald-800 text-white font-bold text-xs rounded-xl transition-all flex items-center gap-1.5 shadow-xs">
-            <i data-lucide="check" class="w-4 h-4"></i>
-            <span>Apply Live Preview</span>
-          </button>
-          <button onclick="exportAdminJson()" class="px-4 py-2.5 bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs rounded-xl transition-all flex items-center gap-1.5">
-            <i data-lucide="code" class="w-4 h-4"></i>
-            <span>Export Clean JSON</span>
-          </button>
-        </div>
-
-        <div id="adminJsonOutputBox" class="hidden mt-3">
-          <label class="block text-xs font-bold text-slate-600 mb-1">Exported JSON (Ready to copy/save):</label>
-          <textarea id="adminJsonTextarea" rows="4" readonly class="w-full font-mono text-[11px] p-2 bg-slate-900 text-emerald-400 rounded-xl border border-slate-700"></textarea>
-          <button onclick="copyAdminJson()" class="mt-1 text-xs font-bold text-sky-700 hover:underline">Copy JSON to Clipboard</button>
-        </div>
-      </div>
-
     </div>
   </div>
 
@@ -1066,6 +991,7 @@
       renderResultsList();
       renderGallery();
       renderMix25();
+      renderNews();
       if (RES.ev) resRenderEvent();
     }
 
@@ -1658,7 +1584,7 @@
         const displayRole = currentLang === 'ar' ? (m.role_ar || m.role) : m.role;
 
         const avatarHtml = m.photo ? 
-          `<div class="relative group cursor-pointer shrink-0" onclick="openLightbox('${m.photo}', '${displayName} - ${displayRole}')">
+          `<div class="relative group cursor-pointer shrink-0" data-zoom="1">
              <img src="${m.photo}" alt="${displayName}" class="w-20 h-24 object-cover rounded-xl border-2 border-slate-200 group-hover:border-amber-400 shadow-sm transition-all">
              <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity flex items-center justify-center text-white text-xs">
                <i data-lucide="zoom-in" class="w-4 h-4"></i>
@@ -1681,6 +1607,9 @@
             </div>
           </div>
         `;
+        // attach the zoom handler in JS: names such as "Ma'moun" break an inline onclick string
+        const z = card.querySelector('[data-zoom]');
+        if (z) z.addEventListener('click', () => openLightbox(m.photo, displayName + ' - ' + displayRole));
         container.appendChild(card);
       });
       lucide.createIcons();
@@ -1924,92 +1853,6 @@
       }
 
       lucide.createIcons();
-    }
-
-    // ADMIN DATA ENTRY MODAL
-    function openAdminModal() {
-      const modal = document.getElementById('adminModal');
-      const pinInput = document.getElementById('adminPinInput');
-      if (pinInput) pinInput.value = '';
-      const err = document.getElementById('adminPinError');
-      if (err) err.classList.add('hidden');
-      modal.classList.remove('hidden');
-      modal.classList.add('flex');
-      if (pinInput) setTimeout(() => pinInput.focus(), 100);
-    }
-
-    function closeAdminModal() {
-      const modal = document.getElementById('adminModal');
-      modal.classList.add('hidden');
-      modal.classList.remove('flex');
-    }
-
-    async function verifyAdminPin() {
-      const pin = document.getElementById('adminPinInput').value;
-      const err = document.getElementById('adminPinError');
-      // Secure SHA-256 cryptographic verification — password is never exposed in plain text
-      const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(pin));
-      const hash = Array.from(new Uint8Array(buf)).map(b => b.toString(16).padStart(2, '0')).join('');
-      if (hash === 'f54dfd493397bd939a0f3a00d0a8a47b5e72022cc7d55851dac58e1a8b1de00f') {
-        document.getElementById('adminPinSection').classList.add('hidden');
-        document.getElementById('adminFormSection').classList.remove('hidden');
-        err.classList.add('hidden');
-      } else {
-        err.classList.remove('hidden');
-      }
-    }
-
-    function applyAdminUpdate() {
-      const tName = document.getElementById('adminTeamName').value.trim();
-      const rank = parseInt(document.getElementById('adminTeamRank').value);
-      const vp = parseFloat(document.getElementById('adminTeamVp').value);
-      const imp = parseInt(document.getElementById('adminTeamImp').value) || 0;
-      const rosterRaw = document.getElementById('adminTeamRoster').value.trim();
-      const roster = rosterRaw ? rosterRaw.split(',').map(s => s.trim()).filter(Boolean) : [];
-
-      if (!tName || isNaN(vp)) {
-        alert('Please provide at least a Team Name and Total V.P score.');
-        return;
-      }
-
-      // Find or add in Jordan Cup matrix
-      let existing = masterData.jordanCup2026.matrix.find(x => x.team.toLowerCase() === tName.toLowerCase());
-      if (existing) {
-        existing.totalVp = vp;
-        existing.totalImp = imp;
-        if (!isNaN(rank)) existing.rank = rank;
-        if (roster.length > 0) existing.roster = roster;
-      } else {
-        masterData.jordanCup2026.matrix.push({
-          team: tName,
-          rank: rank || masterData.jordanCup2026.matrix.length + 1,
-          totalVp: vp,
-          totalImp: imp,
-          rounds: [],
-          penalty: 0,
-          roster: roster
-        });
-      }
-
-      // Re-sort and re-render
-      masterData.jordanCup2026.matrix.sort((a, b) => b.totalVp - a.totalVp);
-      renderCup26Matrix();
-      renderJordanCupCards();
-      alert('Live update applied! Check the tables and cards below.');
-    }
-
-    function exportAdminJson() {
-      const box = document.getElementById('adminJsonOutputBox');
-      const textarea = document.getElementById('adminJsonTextarea');
-      box.classList.remove('hidden');
-      textarea.value = JSON.stringify(masterData.jordanCup2026.matrix, null, 2);
-    }
-
-    function copyAdminJson() {
-      const textarea = document.getElementById('adminJsonTextarea');
-      textarea.select();
-      document.execCommand('copy');
-      alert('JSON copied to clipboard!');
     }
 
 
@@ -2678,6 +2521,79 @@
     }
 
 
+    // ===================== NEWS & LATEST RESULTS (from /admin, Firestore REST) =====================
+    const NEWS = { ann: [], tour: [] };
+    const FS_URL = 'https://firestore.googleapis.com/v1/projects/jbf-portal/databases/(default)/documents:runQuery?key=AIzaSyCQlYxWn-ARyz5caVrKtiOpBp-ahE65-xc';
+    function fsVal(v) {
+      if (!v) return null;
+      if ('stringValue' in v) return v.stringValue;
+      if ('booleanValue' in v) return v.booleanValue;
+      if ('integerValue' in v) return +v.integerValue;
+      if ('doubleValue' in v) return v.doubleValue;
+      if ('timestampValue' in v) return v.timestampValue;
+      return null;
+    }
+    async function fsPublished(col) {
+      const body = { structuredQuery: { from: [{ collectionId: col }], where: { fieldFilter: { field: { fieldPath: 'published' }, op: 'EQUAL', value: { booleanValue: true } } }, limit: 200 } };
+      const r = await fetch(FS_URL, { method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(body) });
+      if (!r.ok) return [];
+      const j = await r.json();
+      return j.filter(x => x.document).map(x => { const o = { id: x.document.name.split('/').pop() }; Object.entries(x.document.fields || {}).forEach(([k, v]) => o[k] = fsVal(v)); return o; });
+    }
+    function newsEsc(s) { return String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+    function newsText(s) {
+      // plain text with line breaks; web addresses become links
+      return newsEsc(s).replace(/(https?:\/\/[^\s<]+)/g, '<a href="$1" target="_blank" rel="noopener nofollow" class="text-sky-700 underline break-all">$1</a>').replace(/\n/g, '<br>');
+    }
+    function newsDate(iso) { try { return new Date(iso + 'T12:00:00').toLocaleDateString(currentLang === 'ar' ? 'ar-JO' : 'en-GB', { day: 'numeric', month: 'long', year: 'numeric' }); } catch (e) { return iso; } }
+    function renderNews() {
+      const ar = currentLang === 'ar';
+      const sec = document.getElementById('news');
+      if (!NEWS.ann.length && !NEWS.tour.length) { sec.classList.add('hidden'); document.querySelectorAll('[data-sec=news]').forEach(a => a.classList.add('hidden')); return; }
+      sec.classList.remove('hidden'); document.querySelectorAll('[data-sec=news]').forEach(a => a.classList.remove('hidden'));
+      const anns = NEWS.ann.slice().sort((a, b) => (b.pinned - a.pinned) || (b.date || '').localeCompare(a.date || ''));
+      document.getElementById('newsAnnList').innerHTML = anns.map(a => {
+        const title = ar ? (a.title_ar || a.title_en) : (a.title_en || a.title_ar);
+        const body = ar ? (a.body_ar || a.body_en) : (a.body_en || a.body_ar);
+        const rtl = ar ? (a.title_ar || a.body_ar) : !(a.title_en || a.body_en);
+        return `<article class="bg-slate-50 rounded-2xl border ${a.pinned ? 'border-amber-300' : 'border-slate-200'} p-5" ${rtl ? 'dir="rtl"' : ''}>
+          <div class="flex items-center gap-2 text-xs text-slate-500 mb-1">${a.pinned ? '<span>📌</span>' : ''}<time>${newsEsc(newsDate(a.date))}</time></div>
+          <h3 class="text-lg font-black text-slate-900">${newsEsc(title)}</h3>
+          ${body ? `<p class="mt-2 text-sm text-slate-700 leading-relaxed">${newsText(body)}</p>` : ''}
+          ${a.link ? `<a href="${newsEsc(a.link)}" target="_blank" rel="noopener nofollow" class="inline-block mt-3 text-sm font-bold text-sky-700 hover:underline">${ar ? 'المزيد' : 'Read more'} →</a>` : ''}
+        </article>`;
+      }).join('') || '';
+      const tours = NEWS.tour.slice().sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+      document.getElementById('newsTourList').innerHTML = tours.length ? `<p class="text-xs font-bold uppercase tracking-wider text-slate-500">${ar ? 'أحدث النتائج' : 'Latest results'}</p>` + tours.map(t =>
+        `<button onclick="openNewsTable('${t.id}')" class="w-full text-left bg-white rounded-2xl border border-slate-200 hover:border-sky-400 hover:shadow-md transition-all p-4">
+          <div class="flex items-center justify-between gap-2 text-xs text-slate-500"><span>${newsEsc(newsDate(t.date))}</span><span class="font-bold text-sky-800">${newsEsc(t.category)}</span></div>
+          <div class="font-extrabold text-slate-900 mt-1" ${ar && t.title_ar ? 'dir="rtl"' : ''}>${newsEsc(ar ? (t.title_ar || t.title) : t.title)}</div>
+        </button>`).join('') : '';
+    }
+    function openNewsTable(id) {
+      const t = NEWS.tour.find(x => x.id === id); if (!t) return;
+      let tb = { header: [], rows: [] }; try { tb = JSON.parse(t.table); } catch (e) {}
+      const ar = currentLang === 'ar';
+      document.getElementById('newsModalMeta').textContent = newsDate(t.date) + ' · ' + (t.category || '');
+      document.getElementById('newsModalTitle').textContent = ar ? (t.title_ar || t.title) : t.title;
+      document.getElementById('newsModalNote').textContent = t.note || '';
+      const top = v => /^[123]=?$/.test(v) ? `<span class="badge-rank-${v[0]} inline-flex items-center justify-center min-w-7 h-7 px-1.5 rounded-full text-xs font-black">${newsEsc(v)}</span>` : newsEsc(v);
+      document.getElementById('newsModalBody').innerHTML = `<div class="overflow-x-auto rounded-2xl border border-slate-200"><table class="res-tbl">
+        <thead><tr>${tb.header.map(h => `<th>${newsEsc(h)}</th>`).join('')}</tr></thead>
+        <tbody>${tb.rows.map(r => `<tr>${r.map((c, i) => `<td class="${String(c).length > 18 ? 'l' : ''}">${i === 0 ? top(c) : newsEsc(c)}</td>`).join('')}</tr>`).join('')}</tbody></table></div>`;
+      const m = document.getElementById('newsModal'); m.classList.remove('hidden'); m.classList.add('flex'); document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+    function closeNewsTable() { const m = document.getElementById('newsModal'); m.classList.add('hidden'); m.classList.remove('flex'); document.body.style.overflow = ''; }
+    document.addEventListener('keydown', e => { if (e.key === 'Escape') closeNewsTable(); });
+    async function loadNews() {
+      try {
+        const [a, t] = await Promise.all([fsPublished('announcements'), fsPublished('tournaments')]);
+        NEWS.ann = a; NEWS.tour = t; renderNews();
+      } catch (e) { /* the rest of the site works without this section */ }
+    }
+
+
     // TOP MENU: highlight the section on screen and the item just clicked
     function setActiveNav(id) {
       document.querySelectorAll('.nav-link, .nav-link-m').forEach(a => a.classList.toggle('active', a.dataset.sec === id));
@@ -2714,6 +2630,7 @@
       renderResultsList();
       resInitFromHash();
       initNavSpy();
+      loadNews();
     });
   </script>
 </body>

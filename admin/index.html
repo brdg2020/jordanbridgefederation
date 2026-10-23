@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="robots" content="noindex, nofollow, noarchive">
+  <meta name="referrer" content="no-referrer">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self' 'unsafe-inline' https://cdn.tailwindcss.com https://www.gstatic.com https://cdn.sheetjs.com; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data: https:; connect-src https://*.googleapis.com https://*.firebaseio.com; form-action 'none'; base-uri 'none'; object-src 'none'">
+  <title>JBF Admin</title>
+  <link rel="icon" type="image/x-icon" href="../favicon.ico">
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config = { theme: { extend: { fontFamily: { sans: ['Outfit', 'Cairo', 'sans-serif'] } } } };</script>
+  <style>
+    body { font-family: 'Outfit', 'Cairo', sans-serif; }
+    .grid-ed { border-collapse: collapse; font-size: 13px; }
+    .grid-ed td, .grid-ed th { border: 1px solid #cbd5e1; padding: 4px 6px; min-width: 64px; white-space: nowrap; }
+    .grid-ed thead td { background: #0f172a; color: #fff; font-weight: 700; }
+    .grid-ed td[contenteditable]:focus { outline: 2px solid #0284c7; background: #f0f9ff; }
+    .grid-ed .rowtool { background: #f1f5f9; color: #64748b; min-width: 28px; text-align: center; cursor: pointer; user-select: none; }
+    .sheet td { border: 1px solid #e2e8f0; padding: 2px 6px; font-size: 12px; white-space: nowrap; max-width: 220px; overflow: hidden; text-overflow: ellipsis; }
+    .sheet tr.hdr td { background: #fde68a; font-weight: 700; }
+    .sheet tr.inrange td { background: #e0f2fe; }
+    .sheet tr:hover td { outline: 1px solid #94a3b8; cursor: pointer; }
+    .hp { position: absolute; left: -10000px; width: 1px; height: 1px; overflow: hidden; }
+    [dir="rtl"] { font-family: 'Cairo', 'Outfit', sans-serif; }
+  </style>
+</head>
+<body class="bg-slate-100 text-slate-800 min-h-screen">
+
+  <!-- LOGIN -->
+  <div id="loginView" class="min-h-screen flex items-center justify-center p-4">
+    <form id="loginForm" class="bg-white w-full max-w-sm rounded-3xl shadow-xl border border-slate-200 p-8" autocomplete="off">
+      <div class="flex items-center gap-3 mb-6">
+        <img src="../public/jbf_logo.jpg" alt="JBF" class="h-12 rounded-lg border border-slate-200">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-wider text-amber-700">Jordan Bridge Federation</p>
+          <h1 class="text-lg font-black text-slate-900">Admin sign in <span class="text-slate-400 font-semibold text-sm">· دخول المشرف</span></h1>
+        </div>
+      </div>
+      <!-- honeypot: real people never see or fill this -->
+      <div class="hp" aria-hidden="true"><label>Website <input type="text" id="hpField" tabindex="-1" autocomplete="off"></label></div>
+      <label class="block text-xs font-bold text-slate-600 mb-1" for="pwd">Password · كلمة المرور</label>
+      <input id="pwd" type="password" required minlength="8" maxlength="128" autocomplete="current-password" class="w-full px-4 py-3 border-2 border-slate-200 rounded-xl focus:border-sky-500 focus:outline-none text-base">
+      <button id="loginBtn" type="submit" class="mt-4 w-full py-3 rounded-xl bg-sky-700 hover:bg-sky-800 text-white font-bold disabled:opacity-50">Sign in · دخول</button>
+      <p id="loginMsg" class="mt-3 text-sm text-rose-700 min-h-[1.25rem]"></p>
+      <p class="mt-4 text-[11px] text-slate-400">Protected area. Repeated failed attempts are blocked. · منطقة محمية</p>
+    </form>
+  </div>
+
+  <!-- APP -->
+  <div id="appView" class="hidden">
+    <header class="bg-slate-900 text-white sticky top-0 z-30">
+      <div class="max-w-7xl mx-auto px-4 py-3 flex flex-wrap items-center gap-3">
+        <img src="../public/jbf_logo.jpg" alt="" class="h-9 rounded">
+        <span class="font-black">JBF Admin</span>
+        <nav class="flex gap-1 ml-2">
+          <button data-tab="ann" class="tabbtn px-3 py-1.5 rounded-lg text-sm font-bold">Announcements · الإعلانات</button>
+          <button data-tab="tour" class="tabbtn px-3 py-1.5 rounded-lg text-sm font-bold">Results tables · النتائج</button>
+          <button data-tab="help" class="tabbtn px-3 py-1.5 rounded-lg text-sm font-bold">Help · مساعدة</button>
+        </nav>
+        <div class="ml-auto flex items-center gap-2">
+          <a href="../" target="_blank" class="text-xs text-sky-300 hover:underline">View site ↗</a>
+          <button id="logoutBtn" class="px-3 py-1.5 rounded-lg bg-white/10 hover:bg-white/20 text-sm font-bold">Sign out · خروج</button>
+        </div>
+      </div>
+    </header>
+    <main class="max-w-7xl mx-auto px-4 py-6">
+      <div id="toast" class="hidden fixed bottom-5 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-xl text-white text-sm shadow-lg"></div>
+
+      <!-- ANNOUNCEMENTS -->
+      <section id="tab-ann" class="tab hidden">
+        <div class="flex items-center justify-between mb-4">
+          <h2 class="text-2xl font-black">Announcements <span class="text-slate-400 text-lg">· الإعلانات</span></h2>
+          <button id="newAnnBtn" class="px-4 py-2 rounded-xl bg-sky-700 text-white font-bold text-sm">+ New announcement</button>
+        </div>
+        <div id="annList" class="space-y-2"></div>
+        <form id="annForm" class="hidden mt-6 bg-white rounded-2xl border border-slate-200 p-5 space-y-3">
+          <h3 class="font-black text-lg" id="annFormTitle">New announcement</h3>
+          <div class="grid sm:grid-cols-2 gap-3">
+            <label class="text-sm font-bold">Title (English)<input name="title_en" maxlength="300" class="mt-1 w-full border rounded-lg px-3 py-2 font-normal"></label>
+            <label class="text-sm font-bold" dir="rtl">العنوان (عربي)<input name="title_ar" maxlength="300" class="mt-1 w-full border rounded-lg px-3 py-2 font-normal"></label>
+            <label class="text-sm font-bold">Text (English)<textarea name="body_en" rows="6" maxlength="20000" class="mt-1 w-full border rounded-lg px-3 py-2 font-normal"></textarea></label>
+            <label class="text-sm font-bold" dir="rtl">النص (عربي)<textarea name="body_ar" rows="6" maxlength="20000" class="mt-1 w-full border rounded-lg px-3 py-2 font-normal"></textarea></label>
+            <label class="text-sm font-bold">Date<input name="date" type="date" class="mt-1 w-full border rounded-lg px-3 py-2 font-normal"></label>
+            <label class="text-sm font-bold">Link (optional)<input name="link" type="url" maxlength="500" placeholder="https://" class="mt-1 w-full border rounded-lg px-3 py-2 font-normal"></label>
+          </div>
+          <div class="flex flex-wrap gap-5 text-sm font-bold">
+            <label class="flex items-center gap-2"><input type="checkbox" name="pinned"> Pin to top · تثبيت</label>
+            <label class="flex items-center gap-2"><input type="checkbox" name="published" checked> Published on the site · منشور</label>
+          </div>
+          <p class="text-xs text-slate-500">Fill at least one title. Text is shown as written; links in the text become clickable.</p>
+          <div class="flex gap-2">
+            <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-700 text-white font-bold">Save · حفظ</button>
+            <button type="button" id="annCancel" class="px-5 py-2 rounded-xl bg-slate-200 font-bold">Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- RESULTS TABLES -->
+      <section id="tab-tour" class="tab hidden">
+        <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+          <h2 class="text-2xl font-black">Results tables <span class="text-slate-400 text-lg">· جداول النتائج</span></h2>
+          <div class="flex gap-2">
+            <label class="px-4 py-2 rounded-xl bg-emerald-700 text-white font-bold text-sm cursor-pointer">⬆ Import Excel / CSV<input id="xlsFile" type="file" accept=".xlsx,.xls,.xlsm,.csv,.ods" class="hidden"></label>
+            <button id="newTourBtn" class="px-4 py-2 rounded-xl bg-sky-700 text-white font-bold text-sm">+ Blank table</button>
+          </div>
+        </div>
+        <div id="tourList" class="space-y-2"></div>
+
+        <!-- Excel import: choose sheet and rows -->
+        <div id="importBox" class="hidden mt-6 bg-white rounded-2xl border border-slate-200 p-5">
+          <h3 class="font-black text-lg mb-1">Import from <span id="impName"></span></h3>
+          <p class="text-sm text-slate-600 mb-3">1) Pick the sheet. 2) Click the row that holds the column titles (yellow). 3) Click the last row of the table (blue). Then press <b>Use this table</b>.</p>
+          <div class="flex flex-wrap items-center gap-2 mb-3" id="sheetTabs"></div>
+          <div class="flex flex-wrap items-center gap-4 text-sm mb-3">
+            <label class="flex items-center gap-2 font-bold">Title rows <select id="hdrCount" class="border rounded px-2 py-1"><option>1</option><option>2</option><option>3</option></select></label>
+            <span>Header row: <b id="hdrRowLbl">–</b> · Last row: <b id="lastRowLbl">–</b></span>
+            <label class="flex items-center gap-2"><input type="radio" name="clickMode" value="hdr" checked> click sets header</label>
+            <label class="flex items-center gap-2"><input type="radio" name="clickMode" value="last"> click sets last row</label>
+          </div>
+          <div class="overflow-auto max-h-[55vh] border rounded-xl"><table class="sheet" id="sheetView"></table></div>
+          <div class="flex gap-2 mt-3">
+            <button id="useTable" class="px-5 py-2 rounded-xl bg-emerald-700 text-white font-bold">Use this table</button>
+            <button id="cancelImport" class="px-5 py-2 rounded-xl bg-slate-200 font-bold">Cancel</button>
+          </div>
+        </div>
+
+        <!-- Table editor -->
+        <form id="tourForm" class="hidden mt-6 bg-white rounded-2xl border border-slate-200 p-5 space-y-3">
+          <h3 class="font-black text-lg" id="tourFormTitle">Results table</h3>
+          <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            <label class="text-sm font-bold lg:col-span-2">Title (English)<input name="title" maxlength="300" required class="mt-1 w-full border rounded-lg px-3 py-2 font-normal"></label>
+            <label class="text-sm font-bold lg:col-span-2" dir="rtl">العنوان (عربي)<input name="title_ar" maxlength="300" class="mt-1 w-full border rounded-lg px-3 py-2 font-normal"></label>
+            <label class="text-sm font-bold">Date<input name="date" type="date" class="mt-1 w-full border rounded-lg px-3 py-2 font-normal"></label>
+            <label class="text-sm font-bold">Category<select name="category" class="mt-1 w-full border rounded-lg px-3 py-2 font-normal">
+              <option>Jordan Cup</option><option>Jordan Bridge Festival</option><option>League</option><option>Selection & Qualification</option><option>Other Events</option></select></label>
+            <label class="text-sm font-bold lg:col-span-2">Note (optional: director, scoring, rosters…)<input name="note" maxlength="5000" class="mt-1 w-full border rounded-lg px-3 py-2 font-normal"></label>
+          </div>
+          <div class="flex flex-wrap gap-2 text-sm">
+            <button type="button" data-act="addRow" class="px-3 py-1.5 rounded-lg bg-slate-200 font-bold">+ Row</button>
+            <button type="button" data-act="addCol" class="px-3 py-1.5 rounded-lg bg-slate-200 font-bold">+ Column</button>
+            <button type="button" data-act="delCol" class="px-3 py-1.5 rounded-lg bg-slate-200 font-bold">− Last column</button>
+            <span class="text-slate-500 self-center">Click a cell to type. Click × to delete a row. Top row = column titles.</span>
+          </div>
+          <div class="overflow-auto max-h-[60vh] border rounded-xl"><table class="grid-ed" id="gridEd"></table></div>
+          <label class="flex items-center gap-2 text-sm font-bold"><input type="checkbox" name="published" checked> Published on the site · منشور</label>
+          <div class="flex gap-2">
+            <button type="submit" class="px-5 py-2 rounded-xl bg-emerald-700 text-white font-bold">Save · حفظ</button>
+            <button type="button" id="tourCancel" class="px-5 py-2 rounded-xl bg-slate-200 font-bold">Cancel</button>
+          </div>
+        </form>
+      </section>
+
+      <!-- HELP -->
+      <section id="tab-help" class="tab hidden">
+        <div class="bg-white rounded-2xl border border-slate-200 p-6 space-y-4 text-sm leading-relaxed max-w-3xl">
+          <h2 class="text-2xl font-black">How to use · طريقة الاستخدام</h2>
+          <div>
+            <h3 class="font-black">Announcements</h3>
+            <p>Press <b>New announcement</b>, write the title and text in English and/or Arabic, choose the date and press <b>Save</b>. It appears in the "News" section of the home page within seconds. Untick <b>Published</b> to hide it without deleting it. <b>Pin</b> keeps it at the top.</p>
+          </div>
+          <div>
+            <h3 class="font-black">Results from Excel</h3>
+            <ol class="list-decimal ml-5 space-y-1">
+              <li>Press <b>Import Excel / CSV</b> and choose the file you used to calculate the tournament.</li>
+              <li>Pick the sheet that has the final standings.</li>
+              <li>Click the row with the column titles. If the titles take two rows (for example round numbers above "V.P / IMP"), set <b>Title rows</b> to 2.</li>
+              <li>Switch to "click sets last row" and click the last team or pair.</li>
+              <li>Press <b>Use this table</b>, check the table, correct anything by clicking the cell, give it a title and date, then <b>Save</b>.</li>
+            </ol>
+            <p class="mt-1">Numbers are rounded to two decimals. Formulas are imported as their calculated values. Nothing is uploaded until you press Save.</p>
+          </div>
+          <div>
+            <h3 class="font-black">Typing results by hand</h3>
+            <p>Press <b>Blank table</b>, type the column titles in the top row and the results below. Use <b>+ Row</b> / <b>+ Column</b> as needed. You can also paste a block of cells copied from Excel into any cell.</p>
+          </div>
+          <div>
+            <h3 class="font-black">Security</h3>
+            <p>Sign out when you finish, especially on shared computers. The session closes by itself after 30 minutes without activity. Never share the password by e-mail or chat.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
+  <script type="module">
+    import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.12.4/firebase-app.js';
+    import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged, setPersistence, browserSessionPersistence } from 'https://www.gstatic.com/firebasejs/10.12.4/firebase-auth.js';
+    import { getFirestore, collection, getDocs, doc, addDoc, setDoc, deleteDoc, serverTimestamp } from 'https://www.gstatic.com/firebasejs/10.12.4/firebase-firestore.js';
+
+    const firebaseConfig = {
+      apiKey: 'AIzaSyCQlYxWn-ARyz5caVrKtiOpBp-ahE65-xc',
+      authDomain: 'jbf-portal.firebaseapp.com',
+      projectId: 'jbf-portal',
+      appId: '1:856709643578:web:9b3fc5ec29bbf0da052403',
+      messagingSenderId: '856709643578'
+    };
+    const ADMIN_EMAIL = 'admin@jordanbridgefederation.com';
+    const app = initializeApp(firebaseConfig);
+    const auth = getAuth(app);
+    const db = getFirestore(app);
+    await setPersistence(auth, browserSessionPersistence);   // session ends when the browser is closed
+
+    const $ = id => document.getElementById(id);
+    const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+    function toast(msg, ok = true) { const t = $('toast'); t.textContent = msg; t.className = 'fixed bottom-5 left-1/2 -translate-x-1/2 z-50 px-4 py-2 rounded-xl text-white text-sm shadow-lg ' + (ok ? 'bg-emerald-700' : 'bg-rose-700'); clearTimeout(t._h); t._h = setTimeout(() => t.classList.add('hidden'), 3000); }
+
+    // ---------- login with brute-force protection ----------
+    // Firebase Authentication also blocks an account after repeated failures on its servers;
+    // this local lock slows a person (or script) using this page even further.
+    const LOCK_KEY = 'jbfAdminLock';
+    function lockState() { try { return JSON.parse(localStorage.getItem(LOCK_KEY)) || { fails: 0, until: 0 }; } catch (e) { return { fails: 0, until: 0 }; } }
+    function saveLock(s) { try { localStorage.setItem(LOCK_KEY, JSON.stringify(s)); } catch (e) {} }
+    const formOpenedAt = Date.now();
+    $('loginForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const msg = $('loginMsg'); msg.textContent = '';
+      if ($('hpField').value) { msg.textContent = 'Sign-in failed.'; return; }            // bot filled the hidden field
+      if (Date.now() - formOpenedAt < 1500) { msg.textContent = 'Please try again.'; return; } // submitted inhumanly fast
+      const st = lockState();
+      if (Date.now() < st.until) { msg.textContent = `Too many attempts. Try again in ${Math.ceil((st.until - Date.now()) / 1000)} s.`; return; }
+      $('loginBtn').disabled = true;
+      try {
+        await signInWithEmailAndPassword(auth, ADMIN_EMAIL, $('pwd').value);
+        saveLock({ fails: 0, until: 0 });
+      } catch (err) {
+        const fails = st.fails + 1;
+        const wait = fails >= 3 ? Math.min(30 * 2 ** (fails - 3), 3600) * 1000 : 0;   // 30 s, 60 s, 120 s … up to 1 h
+        saveLock({ fails, until: Date.now() + wait });
+        msg.textContent = err.code === 'auth/too-many-requests' ? 'This account is temporarily blocked after too many attempts. Try later.' : 'Wrong password.';
+      } finally {
+        $('pwd').value = '';
+        $('loginBtn').disabled = false;
+      }
+    });
+
+    let idleTimer;
+    function resetIdle() { clearTimeout(idleTimer); idleTimer = setTimeout(() => { signOut(auth); toast('Signed out after 30 minutes without activity', false); }, 30 * 60 * 1000); }
+    ['click', 'keydown', 'mousemove', 'touchstart'].forEach(ev => document.addEventListener(ev, resetIdle, { passive: true }));
+    $('logoutBtn').onclick = () => signOut(auth);
+
+    onAuthStateChanged(auth, async user => {
+      if (!user) { $('appView').classList.add('hidden'); $('loginView').classList.remove('hidden'); return; }
+      const tok = await user.getIdTokenResult(true);
+      if (!tok.claims.admin) {   // only the account the federation marked as admin may continue
+        await signOut(auth);
+        $('loginMsg').textContent = 'This account has no admin rights.';
+        return;
+      }
+      $('loginView').classList.add('hidden'); $('appView').classList.remove('hidden');
+      resetIdle();
+      showTab('ann');
+      loadAnn(); loadTour();
+    });
+
+    // ---------- tabs ----------
+    function showTab(t) {
+      document.querySelectorAll('.tab').forEach(s => s.classList.toggle('hidden', s.id !== 'tab-' + t));
+      document.querySelectorAll('.tabbtn').forEach(b => b.className = 'tabbtn px-3 py-1.5 rounded-lg text-sm font-bold ' + (b.dataset.tab === t ? 'bg-sky-600' : 'hover:bg-white/10'));
+    }
+    document.querySelectorAll('.tabbtn').forEach(b => b.onclick = () => showTab(b.dataset.tab));
+    const today = () => new Date().toISOString().slice(0, 10);
+
+    // ---------- announcements ----------
+    let anns = [], annEditing = null;
+    async function loadAnn() {
+      const snap = await getDocs(collection(db, 'announcements'));
+      anns = snap.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+      $('annList').innerHTML = anns.length ? anns.map(a => `
+        <div class="bg-white rounded-xl border border-slate-200 p-3 flex flex-wrap items-center gap-3">
+          <span class="text-xs font-mono text-slate-500">${esc(a.date)}</span>
+          ${a.pinned ? '<span class="text-[10px] font-bold bg-amber-100 text-amber-800 px-2 rounded-full">PINNED</span>' : ''}
+          <span class="text-[10px] font-bold px-2 rounded-full ${a.published ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-600'}">${a.published ? 'PUBLISHED' : 'HIDDEN'}</span>
+          <span class="font-bold flex-1 min-w-[12rem]">${esc(a.title_en || a.title_ar)}</span>
+          <button data-edit="${a.id}" class="text-sm font-bold text-sky-700">Edit</button>
+          <button data-del="${a.id}" class="text-sm font-bold text-rose-700">Delete</button>
+        </div>`).join('') : '<p class="text-slate-500">No announcements yet.</p>';
+      $('annList').querySelectorAll('[data-edit]').forEach(b => b.onclick = () => openAnn(anns.find(a => a.id === b.dataset.edit)));
+      $('annList').querySelectorAll('[data-del]').forEach(b => b.onclick = async () => {
+        if (!confirm('Delete this announcement?')) return;
+        await deleteDoc(doc(db, 'announcements', b.dataset.del)); toast('Deleted'); loadAnn();
+      });
+    }
+    function openAnn(a) {
+      annEditing = a ? a.id : null;
+      const f = $('annForm'); f.reset();
+      $('annFormTitle').textContent = a ? 'Edit announcement' : 'New announcement';
+      f.title_en.value = a?.title_en || ''; f.title_ar.value = a?.title_ar || ''; f.body_en.value = a?.body_en || ''; f.body_ar.value = a?.body_ar || '';
+      f.date.value = a?.date || today(); f.link.value = a?.link || ''; f.pinned.checked = !!a?.pinned; f.published.checked = a ? !!a.published : true;
+      f.classList.remove('hidden'); f.scrollIntoView({ behavior: 'smooth' });
+    }
+    $('newAnnBtn').onclick = () => openAnn(null);
+    $('annCancel').onclick = () => $('annForm').classList.add('hidden');
+    $('annForm').addEventListener('submit', async e => {
+      e.preventDefault();
+      const f = e.target;
+      const data = { title_en: f.title_en.value.trim(), title_ar: f.title_ar.value.trim(), body_en: f.body_en.value.trim(), body_ar: f.body_ar.value.trim(),
+        date: f.date.value || today(), link: f.link.value.trim(), pinned: f.pinned.checked, published: f.published.checked, updatedAt: serverTimestamp() };
+      if (!data.title_en && !data.title_ar) { toast('Please write a title', false); return; }
+      if (data.link && !/^https?:\/\//i.test(data.link)) { toast('The link must start with https://', false); return; }
+      try {
+        if (annEditing) await setDoc(doc(db, 'announcements', annEditing), data); else await addDoc(collection(db, 'announcements'), data);
+        toast('Saved'); f.classList.add('hidden'); loadAnn();
+      } catch (err) { toast('Could not save: ' + err.message, false); }
+    });
+
+    // ---------- results tables ----------
+    let tours = [], tourEditing = null, grid = [['']];
+    async function loadTour() {
+      const snap = await getDocs(collection(db, 'tournaments'));
+      tours = snap.docs.map(d => ({ id: d.id, ...d.data() })).sort((a, b) => (b.date || '').localeCompare(a.date || ''));
+      $('tourList').innerHTML = tours.length ? tours.map(t => `
+        <div class="bg-white rounded-xl border border-slate-200 p-3 flex flex-wrap items-center gap-3">
+          <span class="text-xs font-mono text-slate-500">${esc(t.date)}</span>
+          <span class="text-[10px] font-bold px-2 rounded-full ${t.published ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-200 text-slate-600'}">${t.published ? 'PUBLISHED' : 'HIDDEN'}</span>
+          <span class="text-xs text-slate-500">${esc(t.category)}</span>
+          <span class="font-bold flex-1 min-w-[12rem]">${esc(t.title)}</span>
+          <button data-edit="${t.id}" class="text-sm font-bold text-sky-700">Edit</button>
+          <button data-del="${t.id}" class="text-sm font-bold text-rose-700">Delete</button>
+        </div>`).join('') : '<p class="text-slate-500">No results tables yet.</p>';
+      $('tourList').querySelectorAll('[data-edit]').forEach(b => b.onclick = () => openTour(tours.find(t => t.id === b.dataset.edit)));
+      $('tourList').querySelectorAll('[data-del]').forEach(b => b.onclick = async () => {
+        if (!confirm('Delete this results table?')) return;
+        await deleteDoc(doc(db, 'tournaments', b.dataset.del)); toast('Deleted'); loadTour();
+      });
+    }
+    function openTour(t, preset) {
+      tourEditing = t ? t.id : null;
+      const f = $('tourForm'); f.reset();
+      $('tourFormTitle').textContent = t ? 'Edit results table' : 'New results table';
+      f.title.value = t?.title || preset?.title || ''; f.title_ar.value = t?.title_ar || '';
+      f.date.value = t?.date || today(); f.category.value = t?.category || 'Jordan Cup'; f.note.value = t?.note || preset?.note || '';
+      f.published.checked = t ? !!t.published : true;
+      if (t) { try { const tb = JSON.parse(t.table); grid = [tb.header].concat(tb.rows); } catch (e) { grid = [['']]; } }
+      else grid = preset?.grid || [['Pos', 'Team / Pair', 'Score'], ['', '', '']];
+      f.dataset.source = t?.source || preset?.source || 'manual';
+      drawGrid();
+      f.classList.remove('hidden'); $('importBox').classList.add('hidden'); f.scrollIntoView({ behavior: 'smooth' });
+    }
+    function readGrid() {
+      const rows = [...$('gridEd').querySelectorAll('tr')].map(tr => [...tr.querySelectorAll('td[contenteditable]')].map(td => td.innerText.replace(/\n+$/, '').trim()));
+      grid = rows.length ? rows : [['']];
+    }
+    function drawGrid() {
+      const w = Math.max(...grid.map(r => r.length));
+      grid = grid.map(r => r.concat(Array(w - r.length).fill('')));
+      $('gridEd').innerHTML = grid.map((r, i) => (i === 0 ? '<thead>' : (i === 1 ? '<tbody>' : '')) +
+        `<tr>${i === 0 ? '<td class="rowtool">#</td>' : `<td class="rowtool" data-delrow="${i}" title="Delete row">×</td>`}${r.map(c => `<td contenteditable="true">${esc(c)}</td>`).join('')}</tr>` + (i === 0 ? '</thead>' : '')).join('') + '</tbody>';
+      $('gridEd').querySelectorAll('[data-delrow]').forEach(td => td.onclick = () => { readGrid(); grid.splice(+td.dataset.delrow, 1); drawGrid(); });
+      // paste a block copied from Excel (tab separated) into the grid
+      $('gridEd').querySelectorAll('td[contenteditable]').forEach(td => td.addEventListener('paste', ev => {
+        const text = (ev.clipboardData || window.clipboardData).getData('text');
+        if (!text.includes('\t') && !text.includes('\n')) return;
+        ev.preventDefault(); readGrid();
+        const tr = td.parentElement, r0 = [...tr.parentElement.parentElement.querySelectorAll('tr')].indexOf(tr), c0 = [...tr.querySelectorAll('td[contenteditable]')].indexOf(td);
+        text.replace(/\r/g, '').split('\n').filter((l, k, a) => l !== '' || k < a.length - 1).forEach((line, i) => line.split('\t').forEach((v, j) => {
+          while (grid.length <= r0 + i) grid.push([]);
+          grid[r0 + i][c0 + j] = v.trim();
+        }));
+        drawGrid();
+      }));
+    }
+    document.querySelectorAll('[data-act]').forEach(b => b.onclick = () => {
+      readGrid();
+      if (b.dataset.act === 'addRow') grid.push(Array(grid[0].length).fill(''));
+      if (b.dataset.act === 'addCol') grid = grid.map((r, i) => r.concat(i === 0 ? ['New'] : ['']));
+      if (b.dataset.act === 'delCol' && grid[0].length > 1) grid = grid.map(r => r.slice(0, -1));
+      drawGrid();
+    });
+    $('newTourBtn').onclick = () => openTour(null);
+    $('tourCancel').onclick = () => $('tourForm').classList.add('hidden');
+    $('tourForm').addEventListener('submit', async e => {
+      e.preventDefault(); readGrid();
+      const f = e.target;
+      const header = grid[0], rows = grid.slice(1).filter(r => r.some(c => c !== ''));
+      if (!rows.length) { toast('The table is empty', false); return; }
+      const data = { title: f.title.value.trim(), title_ar: f.title_ar.value.trim(), date: f.date.value || today(), category: f.category.value,
+        note: f.note.value.trim(), table: JSON.stringify({ header, rows }), source: (f.dataset.source || 'manual').slice(0, 200), published: f.published.checked, updatedAt: serverTimestamp() };
+      if (data.table.length > 900000) { toast('The table is too large', false); return; }
+      try {
+        if (tourEditing) await setDoc(doc(db, 'tournaments', tourEditing), data); else await addDoc(collection(db, 'tournaments'), data);
+        toast('Saved'); f.classList.add('hidden'); loadTour();
+      } catch (err) { toast('Could not save: ' + err.message, false); }
+    });
+
+    // ---------- Excel / CSV import (read in the browser, nothing is uploaded) ----------
+    let wb = null, sheetName = '', cells = [], hdrRow = -1, lastRow = -1;
+    function fmt(v) {
+      if (v === null || v === undefined) return '';
+      if (typeof v === 'number') return Number.isInteger(v) ? String(v) : String(Math.round(v * 100) / 100);
+      return String(v).replace(/\s+/g, ' ').trim();
+    }
+    function sheetCells(ws) {
+      const rows = XLSX.utils.sheet_to_json(ws, { header: 1, raw: true, defval: null, blankrows: true });
+      // carry merged-cell values across, so "Round 1" spanning two columns labels both
+      (ws['!merges'] || []).forEach(m => {
+        const v = rows[m.s.r] ? rows[m.s.r][m.s.c] : null;
+        for (let r = m.s.r; r <= m.e.r; r++) for (let c = m.s.c; c <= m.e.c; c++) { rows[r] = rows[r] || []; if (rows[r][c] == null) rows[r][c] = v; }
+      });
+      return rows.map(r => (r || []).map(fmt));
+    }
+    function guessRange() {
+      hdrRow = cells.findIndex(r => r.filter(Boolean).length >= 3);
+      lastRow = hdrRow;
+      for (let i = hdrRow + 1; i < cells.length; i++) { if (!cells[i].some(Boolean)) break; lastRow = i; }
+    }
+    function drawSheet() {
+      const w = Math.max(1, ...cells.map(r => r.length));
+      const n = +$('hdrCount').value;
+      $('sheetView').innerHTML = cells.slice(0, 400).map((r, i) => {
+        const cls = (i >= hdrRow && i < hdrRow + n) ? 'hdr' : (i >= hdrRow + n && i <= lastRow ? 'inrange' : '');
+        return `<tr data-r="${i}" class="${cls}"><td class="text-slate-400">${i + 1}</td>${Array.from({ length: w }, (_, c) => `<td>${esc(r[c] || '')}</td>`).join('')}</tr>`;
+      }).join('');
+      $('hdrRowLbl').textContent = hdrRow >= 0 ? hdrRow + 1 : '–'; $('lastRowLbl').textContent = lastRow >= 0 ? lastRow + 1 : '–';
+      $('sheetView').querySelectorAll('tr').forEach(tr => tr.onclick = () => {
+        const r = +tr.dataset.r;
+        if (document.querySelector('input[name=clickMode]:checked').value === 'hdr') { hdrRow = r; if (lastRow < r) { lastRow = r; for (let i = r + 1; i < cells.length && cells[i].some(Boolean); i++) lastRow = i; } }
+        else lastRow = r;
+        drawSheet();
+      });
+    }
+    function pickSheet(name) {
+      sheetName = name; cells = sheetCells(wb.Sheets[name]); guessRange();
+      $('sheetTabs').innerHTML = wb.SheetNames.map(s => `<button data-s="${esc(s)}" class="px-3 py-1 rounded-lg text-sm font-bold ${s === name ? 'bg-sky-700 text-white' : 'bg-slate-200'}">${esc(s)}</button>`).join('');
+      $('sheetTabs').querySelectorAll('[data-s]').forEach(b => b.onclick = () => pickSheet(b.dataset.s));
+      drawSheet();
+    }
+    $('hdrCount').onchange = drawSheet;
+    $('xlsFile').addEventListener('change', async e => {
+      const file = e.target.files[0]; e.target.value = '';
+      if (!file) return;
+      if (file.size > 15 * 1024 * 1024) { toast('File too large (max 15 MB)', false); return; }
+      try {
+        wb = XLSX.read(await file.arrayBuffer(), { type: 'array', cellDates: true });
+        $('impName').textContent = file.name; $('importBox').dataset.file = file.name;
+        $('importBox').classList.remove('hidden'); $('tourForm').classList.add('hidden');
+        pickSheet(wb.SheetNames[0]);
+        $('importBox').scrollIntoView({ behavior: 'smooth' });
+      } catch (err) { toast('Could not read this file: ' + err.message, false); }
+    });
+    $('cancelImport').onclick = () => $('importBox').classList.add('hidden');
+    $('useTable').onclick = () => {
+      if (hdrRow < 0) { toast('Click the row with the column titles first', false); return; }
+      const n = +$('hdrCount').value;
+      const w = Math.max(...cells.slice(hdrRow, lastRow + 1).map(r => r.length));
+      // keep only columns that have something in them
+      const used = Array.from({ length: w }, (_, c) => cells.slice(hdrRow, lastRow + 1).some(r => r[c]));
+      const cols = used.map((u, c) => u ? c : -1).filter(c => c >= 0);
+      const header = cols.map(c => { const parts = []; for (let k = 0; k < n; k++) { const v = (cells[hdrRow + k] || [])[c]; if (v && !parts.includes(v)) parts.push(v); } return parts.join(' '); });
+      const rows = cells.slice(hdrRow + n, lastRow + 1).filter(r => r.some(Boolean)).map(r => cols.map(c => r[c] || ''));
+      // text above the table (title rows) becomes the default title; text below (e.g. "T.D Raad Otoom") the note
+      const above = cells.slice(0, hdrRow).flat().filter(v => v && !/^#/.test(v));
+      const below = cells.slice(lastRow + 1, lastRow + 4).flat().filter(Boolean);
+      openTour(null, { grid: [header].concat(rows), title: above[0] || sheetName, note: below.join(' · ').slice(0, 300), source: ('excel: ' + ($('importBox').dataset.file || '') + ' / ' + sheetName).slice(0, 200) });
+    };
+  </script>
+</body>
+</html>
