@@ -1,59 +1,36 @@
-# Jordan Bridge Federation (JBF) — Portal Administration & Data Entry Guide
-# الاتحاد الأردني للبريدج — دليل إدارة وتحديث بيانات البوابة الإلكترونية
+# JBF website – admin guide
+# دليل إدارة الموقع
 
-This guide provides simple, step-by-step instructions for JBF officials and tournament directors (e.g. Tournament Director Raad Otoom, President Feisal Hamdan, General Assembly staff) to update scores, player rosters, and documents on **jordanbridgefederation.com**.
+Admin page: **https://jordanbridgefederation.com/admin/**
+It is not linked from the site menu and search engines are told not to index it.
 
----
+## Signing in · الدخول
+- Enter the admin password and press **Sign in**. There is one admin account (`admin@jordanbridgefederation.com`); only the password is typed.
+- After 3 wrong passwords the form locks for 30 seconds, and the lock doubles after every further failure (up to 1 hour). Firebase also blocks repeated attempts on its side.
+- You are signed out after 30 minutes without activity, or when the browser tab is closed.
+- To change the password: Firebase console → project **jbf-portal** → Authentication → Users → the admin user → *Reset password*.
 
-## Method 1: Instant In-Browser Data Entry (Zero-Coding)
-## الطريقة الأولى: إدخال البيانات المباشر عبر المتصفح (بدون أي برمجة)
+## Announcements · الإعلانات
+1. Open the **Announcements** tab → **+ New announcement**.
+2. Write the title and text in English, Arabic, or both. Add a date, an optional link, and tick **Pin to top** to keep it first.
+3. Tick **Published** and press **Save**. It appears on the home page within seconds in the "Announcements & Latest Results" section (the section is hidden while there is nothing published).
+4. Untick **Published** to hide it again without deleting it.
 
-1. Open **[jordanbridgefederation.com](https://jordanbridgefederation.com/)** in any web browser.
-2. Click the **"Admin Portal"** or **"Admin Data Entry"** button located at the top banner or website footer.
-3. Enter your confidential Administrator Security PIN.
-4. Fill in the simple form:
-   * **Target Tournament:** Jordan Cup 2026 or Festival
-   * **Team Name:** e.g., `AL Nashama`
-   * **Rank (#):** e.g., `1`
-   * **Total V.P Score:** e.g., `90.90`
-   * **Total IMP:** e.g., `+79`
-   * **Player Roster (comma-separated):** e.g., `Abdlah Ajlouni, Zaid Bitar, Samer Haddad, Luai Al Hussari`
-5. Click **"Apply Live Preview"** to see your updates reflect immediately on the page!
-6. Click **"Export Clean JSON"** to copy the updated dataset for permanent archiving.
+## Results tables · جداول النتائج
+Two ways to add a table:
 
----
+**A. From Excel (recommended for tournaments calculated in Excel)**
+1. **Results tables** tab → **⬆ Import Excel / CSV**, choose the file (.xlsx, .xls, .csv, .ods). The file is read only inside your browser; it is not uploaded anywhere.
+2. Pick the sheet. The page guesses where the table starts and ends; click a row to set the **header row** or the **last row** if the guess is wrong. Use *Title rows* when the header spans 2–3 rows.
+3. Check the preview, then **Use this table**. The text above the table becomes the title and the lines under it become the note — edit them freely.
+4. Set the date and category, tick **Published**, **Save**.
 
-## Method 2: Direct GitHub Data Update (Takes 30 Seconds)
-## الطريقة الثانية: التحديث المباشر عبر ملفات البيانات
+**B. By hand or copy–paste**
+- **+ Blank table**, then use the grid: **+ Row**, **+ Column**, click a cell to type. You can also copy a block of cells in Excel and paste it into the first cell.
 
-All live datasets are structured in clean JSON files inside `public/data/`:
-* **Complete Federation Master Data:** `public/data/jbf_master_data.json`
-  * Contains Jordan Cup matrix with rosters, 4 historical festivals (2026, 2025, 2024, 2023), Mixed Selection 2025, and Document catalog.
-* **Festival Round Matches:** `public/data/festival2026.json`
-* **Executive Committee Members:** `public/data/committee.json`
+The first column is shown with gold/silver/bronze badges for 1, 2 and 3.
 
-### To update via GitHub web interface:
-1. Open repository `https://github.com/brdg2020/jordanbridgefederation`
-2. Navigate to `public/data/jbf_master_data.json`
-3. Click the **Edit (Pencil)** icon.
-4. Modify scores, team names, or add new tournament records.
-5. Click **"Commit changes"**.
-6. GitHub Pages will automatically build and publish the live site within 30 seconds!
-
----
-
-## Method 3: Adding New Tournament Documents, Posters & Photos
-## الطريقة الثالثة: إضافة وثائق جديدة، ملصقات أو صور
-
-* **PDF Bulletins & Regulations:** Place the PDF inside `public/archive/` and add the filename to the document catalog in `generate_master_data.py`.
-* **Festival Posters:** Place image files inside `public/images/` (`JOR261.jpg`, `JOR_262.jpg`).
-* **Tournament Gallery Photos:** Add `.jpg` files to `public/gallery/`. They will automatically appear in the gallery grid with full Lightbox Zoom support.
-
----
-
-## Technical Summary
-* **Domain:** `jordanbridgefederation.com` / `www.jordanbridgefederation.com`
-* **Hosting:** GitHub Pages (SSL / TLS automated by Let's Encrypt)
-* **DNS Provider:** Squarespace Domains (Standard A Records & CNAME configured)
-* **Frontend:** Modern Single Page Application (Tailwind CSS, Lucide Icons, Vanilla JS, Zero heavy dependencies)
-* **Language Support:** Full English & Arabic RTL reactive toggle.
+## Good to know
+- Everything published is public. Do not publish phone numbers or private data of players.
+- The 83 historical events from Bridgewebs and the Festival / Jordan Cup tables are part of the site's code; changing those needs the developer.
+- Technical details: the data is stored in Firebase Firestore (project `jbf-portal`). Security rules in `firebase/firestore.rules` allow the public to read published items only, and only the account with the `admin` permission can write.
