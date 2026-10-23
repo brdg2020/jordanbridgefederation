@@ -57,7 +57,7 @@ RESULTS_SECTION_HTML = r'''
           <button onclick="resShare()" class="p-2 rounded-full bg-white/10 hover:bg-white/20" title="Copy link"><i data-lucide="link" class="w-5 h-5"></i></button>
           <button onclick="resClose()" class="p-2 rounded-full bg-white/10 hover:bg-white/20" aria-label="Close"><i data-lucide="x" class="w-5 h-5"></i></button>
         </div>
-        <p class="text-xs font-bold uppercase tracking-wider text-amber-300" id="resModalMeta"></p>
+        <p class="text-xs font-bold uppercase tracking-wider text-amber-300 pr-32" id="resModalMeta"></p>
         <h3 class="text-xl sm:text-3xl font-black mt-1 pr-32" id="resModalTitle"></h3>
         <p class="text-xs text-sky-100/80 mt-2" id="resModalStaff"></p>
       </div>
@@ -99,6 +99,21 @@ RESULTS_CSS = r'''
     .res-compass .bd { position:absolute; inset:0; display:flex; align-items:center; justify-content:center; font-size:30px; }
     .res-hand.sm .res-compass .bd { font-size:22px; }
     .res-compass .dl { outline:2px solid #fbbf24; }
+    @media (max-width: 640px) {
+      .res-tbl th { padding:9px 6px; }
+      .res-tbl td { padding:7px 6px; }
+      .res-tbl td.tvn { min-width:0; white-space:nowrap; }
+      .res-tbl .tv-nm { display:none; }
+    }
+    @media (max-width: 520px) {
+      .res-hand, .res-hand.sm { grid-template-columns: minmax(0,1fr) auto minmax(0,1fr); gap:8px 6px; }
+      .res-seat, .res-hand.sm .res-seat { font-size:15px; line-height:1.45; letter-spacing:0; white-space:normal; overflow-wrap:anywhere; }
+      .res-seat .sym { width:1em; }
+      .res-compass, .res-hand.sm .res-compass { width:74px; height:74px; border-radius:14px; font-size:10px; }
+      .res-compass span { padding:1px 5px; }
+      .res-compass .n { top:4px; } .res-compass .s { bottom:4px; } .res-compass .w { left:4px; } .res-compass .e { right:4px; }
+      .res-compass .bd, .res-hand.sm .res-compass .bd { font-size:20px; }
+    }
     .res-dd td { width:40px; height:30px; text-align:center; font-weight:700; font-size:14px; border:1px solid #e2e8f0; }
     .res-dd td.m { background:#dcfce7; color:#166534; } .res-dd td.x { color:#94a3b8; }
     .res-mx td { padding:4px 6px; font-size:12px; min-width:38px; }
@@ -663,7 +678,7 @@ RESULTS_JS = r'''
         return `<tr class="${sel ? 'sel' : ''}">` + r.slice(0, cols.length).map((v, i) => {
           if (i === iNS || i === iEW) {
             const nm = i === iNS ? nmNS : nmEW;
-            return `<td class="l"><span class="font-bold">${resEsc(v)}</span>${nm ? ' <span class="text-slate-500 text-xs">' + resEsc(nm) + '</span>' : ''}</td>`;
+            return `<td class="l tvn" title="${resEsc(nm)}"><span class="font-bold">${resEsc(v)}</span>${nm ? ' <span class="tv-nm text-slate-500 text-xs">' + resEsc(nm) + '</span>' : ''}</td>`;
           }
           if (cols[i] === 'Bid') return `<td>${resContract(v)}</td>`;
           if (cols[i] === 'Ld') return `<td>${resCard(v)}</td>`;
@@ -708,7 +723,7 @@ RESULTS_JS = r'''
         ${'NESW'.split('').map(p => `<button onclick="RES.lead.decl='${p}';resRenderEvent()" class="res-pill ${p === RES.lead.decl ? 'on' : ''} w-8 h-8 rounded-lg text-sm font-bold bg-white border border-slate-300">${p}</button>`).join('')}</div>`;
       const body = tricksSorted.map((t, k) => `<div class="flex items-start gap-3 py-1.5 ${k ? 'border-t border-slate-100' : ''}">
           <span class="shrink-0 w-14 text-center rounded-lg px-2 py-1 text-sm font-black ${k === 0 ? 'bg-emerald-100 text-emerald-800' : 'bg-slate-100 text-slate-600'}">${t}</span>
-          <span class="flex flex-wrap gap-x-3 gap-y-1 text-base font-semibold">${groups[t].map(cs => cs.map(c => resCard(c[0] + c[1])).join('')).join('<span class="text-slate-300">·</span>')}</span></div>`).join('');
+          <span class="flex flex-wrap gap-x-2 gap-y-1 text-base font-semibold">${groups[t].map((cs, gi) => `<span class="whitespace-nowrap">${gi ? '<span class="text-slate-300 mr-2">·</span>' : ''}${cs.map(c => resCard(c[0] + c[1])).join('')}</span>`).join('')}</span></div>`).join('');
       return `<div class="mt-5 bg-slate-50 rounded-2xl border border-slate-200 p-4"><p class="text-[11px] font-bold uppercase tracking-wider text-slate-500 mb-1">${rt('leads')}</p>
         <p class="text-xs text-slate-500 mb-3">${rt('leadHelp')} (${RES.lead.st === 'NT' ? 'NT' : RES_SUIT[RES.lead.st]} ${RES.lead.decl}, ${rt('lead')}: ${leader})</p>${sel}${body}</div>`;
     }

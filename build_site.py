@@ -173,7 +173,7 @@ html_content = f'''<!DOCTYPE html>
 <body class="bg-slate-50 text-slate-800 antialiased font-sans flex flex-col min-h-screen" id="bodyRoot">
 
   <!-- TOP ROYAL EMIRATES PATRONAGE BANNER -->
-  <div class="bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
+  <div class="hidden sm:block bg-slate-900 text-slate-300 text-xs py-2 px-4 border-b border-slate-800">
     <div class="max-w-7xl mx-auto flex items-center justify-between">
       <div class="flex items-center gap-2">
         <span class="inline-block w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse"></span>
@@ -189,14 +189,14 @@ html_content = f'''<!DOCTYPE html>
 
   <!-- NAVIGATION BAR -->
   <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-slate-200/80 shadow-xs">
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 h-16 sm:h-20 flex items-center justify-between gap-2">
       
       <!-- Logo & Title -->
-      <a href="#" class="flex items-center gap-3.5 group">
-        <img src="public/jbf_logo.jpg" alt="Jordan Bridge Federation" class="h-14 w-auto rounded-md shadow-xs border border-slate-200 group-hover:scale-105 transition-transform duration-200">
+      <a href="#" class="flex items-center gap-2.5 sm:gap-3.5 group min-w-0">
+        <img src="public/jbf_logo.jpg" alt="Jordan Bridge Federation" class="h-11 sm:h-14 w-auto shrink-0 rounded-md shadow-xs border border-slate-200 group-hover:scale-105 transition-transform duration-200">
         <div>
-          <span class="text-xs uppercase tracking-widest font-extrabold text-amber-700 block" data-en="Jordan Bridge Federation" data-ar="الاتحاد الأردني للبريدج">Jordan Bridge Federation</span>
-          <h1 class="text-base sm:text-lg font-black text-slate-900 tracking-tight" data-en="Official National Portal" data-ar="البوابة الوطنية الرسمية">Official National Portal</h1>
+          <span class="text-[10px] sm:text-xs uppercase tracking-wider sm:tracking-widest font-extrabold text-amber-700 block whitespace-nowrap" data-en="Jordan Bridge Federation" data-ar="الاتحاد الأردني للبريدج">Jordan Bridge Federation</span>
+          <h1 class="text-sm sm:text-lg font-black text-slate-900 tracking-tight whitespace-nowrap" data-en="Official National Portal" data-ar="البوابة الوطنية الرسمية">Official National Portal</h1>
         </div>
       </a>
 
@@ -214,8 +214,8 @@ html_content = f'''<!DOCTYPE html>
       </nav>
 
       <!-- Language & Admin Action -->
-      <div class="flex items-center gap-3">
-        <button id="langToggleBtn" onclick="toggleLanguage()" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold border border-slate-300 bg-slate-100 hover:bg-slate-200 text-slate-800 transition-all shadow-xs cursor-pointer">
+      <div class="flex items-center gap-1.5 sm:gap-3 shrink-0">
+        <button id="langToggleBtn" onclick="toggleLanguage()" class="inline-flex items-center gap-1.5 px-2.5 sm:px-3.5 py-1.5 rounded-full text-xs font-bold border border-slate-300 bg-slate-100 hover:bg-slate-200 text-slate-800 transition-all shadow-xs cursor-pointer">
           <i data-lucide="languages" class="w-4 h-4 text-sky-700"></i>
           <span id="langLabel">العربية</span>
         </button>
@@ -721,8 +721,8 @@ html_content = f'''<!DOCTYPE html>
           <p class="flex items-center gap-2"><i data-lucide="printer" class="w-4 h-4 text-sky-700"></i><span data-en="Fax" data-ar="فاكس">Fax</span>: <span class="font-semibold" dir="ltr">06/5691057</span></p>
           <p class="flex items-center gap-2"><i data-lucide="mailbox" class="w-4 h-4 text-sky-700"></i><span data-en="P.O. Box" data-ar="صندوق البريد">P.O. Box</span>: <span class="font-semibold" dir="ltr">140600</span></p>
           <p class="flex items-center gap-2"><i data-lucide="mail" class="w-4 h-4 text-sky-700"></i><span data-en="Email" data-ar="البريد الإلكتروني">Email</span>: <a href="mailto:jor_bridge@yahoo.com" class="font-semibold text-sky-800 hover:underline">jor_bridge@yahoo.com</a></p>
-          <p class="flex items-center gap-2"><i data-lucide="facebook" class="w-4 h-4 text-sky-700"></i><a href="https://web.facebook.com/jordanbridgefederation/" target="_blank" rel="noopener" class="font-semibold text-sky-800 hover:underline">facebook.com/jordanbridgefederation</a></p>
-          <p class="flex items-center gap-2"><i data-lucide="globe" class="w-4 h-4 text-sky-700"></i><span data-en="Previous website" data-ar="الموقع السابق">Previous website</span>: <a href="https://www.bridgewebs.com/jbf" target="_blank" rel="noopener" class="font-semibold text-sky-800 hover:underline">www.bridgewebs.com/jbf</a></p>
+          <p class="flex items-center gap-2"><i data-lucide="users" class="w-4 h-4 text-sky-700"></i><a href="https://web.facebook.com/jordanbridgefederation/" target="_blank" rel="noopener" class="font-semibold text-sky-800 hover:underline">facebook.com/jordanbridgefederation</a></p>
+          <p class="flex flex-wrap items-center gap-x-2 gap-y-1"><i data-lucide="globe" class="w-4 h-4 text-sky-700"></i><span class="whitespace-nowrap" data-en="Previous website" data-ar="الموقع السابق">Previous website</span>: <a href="https://www.bridgewebs.com/jbf" target="_blank" rel="noopener" class="font-semibold text-sky-800 hover:underline">www.bridgewebs.com/jbf</a></p>
         </div>
         <div class="bg-slate-50 rounded-2xl border border-slate-200 p-6 text-sm text-slate-700 space-y-3">
           <p class="font-black text-slate-900 text-base" data-en="Links to tourist sites in Jordan" data-ar="روابط المواقع السياحية في الأردن">Links to tourist sites in Jordan</p>
@@ -1500,19 +1500,19 @@ html_content = f'''<!DOCTYPE html>
 
       committeeData.members.forEach(m => {{
         const card = document.createElement('div');
-        card.className = 'bg-white p-5 rounded-2xl border border-slate-200 text-sm hover:border-amber-400 hover:shadow-md transition-all flex flex-col sm:flex-row items-center sm:items-start gap-4 text-center sm:text-left';
+        card.className = 'bg-white p-5 rounded-2xl border border-slate-200 text-sm hover:border-amber-400 hover:shadow-md transition-all flex flex-row items-center sm:items-start gap-4 text-start';
         
         const displayName = currentLang === 'ar' ? (m.name_ar || m.name) : m.name;
         const displayRole = currentLang === 'ar' ? (m.role_ar || m.role) : m.role;
 
         const avatarHtml = m.photo ? 
           `<div class="relative group cursor-pointer shrink-0" data-zoom="1">
-             <img src="${{m.photo}}" alt="${{displayName}}" class="w-20 h-24 object-cover rounded-xl border-2 border-slate-200 group-hover:border-amber-400 shadow-sm transition-all">
+             <img src="${{m.photo}}" alt="${{displayName}}" class="w-16 h-20 sm:w-20 sm:h-24 object-cover rounded-xl border-2 border-slate-200 group-hover:border-amber-400 shadow-sm transition-all">
              <div class="absolute inset-0 bg-slate-900/30 opacity-0 group-hover:opacity-100 rounded-xl transition-opacity flex items-center justify-center text-white text-xs">
                <i data-lucide="zoom-in" class="w-4 h-4"></i>
              </div>
            </div>` :
-          `<div class="w-20 h-24 rounded-xl bg-sky-100 text-sky-800 font-bold flex items-center justify-center text-xs shrink-0 border border-sky-200">
+          `<div class="w-16 h-20 sm:w-20 sm:h-24 rounded-xl bg-sky-100 text-sky-800 font-bold flex items-center justify-center text-xs shrink-0 border border-sky-200">
              <i data-lucide="user" class="w-6 h-6"></i>
            </div>`;
 
@@ -1521,9 +1521,9 @@ html_content = f'''<!DOCTYPE html>
           <div class="min-w-0 flex-1 flex flex-col justify-between h-full">
             <div>
               <span class="inline-block text-[11px] font-bold text-amber-700 bg-amber-50 border border-amber-200 px-2.5 py-0.5 rounded-full mb-1">${{displayRole}}</span>
-              <strong class="block text-slate-900 font-black text-base truncate">${{displayName}}</strong>
+              <strong class="block text-slate-900 font-black text-base leading-snug">${{displayName}}</strong>
             </div>
-            <div class="mt-3 pt-2 border-t border-slate-100 text-xs space-y-0.5">
+            <div class="mt-2 sm:mt-3 pt-2 border-t border-slate-100 text-xs space-y-0.5">
               ${{m.phone ? `<span class="block font-mono text-slate-500 text-[11px]" dir="ltr">📞 ${{m.phone}}</span>` : ''}}
               ${{m.email ? `<span class="block text-slate-400 text-[11px] truncate">✉️ ${{m.email}}</span>` : ''}}
             </div>

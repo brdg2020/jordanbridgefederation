@@ -24,7 +24,7 @@ NEWS_SECTION_HTML = r'''
     <div class="bg-white w-full max-w-6xl sm:rounded-3xl shadow-2xl sm:my-4 overflow-hidden min-h-screen sm:min-h-0">
       <div class="bg-gradient-to-r from-sky-950 via-sky-900 to-slate-900 text-white px-5 sm:px-8 py-6 relative">
         <button onclick="closeNewsTable()" class="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20" aria-label="Close"><i data-lucide="x" class="w-5 h-5"></i></button>
-        <p class="text-xs font-bold uppercase tracking-wider text-amber-300" id="newsModalMeta"></p>
+        <p class="text-xs font-bold uppercase tracking-wider text-amber-300 pr-12" id="newsModalMeta"></p>
         <h3 class="text-xl sm:text-2xl font-black mt-1 pr-12" id="newsModalTitle"></h3>
         <p class="text-xs text-sky-100/80 mt-2" id="newsModalNote"></p>
       </div>
